@@ -223,10 +223,15 @@ def analyze_plan_feasibility(
                 "after": str(target_val),
                 "rationale": chg.get("rationale", ""),
             })
-        elif var_name == "ea" or change_type in ("ea_architecture_transition", "baseline_characterization"):
+        elif var_name in ("ea", "dataset_partition", "partition") or change_type in (
+            "ea_architecture_transition",
+            "baseline_characterization",
+            "dataset_partition_evaluation",
+            "out_of_sample_validation",
+        ):
             required_changes.append({
                 "parameter": var_name,
-                "type": "architecture",
+                "type": "dataset_partition" if ("partition" in str(var_name) or "partition" in str(change_type)) else "architecture",
                 "before": str(chg.get("baseline_value")),
                 "after": str(target_val),
                 "rationale": chg.get("rationale", ""),

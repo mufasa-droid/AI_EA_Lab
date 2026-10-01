@@ -4,6 +4,7 @@
     "02d3d9533052bd8c03500008d26d2e98146cb818656bf2e369d7df6b78915aca": "MEM-HYP-0050",
     "04cc1b69aa3ddf8236d4afa450bc5311a2ec753880bb427455793170c30a6723": "MEM-HYP-0006",
     "061985b306a6431a23040464fee718c9bb54de9c9c5648d31119958826e4d2be": "MEM-REL-0013",
+    "0740c434f3a7dc37862c61990966aff0b75efb2659f1913762e1f68bceeece98": "MEM-REL-0014",
     "100eb15dba921055f539fb10935893da46e7f5a8cd98a0c7b26fb21709b680ca": "MEM-HYP-0061",
     "11564499a018c7a1eba011de7d2b037bfb7f9201ad61cc1a9750aac7ba434e53": "MEM-REL-0008",
     "12a036442433f602ed8bbd590058d8416124db148a407688deacee6b7fb16466": "MEM-HYP-0037",
@@ -18,9 +19,11 @@
     "2fb2c8c1b0214a7bd8bf1e37b0b5b6c1e0e2b7ecf3b788ce5548d31a192da62e": "MEM-HYP-0012",
     "34b18ba226244b2390a73dc0cc1b293394513bffb801be2e539a554b0a7b84b6": "MEM-HYP-0034",
     "357c7a3a42067f1dce055007154ca0eb1020809527065ef51541613387c5eaf8": "MEM-HYP-0011",
+    "367f3fbb41b65a170599a7b8ca9eb4e366f0c75b11e8d94cd91ae6d4f0641d6d": "MEM-HYP-0062",
     "36f230ca09533b98474efb8f89bc3877a2c128cd8090d423c075143d389f782d": "MEM-HYP-0055",
     "36f77b4376545432155f62c964557c3000921b76aef2a25f1e8824f5a9fd18f9": "MEM-OBS-0001",
     "37f63991537215e46454515b57a0d16f3ac2bf38ff14bef3d6073acad429216a": "MEM-HYP-0016",
+    "37ff07cfdeb23f709a506fdd127a7d157a6584666203d024624061c6533a2c72": "MEM-HYP-0063",
     "3d9e76768c3e4a9b18bb833355676fc35f977df8d2d340e384d4eb56128a1e7f": "MEM-REL-0006",
     "418b7de7fe166a9b9dff6efa37cd797957c5f7487e3c7e2af1a0f8a9c67ba80e": "MEM-HYP-0009",
     "465c9798f5f3205f5223a8b7d82b2d125fac040476129df246f8094a37b66c31": "MEM-HYP-0008",
@@ -60,11 +63,13 @@
     "924acd5a318d7b6de454e34aa9a55c5d4e7a53704943389e27cd7cc2c16bd3d8": "MEM-HYP-0027",
     "95b97b63cfd7473350104bd6d16346577dc62bfbd602189db808e08c481a1a26": "MEM-OBS-0004",
     "980c0ad2ee9fb0dd02b6df534b1f129a46341987e909852e454399dce6e21963": "MEM-HYP-0048",
+    "a1cee105787c49a33abc004c17c25ed4367637795c360036563cd499458d4d84": "MEM-OBS-0014",
     "a2d49c122b283a65e45fd2606a53e6e2fa26d2fa22b3e67773fd4e2dc577a45e": "MEM-HYP-0056",
     "a8ace7d8e51f6335bda5577e8d476d5d7876ca439744303a0c1fa7a3e42cac82": "MEM-HYP-0051",
     "ad19d3122df4b5c367caf689033c4dbac3e89bfdcd9581683067d8649f1ef871": "MEM-HYP-0042",
     "ad3e120bed87fadd5b76009cb2f22e536583fbebdffb967b294a24790df62f18": "MEM-HYP-0028",
     "ae61ed7e6f555a015cdc98e3b7bf8326176ea653012c2ed258ed4d8b93024a05": "MEM-HYP-0021",
+    "b29cd509ed1c259c696e86305a99012f8e842942ace8598c6da0cbce62d58ce4": "MEM-HYP-0064",
     "b4eea36355ca249703bd9fb15b63ad3f3a8e54a7be63af3dbdbd9dda9a56d840": "MEM-HYP-0014",
     "b4ffe87648ab70dfee3e3fa5d5ced9e35617a286fa2a1b522da077f2509e4f30": "MEM-REL-0011",
     "b71b4e139c160368592a1d567aea74c9ddc2363e2c4efb073d1094412f43b25f": "MEM-OBS-0005",
@@ -77,6 +82,7 @@
     "cf8d4c30a56f1d391697a879fd64a2db04998aa115563695edf8eb440f0bb3f3": "MEM-HYP-0057",
     "d1cbc4bf544bf836100cd960f2c4c7ed4a255f6741e8875455bfaf06cca1b9a5": "MEM-HYP-0039",
     "d3325ba56bec07149b5c70feea576c632ee0fd05f76ca38c71b79a108e165e4c": "MEM-HYP-0046",
+    "d85395ca71a0339f43261390b7a2a1edb5f12bded1ad80861502bae1fba6b477": "MEM-REL-0015",
     "e0277547af7f0c4760f178b92c72f10ea6d878978b47a733184e495b3bcb53d4": "MEM-HYP-0022",
     "e805e69ea0f7b7d05647ea59a6ab59beee47def11ffb96d6fd55cacbf47798b7": "MEM-HYP-0007",
     "e834d858da73ddfe71960142a7df93acd3e8b209205c85e1b1d30f0c5fa69eb3": "MEM-OBS-0011",
@@ -86,6 +92,7 @@
     "f4fd0c065f1e22b893f32df32ae825173372dd969773deeaa68028c618d9098e": "MEM-OBS-0009",
     "f85bb287da04be40578255ad0c768ac3435f15bcc9431156e076fa87f67fafc7": "MEM-HYP-0040",
     "f8c00a5e29b81a41b12f0d5ce05024c3739b2ee7ab78313e0d87fced6462ff09": "MEM-HYP-0024",
+    "f9b43351f36f41fe54b1c564cd55be92c4fad13a9dabfb7f9ba169f94c9c0904": "MEM-OBS-0015",
     "fa3a927e3725acfd3cabe42bbe6917659fd2cf2a8b32b0dbb90942d05e52c8ea": "MEM-HYP-0035"
   },
   "records": [
@@ -2407,9 +2414,206 @@
       "source": "AI Researcher",
       "statement": "Reducing FastMAPeriod from 10 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 103 trades.",
       "status": "PROPOSED"
+    },
+    {
+      "candidate_id": "CAND-0008",
+      "created_at": "2026-10-01T23:04:56.704469+01:00",
+      "dataset_from": "2025.01.01",
+      "dataset_partition": {
+        "from": "2025.01.01",
+        "partition": "validation",
+        "source": "config/research_periods.json",
+        "to": "2025.12.31"
+      },
+      "dataset_to": "2025.12.31",
+      "evidence_reference": {
+        "experiment_id": "EXP-0011",
+        "metadata_path": "experiments/EXP-0011/metadata.json"
+      },
+      "evidence_type": "METRICS",
+      "experiment_id": "EXP-0011",
+      "fingerprint": "a1cee105787c49a33abc004c17c25ed4367637795c360036563cd499458d4d84",
+      "generated_by": "system",
+      "memory_id": "MEM-OBS-0014",
+      "observation": "Experiment EXP-0011 executed on symbol GBPUSD (M15) across 2025.01.01-2025.12.31 [{'partition': 'validation', 'from': '2025.01.01', 'to': '2025.12.31', 'source': 'config/research_periods.json'}] with bars=24776, ticks=1475378, history_quality=100.0%.",
+      "observation_category": "FACT",
+      "record_type": "EXPERIMENT_OBSERVATION",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "symbol": "GBPUSD",
+      "timeframe": "M15"
+    },
+    {
+      "candidate_id": "CAND-0008",
+      "created_at": "2026-10-01T23:04:56.714426+01:00",
+      "dataset_from": "2025.01.01",
+      "dataset_partition": {
+        "from": "2025.01.01",
+        "partition": "validation",
+        "source": "config/research_periods.json",
+        "to": "2025.12.31"
+      },
+      "dataset_to": "2025.12.31",
+      "evidence_reference": {
+        "experiment_id": "EXP-0011",
+        "metrics_path": "experiments/EXP-0011/metrics.json"
+      },
+      "evidence_type": "METRICS",
+      "experiment_id": "EXP-0011",
+      "fingerprint": "f9b43351f36f41fe54b1c564cd55be92c4fad13a9dabfb7f9ba169f94c9c0904",
+      "generated_by": "system",
+      "memory_id": "MEM-OBS-0015",
+      "observation": "Experiment EXP-0011 recorded total_trades=147, net_profit=-257.97, profit_factor=0.87.",
+      "observation_category": "FACT",
+      "record_type": "EXPERIMENT_OBSERVATION",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "symbol": "GBPUSD",
+      "timeframe": "M15"
+    },
+    {
+      "created_at": "2026-10-01T23:04:56.723101+01:00",
+      "evidence_reference": {
+        "experiment_id": "EXP-0011",
+        "hypothesis_id": "HYP-0068"
+      },
+      "fingerprint": "0740c434f3a7dc37862c61990966aff0b75efb2659f1913762e1f68bceeece98",
+      "generated_by": "system",
+      "memory_id": "MEM-REL-0014",
+      "record_type": "RELATIONSHIP",
+      "relation": "TESTED_BY",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source_id": "HYP-0068",
+      "source_type": "HYPOTHESIS",
+      "target_id": "EXP-0011",
+      "target_type": "EXPERIMENT"
+    },
+    {
+      "created_at": "2026-10-01T23:04:56.732659+01:00",
+      "evidence_reference": {
+        "candidate_id": "CAND-0008",
+        "experiment_id": "EXP-0011"
+      },
+      "fingerprint": "d85395ca71a0339f43261390b7a2a1edb5f12bded1ad80861502bae1fba6b477",
+      "generated_by": "system",
+      "memory_id": "MEM-REL-0015",
+      "record_type": "RELATIONSHIP",
+      "relation": "IMPLEMENTED_AS",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source_id": "EXP-0011",
+      "source_type": "EXPERIMENT",
+      "target_id": "CAND-0008",
+      "target_type": "CANDIDATE"
+    },
+    {
+      "created_at": "2026-10-01T23:09:58.275631+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0069",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "367f3fbb41b65a170599a7b8ca9eb4e366f0c75b11e8d94cd91ae6d4f0641d6d",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0069",
+      "memory_id": "MEM-HYP-0062",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0012",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004",
+        "EXP-0005",
+        "EXP-0006",
+        "EXP-0007",
+        "EXP-0008",
+        "EXP-0009",
+        "EXP-0010",
+        "EXP-0011"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 10 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 10 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 147 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T23:09:59.596994+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0070",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "37ff07cfdeb23f709a506fdd127a7d157a6584666203d024624061c6533a2c72",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0070",
+      "memory_id": "MEM-HYP-0063",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0012",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004",
+        "EXP-0005",
+        "EXP-0006",
+        "EXP-0007",
+        "EXP-0008",
+        "EXP-0009",
+        "EXP-0010",
+        "EXP-0011"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 10 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 10 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 147 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T23:09:59.806290+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0071",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "b29cd509ed1c259c696e86305a99012f8e842942ace8598c6da0cbce62d58ce4",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0071",
+      "memory_id": "MEM-HYP-0064",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0012",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004",
+        "EXP-0005",
+        "EXP-0006",
+        "EXP-0007",
+        "EXP-0008",
+        "EXP-0009",
+        "EXP-0010",
+        "EXP-0011"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 10 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 10 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 147 trades.",
+      "status": "PROPOSED"
     }
   ],
   "schema_version": 1,
-  "total_records": 87,
-  "updated_at": "2026-10-01T22:58:01.942240+01:00"
+  "total_records": 94,
+  "updated_at": "2026-10-01T23:09:59.850277+01:00"
 }

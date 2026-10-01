@@ -561,11 +561,15 @@ def execute_candidate_backtest(
         rp_config_hash = calculate_research_periods_fingerprint(config_path=research_periods_path)
         env_meta = capture_environment_metadata(PROJECT_ROOT)
 
+        # Link training experiment ID for validation evaluation provenance
+        training_exp_id = cand_meta.get("baseline_experiment") if dataset_type == "validation" else None
+
         repro_record = create_reproducibility_record(
             experiment_id=exp_id,
             candidate_id=candidate_id,
             hypothesis_id=cand_meta.get("hypothesis_id"),
             plan_id=cand_meta.get("plan_id"),
+            training_experiment_id=training_exp_id,
             evaluation_type=dataset_type,
             dataset_partition=dataset_type,
             dataset_from=from_date,
@@ -589,6 +593,7 @@ def execute_candidate_backtest(
             "created_at": datetime.now().astimezone().isoformat(),
             "note": note,
             "candidate_id": candidate_id,
+            "training_experiment_id": training_exp_id,
             "plan_id": cand_meta.get("plan_id"),
             "hypothesis_id": cand_meta.get("hypothesis_id"),
             "baseline_experiment": cand_meta.get("baseline_experiment"),
@@ -1500,10 +1505,35 @@ def main():
         action="store_true",
         help="Allow testing with fallback dates if research_periods.json is unconfigured.",
     )
+    parser.add_argument(
+        "--validation",
+        type=str,
+        default=None,
+        help="Execute out-of-sample validation against specified training experiment ID (e.g. EXP-0008).",
+    )
+    parser.add_argument(
+        "--plan",
+        type=str,
+        default=None,
+        help="Optional experiment plan ID to associate with validation run.",
+    )
 
     args = parser.parse_args()
 
-    if args.repeat:
+    if args.validation:
+        if not args.candidate:
+            parser.error("--candidate must be specified when using --validation.")
+        result = execute_candidate_validation(
+            candidate_id=args.candidate,
+            training_experiment_id=args.validation,
+            plan_id=args.plan,
+            dry_run=args.dry_run,
+            verify_only=args.verify_only,
+            timeout_seconds=args.timeout,
+            allow_unconfigured_dates=args.allow_unconfigured_dates,
+            note=args.note,
+        )
+    elif args.repeat:
         result = execute_repeat_backtest(
             baseline_experiment_id=args.repeat,
             candidate_id=args.candidate,
