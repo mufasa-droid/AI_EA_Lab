@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "parser_version": "1.0.0",
+  "parsed_at": "2026-10-02T00:08:44.758315+01:00",
+  "report_file": "C:\\Users\\Mufasa\\Documents\\AI-EA-Lab\\tester\\reports\\CAND-0013_report.htm",
+  "settings": {
+    "expert": "CAND-0013",
+    "symbol": "GBPUSD",
+    "timeframe": "H1",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "period_raw": "H1 (2020.01.01 - 2024.12.31)",
+    "inputs": {
+      "InpInitialBalance": "0.0",
+      "InpDailyLossLimit": "4.0",
+      "InpTotalDDLimit": "8.0",
+      "InpWeeklyTargetPct": "5.0",
+      "InpUseNewsFilter": "true",
+      "InpNewsBufferMins": "30",
+      "InpMaxTradesPerDay": "6",
+      "InpWeekendClose": "true",
+      "InpWeekendCloseHour": "21",
+      "InpDirection": "2",
+      "InpSwingLookback": "50",
+      "InpSwingStrength": "5",
+      "InpMinSwingPips": "25.0",
+      "InpMaxSwingPips": "500.0",
+      "InpMinBarsAfterSwing": "2",
+      "InpUseFib236": "false",
+      "InpUseFib382": "true",
+      "InpUseFib500": "true",
+      "InpUseFib618": "true",
+      "InpUseFib786": "false",
+      "InpFibBuffer": "5.0",
+      "InpMaxSLPips": "15.0",
+      "InpTP1Pips": "10.0",
+      "InpTP2Pips": "30.0",
+      "InpTP1ClosePct": "50.0",
+      "InpTrailPips": "8.0",
+      "InpUseTrend": "true",
+      "InpTrendEma": "50",
+      "InpUseSession": "true",
+      "InpLondonOpen": "8",
+      "InpLondonClose": "12",
+      "InpNYOpen": "13",
+      "InpNYClose": "18",
+      "InpMaxSpread": "3.0",
+      "InpUseRsi": "true",
+      "InpRsiPeriod": "14",
+      "InpRsiBullMax": "62.0",
+      "InpRsiBearMin": "38.0",
+      "InpRsiExtBull": "42.0",
+      "InpRsiExtBear": "58.0",
+      "InpUseMacd": "true",
+      "InpUseRejection": "true",
+      "InpRejWickRatio": "0.35",
+      "InpUseH4Soft": "true",
+      "InpH4Ema": "50",
+      "InpH4LotFactor": "0.6",
+      "InpUseAdxSoft": "true",
+      "InpAdxPeriod": "14",
+      "InpAdxMin": "15.0",
+      "InpAdxMid": "22.0",
+      "InpAdxWeakLot": "0.6",
+      "InpRiskPct": "1.0",
+      "InpMaxOpenTrades": "3",
+      "InpMinLot": "0.01",
+      "InpMaxLot": "50.0",
+      "InpUseBE": "true",
+      "InpUseTrail": "true",
+      "InpDrawFibs": "true",
+      "InpShowPanel": "true",
+      "InpShowArrows": "true",
+      "InpBullColor": "16748574",
+      "InpBearColor": "17919"
+    },
+    "company": "Deriv.com Limited",
+    "currency": "USD",
+    "initial_deposit": 10000.0,
+    "leverage": "1:100"
+  },
+  "metrics": {
+    "history_quality_percent": 99.0,
+    "bars": 31086,
+    "ticks": 7259036,
+    "symbols": 1,
+    "total_net_profit": -869.85,
+    "gross_profit": 2631.82,
+    "gross_loss": -3501.67,
+    "profit_factor": 0.75,
+    "expected_payoff": -8.36,
+    "recovery_factor": -0.6,
+    "sharpe_ratio": -5.0,
+    "margin_level": 556.6,
+    "z_score": {
+      "value": -2.02,
+      "percent": 95.66,
+      "raw": "-2.02 (95.66%)"
+    },
+    "ahpr": {
+      "value": 0.9992,
+      "percent": -0.08,
+      "raw": "0.9992 (-0.08%)"
+    },
+    "ghpr": {
+      "value": 0.9991,
+      "percent": -0.09,
+      "raw": "0.9991 (-0.09%)"
+    },
+    "on_tester_result": 0.0,
+    "lr_correlation": -0.62,
+    "lr_standard_error": 256.7,
+    "balance_drawdown_absolute": 869.85,
+    "equity_drawdown_absolute": 869.85,
+    "balance_drawdown_maximal": {
+      "value": 1355.26,
+      "percent": 12.93,
+      "raw": "1 355.26 (12.93%)"
+    },
+    "equity_drawdown_maximal": {
+      "value": 1459.34,
+      "percent": 13.78,
+      "raw": "1 459.34 (13.78%)"
+    },
+    "balance_drawdown_relative": {
+      "value": 1355.26,
+      "percent": 12.93,
+      "raw": "12.93% (1 355.26)"
+    },
+    "equity_drawdown_relative": {
+      "value": 1459.34,
+      "percent": 13.78,
+      "raw": "13.78% (1 459.34)"
+    },
+    "total_trades": 104,
+    "total_deals": 184,
+    "short_trades": {
+      "count": 60,
+      "percent": 56.67,
+      "raw": "60 (56.67%)"
+    },
+    "long_trades": {
+      "count": 44,
+      "percent": 50.0,
+      "raw": "44 (50.00%)"
+    },
+    "profit_trades": {
+      "count": 56,
+      "percent": 53.85,
+      "raw": "56 (53.85%)"
+    },
+    "loss_trades": {
+      "count": 48,
+      "percent": 46.15,
+      "raw": "48 (46.15%)"
+    },
+    "largest_profit_trade": 204.0,
+    "largest_loss_trade": -103.5,
+    "average_profit_trade": 47.0,
+    "average_loss_trade": -72.95,
+    "maximum_consecutive_wins": {
+      "count": 7,
+      "amount": 184.19,
+      "raw": "7 (184.19)"
+    },
+    "maximum_consecutive_losses": {
+      "count": 6,
+      "amount": -480.0,
+      "raw": "6 (-480.00)"
+    },
+    "maximal_consecutive_profit": {
+      "amount": 407.52,
+      "count": 5,
+      "raw": "407.52 (5)"
+    },
+    "maximal_consecutive_loss": {
+      "amount": -480.0,
+      "count": 6,
+      "raw": "-480.00 (6)"
+    },
+    "average_consecutive_wins": 3.0,
+    "average_consecutive_losses": 2.0,
+    "correlation_profit_mfe": 0.79,
+    "correlation_profit_mae": 0.77,
+    "correlation_mfe_mae": 0.3879,
+    "minimal_position_holding_time": "0:02:40",
+    "maximal_position_holding_time": "16:11:40",
+    "average_position_holding_time": "2:06:00"
+  },
+  "validation": {
+    "report_non_empty": true,
+    "history_quality_100": false,
+    "bars_present": true,
+    "ticks_present": true,
+    "test_executed": true
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0084",
+  "created_at": "2026-10-02T00:08:00+01:00",
+  "title": "Fibonacci EA v5.0 H1 Timeframe Transition Test",
+  "research_question": "Does transitioning execution from M30 to H1 further filter candlestick noise, improve trade win-rate and payoff, and maintain profitability on GBPUSD without reducing trade sample size to statistically invalid levels?",
+  "hypothesis": "Executing entry signals on H1 candles eliminates intraday lower-timeframe noise and aligns execution directly with swing lookback structure, achieving low drawdown and high win rate, but may significantly reduce trade frequency compared to M30.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0008",
+      "EXP-0018",
+      "EXP-0019"
+    ],
+    "facts": [
+      "EXP-0018 on M30 achieved Profit Factor 3.44 and 2.35% drawdown in training (2020-2024) across 16 trades.",
+      "EXP-0019 on M30 achieved +$163.34 profit, Profit Factor 1.13, and 3.88% drawdown in validation (2025) across 87 trades.",
+      "The EA detects swings on H1 bars (CopyHigh/Low on PERIOD_H1), making H1 execution completely synchronous with swing detection."
+    ],
+    "inferences": [
+      "Executing on H1 bars will produce even cleaner candlestick rejection signals.",
+      "Trade frequency on H1 may drop considerably compared to M30, testing the lower boundary of sample size sufficiency."
+    ],
+    "evidence": [
+      "EXP-0018 total_trades=16, profit_factor=3.44, win_rate=81.25%, total_net_profit=531.64, equity_drawdown_maximal_percent=2.35",
+      "EXP-0019 total_trades=87, profit_factor=1.13, win_rate=78.16%, total_net_profit=163.34, equity_drawdown_maximal_percent=3.88"
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "timeframe",
+      "baseline_value": "M30",
+      "proposed_value": "H1",
+      "rationale": "Transition execution chart timeframe from M30 to H1 to test higher timeframe noise reduction and synchronous swing detection."
+    }
+  ],
+  "dependent_variables": [
+    "total_trades",
+    "total_net_profit",
+    "profit_factor",
+    "win_rate",
+    "equity_drawdown_maximal"
+  ],
+  "control_variables": [
+    {"name": "InpInitialBalance", "value": "0.0"},
+    {"name": "InpDailyLossLimit", "value": "4.0"},
+    {"name": "InpTotalDDLimit", "value": "8.0"},
+    {"name": "InpWeeklyTargetPct", "value": "5.0"},
+    {"name": "InpUseNewsFilter", "value": "true"},
+    {"name": "InpNewsBufferMins", "value": "30"},
+    {"name": "InpMaxTradesPerDay", "value": "6"},
+    {"name": "InpWeekendClose", "value": "true"},
+    {"name": "InpWeekendCloseHour", "value": "21"},
+    {"name": "InpDirection", "value": "2"},
+    {"name": "InpSwingLookback", "value": "50"},
+    {"name": "InpSwingStrength", "value": "5"},
+    {"name": "InpMinSwingPips", "value": "25.0"},
+    {"name": "InpMaxSwingPips", "value": "500.0"},
+    {"name": "InpMinBarsAfterSwing", "value": "2"},
+    {"name": "InpUseFib236", "value": "false"},
+    {"name": "InpUseFib382", "value": "true"},
+    {"name": "InpUseFib500", "value": "true"},
+    {"name": "InpUseFib618", "value": "true"},
+    {"name": "InpUseFib786", "value": "false"},
+    {"name": "InpFibBuffer", "value": "5.0"},
+    {"name": "InpUseRejection", "value": "true"},
+    {"name": "InpRejWickRatio", "value": "0.35"},
+    {"name": "InpUseTrend", "value": "true"},
+    {"name": "InpTrendEma", "value": "50"},
+    {"name": "InpUseH4Soft", "value": "true"},
+    {"name": "InpH4Ema", "value": "50"},
+    {"name": "InpH4LotFactor", "value": "0.6"},
+    {"name": "InpUseRsi", "value": "true"},
+    {"name": "InpRsiPeriod", "value": "14"},
+    {"name": "InpRsiBullMax", "value": "62.0"},
+    {"name": "InpRsiBearMin", "value": "38.0"},
+    {"name": "InpRsiExtBull", "value": "42.0"},
+    {"name": "InpRsiExtBear", "value": "58.0"},
+    {"name": "InpUseMacd", "value": "true"},
+    {"name": "InpUseAdxSoft", "value": "true"},
+    {"name": "InpAdxPeriod", "value": "14"},
+    {"name": "InpAdxMin", "value": "15.0"},
+    {"name": "InpAdxMid", "value": "22.0"},
+    {"name": "InpAdxWeakLot", "value": "0.6"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxSLPips", "value": "15.0"},
+    {"name": "InpTP1Pips", "value": "10.0"},
+    {"name": "InpTP2Pips", "value": "30.0"},
+    {"name": "InpTP1ClosePct", "value": "50.0"},
+    {"name": "InpUseBE", "value": "true"},
+    {"name": "InpUseTrail", "value": "true"},
+    {"name": "InpTrailPips", "value": "8.0"}
+  ],
+  "assumptions": [
+    "EA logic functions correctly when executed on H1 timeframe.",
+    "H1 bars provide valid rejection wicks and Fibonacci touch signals without breaking execution timers."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Max equity drawdown remains <= 8.0%.",
+    "Total net profit remains positive on GBPUSD.",
+    "Win rate remains >= 75%."
+  ],
+  "falsification_conditions": [
+    "Total net profit <= 0.0 on training or validation partition.",
+    "Max equity drawdown exceeds 8.0%.",
+    "Total trades collapses to 0 (zero execution)."
+  ],
+  "status": "proposed"
+}
