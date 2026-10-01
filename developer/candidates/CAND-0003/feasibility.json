@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "plan_id": "PLAN-0032",
+  "ea": "TestEA",
+  "feasible": true,
+  "status": "pass",
+  "reason": "All requested parameters exist in EA source and are compatible with EA architecture.",
+  "required_changes": [
+    {
+      "parameter": "ea",
+      "type": "architecture",
+      "before": "TestEA",
+      "after": "Fibonacci_EA_v5_0",
+      "rationale": "Establish factory baseline for Fibonacci_EA_v5_0 on GBPUSD M15."
+    }
+  ],
+  "blocked_by": []
+}

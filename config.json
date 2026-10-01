@@ -10,14 +10,14 @@
         "symbol": "GBPUSD",
         "timeframe": "M15",
         "model": 1,
-        "from": "2024.01.01",
-        "to": "2024.02.01",
+        "from": "2020.01.01",
+        "to": "2024.12.31",
         "deposit": 10000,
         "currency": "USD",
         "leverage": "1:100"
     },
 
     "output": {
-        "report": "TestEA_report.htm"
+        "report": "Fibonacci_EA_v5_0_report.htm"
     }
 }

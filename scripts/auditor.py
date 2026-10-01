@@ -438,7 +438,14 @@ def audit_plan_compliance(
 
     deviations = []
     base_plan = plan_data.get("baseline", {})
-    expected_ea = plan_data.get("target_ea") or base_plan.get("ea")
+    expected_ea = plan_data.get("target_ea")
+    if not expected_ea:
+        for chg in plan_data.get("changes_under_test", []):
+            if chg.get("variable") == "ea":
+                expected_ea = chg.get("target_value")
+                break
+    if not expected_ea:
+        expected_ea = base_plan.get("ea")
     actual_ea = exp_meta.get("ea")
     if expected_ea and actual_ea and expected_ea != actual_ea:
         deviations.append(f"Target EA deviation: plan expects '{expected_ea}', experiment recorded '{actual_ea}'.")

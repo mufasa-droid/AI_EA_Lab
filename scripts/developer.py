@@ -203,8 +203,14 @@ def run_developer(
     # Populate baseline and EA details early for reporting
     bid = plan.get("baseline", {}).get("experiment_id", "")
     result["baseline_experiment"] = bid
-    ea_name = plan.get("baseline", {}).get("ea", "TestEA")
-    result["ea"] = ea_name
+    base_ea = plan.get("baseline", {}).get("ea", "TestEA")
+    target_ea = base_ea
+    for chg in plan.get("changes_under_test", []):
+        if chg.get("variable") == "ea":
+            target_ea = chg.get("target_value", target_ea)
+            break
+    ea_name = target_ea
+    result["ea"] = target_ea
 
     # 2. Plan schema validation
     is_valid_plan, plan_issues = validate_experiment_plan_dict(plan)
@@ -235,14 +241,17 @@ def run_developer(
         return result
 
     # 5. Locate target EA source
-    ea_source_file = ea_dir / f"{ea_name}.mq5"
+    ea_source_file = ea_dir / f"{target_ea}.mq5"
     if not ea_source_file.is_file():
         result["status"] = "blocked"
         result["reason"] = f"Target EA source code '{ea_source_file}' not found."
         result["action"] = "No source modification performed."
         return result
 
-    source_before = ea_source_file.read_text(encoding="utf-8")
+    try:
+        source_before = ea_source_file.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        source_before = ea_source_file.read_text(encoding="utf-16", errors="replace")
     source_before_sha = calculate_sha256(source_before)
 
     # 6. FEASIBILITY ANALYSIS

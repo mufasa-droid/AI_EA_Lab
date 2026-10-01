@@ -69,16 +69,66 @@ def parse_ea_inputs(source_code: str) -> Dict[str, Dict[str, str]]:
     return inputs
 
 
+def extract_function_body(source_code: str, func_name: str = "OnTick") -> Optional[str]:
+    """
+    Finds func_name definition and extracts the full body within balanced braces,
+    correctly skipping comments and string literals.
+    """
+    pattern = re.compile(rf"\b(?:void|int)\s+{func_name}\s*\([^)]*\)\s*\{{", re.MULTILINE)
+    m = pattern.search(source_code)
+    if not m:
+        return None
+    start_idx = m.end() - 1
+    depth = 0
+    in_string, in_line_comment, in_block_comment = False, False, False
+    i = start_idx
+    n = len(source_code)
+    while i < n:
+        c = source_code[i]
+        next_c = source_code[i+1] if i + 1 < n else ""
+        if in_line_comment:
+            if c == '\n':
+                in_line_comment = False
+        elif in_block_comment:
+            if c == '*' and next_c == '/':
+                in_block_comment = False
+                i += 1
+        elif in_string:
+            if c == '\\':
+                i += 1
+            elif c == '"':
+                in_string = False
+        else:
+            if c == '/' and next_c == '/':
+                in_line_comment = True
+                i += 1
+            elif c == '/' and next_c == '*':
+                in_block_comment = True
+                i += 1
+            elif c == '"':
+                in_string = True
+            elif c == '{':
+                depth += 1
+            elif c == '}':
+                depth -= 1
+                if depth == 0:
+                    return source_code[start_idx + 1:i]
+        i += 1
+    return None
+
+
 def inspect_ea_trading_logic(source_code: str) -> Tuple[bool, str]:
     """
     Inspects whether the EA contains trade/order execution logic in OnTick().
     Returns (has_trade_logic, details).
     """
-    match = ONTICK_PATTERN.search(source_code)
-    if not match:
-        return False, "OnTick() function not found in source code."
+    body = extract_function_body(source_code, "OnTick")
+    if body is None:
+        match = ONTICK_PATTERN.search(source_code)
+        if not match:
+            return False, "OnTick() function not found in source code."
+        body = match.group(1)
 
-    body = match.group(1)
     # Strip comments to inspect actual executable statements
     body_no_single = re.sub(r"//.*$", "", body, flags=re.MULTILINE)
     body_no_comments = re.sub(r"/\*.*?\*/", "", body_no_single, flags=re.DOTALL).strip()
@@ -87,14 +137,20 @@ def inspect_ea_trading_logic(source_code: str) -> Tuple[bool, str]:
         return False, "OnTick() is empty (contains only comments or whitespace)."
 
     lower_body = body_no_comments.lower()
-    has_trade = any(kw in lower_body for kw in TRADE_KEYWORDS)
-    if not has_trade:
-        return (
-            False,
-            "OnTick() contains code but no trade/order execution functions (e.g. OrderSend, CTrade, PositionOpen)."
-        )
+    has_trade_direct = any(kw in lower_body for kw in TRADE_KEYWORDS)
+    if has_trade_direct:
+        return True, "OnTick() contains active order/trade execution logic."
 
-    return True, "OnTick() contains active order/trade execution logic."
+    # If OnTick has executable code and dispatches to helper functions, check EA source for trade primitives
+    lower_source = source_code.lower()
+    has_trade_routine = any(kw in lower_source for kw in TRADE_KEYWORDS)
+    if has_trade_routine:
+        return True, "EA contains active order/trade execution logic in routines dispatched by OnTick()."
+
+    return (
+        False,
+        "OnTick() contains code but no trade/order execution functions (e.g. OrderSend, CTrade, PositionOpen)."
+    )
 
 
 def plan_requires_trading_logic(plan: Dict[str, Any]) -> bool:
@@ -154,23 +210,32 @@ def analyze_plan_feasibility(
     for chg in changes:
         var_name = chg.get("variable")
         target_val = chg.get("target_value")
+        change_type = chg.get("change_type", "")
 
-        if not var_name or var_name not in declared_inputs:
+        if var_name in declared_inputs:
+            decl_type = declared_inputs[var_name]["type"]
+            current_def = declared_inputs[var_name]["default"]
+
+            required_changes.append({
+                "parameter": var_name,
+                "type": decl_type,
+                "before": current_def,
+                "after": str(target_val),
+                "rationale": chg.get("rationale", ""),
+            })
+        elif var_name == "ea" or change_type in ("ea_architecture_transition", "baseline_characterization"):
+            required_changes.append({
+                "parameter": var_name,
+                "type": "architecture",
+                "before": str(chg.get("baseline_value")),
+                "after": str(target_val),
+                "rationale": chg.get("rationale", ""),
+            })
+        else:
             blocked_by.append(
                 f"Parameter '{var_name}' requested in plan does not exist as an input in '{ea_name}'."
             )
             continue
-
-        decl_type = declared_inputs[var_name]["type"]
-        current_def = declared_inputs[var_name]["default"]
-
-        required_changes.append({
-            "parameter": var_name,
-            "type": decl_type,
-            "before": current_def,
-            "after": str(target_val),
-            "rationale": chg.get("rationale", ""),
-        })
 
     if blocked_by:
         return {

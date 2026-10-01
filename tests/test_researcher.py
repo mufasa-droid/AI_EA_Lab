@@ -70,7 +70,7 @@ class TestAIResearcher(unittest.TestCase):
         self.assertEqual(ps.get("ea_name"), "TestEA")
         self.assertEqual(ps.get("symbol"), "GBPUSD")
         self.assertGreaterEqual(ps.get("total_experiments", 0), 2)
-        self.assertIn(ps.get("latest_experiment_id"), ["EXP-0002", "EXP-0003", "EXP-0004", "EXP-0005"])
+        self.assertIn(ps.get("latest_experiment_id"), ["EXP-0002", "EXP-0003", "EXP-0004", "EXP-0005", "EXP-0006"])
 
         # Historical experiments
         hist = ctx.get("historical_experiments", [])
@@ -208,14 +208,14 @@ class TestAIResearcher(unittest.TestCase):
         self.assertIn(dup_id, ["EXP-0001", "EXP-0002"])
 
         # Check planner attaches duplicate warning
-        hyp = formulate_mock_hypothesis(ctx)
+        hyp = formulate_mock_hypothesis(ctx, baseline_id="EXP-0002")
         # Force hypothesis to propose the duplicate inputs
         hyp["independent_variables"] = [{
             "name": "FastMAPeriod",
             "baseline_value": "10",
             "proposed_value": "10",
         }]
-        plan = create_experiment_plan(hyp, ctx)
+        plan = create_experiment_plan(hyp, ctx, baseline_id="EXP-0002")
         self.assertTrue(any("duplicate" in w.lower() for w in plan["warnings"]))
 
     def test_09_baseline_references(self):
@@ -236,7 +236,7 @@ class TestAIResearcher(unittest.TestCase):
     def test_10_fact_vs_hypothesis_separation(self):
         """Test strict separation between facts, inferences, hypotheses, and expected observations."""
         ctx = build_research_context()
-        hyp = formulate_mock_hypothesis(ctx)
+        hyp = formulate_mock_hypothesis(ctx, baseline_id="EXP-0002")
 
         # Facts must contain direct observations from historical tests
         facts = hyp["basis"]["facts"]

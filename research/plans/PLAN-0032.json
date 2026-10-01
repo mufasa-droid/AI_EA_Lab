@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "experiment_plan_id": "PLAN-0032",
+  "hypothesis_id": "HYP-0030",
+  "created_at": "2026-10-01T21:10:00+01:00",
+  "title": "Fibonacci EA v5.0 Factory Baseline Characterization",
+  "research_question": "What are the empirical baseline performance, trade frequency, and drawdown metrics of Fibonacci_EA_v5_0 on GBPUSD M15 across the training partition (2020.01.01 to 2024.12.31) under factory default parameters?",
+  "objective": "Establish an authoritative empirical baseline for Fibonacci_EA_v5_0 under default factory inputs on GBPUSD M15 prior to testing any parameter or logic variations.",
+  "baseline": {
+    "experiment_id": "EXP-0005",
+    "ea": "TestEA",
+    "symbol": "GBPUSD",
+    "timeframe": "M15",
+    "inputs": {
+      "FastMAPeriod": "5",
+      "SlowMAPeriod": "20",
+      "LotSize": "0.01"
+    }
+  },
+  "changes_under_test": [
+    {
+      "variable": "ea",
+      "baseline_value": "TestEA",
+      "target_value": "Fibonacci_EA_v5_0",
+      "change_type": "ea_architecture_transition",
+      "rationale": "Establish factory baseline for Fibonacci_EA_v5_0 on GBPUSD M15."
+    }
+  ],
+  "unchanged_variables": [
+    {
+      "variable": "InpDirection",
+      "value": "0"
+    },
+    {
+      "variable": "InpUseNewsFilter",
+      "value": "true"
+    },
+    {
+      "variable": "InpMaxSLPips",
+      "value": "15.0"
+    },
+    {
+      "variable": "InpTP1Pips",
+      "value": "10.0"
+    },
+    {
+      "variable": "InpTP2Pips",
+      "value": "30.0"
+    },
+    {
+      "variable": "symbol",
+      "value": "GBPUSD"
+    },
+    {
+      "variable": "timeframe",
+      "value": "M15"
+    },
+    {
+      "variable": "ea",
+      "value": "Fibonacci_EA_v5_0"
+    }
+  ],
+  "parameters": {
+    "InpInitialBalance": "0.0",
+    "InpDailyLossLimit": "4.0",
+    "InpTotalDDLimit": "8.0",
+    "InpWeeklyTargetPct": "5.0",
+    "InpUseNewsFilter": "true",
+    "InpNewsBufferMins": "30",
+    "InpMaxTradesPerDay": "6",
+    "InpWeekendClose": "true",
+    "InpWeekendCloseHour": "21",
+    "InpDirection": "0",
+    "InpSwingLookback": "50",
+    "InpSwingStrength": "5",
+    "InpMinSwingPips": "25.0",
+    "InpMaxSwingPips": "500.0",
+    "InpMinBarsAfterSwing": "2",
+    "InpUseFib236": "false",
+    "InpUseFib382": "true",
+    "InpUseFib500": "true",
+    "InpUseFib618": "true",
+    "InpUseFib786": "false",
+    "InpFibBuffer": "5.0",
+    "InpMaxSLPips": "15.0",
+    "InpTP1Pips": "10.0",
+    "InpTP2Pips": "30.0",
+    "InpTP1ClosePct": "50.0",
+    "InpTrailPips": "8.0",
+    "InpUseTrend": "true",
+    "InpTrendEma": "50",
+    "InpUseSession": "true",
+    "InpLondonOpen": "8",
+    "InpLondonClose": "12",
+    "InpNYOpen": "13",
+    "InpNYClose": "18",
+    "InpMaxSpread": "3.0",
+    "InpUseRsi": "true",
+    "InpRsiPeriod": "14",
+    "InpRsiBullMax": "62.0",
+    "InpRsiBearMin": "38.0",
+    "InpRsiExtBull": "42.0",
+    "InpRsiExtBear": "58.0",
+    "InpUseMacd": "true",
+    "InpUseRejection": "true",
+    "InpRejWickRatio": "0.35",
+    "InpUseH4Soft": "true",
+    "InpH4Ema": "50",
+    "InpH4LotFactor": "0.6",
+    "InpUseAdxSoft": "true",
+    "InpAdxPeriod": "14",
+    "InpAdxMin": "15.0",
+    "InpAdxMid": "22.0",
+    "InpAdxWeakLot": "0.6",
+    "InpRiskPct": "1.0",
+    "InpMaxOpenTrades": "3",
+    "InpMinLot": "0.01",
+    "InpMaxLot": "50.0",
+    "InpUseBE": "true",
+    "InpUseTrail": "true"
+  },
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "observations": [
+    "history_quality_percent",
+    "bars",
+    "ticks",
+    "total_trades",
+    "total_net_profit",
+    "profit_factor",
+    "equity_drawdown_maximal"
+  ],
+  "expected_observations": [
+    "History quality reaches 100% on GBPUSD M15.",
+    "Total trades > 0 executed by the active Fibonacci retracement logic.",
+    "Total equity drawdown maximal remains below the 8.0% prop firm circuit breaker limit."
+  ],
+  "falsification_conditions": [
+    "History quality is below 99% or bars processed equals 0.",
+    "Strategy trips the 4.0% daily loss or 8.0% total drawdown guard.",
+    "Total trades equals 0 due to execution or order fill failure."
+  ],
+  "warnings": [],
+  "risks": [
+    "Conjunctive multi-filter stack may result in very low annual trade volume.",
+    "Fixed 15-pip stop loss may suffer premature stop-outs during London session volatility."
+  ],
+  "human_review_required": true,
+  "status": "approved",
+  "approval": {
+    "status": "approved",
+    "reviewed_by": "User (Lead Quant)",
+    "reviewed_at": "2026-10-01T21:39:25.401339+01:00",
+    "note": "Approved baseline characterization"
+  }
+}
