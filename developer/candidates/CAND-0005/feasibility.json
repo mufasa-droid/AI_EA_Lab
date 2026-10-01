@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "plan_id": "PLAN-0066",
+  "ea": "Fibonacci_EA_v5_0",
+  "feasible": true,
+  "status": "pass",
+  "reason": "All requested parameters exist in EA source and are compatible with EA architecture.",
+  "required_changes": [
+    {
+      "parameter": "InpDirection",
+      "type": "int",
+      "before": "0",
+      "after": "2",
+      "rationale": "Enable bidirectional execution (0=BUY only -> 2=Both BUY and SELL)."
+    }
+  ],
+  "blocked_by": []
+}

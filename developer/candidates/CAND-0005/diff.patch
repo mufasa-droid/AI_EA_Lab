@@ -1,0 +1,11 @@
+--- source_before.mq5
++++ source_after.mq5
+@@ -76,7 +76,7 @@
+ input int    InpWeekendCloseHour  = 21;    // [G6] Friday close hour (server time)
+ 
+ input group "══════ TRADE DIRECTION ══════"
+-input int    InpDirection         = 0;     // 0=BUY only | 1=SELL only | 2=Both
++input int    InpDirection         = 2;     // 0=BUY only | 1=SELL only | 2=Both
+ 
+ input group "══════ SWING DETECTION ══════"
+ input int    InpSwingLookback     = 50;    // H1 bars to scan [opt: 30–80]
