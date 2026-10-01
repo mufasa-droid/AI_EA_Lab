@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0085",
+  "created_at": "2026-10-02T00:10:00+01:00",
+  "title": "M30 Take-Profit 1 Expansion Test (10 to 15 Pips)",
+  "research_question": "Does widening TP1 from 10.0 to 15.0 pips on the M30 timeframe increase the average win size and profit factor without lowering the win rate below the 75% threshold on GBPUSD?",
+  "hypothesis": "Because M30 candle range is wider than M15, widening TP1 from 10 to 15 pips allows the initial partial close to capture a larger portion of the Fibonacci impulse move, boosting the profit factor on both training and 2025 validation partitions.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0018",
+      "EXP-0019",
+      "EXP-0009"
+    ],
+    "facts": [
+      "EXP-0018 on M30 achieved Profit Factor 3.44 with an 81.25% win rate in training.",
+      "EXP-0019 on M30 achieved +$163.34 net profit with a 78.16% win rate in 2025 validation.",
+      "In EXP-0019, 68 winning trades averaged $20.64, while 19 losses averaged -$65.29."
+    ],
+    "inferences": [
+      "Increasing TP1 from 10 to 15 pips on M30 will increase the average win payoff, strengthening the margin of profitability over losses.",
+      "On M30, a 15-pip target is well within the 1-2 bar impulse range."
+    ],
+    "evidence": [
+      "EXP-0018 total_trades=16, profit_factor=3.44, win_rate=81.25%, total_net_profit=531.64, equity_drawdown_maximal_percent=2.35",
+      "EXP-0019 total_trades=87, profit_factor=1.13, win_rate=78.16%, total_net_profit=163.34, equity_drawdown_maximal_percent=3.88"
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "InpTP1Pips",
+      "baseline_value": "10.0",
+      "proposed_value": "15.0",
+      "rationale": "Widen first take-profit target to capture larger gains on M30 candles before partial close."
+    }
+  ],
+  "dependent_variables": [
+    "total_trades",
+    "total_net_profit",
+    "profit_factor",
+    "win_rate",
+    "equity_drawdown_maximal"
+  ],
+  "control_variables": [
+    {"name": "timeframe", "value": "M30"},
+    {"name": "InpInitialBalance", "value": "0.0"},
+    {"name": "InpDailyLossLimit", "value": "4.0"},
+    {"name": "InpTotalDDLimit", "value": "8.0"},
+    {"name": "InpWeeklyTargetPct", "value": "5.0"},
+    {"name": "InpUseNewsFilter", "value": "true"},
+    {"name": "InpNewsBufferMins", "value": "30"},
+    {"name": "InpMaxTradesPerDay", "value": "6"},
+    {"name": "InpWeekendClose", "value": "true"},
+    {"name": "InpWeekendCloseHour", "value": "21"},
+    {"name": "InpDirection", "value": "2"},
+    {"name": "InpSwingLookback", "value": "50"},
+    {"name": "InpSwingStrength", "value": "5"},
+    {"name": "InpMinSwingPips", "value": "25.0"},
+    {"name": "InpMaxSwingPips", "value": "500.0"},
+    {"name": "InpMinBarsAfterSwing", "value": "2"},
+    {"name": "InpUseFib236", "value": "false"},
+    {"name": "InpUseFib382", "value": "true"},
+    {"name": "InpUseFib500", "value": "true"},
+    {"name": "InpUseFib618", "value": "true"},
+    {"name": "InpUseFib786", "value": "false"},
+    {"name": "InpFibBuffer", "value": "5.0"},
+    {"name": "InpUseRejection", "value": "true"},
+    {"name": "InpRejWickRatio", "value": "0.35"},
+    {"name": "InpUseTrend", "value": "true"},
+    {"name": "InpTrendEma", "value": "50"},
+    {"name": "InpUseH4Soft", "value": "true"},
+    {"name": "InpH4Ema", "value": "50"},
+    {"name": "InpH4LotFactor", "value": "0.6"},
+    {"name": "InpUseRsi", "value": "true"},
+    {"name": "InpRsiPeriod", "value": "14"},
+    {"name": "InpRsiBullMax", "value": "62.0"},
+    {"name": "InpRsiBearMin", "value": "38.0"},
+    {"name": "InpRsiExtBull", "value": "42.0"},
+    {"name": "InpRsiExtBear", "value": "58.0"},
+    {"name": "InpUseMacd", "value": "true"},
+    {"name": "InpUseAdxSoft", "value": "true"},
+    {"name": "InpAdxPeriod", "value": "14"},
+    {"name": "InpAdxMin", "value": "15.0"},
+    {"name": "InpAdxMid", "value": "22.0"},
+    {"name": "InpAdxWeakLot", "value": "0.6"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxSLPips", "value": "15.0"},
+    {"name": "InpTP2Pips", "value": "30.0"},
+    {"name": "InpTP1ClosePct", "value": "50.0"},
+    {"name": "InpUseBE", "value": "true"},
+    {"name": "InpUseTrail", "value": "true"},
+    {"name": "InpTrailPips", "value": "8.0"}
+  ],
+  "assumptions": [
+    "Widening TP1 from 10 to 15 pips will not cause excessive trades to reverse before hitting TP1."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Total net profit on GBPUSD M30 exceeds baseline EXP-0018 ($531.64).",
+    "Average profit trade increases above $20.64 on 2025 validation.",
+    "Max equity drawdown remains <= 8.0%."
+  ],
+  "falsification_conditions": [
+    "Profit factor declines below baseline EXP-0018 (3.44) or EXP-0019 (1.13).",
+    "Max equity drawdown exceeds 8.0%.",
+    "Win rate drops below 70%."
+  ],
+  "status": "proposed"
+}

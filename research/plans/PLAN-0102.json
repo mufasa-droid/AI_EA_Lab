@@ -1,0 +1,353 @@
+{
+  "schema_version": 1,
+  "experiment_plan_id": "PLAN-0102",
+  "hypothesis_id": "HYP-0085",
+  "created_at": "2026-10-02T00:10:15+01:00",
+  "title": "M30 Take-Profit 1 Expansion Test (10 to 15 Pips)",
+  "research_question": "Does widening TP1 from 10.0 to 15.0 pips on the M30 timeframe increase the average win size and profit factor without lowering the win rate below the 75% threshold on GBPUSD?",
+  "objective": "Test whether widening InpTP1Pips from 10.0 to 15.0 relative to M30 baseline EXP-0018 increases net profit and payoff on GBPUSD M30.",
+  "baseline": {
+    "experiment_id": "EXP-0018",
+    "ea": "Fibonacci_EA_v5_0",
+    "symbol": "GBPUSD",
+    "timeframe": "M30",
+    "inputs": {
+      "InpInitialBalance": "0.0",
+      "InpDailyLossLimit": "4.0",
+      "InpTotalDDLimit": "8.0",
+      "InpWeeklyTargetPct": "5.0",
+      "InpUseNewsFilter": "true",
+      "InpNewsBufferMins": "30",
+      "InpMaxTradesPerDay": "6",
+      "InpWeekendClose": "true",
+      "InpWeekendCloseHour": "21",
+      "InpDirection": "2",
+      "InpSwingLookback": "50",
+      "InpSwingStrength": "5",
+      "InpMinSwingPips": "25.0",
+      "InpMaxSwingPips": "500.0",
+      "InpMinBarsAfterSwing": "2",
+      "InpUseFib236": "false",
+      "InpUseFib382": "true",
+      "InpUseFib500": "true",
+      "InpUseFib618": "true",
+      "InpUseFib786": "false",
+      "InpFibBuffer": "5.0",
+      "InpUseRejection": "true",
+      "InpRejWickRatio": "0.35",
+      "InpUseTrend": "true",
+      "InpTrendEma": "50",
+      "InpUseH4Soft": "true",
+      "InpH4Ema": "50",
+      "InpH4LotFactor": "0.6",
+      "InpUseRsi": "true",
+      "InpRsiPeriod": "14",
+      "InpRsiBullMax": "62.0",
+      "InpRsiBearMin": "38.0",
+      "InpRsiExtBull": "42.0",
+      "InpRsiExtBear": "58.0",
+      "InpUseMacd": "true",
+      "InpUseAdxSoft": "true",
+      "InpAdxPeriod": "14",
+      "InpAdxMin": "15.0",
+      "InpAdxMid": "22.0",
+      "InpAdxWeakLot": "0.6",
+      "InpRiskPct": "1.0",
+      "InpMaxSLPips": "15.0",
+      "InpTP1Pips": "10.0",
+      "InpTP2Pips": "30.0",
+      "InpTP1ClosePct": "50.0",
+      "InpUseBE": "true",
+      "InpUseTrail": "true",
+      "InpTrailPips": "8.0"
+    }
+  },
+  "changes_under_test": [
+    {
+      "variable": "InpTP1Pips",
+      "baseline_value": "10.0",
+      "target_value": "15.0",
+      "change_type": "parameter_adjustment",
+      "rationale": "Widen first take-profit target to capture larger gains on M30 candles before partial close."
+    }
+  ],
+  "unchanged_variables": [
+    {
+      "variable": "timeframe",
+      "value": "M30"
+    },
+    {
+      "variable": "InpInitialBalance",
+      "value": "0.0"
+    },
+    {
+      "variable": "InpDailyLossLimit",
+      "value": "4.0"
+    },
+    {
+      "variable": "InpTotalDDLimit",
+      "value": "8.0"
+    },
+    {
+      "variable": "InpWeeklyTargetPct",
+      "value": "5.0"
+    },
+    {
+      "variable": "InpUseNewsFilter",
+      "value": "true"
+    },
+    {
+      "variable": "InpNewsBufferMins",
+      "value": "30"
+    },
+    {
+      "variable": "InpMaxTradesPerDay",
+      "value": "6"
+    },
+    {
+      "variable": "InpWeekendClose",
+      "value": "true"
+    },
+    {
+      "variable": "InpWeekendCloseHour",
+      "value": "21"
+    },
+    {
+      "variable": "InpDirection",
+      "value": "2"
+    },
+    {
+      "variable": "InpSwingLookback",
+      "value": "50"
+    },
+    {
+      "variable": "InpSwingStrength",
+      "value": "5"
+    },
+    {
+      "variable": "InpMinSwingPips",
+      "value": "25.0"
+    },
+    {
+      "variable": "InpMaxSwingPips",
+      "value": "500.0"
+    },
+    {
+      "variable": "InpMinBarsAfterSwing",
+      "value": "2"
+    },
+    {
+      "variable": "InpUseFib236",
+      "value": "false"
+    },
+    {
+      "variable": "InpUseFib382",
+      "value": "true"
+    },
+    {
+      "variable": "InpUseFib500",
+      "value": "true"
+    },
+    {
+      "variable": "InpUseFib618",
+      "value": "true"
+    },
+    {
+      "variable": "InpUseFib786",
+      "value": "false"
+    },
+    {
+      "variable": "InpFibBuffer",
+      "value": "5.0"
+    },
+    {
+      "variable": "InpUseRejection",
+      "value": "true"
+    },
+    {
+      "variable": "InpRejWickRatio",
+      "value": "0.35"
+    },
+    {
+      "variable": "InpUseTrend",
+      "value": "true"
+    },
+    {
+      "variable": "InpTrendEma",
+      "value": "50"
+    },
+    {
+      "variable": "InpUseH4Soft",
+      "value": "true"
+    },
+    {
+      "variable": "InpH4Ema",
+      "value": "50"
+    },
+    {
+      "variable": "InpH4LotFactor",
+      "value": "0.6"
+    },
+    {
+      "variable": "InpUseRsi",
+      "value": "true"
+    },
+    {
+      "variable": "InpRsiPeriod",
+      "value": "14"
+    },
+    {
+      "variable": "InpRsiBullMax",
+      "value": "62.0"
+    },
+    {
+      "variable": "InpRsiBearMin",
+      "value": "38.0"
+    },
+    {
+      "variable": "InpRsiExtBull",
+      "value": "42.0"
+    },
+    {
+      "variable": "InpRsiExtBear",
+      "value": "58.0"
+    },
+    {
+      "variable": "InpUseMacd",
+      "value": "true"
+    },
+    {
+      "variable": "InpUseAdxSoft",
+      "value": "true"
+    },
+    {
+      "variable": "InpAdxPeriod",
+      "value": "14"
+    },
+    {
+      "variable": "InpAdxMin",
+      "value": "15.0"
+    },
+    {
+      "variable": "InpAdxMid",
+      "value": "22.0"
+    },
+    {
+      "variable": "InpAdxWeakLot",
+      "value": "0.6"
+    },
+    {
+      "variable": "InpRiskPct",
+      "value": "1.0"
+    },
+    {
+      "variable": "InpMaxSLPips",
+      "value": "15.0"
+    },
+    {
+      "variable": "InpTP2Pips",
+      "value": "30.0"
+    },
+    {
+      "variable": "InpTP1ClosePct",
+      "value": "50.0"
+    },
+    {
+      "variable": "InpUseBE",
+      "value": "true"
+    },
+    {
+      "variable": "InpUseTrail",
+      "value": "true"
+    },
+    {
+      "variable": "InpTrailPips",
+      "value": "8.0"
+    }
+  ],
+  "parameters": {
+    "InpInitialBalance": "0.0",
+    "InpDailyLossLimit": "4.0",
+    "InpTotalDDLimit": "8.0",
+    "InpWeeklyTargetPct": "5.0",
+    "InpUseNewsFilter": "true",
+    "InpNewsBufferMins": "30",
+    "InpMaxTradesPerDay": "6",
+    "InpWeekendClose": "true",
+    "InpWeekendCloseHour": "21",
+    "InpDirection": "2",
+    "InpSwingLookback": "50",
+    "InpSwingStrength": "5",
+    "InpMinSwingPips": "25.0",
+    "InpMaxSwingPips": "500.0",
+    "InpMinBarsAfterSwing": "2",
+    "InpUseFib236": "false",
+    "InpUseFib382": "true",
+    "InpUseFib500": "true",
+    "InpUseFib618": "true",
+    "InpUseFib786": "false",
+    "InpFibBuffer": "5.0",
+    "InpUseRejection": "true",
+    "InpRejWickRatio": "0.35",
+    "InpUseTrend": "true",
+    "InpTrendEma": "50",
+    "InpUseH4Soft": "true",
+    "InpH4Ema": "50",
+    "InpH4LotFactor": "0.6",
+    "InpUseRsi": "true",
+    "InpRsiPeriod": "14",
+    "InpRsiBullMax": "62.0",
+    "InpRsiBearMin": "38.0",
+    "InpRsiExtBull": "42.0",
+    "InpRsiExtBear": "58.0",
+    "InpUseMacd": "true",
+    "InpUseAdxSoft": "true",
+    "InpAdxPeriod": "14",
+    "InpAdxMin": "15.0",
+    "InpAdxMid": "22.0",
+    "InpAdxWeakLot": "0.6",
+    "InpRiskPct": "1.0",
+    "InpMaxSLPips": "15.0",
+    "InpTP1Pips": "15.0",
+    "InpTP2Pips": "30.0",
+    "InpTP1ClosePct": "50.0",
+    "InpUseBE": "true",
+    "InpUseTrail": "true",
+    "InpTrailPips": "8.0"
+  },
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "observations": [
+    "total_net_profit",
+    "profit_factor",
+    "total_trades",
+    "equity_drawdown_maximal_percent",
+    "win_rate"
+  ],
+  "expected_observations": [
+    "Total net profit on GBPUSD M30 exceeds baseline EXP-0018 ($531.64).",
+    "Average profit trade increases above $20.64 on 2025 validation.",
+    "Max equity drawdown remains <= 8.0%."
+  ],
+  "falsification_conditions": [
+    "Profit factor declines below baseline EXP-0018 (3.44) or EXP-0019 (1.13).",
+    "Max equity drawdown exceeds 8.0%.",
+    "Win rate drops below 70%."
+  ],
+  "warnings": [],
+  "risks": [
+    "Trades may reverse before reaching the wider 15-pip TP1 target."
+  ],
+  "human_review_required": true,
+  "status": "approved",
+  "approval": {
+    "status": "approved",
+    "reviewed_by": "Lead Quant",
+    "reviewed_at": "2026-10-02T00:10:35.829070+01:00",
+    "note": "Approved M30 TP1 expansion to 15 pips"
+  }
+}
