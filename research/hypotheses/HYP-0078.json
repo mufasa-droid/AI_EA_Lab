@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0078",
+  "created_at": "2026-10-01T23:56:00+01:00",
+  "title": "Fibonacci EA v5.0 M30 Timeframe Transition Test",
+  "research_question": "Does transitioning execution from M15 to M30 filter out entry candlestick wick noise, improve trade win-rate and payoff, and generate higher net profit than baseline EXP-0008 ($577.65) while keeping max equity drawdown <= 8.0% on GBPUSD across the 5-year training partition?",
+  "hypothesis": "Executing entry signals on M30 candles while scanning market structure on H1 reduces false breakout wicks, resulting in higher win rate, lower drawdown, and greater net profitability than baseline EXP-0008.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0008",
+      "EXP-0012",
+      "EXP-0016"
+    ],
+    "facts": [
+      "EXP-0008 executed on M15 achieved $577.65 profit and 7.35% drawdown, but suffered from 1:2.76 payoff asymmetry due to M15 wick noise.",
+      "The EA detects swing structure on H1 bars (25-500 pips), making M30 candles a closer structural match for pullback confirmation than M15."
+    ],
+    "inferences": [
+      "M30 candlestick patterns (hammer, engulfing, pin bars) have higher predictive reliability than M15 patterns.",
+      "Filtering lower-timeframe noise will reduce false entries and prevent premature stop-outs."
+    ],
+    "evidence": [
+      "EXP-0008 total_trades=272, profit_factor=1.39, win_rate=79.38%, total_net_profit=577.65, equity_drawdown_maximal_percent=7.35"
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "timeframe",
+      "baseline_value": "M15",
+      "proposed_value": "M30",
+      "rationale": "Transition execution chart timeframe from M15 to M30 to filter lower-timeframe wick noise and improve candle confirmation reliability."
+    }
+  ],
+  "dependent_variables": [
+    "total_trades",
+    "total_net_profit",
+    "profit_factor",
+    "win_rate",
+    "equity_drawdown_maximal"
+  ],
+  "control_variables": [
+    {"name": "InpInitialBalance", "value": "0.0"},
+    {"name": "InpDailyLossLimit", "value": "4.0"},
+    {"name": "InpTotalDDLimit", "value": "8.0"},
+    {"name": "InpWeeklyTargetPct", "value": "5.0"},
+    {"name": "InpUseNewsFilter", "value": "true"},
+    {"name": "InpNewsBufferMins", "value": "30"},
+    {"name": "InpMaxTradesPerDay", "value": "6"},
+    {"name": "InpWeekendClose", "value": "true"},
+    {"name": "InpWeekendCloseHour", "value": "21"},
+    {"name": "InpDirection", "value": "2"},
+    {"name": "InpSwingLookback", "value": "50"},
+    {"name": "InpSwingStrength", "value": "5"},
+    {"name": "InpMinSwingPips", "value": "25.0"},
+    {"name": "InpMaxSwingPips", "value": "500.0"},
+    {"name": "InpMinBarsAfterSwing", "value": "2"},
+    {"name": "InpUseFib236", "value": "false"},
+    {"name": "InpUseFib382", "value": "true"},
+    {"name": "InpUseFib500", "value": "true"},
+    {"name": "InpUseFib618", "value": "true"},
+    {"name": "InpUseFib786", "value": "false"},
+    {"name": "InpFibBuffer", "value": "5.0"},
+    {"name": "InpMaxSLPips", "value": "15.0"},
+    {"name": "InpTP1Pips", "value": "10.0"},
+    {"name": "InpTP2Pips", "value": "30.0"},
+    {"name": "InpTP1ClosePct", "value": "50.0"},
+    {"name": "InpTrailPips", "value": "8.0"},
+    {"name": "InpUseTrend", "value": "true"},
+    {"name": "InpTrendEma", "value": "50"},
+    {"name": "InpUseSession", "value": "true"},
+    {"name": "InpLondonOpen", "value": "8"},
+    {"name": "InpLondonClose", "value": "12"},
+    {"name": "InpNYOpen", "value": "13"},
+    {"name": "InpNYClose", "value": "18"},
+    {"name": "InpMaxSpread", "value": "3.0"},
+    {"name": "InpUseRsi", "value": "true"},
+    {"name": "InpRsiPeriod", "value": "14"},
+    {"name": "InpRsiBullMax", "value": "62.0"},
+    {"name": "InpRsiBearMin", "value": "38.0"},
+    {"name": "InpRsiExtBull", "value": "42.0"},
+    {"name": "InpRsiExtBear", "value": "58.0"},
+    {"name": "InpUseMacd", "value": "true"},
+    {"name": "InpUseRejection", "value": "true"},
+    {"name": "InpRejWickRatio", "value": "0.35"},
+    {"name": "InpUseH4Soft", "value": "true"},
+    {"name": "InpH4Ema", "value": "50"},
+    {"name": "InpH4LotFactor", "value": "0.6"},
+    {"name": "InpUseAdxSoft", "value": "true"},
+    {"name": "InpAdxPeriod", "value": "14"},
+    {"name": "InpAdxMin", "value": "15.0"},
+    {"name": "InpAdxMid", "value": "22.0"},
+    {"name": "InpAdxWeakLot", "value": "0.6"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxOpenTrades", "value": "3"},
+    {"name": "InpMinLot", "value": "0.01"},
+    {"name": "InpMaxLot", "value": "50.0"},
+    {"name": "InpUseBE", "value": "true"},
+    {"name": "InpUseTrail", "value": "true"},
+    {"name": "symbol", "value": "GBPUSD"},
+    {"name": "ea", "value": "Fibonacci_EA_v5_0"}
+  ],
+  "assumptions": [
+    "Broker tick history supports accurate M30 bar construction across 2020-2024."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Overall win rate will remain >= 78.0%.",
+    "Total net profit will be positive and comparable to or exceeding baseline $577.65.",
+    "Maximum equity drawdown will remain <= 8.0%."
+  ],
+  "falsification_conditions": [
+    "Total net profit drops below $250.00.",
+    "Profit factor drops below 1.20.",
+    "Maximum equity drawdown exceeds 8.0%, breaching the prop firm guard threshold."
+  ],
+  "status": "proposed"
+}

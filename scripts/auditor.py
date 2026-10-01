@@ -450,12 +450,14 @@ def audit_plan_compliance(
     if expected_ea and actual_ea and expected_ea != actual_ea:
         deviations.append(f"Target EA deviation: plan expects '{expected_ea}', experiment recorded '{actual_ea}'.")
 
-    expected_sym = base_plan.get("symbol")
+    sym_chg = next((c for c in plan_data.get("changes_under_test", []) if c.get("variable") == "symbol"), None)
+    expected_sym = (sym_chg.get("target_value") if sym_chg else None) or plan_data.get("symbol") or base_plan.get("symbol")
     actual_sym = exp_meta.get("symbol")
     if expected_sym and actual_sym and expected_sym != actual_sym:
         deviations.append(f"Symbol deviation: plan expects '{expected_sym}', experiment recorded '{actual_sym}'.")
 
-    expected_tf = base_plan.get("timeframe")
+    tf_chg = next((c for c in plan_data.get("changes_under_test", []) if c.get("variable") == "timeframe"), None)
+    expected_tf = (tf_chg.get("target_value") if tf_chg else None) or plan_data.get("timeframe") or base_plan.get("timeframe")
     actual_tf = exp_meta.get("timeframe")
     if expected_tf and actual_tf and expected_tf != actual_tf:
         deviations.append(f"Timeframe deviation: plan expects '{expected_tf}', experiment recorded '{actual_tf}'.")

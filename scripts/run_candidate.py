@@ -380,8 +380,10 @@ def execute_candidate_backtest(
 
     mt5_data = Path(config.get("mt5_data", ""))
     terminal = Path(config.get("mt5_terminal", ""))
-    sym = plan.get("baseline", {}).get("symbol") or config.get("backtest", {}).get("symbol", "GBPUSD")
-    tf = plan.get("baseline", {}).get("timeframe") or config.get("backtest", {}).get("timeframe", "M15")
+    sym_chg = next((c for c in plan.get("changes_under_test", []) if c.get("variable") == "symbol"), None)
+    tf_chg = next((c for c in plan.get("changes_under_test", []) if c.get("variable") == "timeframe"), None)
+    sym = (sym_chg.get("target_value") if sym_chg else None) or plan.get("symbol") or plan.get("baseline", {}).get("symbol") or config.get("backtest", {}).get("symbol", "GBPUSD")
+    tf = (tf_chg.get("target_value") if tf_chg else None) or plan.get("timeframe") or plan.get("baseline", {}).get("timeframe") or config.get("backtest", {}).get("timeframe", "M15")
     mdl = config.get("backtest", {}).get("model", 1)
 
     result["backtest"]["configuration"] = {
