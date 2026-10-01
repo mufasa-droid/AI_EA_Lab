@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "plan_id": "PLAN-0091",
+  "ea": "Fibonacci_EA_v5_0",
+  "feasible": true,
+  "status": "pass",
+  "reason": "All requested parameters exist in EA source and are compatible with EA architecture.",
+  "required_changes": [
+    {
+      "parameter": "InpTP1ClosePct",
+      "type": "double",
+      "before": "50.0",
+      "after": "75.0",
+      "rationale": "Increase the scale-out portion at the high-probability 10-pip TP1 level to bank the majority of gains early."
+    }
+  ],
+  "blocked_by": []
+}

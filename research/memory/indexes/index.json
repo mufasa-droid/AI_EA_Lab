@@ -15,6 +15,7 @@
     "1cfb53afc0c11c208bdc009ebf3a174cd59f41660cb1690f801d868dab83bfe8": "MEM-HYP-0058",
     "1eff9d83e1fe92e2ba4ee95c50fe0de0d8e06e8658678adb949e865a08ec5391": "MEM-REL-0004",
     "20447c0399ad3159cac88d38873627d1d7dece4a5f952f40a508a1c216453677": "MEM-HYP-0047",
+    "2101ddde3685bbf0629a648af73125b319d5df70173fb0712e963fd257271d39": "MEM-OBS-0019",
     "248e582b7c5227aebce546a9fda1a5dfe3adb71c8e1fa518ee87e344ff662307": "MEM-HYP-0019",
     "249624a656cffe699cfc2e75e2cbc618caca08f052e529e34e64e6f15c99a565": "MEM-HYP-0044",
     "2a2f57769db6647d204a5c9f82fa54066bb4dc1b47cfdb5cddf0bf70958ad1d1": "MEM-HYP-0033",
@@ -27,6 +28,7 @@
     "37f63991537215e46454515b57a0d16f3ac2bf38ff14bef3d6073acad429216a": "MEM-HYP-0016",
     "37ff07cfdeb23f709a506fdd127a7d157a6584666203d024624061c6533a2c72": "MEM-HYP-0063",
     "3d9e76768c3e4a9b18bb833355676fc35f977df8d2d340e384d4eb56128a1e7f": "MEM-REL-0006",
+    "408fae8aca366241a48d82c14e6924d15fcc37801be289f99c7614f2bc792554": "MEM-OBS-0018",
     "418b7de7fe166a9b9dff6efa37cd797957c5f7487e3c7e2af1a0f8a9c67ba80e": "MEM-HYP-0009",
     "465c9798f5f3205f5223a8b7d82b2d125fac040476129df246f8094a37b66c31": "MEM-HYP-0008",
     "47159d1781e65d88c61a9f96c9f70d12f175072340c75bdc6d9d6875238ab343": "MEM-HYP-0026",
@@ -77,6 +79,7 @@
     "b29cd509ed1c259c696e86305a99012f8e842942ace8598c6da0cbce62d58ce4": "MEM-HYP-0064",
     "b4eea36355ca249703bd9fb15b63ad3f3a8e54a7be63af3dbdbd9dda9a56d840": "MEM-HYP-0014",
     "b4ffe87648ab70dfee3e3fa5d5ced9e35617a286fa2a1b522da077f2509e4f30": "MEM-REL-0011",
+    "b65d4f94c904aefdfbc8d38f2d82980b4ec8cc3addea8cc07f651a1775cd9e38": "MEM-REL-0018",
     "b71b4e139c160368592a1d567aea74c9ddc2363e2c4efb073d1094412f43b25f": "MEM-OBS-0005",
     "ba2e316b9c7b1cc3110ace1369e69ca0bf381b83fa307b499d774528361be3ba": "MEM-OBS-0006",
     "c569858560bc3493450fb9f82a69487e5d0448506773200cedfb0de68b1d66f7": "MEM-REL-0017",
@@ -93,6 +96,7 @@
     "e068e58cb1f5dab4e4b090e3a3e6e04f0f6ac11cc920210c534ca6bce1622d71": "MEM-REL-0016",
     "e805e69ea0f7b7d05647ea59a6ab59beee47def11ffb96d6fd55cacbf47798b7": "MEM-HYP-0007",
     "e834d858da73ddfe71960142a7df93acd3e8b209205c85e1b1d30f0c5fa69eb3": "MEM-OBS-0011",
+    "ea38fb4a76d0d9cb1cdcf012e1429b327431cfe8633c28b65665f5d77332bef1": "MEM-REL-0019",
     "ed0be1b5f6aef2229a0c028b888a5c7a5360e020e2104f5b6cdd2a6076d22648": "MEM-HYP-0003",
     "f13af12d615ec52a8baff71b312da0f64a77814b352e76c259b05c6abde4fc30": "MEM-HYP-0005",
     "f310e28ee982b0d21ac8df1d5a9f4282c7ea72385d09499193276d5ad849195d": "MEM-HYP-0001",
@@ -2818,9 +2822,101 @@
       "source": "AI Researcher",
       "statement": "Reducing FastMAPeriod from 10 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 226 trades.",
       "status": "PROPOSED"
+    },
+    {
+      "candidate_id": "CAND-0010",
+      "created_at": "2026-10-01T23:37:06.760550+01:00",
+      "dataset_from": "2020.01.01",
+      "dataset_partition": {
+        "from": "2020.01.01",
+        "partition": "training",
+        "source": "config/research_periods.json",
+        "to": "2024.12.31"
+      },
+      "dataset_to": "2024.12.31",
+      "evidence_reference": {
+        "experiment_id": "EXP-0014",
+        "metadata_path": "experiments/EXP-0014/metadata.json"
+      },
+      "evidence_type": "METRICS",
+      "experiment_id": "EXP-0014",
+      "fingerprint": "408fae8aca366241a48d82c14e6924d15fcc37801be289f99c7614f2bc792554",
+      "generated_by": "system",
+      "memory_id": "MEM-OBS-0018",
+      "observation": "Experiment EXP-0014 executed on symbol GBPUSD (M15) across 2020.01.01-2024.12.31 [{'partition': 'training', 'from': '2020.01.01', 'to': '2024.12.31', 'source': 'config/research_periods.json'}] with bars=124311, ticks=7259036, history_quality=99.0%.",
+      "observation_category": "FACT",
+      "record_type": "EXPERIMENT_OBSERVATION",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "symbol": "GBPUSD",
+      "timeframe": "M15"
+    },
+    {
+      "candidate_id": "CAND-0010",
+      "created_at": "2026-10-01T23:37:06.771104+01:00",
+      "dataset_from": "2020.01.01",
+      "dataset_partition": {
+        "from": "2020.01.01",
+        "partition": "training",
+        "source": "config/research_periods.json",
+        "to": "2024.12.31"
+      },
+      "dataset_to": "2024.12.31",
+      "evidence_reference": {
+        "experiment_id": "EXP-0014",
+        "metrics_path": "experiments/EXP-0014/metrics.json"
+      },
+      "evidence_type": "METRICS",
+      "experiment_id": "EXP-0014",
+      "fingerprint": "2101ddde3685bbf0629a648af73125b319d5df70173fb0712e963fd257271d39",
+      "generated_by": "system",
+      "memory_id": "MEM-OBS-0019",
+      "observation": "Experiment EXP-0014 recorded total_trades=111, net_profit=502.27, profit_factor=1.28.",
+      "observation_category": "FACT",
+      "record_type": "EXPERIMENT_OBSERVATION",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "symbol": "GBPUSD",
+      "timeframe": "M15"
+    },
+    {
+      "created_at": "2026-10-01T23:37:06.781924+01:00",
+      "evidence_reference": {
+        "experiment_id": "EXP-0014",
+        "hypothesis_id": "HYP-0076"
+      },
+      "fingerprint": "b65d4f94c904aefdfbc8d38f2d82980b4ec8cc3addea8cc07f651a1775cd9e38",
+      "generated_by": "system",
+      "memory_id": "MEM-REL-0018",
+      "record_type": "RELATIONSHIP",
+      "relation": "TESTED_BY",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source_id": "HYP-0076",
+      "source_type": "HYPOTHESIS",
+      "target_id": "EXP-0014",
+      "target_type": "EXPERIMENT"
+    },
+    {
+      "created_at": "2026-10-01T23:37:06.793665+01:00",
+      "evidence_reference": {
+        "candidate_id": "CAND-0010",
+        "experiment_id": "EXP-0014"
+      },
+      "fingerprint": "ea38fb4a76d0d9cb1cdcf012e1429b327431cfe8633c28b65665f5d77332bef1",
+      "generated_by": "system",
+      "memory_id": "MEM-REL-0019",
+      "record_type": "RELATIONSHIP",
+      "relation": "IMPLEMENTED_AS",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source_id": "EXP-0014",
+      "source_type": "EXPERIMENT",
+      "target_id": "CAND-0010",
+      "target_type": "CANDIDATE"
     }
   ],
   "schema_version": 1,
-  "total_records": 101,
-  "updated_at": "2026-10-01T23:30:05.349260+01:00"
+  "total_records": 105,
+  "updated_at": "2026-10-01T23:37:06.795549+01:00"
 }

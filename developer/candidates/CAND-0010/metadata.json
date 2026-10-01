@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0010",
+  "plan_id": "PLAN-0091",
+  "hypothesis_id": "HYP-0076",
+  "baseline_experiment": "EXP-0008",
+  "ea": "Fibonacci_EA_v5_0",
+  "created_at": "2026-10-01T23:36:22.369222+01:00",
+  "source_before_sha256": "cd3856685d6fa02d3764fe5723ca37fdbea0e4330353e8d9bb9293622962bd06",
+  "source_after_sha256": "0e28d4d1e2ca6214b1c605b1c971919e6a89749c5fea68565fb4092fd155bd2d",
+  "requested_changes": [
+    {
+      "variable": "InpTP1ClosePct",
+      "baseline_value": "50.0",
+      "target_value": "75.0",
+      "change_type": "parameter_adjustment",
+      "rationale": "Increase the scale-out portion at the high-probability 10-pip TP1 level to bank the majority of gains early."
+    }
+  ],
+  "actual_changes": [
+    {
+      "type": "input_default_change",
+      "parameter": "InpTP1ClosePct",
+      "type_declared": "double",
+      "after": "75.0"
+    }
+  ],
+  "feasibility_status": "pass",
+  "compile_status": "passed",
+  "compiler_info": {
+    "compiler_path": "C:\\Program Files\\MetaTrader 5\\MetaEditor64.exe",
+    "exit_code": 1,
+    "error_count": 0,
+    "warning_count": 0
+  },
+  "status": "ready_for_next_phase"
+}
