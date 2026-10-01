@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0049",
+  "created_at": "2026-10-01T22:05:00+01:00",
+  "title": "Fibonacci EA v5.0 News Filter Disablement Test",
+  "research_question": "Does disabling the synthetic news filter (InpUseNewsFilter = false) increase trade signal frequency from the baseline of 230 trades while keeping maximum equity drawdown within the 8.0% prop firm guard limit on GBPUSD M15?",
+  "hypothesis": "Disabling the fixed-hour news filter will eliminate artificial session blackouts (around 08:30, 13:30, 14:00, 15:00 server time), allowing Fibonacci retracements during London and New York overlaps to execute, thereby increasing total trades by at least 25% (to >= 288 trades) without causing maximum equity drawdown to exceed 8.0%.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0006"
+    ],
+    "facts": [
+      "EXP-0006 recorded exactly 230 trades across 124,311 bars on GBPUSD M15 under factory default inputs with InpUseNewsFilter=true.",
+      "EXP-0006 recorded 7.46% max equity drawdown and +$302.08 net profit."
+    ],
+    "inferences": [
+      "The synthetic news filter suppresses trading for 60 minutes around hours 8, 13, 14, and 15, blocking significant portions of the active trading sessions.",
+      "Many valid Fibonacci retracement setups on M15 coincide with higher-volatility session overlap periods."
+    ],
+    "evidence": [
+      "EXP-0006 total_trades=230, equity_drawdown_maximal_percent=7.46, profit_factor=1.08, net_profit=302.08"
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "InpUseNewsFilter",
+      "baseline_value": "true",
+      "proposed_value": "false",
+      "rationale": "Eliminates synthetic time-based trade suppression during London/NY trading sessions to determine true strategy frequency."
+    }
+  ],
+  "dependent_variables": [
+    "total_trades",
+    "total_net_profit",
+    "profit_factor",
+    "equity_drawdown_maximal",
+    "win_rate"
+  ],
+  "control_variables": [
+    {"name": "InpInitialBalance", "value": "0.0"},
+    {"name": "InpDailyLossLimit", "value": "4.0"},
+    {"name": "InpTotalDDLimit", "value": "8.0"},
+    {"name": "InpWeeklyTargetPct", "value": "5.0"},
+    {"name": "InpNewsBufferMins", "value": "30"},
+    {"name": "InpMaxTradesPerDay", "value": "6"},
+    {"name": "InpWeekendClose", "value": "true"},
+    {"name": "InpWeekendCloseHour", "value": "21"},
+    {"name": "InpDirection", "value": "0"},
+    {"name": "InpSwingLookback", "value": "50"},
+    {"name": "InpSwingStrength", "value": "5"},
+    {"name": "InpMinSwingPips", "value": "25.0"},
+    {"name": "InpMaxSwingPips", "value": "500.0"},
+    {"name": "InpMinBarsAfterSwing", "value": "2"},
+    {"name": "InpUseFib236", "value": "false"},
+    {"name": "InpUseFib382", "value": "true"},
+    {"name": "InpUseFib500", "value": "true"},
+    {"name": "InpUseFib618", "value": "true"},
+    {"name": "InpUseFib786", "value": "false"},
+    {"name": "InpFibBuffer", "value": "5.0"},
+    {"name": "InpMaxSLPips", "value": "15.0"},
+    {"name": "InpTP1Pips", "value": "10.0"},
+    {"name": "InpTP2Pips", "value": "30.0"},
+    {"name": "InpTP1ClosePct", "value": "50.0"},
+    {"name": "InpTrailPips", "value": "8.0"},
+    {"name": "InpUseTrend", "value": "true"},
+    {"name": "InpTrendEma", "value": "50"},
+    {"name": "InpUseSession", "value": "true"},
+    {"name": "InpLondonOpen", "value": "8"},
+    {"name": "InpLondonClose", "value": "12"},
+    {"name": "InpNYOpen", "value": "13"},
+    {"name": "InpNYClose", "value": "18"},
+    {"name": "InpMaxSpread", "value": "3.0"},
+    {"name": "InpUseRsi", "value": "true"},
+    {"name": "InpRsiPeriod", "value": "14"},
+    {"name": "InpRsiBullMax", "value": "62.0"},
+    {"name": "InpRsiBearMin", "value": "38.0"},
+    {"name": "InpRsiExtBull", "value": "42.0"},
+    {"name": "InpRsiExtBear", "value": "58.0"},
+    {"name": "InpUseMacd", "value": "true"},
+    {"name": "InpUseRejection", "value": "true"},
+    {"name": "InpRejWickRatio", "value": "0.35"},
+    {"name": "InpUseH4Soft", "value": "true"},
+    {"name": "InpH4Ema", "value": "50"},
+    {"name": "InpH4LotFactor", "value": "0.6"},
+    {"name": "InpUseAdxSoft", "value": "true"},
+    {"name": "InpAdxPeriod", "value": "14"},
+    {"name": "InpAdxMin", "value": "15.0"},
+    {"name": "InpAdxMid", "value": "22.0"},
+    {"name": "InpAdxWeakLot", "value": "0.6"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxOpenTrades", "value": "3"},
+    {"name": "InpMinLot", "value": "0.01"},
+    {"name": "InpMaxLot", "value": "50.0"},
+    {"name": "InpUseBE", "value": "true"},
+    {"name": "InpUseTrail", "value": "true"},
+    {"name": "symbol", "value": "GBPUSD"},
+    {"name": "timeframe", "value": "M15"},
+    {"name": "ea", "value": "Fibonacci_EA_v5_0"}
+  ],
+  "assumptions": [
+    "EA swing detection and entry logic function reliably outside and during news event hours.",
+    "Deriv market history on GBPUSD M15 contains reliable 1-minute tick data for the entire 2020-2024 window."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Total trades will increase from 230 to at least 288 (>= 25% increase).",
+    "Max equity drawdown will remain <= 8.0% (inside prop firm buffer)."
+  ],
+  "falsification_conditions": [
+    "Total trades remain <= 230 after disabling the news filter.",
+    "Max equity drawdown exceeds 8.0%, breaching the prop firm guard threshold."
+  ],
+  "status": "proposed"
+}

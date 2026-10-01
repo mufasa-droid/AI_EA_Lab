@@ -1,0 +1,11 @@
+--- source_before.mq5
++++ source_after.mq5
+@@ -69,7 +69,7 @@
+ input double InpDailyLossLimit    = 4.0;   // [G1] Daily loss halt % (prop firms allow 5%)
+ input double InpTotalDDLimit      = 8.0;   // [G2] Total DD halt % (prop firms allow 10%)
+ input double InpWeeklyTargetPct   = 5.0;   // [G3] Weekly profit lock % (0=disabled)
+-input bool   InpUseNewsFilter     = true;  // [G4] Block trading near news hours
++input bool   InpUseNewsFilter     = false;  // [G4] Block trading near news hours
+ input int    InpNewsBufferMins    = 30;    // [G4] Minutes before/after news to block
+ input int    InpMaxTradesPerDay   = 6;     // [G5] Max trades per day
+ input bool   InpWeekendClose      = true;  // [G6] Close all positions by Fri 21:00

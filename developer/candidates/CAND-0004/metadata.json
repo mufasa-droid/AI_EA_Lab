@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0004",
+  "plan_id": "PLAN-0057",
+  "hypothesis_id": "HYP-0049",
+  "baseline_experiment": "EXP-0006",
+  "ea": "Fibonacci_EA_v5_0",
+  "created_at": "2026-10-01T22:03:11.784296+01:00",
+  "source_before_sha256": "b2419fb05005d2f3dbb6dfef249d73bf569f43dc18df3d24353bd55f86ebebd1",
+  "source_after_sha256": "594fcc220fecd78acfecc27648a16ba3b9e58b5cbc6457916bc545d4e598c3f7",
+  "requested_changes": [
+    {
+      "variable": "InpUseNewsFilter",
+      "baseline_value": "true",
+      "target_value": "false",
+      "change_type": "parameter_adjustment",
+      "rationale": "Eliminate synthetic time-based trade suppression during London/NY trading sessions."
+    }
+  ],
+  "actual_changes": [
+    {
+      "type": "input_default_change",
+      "parameter": "InpUseNewsFilter",
+      "type_declared": "bool",
+      "after": "false"
+    }
+  ],
+  "feasibility_status": "pass",
+  "compile_status": "passed",
+  "compiler_info": {
+    "compiler_path": "C:\\Program Files\\MetaTrader 5\\MetaEditor64.exe",
+    "exit_code": 1,
+    "error_count": 0,
+    "warning_count": 0
+  },
+  "status": "ready_for_next_phase"
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "plan_id": "PLAN-0057",
+  "ea": "Fibonacci_EA_v5_0",
+  "feasible": true,
+  "status": "pass",
+  "reason": "All requested parameters exist in EA source and are compatible with EA architecture.",
+  "required_changes": [
+    {
+      "parameter": "InpUseNewsFilter",
+      "type": "bool",
+      "before": "true",
+      "after": "false",
+      "rationale": "Eliminate synthetic time-based trade suppression during London/NY trading sessions."
+    }
+  ],
+  "blocked_by": []
+}

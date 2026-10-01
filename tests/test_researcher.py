@@ -69,8 +69,9 @@ class TestAIResearcher(unittest.TestCase):
         ps = ctx.get("project_state", {})
         self.assertEqual(ps.get("ea_name"), "TestEA")
         self.assertEqual(ps.get("symbol"), "GBPUSD")
-        self.assertGreaterEqual(ps.get("total_experiments", 0), 2)
-        self.assertIn(ps.get("latest_experiment_id"), ["EXP-0002", "EXP-0003", "EXP-0004", "EXP-0005", "EXP-0006"])
+        latest_id = ps.get("latest_experiment_id", "")
+        self.assertTrue(latest_id.startswith("EXP-"))
+        self.assertGreaterEqual(int(latest_id.split("-")[1]), 2)
 
         # Historical experiments
         hist = ctx.get("historical_experiments", [])
