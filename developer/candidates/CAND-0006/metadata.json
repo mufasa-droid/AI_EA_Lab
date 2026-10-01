@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0006",
+  "plan_id": "PLAN-0071",
+  "hypothesis_id": "HYP-0060",
+  "baseline_experiment": "EXP-0008",
+  "ea": "Fibonacci_EA_v5_0",
+  "created_at": "2026-10-01T22:46:26.474533+01:00",
+  "source_before_sha256": "b2419fb05005d2f3dbb6dfef249d73bf569f43dc18df3d24353bd55f86ebebd1",
+  "source_after_sha256": "6908e823a5d8c5530dd001cddca24ff5b58f654c0a8a625b18dd559ccf70b9d7",
+  "requested_changes": [
+    {
+      "variable": "InpTP1Pips",
+      "baseline_value": "10.0",
+      "target_value": "15.0",
+      "change_type": "parameter_adjustment",
+      "rationale": "Align initial TP1 target with initial SL (15 pips) for a balanced 1:1 risk-reward on the first scale-out."
+    }
+  ],
+  "actual_changes": [
+    {
+      "type": "input_default_change",
+      "parameter": "InpTP1Pips",
+      "type_declared": "double",
+      "after": "15.0"
+    }
+  ],
+  "feasibility_status": "pass",
+  "compile_status": "passed",
+  "compiler_info": {
+    "compiler_path": "C:\\Program Files\\MetaTrader 5\\MetaEditor64.exe",
+    "exit_code": 1,
+    "error_count": 0,
+    "warning_count": 0
+  },
+  "status": "ready_for_next_phase"
+}
