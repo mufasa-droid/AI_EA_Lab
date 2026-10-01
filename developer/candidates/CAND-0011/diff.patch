@@ -1,0 +1,11 @@
+--- source_before.mq5
++++ source_after.mq5
+@@ -94,7 +94,7 @@
+ input double InpFibBuffer         = 5.0;   // Zone buffer pips
+ 
+ input group "══════ FIXED PIP SL/TP ══════"
+-input double InpMaxSLPips         = 15.0;  // Hard SL pips
++input double InpMaxSLPips         = 12.0;  // Hard SL pips
+ input double InpTP1Pips           = 10.0;  // TP1 partial close pips
+ input double InpTP2Pips           = 30.0;  // TP2 hard TP pips
+ input double InpTP1ClosePct       = 50.0;  // % to close at TP1

@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0077",
+  "created_at": "2026-10-01T23:42:00+01:00",
+  "title": "Fibonacci EA v5.0 Hard Stop Loss Reduction Test (15.0 -> 12.0 pips)",
+  "research_question": "Does reducing InpMaxSLPips from 15.0 to 12.0 pips reduce average loss severity without significantly degrading the ~79% win rate, lowering max equity drawdown below 7.35% and improving overall profit factor on GBPUSD M15?",
+  "hypothesis": "Decreasing InpMaxSLPips from 15.0 to 12.0 pips will cut the average loss size from ~$73.50 down to ~$55.00, reducing the required mathematical breakeven win rate to ~71% and decreasing max equity drawdown while maintaining net profit above baseline $577.65.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0008",
+      "EXP-0012",
+      "EXP-0015"
+    ],
+    "facts": [
+      "EXP-0008 demonstrated a 1:2.76 loss-to-win asymmetry (avg win $26.59 vs avg loss -$73.50) with InpMaxSLPips=15.0.",
+      "EXP-0012 and EXP-0015 proved that despite maintaining a 76-80% win rate out-of-sample, the rigid -$70.50 loss per trade pushed the mathematical breakeven requirement above 78%.",
+      "The Fibonacci entry zones (38.2%, 50.0%, 61.8%) have an InpFibBuffer of 5.0 pips, so a 12.0 pip stop still provides 7 pips of breathing room beyond the buffer zone."
+    ],
+    "inferences": [
+      "If a pullback trade penetrates more than 12 pips against the Fibonacci level on M15 GBPUSD, the reversal premise is already invalidated.",
+      "Cutting the stop loss to 12.0 pips will cut loss severity by 20% without materially increasing the rate of stop-outs."
+    ],
+    "evidence": [
+      "EXP-0008 total_trades=272, profit_factor=1.39, average_loss_trade=-73.50, total_net_profit=577.65, equity_drawdown_maximal_percent=7.35"
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "InpMaxSLPips",
+      "baseline_value": "15.0",
+      "proposed_value": "12.0",
+      "rationale": "Tighten hard stop loss from 15.0 to 12.0 pips to reduce loss severity per losing trade from -$73.50 to ~$55.00."
+    }
+  ],
+  "dependent_variables": [
+    "average_loss_trade",
+    "total_trades",
+    "total_net_profit",
+    "profit_factor",
+    "win_rate",
+    "equity_drawdown_maximal"
+  ],
+  "control_variables": [
+    {"name": "InpInitialBalance", "value": "0.0"},
+    {"name": "InpDailyLossLimit", "value": "4.0"},
+    {"name": "InpTotalDDLimit", "value": "8.0"},
+    {"name": "InpWeeklyTargetPct", "value": "5.0"},
+    {"name": "InpUseNewsFilter", "value": "true"},
+    {"name": "InpNewsBufferMins", "value": "30"},
+    {"name": "InpMaxTradesPerDay", "value": "6"},
+    {"name": "InpWeekendClose", "value": "true"},
+    {"name": "InpWeekendCloseHour", "value": "21"},
+    {"name": "InpDirection", "value": "2"},
+    {"name": "InpSwingLookback", "value": "50"},
+    {"name": "InpSwingStrength", "value": "5"},
+    {"name": "InpMinSwingPips", "value": "25.0"},
+    {"name": "InpMaxSwingPips", "value": "500.0"},
+    {"name": "InpMinBarsAfterSwing", "value": "2"},
+    {"name": "InpUseFib236", "value": "false"},
+    {"name": "InpUseFib382", "value": "true"},
+    {"name": "InpUseFib500", "value": "true"},
+    {"name": "InpUseFib618", "value": "true"},
+    {"name": "InpUseFib786", "value": "false"},
+    {"name": "InpFibBuffer", "value": "5.0"},
+    {"name": "InpTP1Pips", "value": "10.0"},
+    {"name": "InpTP2Pips", "value": "30.0"},
+    {"name": "InpTP1ClosePct", "value": "50.0"},
+    {"name": "InpTrailPips", "value": "8.0"},
+    {"name": "InpUseTrend", "value": "true"},
+    {"name": "InpTrendEma", "value": "50"},
+    {"name": "InpUseSession", "value": "true"},
+    {"name": "InpLondonOpen", "value": "8"},
+    {"name": "InpLondonClose", "value": "12"},
+    {"name": "InpNYOpen", "value": "13"},
+    {"name": "InpNYClose", "value": "18"},
+    {"name": "InpMaxSpread", "value": "3.0"},
+    {"name": "InpUseRsi", "value": "true"},
+    {"name": "InpRsiPeriod", "value": "14"},
+    {"name": "InpRsiBullMax", "value": "62.0"},
+    {"name": "InpRsiBearMin", "value": "38.0"},
+    {"name": "InpRsiExtBull", "value": "42.0"},
+    {"name": "InpRsiExtBear", "value": "58.0"},
+    {"name": "InpUseMacd", "value": "true"},
+    {"name": "InpUseRejection", "value": "true"},
+    {"name": "InpRejWickRatio", "value": "0.35"},
+    {"name": "InpUseH4Soft", "value": "true"},
+    {"name": "InpH4Ema", "value": "50"},
+    {"name": "InpH4LotFactor", "value": "0.6"},
+    {"name": "InpUseAdxSoft", "value": "true"},
+    {"name": "InpAdxPeriod", "value": "14"},
+    {"name": "InpAdxMin", "value": "15.0"},
+    {"name": "InpAdxMid", "value": "22.0"},
+    {"name": "InpAdxWeakLot", "value": "0.6"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxOpenTrades", "value": "3"},
+    {"name": "InpMinLot", "value": "0.01"},
+    {"name": "InpMaxLot", "value": "50.0"},
+    {"name": "InpUseBE", "value": "true"},
+    {"name": "InpUseTrail", "value": "true"},
+    {"name": "symbol", "value": "GBPUSD"},
+    {"name": "timeframe", "value": "M15"},
+    {"name": "ea", "value": "Fibonacci_EA_v5_0"}
+  ],
+  "assumptions": [
+    "Broker stop level allows 12-pip stops during normal London/NY spread conditions."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Average loss size will decrease from -$73.50 to less than -$60.00.",
+    "Total net profit will remain above or near baseline $577.65.",
+    "Win rate will remain >= 75.0%.",
+    "Max equity drawdown will remain <= 7.5%."
+  ],
+  "falsification_conditions": [
+    "Win rate collapses below 70.0% due to premature stop-outs by market noise.",
+    "Total net profit drops below $350.00.",
+    "Maximum equity drawdown exceeds 8.0%, breaching the prop firm guard threshold."
+  ],
+  "status": "proposed"
+}

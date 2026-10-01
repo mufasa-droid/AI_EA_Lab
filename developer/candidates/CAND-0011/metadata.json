@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0011",
+  "plan_id": "PLAN-0092",
+  "hypothesis_id": "HYP-0077",
+  "baseline_experiment": "EXP-0008",
+  "ea": "Fibonacci_EA_v5_0",
+  "created_at": "2026-10-01T23:42:39.554818+01:00",
+  "source_before_sha256": "cd3856685d6fa02d3764fe5723ca37fdbea0e4330353e8d9bb9293622962bd06",
+  "source_after_sha256": "135589ffd1f3bf2688d612837c3a14db26811ceefa6ccadc31d8d90972afa487",
+  "requested_changes": [
+    {
+      "variable": "InpMaxSLPips",
+      "baseline_value": "15.0",
+      "target_value": "12.0",
+      "change_type": "parameter_adjustment",
+      "rationale": "Tighten hard stop loss from 15.0 to 12.0 pips to reduce loss severity per losing trade from -$73.50 to ~$55.00."
+    }
+  ],
+  "actual_changes": [
+    {
+      "type": "input_default_change",
+      "parameter": "InpMaxSLPips",
+      "type_declared": "double",
+      "after": "12.0"
+    }
+  ],
+  "feasibility_status": "pass",
+  "compile_status": "passed",
+  "compiler_info": {
+    "compiler_path": "C:\\Program Files\\MetaTrader 5\\MetaEditor64.exe",
+    "exit_code": 1,
+    "error_count": 0,
+    "warning_count": 0
+  },
+  "status": "ready_for_next_phase"
+}

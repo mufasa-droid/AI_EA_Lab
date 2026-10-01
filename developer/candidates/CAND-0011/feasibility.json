@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "plan_id": "PLAN-0092",
+  "ea": "Fibonacci_EA_v5_0",
+  "feasible": true,
+  "status": "pass",
+  "reason": "All requested parameters exist in EA source and are compatible with EA architecture.",
+  "required_changes": [
+    {
+      "parameter": "InpMaxSLPips",
+      "type": "double",
+      "before": "15.0",
+      "after": "12.0",
+      "rationale": "Tighten hard stop loss from 15.0 to 12.0 pips to reduce loss severity per losing trade from -$73.50 to ~$55.00."
+    }
+  ],
+  "blocked_by": []
+}

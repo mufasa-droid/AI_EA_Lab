@@ -71,6 +71,7 @@
     "95b97b63cfd7473350104bd6d16346577dc62bfbd602189db808e08c481a1a26": "MEM-OBS-0004",
     "980c0ad2ee9fb0dd02b6df534b1f129a46341987e909852e454399dce6e21963": "MEM-HYP-0048",
     "a1cee105787c49a33abc004c17c25ed4367637795c360036563cd499458d4d84": "MEM-OBS-0014",
+    "a28ce7b33badaef2d26d44c4dc9346e186c9bf4b74c5dda7fcf43dcb7f19ab48": "MEM-REL-0021",
     "a2d49c122b283a65e45fd2606a53e6e2fa26d2fa22b3e67773fd4e2dc577a45e": "MEM-HYP-0056",
     "a8ace7d8e51f6335bda5577e8d476d5d7876ca439744303a0c1fa7a3e42cac82": "MEM-HYP-0051",
     "ad19d3122df4b5c367caf689033c4dbac3e89bfdcd9581683067d8649f1ef871": "MEM-HYP-0042",
@@ -81,6 +82,7 @@
     "b4ffe87648ab70dfee3e3fa5d5ced9e35617a286fa2a1b522da077f2509e4f30": "MEM-REL-0011",
     "b65d4f94c904aefdfbc8d38f2d82980b4ec8cc3addea8cc07f651a1775cd9e38": "MEM-REL-0018",
     "b71b4e139c160368592a1d567aea74c9ddc2363e2c4efb073d1094412f43b25f": "MEM-OBS-0005",
+    "b99d8495bb58c4f1a7a20fca9ec1092722c9b7afea23abd13229246309b1f455": "MEM-OBS-0021",
     "ba2e316b9c7b1cc3110ace1369e69ca0bf381b83fa307b499d774528361be3ba": "MEM-OBS-0006",
     "c569858560bc3493450fb9f82a69487e5d0448506773200cedfb0de68b1d66f7": "MEM-REL-0017",
     "c56b23a21845afde840c05e4e34313b9b4ff4344c485f9ed879d1d956aa9bcef": "MEM-OBS-0007",
@@ -99,7 +101,9 @@
     "ea38fb4a76d0d9cb1cdcf012e1429b327431cfe8633c28b65665f5d77332bef1": "MEM-REL-0019",
     "ed0be1b5f6aef2229a0c028b888a5c7a5360e020e2104f5b6cdd2a6076d22648": "MEM-HYP-0003",
     "f13af12d615ec52a8baff71b312da0f64a77814b352e76c259b05c6abde4fc30": "MEM-HYP-0005",
+    "f1b4a98c9a7f3605829f5e3f670f7485feb1c1f6148a4065bba67e7a2a8240a2": "MEM-OBS-0020",
     "f310e28ee982b0d21ac8df1d5a9f4282c7ea72385d09499193276d5ad849195d": "MEM-HYP-0001",
+    "f36e934f86ffcbf9c62d9547d7c9733c14cd69cbf9308b1c6a4a8c024e8a32a8": "MEM-REL-0020",
     "f4fd0c065f1e22b893f32df32ae825173372dd969773deeaa68028c618d9098e": "MEM-OBS-0009",
     "f85bb287da04be40578255ad0c768ac3435f15bcc9431156e076fa87f67fafc7": "MEM-HYP-0040",
     "f8c00a5e29b81a41b12f0d5ce05024c3739b2ee7ab78313e0d87fced6462ff09": "MEM-HYP-0024",
@@ -2914,9 +2918,101 @@
       "source_type": "EXPERIMENT",
       "target_id": "CAND-0010",
       "target_type": "CANDIDATE"
+    },
+    {
+      "candidate_id": "CAND-0011",
+      "created_at": "2026-10-01T23:43:27.783365+01:00",
+      "dataset_from": "2020.01.01",
+      "dataset_partition": {
+        "from": "2020.01.01",
+        "partition": "training",
+        "source": "config/research_periods.json",
+        "to": "2024.12.31"
+      },
+      "dataset_to": "2024.12.31",
+      "evidence_reference": {
+        "experiment_id": "EXP-0016",
+        "metadata_path": "experiments/EXP-0016/metadata.json"
+      },
+      "evidence_type": "METRICS",
+      "experiment_id": "EXP-0016",
+      "fingerprint": "f1b4a98c9a7f3605829f5e3f670f7485feb1c1f6148a4065bba67e7a2a8240a2",
+      "generated_by": "system",
+      "memory_id": "MEM-OBS-0020",
+      "observation": "Experiment EXP-0016 executed on symbol GBPUSD (M15) across 2020.01.01-2024.12.31 [{'partition': 'training', 'from': '2020.01.01', 'to': '2024.12.31', 'source': 'config/research_periods.json'}] with bars=124311, ticks=7259036, history_quality=99.0%.",
+      "observation_category": "FACT",
+      "record_type": "EXPERIMENT_OBSERVATION",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "symbol": "GBPUSD",
+      "timeframe": "M15"
+    },
+    {
+      "candidate_id": "CAND-0011",
+      "created_at": "2026-10-01T23:43:27.797545+01:00",
+      "dataset_from": "2020.01.01",
+      "dataset_partition": {
+        "from": "2020.01.01",
+        "partition": "training",
+        "source": "config/research_periods.json",
+        "to": "2024.12.31"
+      },
+      "dataset_to": "2024.12.31",
+      "evidence_reference": {
+        "experiment_id": "EXP-0016",
+        "metrics_path": "experiments/EXP-0016/metrics.json"
+      },
+      "evidence_type": "METRICS",
+      "experiment_id": "EXP-0016",
+      "fingerprint": "b99d8495bb58c4f1a7a20fca9ec1092722c9b7afea23abd13229246309b1f455",
+      "generated_by": "system",
+      "memory_id": "MEM-OBS-0021",
+      "observation": "Experiment EXP-0016 recorded total_trades=60, net_profit=539.27, profit_factor=1.58.",
+      "observation_category": "FACT",
+      "record_type": "EXPERIMENT_OBSERVATION",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "symbol": "GBPUSD",
+      "timeframe": "M15"
+    },
+    {
+      "created_at": "2026-10-01T23:43:27.814985+01:00",
+      "evidence_reference": {
+        "experiment_id": "EXP-0016",
+        "hypothesis_id": "HYP-0077"
+      },
+      "fingerprint": "f36e934f86ffcbf9c62d9547d7c9733c14cd69cbf9308b1c6a4a8c024e8a32a8",
+      "generated_by": "system",
+      "memory_id": "MEM-REL-0020",
+      "record_type": "RELATIONSHIP",
+      "relation": "TESTED_BY",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source_id": "HYP-0077",
+      "source_type": "HYPOTHESIS",
+      "target_id": "EXP-0016",
+      "target_type": "EXPERIMENT"
+    },
+    {
+      "created_at": "2026-10-01T23:43:27.829408+01:00",
+      "evidence_reference": {
+        "candidate_id": "CAND-0011",
+        "experiment_id": "EXP-0016"
+      },
+      "fingerprint": "a28ce7b33badaef2d26d44c4dc9346e186c9bf4b74c5dda7fcf43dcb7f19ab48",
+      "generated_by": "system",
+      "memory_id": "MEM-REL-0021",
+      "record_type": "RELATIONSHIP",
+      "relation": "IMPLEMENTED_AS",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source_id": "EXP-0016",
+      "source_type": "EXPERIMENT",
+      "target_id": "CAND-0011",
+      "target_type": "CANDIDATE"
     }
   ],
   "schema_version": 1,
-  "total_records": 105,
-  "updated_at": "2026-10-01T23:37:06.795549+01:00"
+  "total_records": 109,
+  "updated_at": "2026-10-01T23:43:27.831766+01:00"
 }
