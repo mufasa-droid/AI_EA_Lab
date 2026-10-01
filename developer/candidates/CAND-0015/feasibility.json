@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "plan_id": "PLAN-0107",
+  "ea": "Fibonacci_EA_v5_0",
+  "feasible": true,
+  "status": "pass",
+  "reason": "All requested parameters exist in EA source and are compatible with EA architecture.",
+  "required_changes": [
+    {
+      "parameter": "timeframe",
+      "type": "market_dimension",
+      "before": "M30",
+      "after": "H1",
+      "rationale": "Transition execution chart timeframe from M30 to H1."
+    },
+    {
+      "parameter": "InpMaxSLPips",
+      "type": "double",
+      "before": "15.0",
+      "after": "30.0",
+      "rationale": "Widen hard stop loss to accommodate H1 candle ATR range and prevent premature wick stop-outs."
+    },
+    {
+      "parameter": "InpTP1Pips",
+      "type": "double",
+      "before": "10.0",
+      "after": "30.0",
+      "rationale": "Widen first take-profit target to capture full H1 impulse swing before partial close."
+    },
+    {
+      "parameter": "InpTP2Pips",
+      "type": "double",
+      "before": "30.0",
+      "after": "60.0",
+      "rationale": "Widen secondary take-profit target for multi-hour runners."
+    },
+    {
+      "parameter": "InpTrailPips",
+      "type": "double",
+      "before": "8.0",
+      "after": "15.0",
+      "rationale": "Widen trailing step to prevent premature runner exit during normal H1 pullbacks."
+    },
+    {
+      "parameter": "InpFibBuffer",
+      "type": "double",
+      "before": "5.0",
+      "after": "8.0",
+      "rationale": "Widen Fibonacci zone buffer to match H1 candle resolution."
+    }
+  ],
+  "blocked_by": []
+}

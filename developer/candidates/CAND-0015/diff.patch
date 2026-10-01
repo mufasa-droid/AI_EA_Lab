@@ -1,0 +1,22 @@
+--- source_before.mq5
++++ source_after.mq5
+@@ -91,14 +91,14 @@
+ input bool   InpUseFib500         = true;  // 50.0% (H1+MACD OR Rejection)
+ input bool   InpUseFib618         = true;  // 61.8% (H1+RSI — GOLDEN)
+ input bool   InpUseFib786         = false; // 78.6%
+-input double InpFibBuffer         = 5.0;   // Zone buffer pips
++input double InpFibBuffer         = 8.0;   // Zone buffer pips
+ 
+ input group "══════ FIXED PIP SL/TP ══════"
+-input double InpMaxSLPips         = 15.0;  // Hard SL pips
+-input double InpTP1Pips           = 10.0;  // TP1 partial close pips
+-input double InpTP2Pips           = 30.0;  // TP2 hard TP pips
++input double InpMaxSLPips         = 30.0;  // Hard SL pips
++input double InpTP1Pips           = 30.0;  // TP1 partial close pips
++input double InpTP2Pips           = 60.0;  // TP2 hard TP pips
+ input double InpTP1ClosePct       = 50.0;  // % to close at TP1
+-input double InpTrailPips         = 8.0;   // Trail step pips (after TP1)
++input double InpTrailPips         = 15.0;   // Trail step pips (after TP1)
+ 
+ input group "══════ ENTRY FILTERS ══════"
+ input bool   InpUseTrend          = true;  // H1 EMA trend filter (global hard)

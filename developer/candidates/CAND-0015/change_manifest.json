@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0015",
+  "plan_id": "PLAN-0107",
+  "baseline_experiment": "EXP-0022",
+  "ea": "Fibonacci_EA_v5_0",
+  "changes": [
+    {
+      "type": "input_default_change",
+      "parameter": "InpFibBuffer",
+      "type_declared": "double",
+      "after": "8.0"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpMaxSLPips",
+      "type_declared": "double",
+      "after": "30.0"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpTP1Pips",
+      "type_declared": "double",
+      "after": "30.0"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpTP2Pips",
+      "type_declared": "double",
+      "after": "60.0"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpTrailPips",
+      "type_declared": "double",
+      "after": "15.0"
+    }
+  ],
+  "unauthorized_changes": [],
+  "feasible": true,
+  "compile_status": "passed"
+}

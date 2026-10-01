@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "audit_id": "AUD-0027",
+  "audited_at": "2026-10-02T00:24:05.094017+01:00",
+  "experiment_id": "EXP-0025",
+  "candidate_id": "CAND-0015",
+  "plan_id": "PLAN-0107",
+  "hypothesis_id": "HYP-0089",
+  "baseline_experiment": "EXP-0022",
+  "status": "PASS",
+  "evidence_grade": "ADEQUATE",
+  "infrastructure_evidence": "STRONG",
+  "trading_performance_evidence": "ADEQUATE",
+  "experiment_identity_check": {
+    "status": "PASS",
+    "details": "Experiment identity references are well-formed.",
+    "issues": []
+  },
+  "provenance_check": {
+    "status": "PASS",
+    "lineage_intact": true,
+    "details": "Verified complete provenance chain: HYP-0089 -> PLAN-0107 -> CAND-0015 -> EXP-0025.",
+    "lineage": {
+      "hypothesis": "HYP-0089",
+      "plan": "PLAN-0107",
+      "candidate": "CAND-0015",
+      "experiment": "EXP-0025"
+    },
+    "issues": []
+  },
+  "artifact_integrity_check": {
+    "status": "PASS",
+    "details": "All artifact files exist, are non-empty, and cryptographic hashes are verified.",
+    "hashes_verified": true,
+    "issues": []
+  },
+  "tester_execution_check": {
+    "status": "PASS",
+    "bars": 6194,
+    "ticks": 1475378,
+    "trades": 64,
+    "zero_data": false,
+    "details": "Valid execution (6,194 bars, 1,475,378 ticks, 64 trades).",
+    "issues": []
+  },
+  "report_consistency_check": {
+    "status": "PASS",
+    "details": "Cross-references between metadata, metrics, and report match without contradictions.",
+    "contradictions": []
+  },
+  "plan_compliance_check": {
+    "status": "COMPLIANT",
+    "details": "Executed backtest parameters strictly complied with the approved experiment plan.",
+    "deviations": []
+  },
+  "change_scope_check": {
+    "status": "PASS",
+    "details": "Candidate code changes were strictly confined to authorized parameters.",
+    "authorized_changes": [
+      {
+        "type": "input_default_change",
+        "parameter": "InpFibBuffer",
+        "type_declared": "double",
+        "after": "8.0"
+      },
+      {
+        "type": "input_default_change",
+        "parameter": "InpMaxSLPips",
+        "type_declared": "double",
+        "after": "30.0"
+      },
+      {
+        "type": "input_default_change",
+        "parameter": "InpTP1Pips",
+        "type_declared": "double",
+        "after": "30.0"
+      },
+      {
+        "type": "input_default_change",
+        "parameter": "InpTP2Pips",
+        "type_declared": "double",
+        "after": "60.0"
+      },
+      {
+        "type": "input_default_change",
+        "parameter": "InpTrailPips",
+        "type_declared": "double",
+        "after": "15.0"
+      }
+    ],
+    "unauthorized_changes": []
+  },
+  "dataset_check": {
+    "status": "FAIL",
+    "dataset_type": "VALIDATION",
+    "details": "Plan dataset partition 'training' does not match experiment dataset partition 'validation'.",
+    "periods_status": "configured"
+  },
+  "reproducibility_check": {
+    "status": "COMPLETE",
+    "can_reproduce": true,
+    "missing_elements": [],
+    "dimensions": {
+      "identity_reproducibility": "PASS",
+      "configuration_reproducibility": "PASS",
+      "dataset_reproducibility": "PASS",
+      "candidate_reproducibility": "PASS",
+      "artifact_reproducibility": "PASS",
+      "parser_reproducibility": "PASS",
+      "provenance_reproducibility": "PASS",
+      "environment_evidence": "PASS",
+      "repeat_run_consistency": "NOT_APPLICABLE"
+    },
+    "issues": [],
+    "repeat_comparison": null,
+    "details": "Reproducibility status: COMPLETE. Dimensions: {'identity_reproducibility': 'PASS', 'configuration_reproducibility': 'PASS', 'dataset_reproducibility': 'PASS', 'candidate_reproducibility': 'PASS', 'artifact_reproducibility': 'PASS', 'parser_reproducibility': 'PASS', 'provenance_reproducibility': 'PASS', 'environment_evidence': 'PASS', 'repeat_run_consistency': 'NOT_APPLICABLE'}"
+  },
+  "validation_check": {
+    "status": "PASS",
+    "details": "Validation integrity verified.",
+    "issues": []
+  },
+  "overfitting_risks": [
+    {
+      "risk_type": "repeated_window_evaluation",
+      "level": "POSSIBLE",
+      "description": "Parameters evaluated against a single historical window risk curve-fitting to specific volatility regimes."
+    }
+  ],
+  "data_leakage_risks": [
+    {
+      "risk_type": "temporal_leakage",
+      "level": "POSSIBLE",
+      "description": "No evidence of look-ahead bias or future-leakage identified in tester inputs."
+    }
+  ],
+  "robustness_concerns": [
+    "Evidence is derived from a single market window and single instrument (GBPUSD M15); multi-regime robustness is unproven."
+  ],
+  "evidence_gaps": [],
+  "observations": [
+    "Experiment 'EXP-0025' recorded 6,194 bars and 1,475,378 ticks.",
+    "Strategy Tester report identified candidate binary 'CAND-0015'.",
+    "Strategy Tester recorded exactly 64 trades.",
+    "All available SHA-256 cryptographic hashes matched recorded metadata.",
+    "Lineage confirmed: HYP-0089 -> PLAN-0107 -> CAND-0015 -> EXP-0025."
+  ],
+  "interpretations": [
+    "The candidate generated 64 trade signals, providing sample execution data for analysis.",
+    "The executed backtest parameters strictly matched the approved experiment plan.",
+    "Code changes under test were strictly confined to authorized parameters."
+  ],
+  "limitations": [
+    "Offline Strategy Tester backtest results do not account for live broker spread fluctuations, slippage, or latency."
+  ],
+  "follow_up_questions": [
+    "How does candidate parameter sensitivity vary across differing volatility regimes or adjacent months?"
+  ]
+}

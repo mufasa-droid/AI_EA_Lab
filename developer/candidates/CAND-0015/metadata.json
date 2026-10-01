@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0015",
+  "plan_id": "PLAN-0107",
+  "hypothesis_id": "HYP-0089",
+  "baseline_experiment": "EXP-0022",
+  "ea": "Fibonacci_EA_v5_0",
+  "created_at": "2026-10-02T00:22:59.552182+01:00",
+  "source_before_sha256": "cd3856685d6fa02d3764fe5723ca37fdbea0e4330353e8d9bb9293622962bd06",
+  "source_after_sha256": "8af6311972c7bae9585334bccffb2a3208bbbd2f8e54774fe37e217eb9107450",
+  "requested_changes": [
+    {
+      "variable": "timeframe",
+      "baseline_value": "M30",
+      "target_value": "H1",
+      "change_type": "timeframe_transition",
+      "rationale": "Transition execution chart timeframe from M30 to H1."
+    },
+    {
+      "variable": "InpMaxSLPips",
+      "baseline_value": "15.0",
+      "target_value": "30.0",
+      "change_type": "parameter_adjustment",
+      "rationale": "Widen hard stop loss to accommodate H1 candle ATR range and prevent premature wick stop-outs."
+    },
+    {
+      "variable": "InpTP1Pips",
+      "baseline_value": "15.0",
+      "target_value": "30.0",
+      "change_type": "parameter_adjustment",
+      "rationale": "Widen first take-profit target to capture full H1 impulse swing before partial close."
+    },
+    {
+      "variable": "InpTP2Pips",
+      "baseline_value": "30.0",
+      "target_value": "60.0",
+      "change_type": "parameter_adjustment",
+      "rationale": "Widen secondary take-profit target for multi-hour runners."
+    },
+    {
+      "variable": "InpTrailPips",
+      "baseline_value": "8.0",
+      "target_value": "15.0",
+      "change_type": "parameter_adjustment",
+      "rationale": "Widen trailing step to prevent premature runner exit during normal H1 pullbacks."
+    },
+    {
+      "variable": "InpFibBuffer",
+      "baseline_value": "5.0",
+      "target_value": "8.0",
+      "change_type": "parameter_adjustment",
+      "rationale": "Widen Fibonacci zone buffer to match H1 candle resolution."
+    }
+  ],
+  "actual_changes": [
+    {
+      "type": "input_default_change",
+      "parameter": "InpFibBuffer",
+      "type_declared": "double",
+      "after": "8.0"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpMaxSLPips",
+      "type_declared": "double",
+      "after": "30.0"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpTP1Pips",
+      "type_declared": "double",
+      "after": "30.0"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpTP2Pips",
+      "type_declared": "double",
+      "after": "60.0"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpTrailPips",
+      "type_declared": "double",
+      "after": "15.0"
+    }
+  ],
+  "feasibility_status": "pass",
+  "compile_status": "passed",
+  "compiler_info": {
+    "compiler_path": "C:\\Program Files\\MetaTrader 5\\MetaEditor64.exe",
+    "exit_code": 1,
+    "error_count": 0,
+    "warning_count": 0
+  },
+  "status": "ready_for_next_phase"
+}

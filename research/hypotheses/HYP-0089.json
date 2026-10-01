@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0089",
+  "created_at": "2026-10-02T00:23:00+01:00",
+  "title": "H1 Proportional Metric Scaling Test (SL=30, TP1=30, TP2=60, Trail=15, Buffer=8)",
+  "research_question": "Does scaling trade metrics proportionally to fit the 1-Hour timeframe (SL=30 pips, TP1=30 pips, TP2=60 pips, Trail=15 pips, FibBuffer=8 pips) eliminate the premature stop-out failure observed in EXP-0020/EXP-0021 and produce profitable results with max drawdown <= 8.0% on GBPUSD across both training and 2025 validation partitions?",
+  "hypothesis": "Proportionally scaling the stop loss to 30 pips and TP targets to 30/60 pips aligns trade geometry with the 25-45 pip Average True Range of H1 candles, allowing pullback wicks to breathe while dynamic lot sizing preserves 1.0% account risk per trade.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0020",
+      "EXP-0021",
+      "EXP-0022",
+      "EXP-0023"
+    ],
+    "facts": [
+      "EXP-0020 on H1 with tight 15-pip SL failed (-$869.85 profit, 13.78% DD) because 15 pips is smaller than the typical H1 candle noise.",
+      "EXP-0022/EXP-0023 on M30 achieved Profit Factor 3.68 (training) and 1.49 (2025 validation) with a 2.07%-3.88% drawdown.",
+      "H1 candles average 25-45 pips of range on GBPUSD, requiring at least a 30-pip stop loss to avoid noise stop-outs."
+    ],
+    "inferences": [
+      "Scaling SL to 30 pips, TP1 to 30 pips, TP2 to 60 pips, and Trail to 15 pips will resolve the ATR/SL mismatch on H1.",
+      "Dynamic lot sizing (InpRiskPct = 1.0%) will automatically halve position size for the 30-pip SL, keeping total account risk constant."
+    ],
+    "evidence": [
+      "EXP-0020 total_trades=104, profit_factor=0.75, loss_trades=48, total_net_profit=-869.85, equity_drawdown_maximal_percent=13.78",
+      "EXP-0023 total_trades=59, profit_factor=1.49, win_rate=74.58%, total_net_profit=505.25, equity_drawdown_maximal_percent=3.88"
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "timeframe",
+      "baseline_value": "M30",
+      "proposed_value": "H1",
+      "rationale": "Transition execution chart timeframe from M30 to H1."
+    },
+    {
+      "name": "InpMaxSLPips",
+      "baseline_value": "15.0",
+      "proposed_value": "30.0",
+      "rationale": "Widen hard stop loss to accommodate H1 candle ATR range and prevent premature wick stop-outs."
+    },
+    {
+      "name": "InpTP1Pips",
+      "baseline_value": "15.0",
+      "proposed_value": "30.0",
+      "rationale": "Widen first take-profit target to capture full H1 impulse swing before partial close."
+    },
+    {
+      "name": "InpTP2Pips",
+      "baseline_value": "30.0",
+      "proposed_value": "60.0",
+      "rationale": "Widen secondary take-profit target for multi-hour runners."
+    },
+    {
+      "name": "InpTrailPips",
+      "baseline_value": "8.0",
+      "proposed_value": "15.0",
+      "rationale": "Widen trailing step to prevent premature runner exit during normal H1 pullbacks."
+    },
+    {
+      "name": "InpFibBuffer",
+      "baseline_value": "5.0",
+      "proposed_value": "8.0",
+      "rationale": "Widen Fibonacci zone buffer to match H1 candle resolution."
+    }
+  ],
+  "dependent_variables": [
+    "total_trades",
+    "total_net_profit",
+    "profit_factor",
+    "win_rate",
+    "equity_drawdown_maximal"
+  ],
+  "control_variables": [
+    {"name": "InpInitialBalance", "value": "0.0"},
+    {"name": "InpDailyLossLimit", "value": "4.0"},
+    {"name": "InpTotalDDLimit", "value": "8.0"},
+    {"name": "InpWeeklyTargetPct", "value": "5.0"},
+    {"name": "InpUseNewsFilter", "value": "true"},
+    {"name": "InpNewsBufferMins", "value": "30"},
+    {"name": "InpMaxTradesPerDay", "value": "6"},
+    {"name": "InpWeekendClose", "value": "true"},
+    {"name": "InpWeekendCloseHour", "value": "21"},
+    {"name": "InpDirection", "value": "2"},
+    {"name": "InpSwingLookback", "value": "50"},
+    {"name": "InpSwingStrength", "value": "5"},
+    {"name": "InpMinSwingPips", "value": "25.0"},
+    {"name": "InpMaxSwingPips", "value": "500.0"},
+    {"name": "InpMinBarsAfterSwing", "value": "2"},
+    {"name": "InpUseFib236", "value": "false"},
+    {"name": "InpUseFib382", "value": "true"},
+    {"name": "InpUseFib500", "value": "true"},
+    {"name": "InpUseFib618", "value": "true"},
+    {"name": "InpUseFib786", "value": "false"},
+    {"name": "InpUseRejection", "value": "true"},
+    {"name": "InpRejWickRatio", "value": "0.35"},
+    {"name": "InpUseTrend", "value": "true"},
+    {"name": "InpTrendEma", "value": "50"},
+    {"name": "InpUseH4Soft", "value": "true"},
+    {"name": "InpH4Ema", "value": "50"},
+    {"name": "InpH4LotFactor", "value": "0.6"},
+    {"name": "InpUseRsi", "value": "true"},
+    {"name": "InpRsiPeriod", "value": "14"},
+    {"name": "InpRsiBullMax", "value": "62.0"},
+    {"name": "InpRsiBearMin", "value": "38.0"},
+    {"name": "InpRsiExtBull", "value": "42.0"},
+    {"name": "InpRsiExtBear", "value": "58.0"},
+    {"name": "InpUseMacd", "value": "true"},
+    {"name": "InpUseAdxSoft", "value": "true"},
+    {"name": "InpAdxPeriod", "value": "14"},
+    {"name": "InpAdxMin", "value": "15.0"},
+    {"name": "InpAdxMid", "value": "22.0"},
+    {"name": "InpAdxWeakLot", "value": "0.6"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpTP1ClosePct", "value": "50.0"},
+    {"name": "InpUseBE", "value": "true"},
+    {"name": "InpUseTrail", "value": "true"}
+  ],
+  "assumptions": [
+    "Dynamic lot sizing maintains risk at exactly 1.0% per trade despite wider 30-pip stop loss.",
+    "H1 bars provide valid rejection signals within the 8-pip buffer zone."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Max equity drawdown remains <= 8.0%.",
+    "Total net profit remains positive on GBPUSD H1.",
+    "Loss trades decrease substantially compared to EXP-0020 (48 losses)."
+  ],
+  "falsification_conditions": [
+    "Total net profit <= 0.0 on training or validation partition.",
+    "Max equity drawdown exceeds 8.0%.",
+    "Profit factor drops below 1.0."
+  ],
+  "status": "proposed"
+}

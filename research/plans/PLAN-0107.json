@@ -1,0 +1,370 @@
+{
+  "schema_version": 1,
+  "experiment_plan_id": "PLAN-0107",
+  "hypothesis_id": "HYP-0089",
+  "created_at": "2026-10-02T00:23:15+01:00",
+  "title": "H1 Proportional Metric Scaling Test (SL=30, TP1=30, TP2=60, Trail=15, Buffer=8)",
+  "research_question": "Does scaling trade metrics proportionally to fit the 1-Hour timeframe (SL=30 pips, TP1=30 pips, TP2=60 pips, Trail=15 pips, FibBuffer=8 pips) eliminate the premature stop-out failure observed in EXP-0020/EXP-0021 and produce profitable results with max drawdown <= 8.0% on GBPUSD across both training and 2025 validation partitions?",
+  "objective": "Evaluate whether transitioning chart execution timeframe from M30 to H1 with proportionally scaled metrics (SL=30, TP1=30, TP2=60, Trail=15, Buffer=8) produces positive net profit and controlled risk on GBPUSD.",
+  "baseline": {
+    "experiment_id": "EXP-0022",
+    "ea": "Fibonacci_EA_v5_0",
+    "symbol": "GBPUSD",
+    "timeframe": "M30",
+    "inputs": {
+      "InpInitialBalance": "0.0",
+      "InpDailyLossLimit": "4.0",
+      "InpTotalDDLimit": "8.0",
+      "InpWeeklyTargetPct": "5.0",
+      "InpUseNewsFilter": "true",
+      "InpNewsBufferMins": "30",
+      "InpMaxTradesPerDay": "6",
+      "InpWeekendClose": "true",
+      "InpWeekendCloseHour": "21",
+      "InpDirection": "2",
+      "InpSwingLookback": "50",
+      "InpSwingStrength": "5",
+      "InpMinSwingPips": "25.0",
+      "InpMaxSwingPips": "500.0",
+      "InpMinBarsAfterSwing": "2",
+      "InpUseFib236": "false",
+      "InpUseFib382": "true",
+      "InpUseFib500": "true",
+      "InpUseFib618": "true",
+      "InpUseFib786": "false",
+      "InpFibBuffer": "5.0",
+      "InpUseRejection": "true",
+      "InpRejWickRatio": "0.35",
+      "InpUseTrend": "true",
+      "InpTrendEma": "50",
+      "InpUseH4Soft": "true",
+      "InpH4Ema": "50",
+      "InpH4LotFactor": "0.6",
+      "InpUseRsi": "true",
+      "InpRsiPeriod": "14",
+      "InpRsiBullMax": "62.0",
+      "InpRsiBearMin": "38.0",
+      "InpRsiExtBull": "42.0",
+      "InpRsiExtBear": "58.0",
+      "InpUseMacd": "true",
+      "InpUseAdxSoft": "true",
+      "InpAdxPeriod": "14",
+      "InpAdxMin": "15.0",
+      "InpAdxMid": "22.0",
+      "InpAdxWeakLot": "0.6",
+      "InpRiskPct": "1.0",
+      "InpMaxSLPips": "15.0",
+      "InpTP1Pips": "15.0",
+      "InpTP2Pips": "30.0",
+      "InpTP1ClosePct": "50.0",
+      "InpUseBE": "true",
+      "InpUseTrail": "true",
+      "InpTrailPips": "8.0"
+    }
+  },
+  "changes_under_test": [
+    {
+      "variable": "timeframe",
+      "baseline_value": "M30",
+      "target_value": "H1",
+      "change_type": "timeframe_transition",
+      "rationale": "Transition execution chart timeframe from M30 to H1."
+    },
+    {
+      "variable": "InpMaxSLPips",
+      "baseline_value": "15.0",
+      "target_value": "30.0",
+      "change_type": "parameter_adjustment",
+      "rationale": "Widen hard stop loss to accommodate H1 candle ATR range and prevent premature wick stop-outs."
+    },
+    {
+      "variable": "InpTP1Pips",
+      "baseline_value": "15.0",
+      "target_value": "30.0",
+      "change_type": "parameter_adjustment",
+      "rationale": "Widen first take-profit target to capture full H1 impulse swing before partial close."
+    },
+    {
+      "variable": "InpTP2Pips",
+      "baseline_value": "30.0",
+      "target_value": "60.0",
+      "change_type": "parameter_adjustment",
+      "rationale": "Widen secondary take-profit target for multi-hour runners."
+    },
+    {
+      "variable": "InpTrailPips",
+      "baseline_value": "8.0",
+      "target_value": "15.0",
+      "change_type": "parameter_adjustment",
+      "rationale": "Widen trailing step to prevent premature runner exit during normal H1 pullbacks."
+    },
+    {
+      "variable": "InpFibBuffer",
+      "baseline_value": "5.0",
+      "target_value": "8.0",
+      "change_type": "parameter_adjustment",
+      "rationale": "Widen Fibonacci zone buffer to match H1 candle resolution."
+    }
+  ],
+  "unchanged_variables": [
+    {
+      "variable": "InpInitialBalance",
+      "value": "0.0"
+    },
+    {
+      "variable": "InpDailyLossLimit",
+      "value": "4.0"
+    },
+    {
+      "variable": "InpTotalDDLimit",
+      "value": "8.0"
+    },
+    {
+      "variable": "InpWeeklyTargetPct",
+      "value": "5.0"
+    },
+    {
+      "variable": "InpUseNewsFilter",
+      "value": "true"
+    },
+    {
+      "variable": "InpNewsBufferMins",
+      "value": "30"
+    },
+    {
+      "variable": "InpMaxTradesPerDay",
+      "value": "6"
+    },
+    {
+      "variable": "InpWeekendClose",
+      "value": "true"
+    },
+    {
+      "variable": "InpWeekendCloseHour",
+      "value": "21"
+    },
+    {
+      "variable": "InpDirection",
+      "value": "2"
+    },
+    {
+      "variable": "InpSwingLookback",
+      "value": "50"
+    },
+    {
+      "variable": "InpSwingStrength",
+      "value": "5"
+    },
+    {
+      "variable": "InpMinSwingPips",
+      "value": "25.0"
+    },
+    {
+      "variable": "InpMaxSwingPips",
+      "value": "500.0"
+    },
+    {
+      "variable": "InpMinBarsAfterSwing",
+      "value": "2"
+    },
+    {
+      "variable": "InpUseFib236",
+      "value": "false"
+    },
+    {
+      "variable": "InpUseFib382",
+      "value": "true"
+    },
+    {
+      "variable": "InpUseFib500",
+      "value": "true"
+    },
+    {
+      "variable": "InpUseFib618",
+      "value": "true"
+    },
+    {
+      "variable": "InpUseFib786",
+      "value": "false"
+    },
+    {
+      "variable": "InpUseRejection",
+      "value": "true"
+    },
+    {
+      "variable": "InpRejWickRatio",
+      "value": "0.35"
+    },
+    {
+      "variable": "InpUseTrend",
+      "value": "true"
+    },
+    {
+      "variable": "InpTrendEma",
+      "value": "50"
+    },
+    {
+      "variable": "InpUseH4Soft",
+      "value": "true"
+    },
+    {
+      "variable": "InpH4Ema",
+      "value": "50"
+    },
+    {
+      "variable": "InpH4LotFactor",
+      "value": "0.6"
+    },
+    {
+      "variable": "InpUseRsi",
+      "value": "true"
+    },
+    {
+      "variable": "InpRsiPeriod",
+      "value": "14"
+    },
+    {
+      "variable": "InpRsiBullMax",
+      "value": "62.0"
+    },
+    {
+      "variable": "InpRsiBearMin",
+      "value": "38.0"
+    },
+    {
+      "variable": "InpRsiExtBull",
+      "value": "42.0"
+    },
+    {
+      "variable": "InpRsiExtBear",
+      "value": "58.0"
+    },
+    {
+      "variable": "InpUseMacd",
+      "value": "true"
+    },
+    {
+      "variable": "InpUseAdxSoft",
+      "value": "true"
+    },
+    {
+      "variable": "InpAdxPeriod",
+      "value": "14"
+    },
+    {
+      "variable": "InpAdxMin",
+      "value": "15.0"
+    },
+    {
+      "variable": "InpAdxMid",
+      "value": "22.0"
+    },
+    {
+      "variable": "InpAdxWeakLot",
+      "value": "0.6"
+    },
+    {
+      "variable": "InpRiskPct",
+      "value": "1.0"
+    },
+    {
+      "variable": "InpTP1ClosePct",
+      "value": "50.0"
+    },
+    {
+      "variable": "InpUseBE",
+      "value": "true"
+    },
+    {
+      "variable": "InpUseTrail",
+      "value": "true"
+    }
+  ],
+  "parameters": {
+    "InpInitialBalance": "0.0",
+    "InpDailyLossLimit": "4.0",
+    "InpTotalDDLimit": "8.0",
+    "InpWeeklyTargetPct": "5.0",
+    "InpUseNewsFilter": "true",
+    "InpNewsBufferMins": "30",
+    "InpMaxTradesPerDay": "6",
+    "InpWeekendClose": "true",
+    "InpWeekendCloseHour": "21",
+    "InpDirection": "2",
+    "InpSwingLookback": "50",
+    "InpSwingStrength": "5",
+    "InpMinSwingPips": "25.0",
+    "InpMaxSwingPips": "500.0",
+    "InpMinBarsAfterSwing": "2",
+    "InpUseFib236": "false",
+    "InpUseFib382": "true",
+    "InpUseFib500": "true",
+    "InpUseFib618": "true",
+    "InpUseFib786": "false",
+    "InpFibBuffer": "8.0",
+    "InpUseRejection": "true",
+    "InpRejWickRatio": "0.35",
+    "InpUseTrend": "true",
+    "InpTrendEma": "50",
+    "InpUseH4Soft": "true",
+    "InpH4Ema": "50",
+    "InpH4LotFactor": "0.6",
+    "InpUseRsi": "true",
+    "InpRsiPeriod": "14",
+    "InpRsiBullMax": "62.0",
+    "InpRsiBearMin": "38.0",
+    "InpRsiExtBull": "42.0",
+    "InpRsiExtBear": "58.0",
+    "InpUseMacd": "true",
+    "InpUseAdxSoft": "true",
+    "InpAdxPeriod": "14",
+    "InpAdxMin": "15.0",
+    "InpAdxMid": "22.0",
+    "InpAdxWeakLot": "0.6",
+    "InpRiskPct": "1.0",
+    "InpMaxSLPips": "30.0",
+    "InpTP1Pips": "30.0",
+    "InpTP2Pips": "60.0",
+    "InpTP1ClosePct": "50.0",
+    "InpUseBE": "true",
+    "InpUseTrail": "true",
+    "InpTrailPips": "15.0"
+  },
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "observations": [
+    "total_net_profit",
+    "profit_factor",
+    "total_trades",
+    "equity_drawdown_maximal_percent",
+    "win_rate"
+  ],
+  "expected_observations": [
+    "Max equity drawdown remains <= 8.0%.",
+    "Total net profit remains positive on GBPUSD H1.",
+    "Loss trades decrease substantially compared to EXP-0020 (48 losses)."
+  ],
+  "falsification_conditions": [
+    "Total net profit <= 0.0 on training or validation partition.",
+    "Max equity drawdown exceeds 8.0%.",
+    "Profit factor drops below 1.0."
+  ],
+  "warnings": [
+    "Multiple co-dependent variables are scaling simultaneously to fit the H1 volatility regime."
+  ],
+  "risks": [
+    "H1 targets (30 and 60 pips) take longer to hit and may experience larger intermediate adverse excursion."
+  ],
+  "human_review_required": true,
+  "status": "approved",
+  "approval": {
+    "status": "approved",
+    "reviewed_by": "Lead Quant",
+    "reviewed_at": "2026-10-02T00:22:51.084817+01:00",
+    "note": "Approved H1 proportional metric scaling"
+  }
+}
