@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "plan_id": "PLAN-0076",
+  "ea": "Fibonacci_EA_v5_0",
+  "feasible": true,
+  "status": "pass",
+  "reason": "All requested parameters exist in EA source and are compatible with EA architecture.",
+  "required_changes": [
+    {
+      "parameter": "InpUseFib786",
+      "type": "bool",
+      "before": "false",
+      "after": "true",
+      "rationale": "Enable the deep 78.6% Fibonacci retracement level with RSI extreme confirmation."
+    }
+  ],
+  "blocked_by": []
+}

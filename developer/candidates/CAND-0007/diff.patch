@@ -1,0 +1,11 @@
+--- source_before.mq5
++++ source_after.mq5
+@@ -90,7 +90,7 @@
+ input bool   InpUseFib382         = true;  // 38.2% (H1+MACD+Rejection)
+ input bool   InpUseFib500         = true;  // 50.0% (H1+MACD OR Rejection)
+ input bool   InpUseFib618         = true;  // 61.8% (H1+RSI — GOLDEN)
+-input bool   InpUseFib786         = false; // 78.6%
++input bool   InpUseFib786         = true; // 78.6%
+ input double InpFibBuffer         = 5.0;   // Zone buffer pips
+ 
+ input group "══════ FIXED PIP SL/TP ══════"

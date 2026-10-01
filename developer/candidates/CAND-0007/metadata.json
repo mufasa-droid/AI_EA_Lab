@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0007",
+  "plan_id": "PLAN-0076",
+  "hypothesis_id": "HYP-0064",
+  "baseline_experiment": "EXP-0008",
+  "ea": "Fibonacci_EA_v5_0",
+  "created_at": "2026-10-01T22:56:43.338591+01:00",
+  "source_before_sha256": "cd3856685d6fa02d3764fe5723ca37fdbea0e4330353e8d9bb9293622962bd06",
+  "source_after_sha256": "f43d989a14a2acb235f6d1b1fc6debf18ce49bb4a9775ed3e446bf4699fd5c4f",
+  "requested_changes": [
+    {
+      "variable": "InpUseFib786",
+      "baseline_value": "false",
+      "target_value": "true",
+      "change_type": "parameter_adjustment",
+      "rationale": "Enable the deep 78.6% Fibonacci retracement level with RSI extreme confirmation."
+    }
+  ],
+  "actual_changes": [
+    {
+      "type": "input_default_change",
+      "parameter": "InpUseFib786",
+      "type_declared": "bool",
+      "after": "true"
+    }
+  ],
+  "feasibility_status": "pass",
+  "compile_status": "passed",
+  "compiler_info": {
+    "compiler_path": "C:\\Program Files\\MetaTrader 5\\MetaEditor64.exe",
+    "exit_code": 1,
+    "error_count": 0,
+    "warning_count": 0
+  },
+  "status": "ready_for_next_phase"
+}
