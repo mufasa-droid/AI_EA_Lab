@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "audit_id": "AUD-0004",
+  "audited_at": "2026-09-29T21:12:11.914680+01:00",
+  "experiment_id": "EXP-0004",
+  "candidate_id": "CAND-0001",
+  "plan_id": "PLAN-0002",
+  "hypothesis_id": "HYP-0001",
+  "baseline_experiment": "EXP-0002",
+  "status": "PASS",
+  "evidence_grade": "LIMITED",
+  "infrastructure_evidence": "STRONG",
+  "trading_performance_evidence": "INSUFFICIENT",
+  "experiment_identity_check": {
+    "status": "PASS",
+    "details": "Experiment identity references are well-formed.",
+    "issues": []
+  },
+  "provenance_check": {
+    "status": "PASS",
+    "lineage_intact": true,
+    "details": "Verified complete provenance chain: HYP-0001 -> PLAN-0002 -> CAND-0001 -> EXP-0004.",
+    "lineage": {
+      "hypothesis": "HYP-0001",
+      "plan": "PLAN-0002",
+      "candidate": "CAND-0001",
+      "experiment": "EXP-0004"
+    },
+    "issues": []
+  },
+  "artifact_integrity_check": {
+    "status": "PASS",
+    "details": "All artifact files exist, are non-empty, and cryptographic hashes are verified.",
+    "hashes_verified": true,
+    "issues": []
+  },
+  "tester_execution_check": {
+    "status": "PASS",
+    "bars": 2120,
+    "ticks": 125602,
+    "trades": 0,
+    "zero_data": false,
+    "details": "Valid execution (2,120 bars, 125,602 ticks). Candidate executed without trades (total_trades=0).",
+    "issues": []
+  },
+  "report_consistency_check": {
+    "status": "PASS",
+    "details": "Cross-references between metadata, metrics, and report match without contradictions.",
+    "contradictions": []
+  },
+  "plan_compliance_check": {
+    "status": "COMPLIANT",
+    "details": "Executed backtest parameters strictly complied with the approved experiment plan.",
+    "deviations": []
+  },
+  "change_scope_check": {
+    "status": "PASS",
+    "details": "Candidate code changes were strictly confined to authorized parameters.",
+    "authorized_changes": [
+      {
+        "type": "input_default_change",
+        "parameter": "FastMAPeriod",
+        "type_declared": "int",
+        "after": "5"
+      }
+    ],
+    "unauthorized_changes": []
+  },
+  "dataset_check": {
+    "status": "UNCONFIGURED",
+    "dataset_type": "TRAINING",
+    "details": "Research periods in config/research_periods.json are unconfigured placeholders.",
+    "periods_status": "unconfigured"
+  },
+  "reproducibility_check": {
+    "status": "COMPLETE",
+    "can_reproduce": true,
+    "missing_elements": [],
+    "details": "All source code, compiled binaries, hashes, configurations, and raw reports are preserved."
+  },
+  "overfitting_risks": [
+    {
+      "risk_type": "unconfigured_dataset_partitioning",
+      "level": "POSSIBLE",
+      "description": "Research periods are unconfigured placeholders. Repeated testing without frozen in-sample/out-of-sample partitions risks informal overfitting."
+    }
+  ],
+  "data_leakage_risks": [
+    {
+      "risk_type": "partition_boundary_verification",
+      "level": "UNKNOWN",
+      "description": "Unable to determine from available evidence because dataset partition dates are unconfigured."
+    }
+  ],
+  "robustness_concerns": [
+    "No trading-performance evidence exists because the candidate produced zero trades.",
+    "Evidence is derived from a single market window and single instrument (GBPUSD M15); multi-regime robustness is unproven."
+  ],
+  "evidence_gaps": [
+    "Validation and unseen out-of-sample research periods are not configured.",
+    "Trade execution, slippage impact, and position holding times could not be observed."
+  ],
+  "observations": [
+    "Experiment 'EXP-0004' recorded 2,120 bars and 125,602 ticks.",
+    "Strategy Tester report identified candidate binary 'CAND-0001'.",
+    "Strategy Tester recorded exactly 0 trades.",
+    "All available SHA-256 cryptographic hashes matched recorded metadata.",
+    "Lineage confirmed: HYP-0001 -> PLAN-0002 -> CAND-0001 -> EXP-0004."
+  ],
+  "interpretations": [
+    "The experiment successfully executed in the MT5 Strategy Tester, demonstrating candidate execution and environment data processing.",
+    "Because zero trades occurred, this experiment provides no empirical evidence regarding trading strategy profitability, win rate, or market drawdown.",
+    "The executed backtest parameters strictly matched the approved experiment plan.",
+    "Code changes under test were strictly confined to authorized parameters."
+  ],
+  "limitations": [
+    "This experiment validates infrastructure execution and candidate compilation rather than trading strategy performance.",
+    "Offline Strategy Tester backtest results do not account for live broker spread fluctuations, slippage, or latency."
+  ],
+  "follow_up_questions": [
+    "What market conditions or indicator threshold adjustments would enable signal generation in OnTick()?",
+    "How does candidate parameter sensitivity vary across differing volatility regimes or adjacent months?"
+  ]
+}

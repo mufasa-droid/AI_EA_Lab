@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FeasibilityAnalysis",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "plan_id",
+    "ea",
+    "feasible",
+    "status",
+    "reason",
+    "required_changes",
+    "blocked_by"
+  ],
+  "properties": {
+    "schema_version": { "type": "integer", "enum": [1] },
+    "plan_id": { "type": "string", "pattern": "^PLAN-\\d{4,}$" },
+    "ea": { "type": "string" },
+    "feasible": { "type": "boolean" },
+    "status": { "type": "string", "enum": ["pass", "feasible", "blocked", "requires_plan_revision"] },
+    "reason": { "type": "string" },
+    "required_changes": { "type": "array" },
+    "blocked_by": { "type": "array", "items": { "type": "string" } }
+  }
+}

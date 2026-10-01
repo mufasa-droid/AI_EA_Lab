@@ -1,0 +1,924 @@
+{
+  "record_fingerprints": {
+    "0070494c8667e0cae32b09bef9b8c222562eb86c74e13826ed61a094451fd9b3": "MEM-OBS-0002",
+    "04cc1b69aa3ddf8236d4afa450bc5311a2ec753880bb427455793170c30a6723": "MEM-HYP-0006",
+    "17b90b61dc5f9036b62cb64d6387cbd9f30bc867cfb3010250df028b02591dc6": "MEM-HYP-0023",
+    "248e582b7c5227aebce546a9fda1a5dfe3adb71c8e1fa518ee87e344ff662307": "MEM-HYP-0019",
+    "2fb2c8c1b0214a7bd8bf1e37b0b5b6c1e0e2b7ecf3b788ce5548d31a192da62e": "MEM-HYP-0012",
+    "357c7a3a42067f1dce055007154ca0eb1020809527065ef51541613387c5eaf8": "MEM-HYP-0011",
+    "36f77b4376545432155f62c964557c3000921b76aef2a25f1e8824f5a9fd18f9": "MEM-OBS-0001",
+    "37f63991537215e46454515b57a0d16f3ac2bf38ff14bef3d6073acad429216a": "MEM-HYP-0016",
+    "418b7de7fe166a9b9dff6efa37cd797957c5f7487e3c7e2af1a0f8a9c67ba80e": "MEM-HYP-0009",
+    "465c9798f5f3205f5223a8b7d82b2d125fac040476129df246f8094a37b66c31": "MEM-HYP-0008",
+    "47159d1781e65d88c61a9f96c9f70d12f175072340c75bdc6d9d6875238ab343": "MEM-HYP-0026",
+    "4724825fb3abd6de7ce3d04f3bfabdc1710d0f52593dc53d7d59fbbb54832a72": "MEM-HYP-0018",
+    "494ac12bd1a2948a69aa515e369b3427b43823b0651ae1152eec6fb70b228af5": "MEM-REL-0002",
+    "5d1b76f84057ef9b8086570e58de18e49af707096845911b978f9f0d3b236aab": "MEM-HYP-0025",
+    "66d3ff9e736bbf554b1834e6ebebb279db0a155c0c4e64cb23a1f7179982d1e5": "MEM-REL-0001",
+    "6bec6a405171776bd74a8dec26647f505d3f7f3aaf357f3c8759da6888214088": "MEM-OBS-0003",
+    "6f218df3c7774e8717acf8c443a55721009ae1225a8c5cc28aa5b12eb8ef669f": "MEM-HYP-0015",
+    "76b69477dd9367038d66a1289623442624e8e00dc1b600cdb852347f9aa10948": "MEM-REL-0003",
+    "7a382ecaa31a7007c9389bd0ab75159d8cf63c6db9da42dc6c3620877baa4baf": "MEM-HYP-0002",
+    "7b973a6eb02531499bd700a99357d8b1d4da33ce62f9ab9eb1c40079c9b6f693": "MEM-HYP-0004",
+    "85fc91822c186315eafecaba0cddfc32ba47cab0edcc4c84a2910982f1305ad3": "MEM-HYP-0013",
+    "8712dc9fba0bfe77b415fb42424b17bf7dafed0832905ec577a9598622e45ba7": "MEM-HYP-0010",
+    "8fad2db8b054f5dd274e30204d059423efac6c43281394e99ec097b34ef1b325": "MEM-HYP-0020",
+    "924acd5a318d7b6de454e34aa9a55c5d4e7a53704943389e27cd7cc2c16bd3d8": "MEM-HYP-0027",
+    "ad3e120bed87fadd5b76009cb2f22e536583fbebdffb967b294a24790df62f18": "MEM-HYP-0028",
+    "ae61ed7e6f555a015cdc98e3b7bf8326176ea653012c2ed258ed4d8b93024a05": "MEM-HYP-0021",
+    "b4eea36355ca249703bd9fb15b63ad3f3a8e54a7be63af3dbdbd9dda9a56d840": "MEM-HYP-0014",
+    "cbfe15bd5a01814b94eb58187c280573012aac8c342ea107afa9f91a3b2d3268": "MEM-HYP-0017",
+    "e0277547af7f0c4760f178b92c72f10ea6d878978b47a733184e495b3bcb53d4": "MEM-HYP-0022",
+    "e805e69ea0f7b7d05647ea59a6ab59beee47def11ffb96d6fd55cacbf47798b7": "MEM-HYP-0007",
+    "ed0be1b5f6aef2229a0c028b888a5c7a5360e020e2104f5b6cdd2a6076d22648": "MEM-HYP-0003",
+    "f13af12d615ec52a8baff71b312da0f64a77814b352e76c259b05c6abde4fc30": "MEM-HYP-0005",
+    "f310e28ee982b0d21ac8df1d5a9f4282c7ea72385d09499193276d5ad849195d": "MEM-HYP-0001",
+    "f8c00a5e29b81a41b12f0d5ce05024c3739b2ee7ab78313e0d87fced6462ff09": "MEM-HYP-0024"
+  },
+  "records": [
+    {
+      "candidate_id": "CAND-0001",
+      "created_at": "2026-10-01T11:47:13.686694+01:00",
+      "dataset_from": "2024.01.01",
+      "dataset_partition": {
+        "from": "2024.01.01",
+        "partition": "training",
+        "source": "config/research_periods.json",
+        "to": "2024.02.01"
+      },
+      "dataset_to": "2024.02.01",
+      "evidence_reference": {
+        "experiment_id": "EXP-0003",
+        "metadata_path": "experiments/EXP-0003/metadata.json"
+      },
+      "evidence_type": "METRICS",
+      "experiment_id": "EXP-0003",
+      "fingerprint": "36f77b4376545432155f62c964557c3000921b76aef2a25f1e8824f5a9fd18f9",
+      "generated_by": "system",
+      "memory_id": "MEM-OBS-0001",
+      "observation": "Experiment EXP-0003 executed on symbol GBPUSD (M15) across 2024.01.01-2024.02.01 [{'partition': 'training', 'from': '2024.01.01', 'to': '2024.02.01', 'source': 'config/research_periods.json'}] with bars=2120, ticks=125602, history_quality=100.0%.",
+      "observation_category": "FACT",
+      "record_type": "EXPERIMENT_OBSERVATION",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "symbol": "GBPUSD",
+      "timeframe": "M15"
+    },
+    {
+      "candidate_id": "CAND-0001",
+      "created_at": "2026-10-01T11:47:13.702314+01:00",
+      "dataset_from": "2024.01.01",
+      "dataset_partition": {
+        "from": "2024.01.01",
+        "partition": "training",
+        "source": "config/research_periods.json",
+        "to": "2024.02.01"
+      },
+      "dataset_to": "2024.02.01",
+      "evidence_reference": {
+        "experiment_id": "EXP-0003",
+        "metrics_path": "experiments/EXP-0003/metrics.json"
+      },
+      "evidence_type": "METRICS",
+      "experiment_id": "EXP-0003",
+      "fingerprint": "0070494c8667e0cae32b09bef9b8c222562eb86c74e13826ed61a094451fd9b3",
+      "generated_by": "system",
+      "memory_id": "MEM-OBS-0002",
+      "observation": "Experiment EXP-0003 recorded total_trades=0, net_profit=0.0, profit_factor=0.0.",
+      "observation_category": "FACT",
+      "record_type": "EXPERIMENT_OBSERVATION",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "symbol": "GBPUSD",
+      "timeframe": "M15"
+    },
+    {
+      "candidate_id": "CAND-0001",
+      "created_at": "2026-10-01T11:47:13.702314+01:00",
+      "dataset_from": "2024.01.01",
+      "dataset_partition": {
+        "from": "2024.01.01",
+        "partition": "training",
+        "source": "config/research_periods.json",
+        "to": "2024.02.01"
+      },
+      "dataset_to": "2024.02.01",
+      "evidence_reference": {
+        "experiment_id": "EXP-0003"
+      },
+      "evidence_type": "EXECUTION",
+      "experiment_id": "EXP-0003",
+      "fingerprint": "6bec6a405171776bd74a8dec26647f505d3f7f3aaf357f3c8759da6888214088",
+      "generated_by": "system",
+      "memory_id": "MEM-OBS-0003",
+      "observation": "Experiment EXP-0003 generated exactly 0 trades during test window 2024.01.01-2024.02.01. This provides zero trading-performance evidence for signal frequency evaluation under these parameters.",
+      "observation_category": "OBSERVATION",
+      "record_type": "EXPERIMENT_OBSERVATION",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "symbol": "GBPUSD",
+      "timeframe": "M15"
+    },
+    {
+      "created_at": "2026-10-01T11:47:13.717936+01:00",
+      "evidence_reference": {
+        "experiment_id": "EXP-0003",
+        "hypothesis_id": "HYP-0001"
+      },
+      "fingerprint": "66d3ff9e736bbf554b1834e6ebebb279db0a155c0c4e64cb23a1f7179982d1e5",
+      "generated_by": "system",
+      "memory_id": "MEM-REL-0001",
+      "record_type": "RELATIONSHIP",
+      "relation": "TESTED_BY",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source_id": "HYP-0001",
+      "source_type": "HYPOTHESIS",
+      "target_id": "EXP-0003",
+      "target_type": "EXPERIMENT"
+    },
+    {
+      "created_at": "2026-10-01T11:47:13.733563+01:00",
+      "evidence_reference": {
+        "candidate_id": "CAND-0001",
+        "experiment_id": "EXP-0003"
+      },
+      "fingerprint": "494ac12bd1a2948a69aa515e369b3427b43823b0651ae1152eec6fb70b228af5",
+      "generated_by": "system",
+      "memory_id": "MEM-REL-0002",
+      "record_type": "RELATIONSHIP",
+      "relation": "IMPLEMENTED_AS",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source_id": "EXP-0003",
+      "source_type": "EXPERIMENT",
+      "target_id": "CAND-0001",
+      "target_type": "CANDIDATE"
+    },
+    {
+      "created_at": "2026-10-01T11:47:37.551374+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0001",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "f310e28ee982b0d21ac8df1d5a9f4282c7ea72385d09499193276d5ad849195d",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0001",
+      "memory_id": "MEM-HYP-0001",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0002"
+      ],
+      "related_plans": [],
+      "research_question": "Test crossover sensitivity?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 10 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T11:47:51.843126+01:00",
+      "evidence_reference": {
+        "experiment_id": "EXP-0003",
+        "hypothesis_id": "HYP-0020"
+      },
+      "fingerprint": "76b69477dd9367038d66a1289623442624e8e00dc1b600cdb852347f9aa10948",
+      "generated_by": "system",
+      "memory_id": "MEM-REL-0003",
+      "record_type": "RELATIONSHIP",
+      "relation": "TESTED_BY",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source_id": "HYP-0020",
+      "source_type": "HYPOTHESIS",
+      "target_id": "EXP-0003",
+      "target_type": "EXPERIMENT"
+    },
+    {
+      "created_at": "2026-10-01T12:01:04.518728+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0003",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "7a382ecaa31a7007c9389bd0ab75159d8cf63c6db9da42dc6c3620877baa4baf",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0003",
+      "memory_id": "MEM-HYP-0002",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0001"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 10 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 10 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T12:01:04.688900+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0004",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "ed0be1b5f6aef2229a0c028b888a5c7a5360e020e2104f5b6cdd2a6076d22648",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0004",
+      "memory_id": "MEM-HYP-0003",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0001"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 10 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 10 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T12:02:47.524485+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0005",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "7b973a6eb02531499bd700a99357d8b1d4da33ce62f9ab9eb1c40079c9b6f693",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0005",
+      "memory_id": "MEM-HYP-0004",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0001"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 10 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 10 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T12:05:38.986629+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0006",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "f13af12d615ec52a8baff71b312da0f64a77814b352e76c259b05c6abde4fc30",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0006",
+      "memory_id": "MEM-HYP-0005",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0001"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 10 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 10 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T12:05:39.202066+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0007",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "04cc1b69aa3ddf8236d4afa450bc5311a2ec753880bb427455793170c30a6723",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0007",
+      "memory_id": "MEM-HYP-0006",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0001"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 10 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 10 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T12:06:31.179250+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0008",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "e805e69ea0f7b7d05647ea59a6ab59beee47def11ffb96d6fd55cacbf47798b7",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0008",
+      "memory_id": "MEM-HYP-0007",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0001"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 10 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 10 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T12:07:14.932969+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0009",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "465c9798f5f3205f5223a8b7d82b2d125fac040476129df246f8094a37b66c31",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0009",
+      "memory_id": "MEM-HYP-0008",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0001"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 10 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 10 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T12:10:49.153534+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0010",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "418b7de7fe166a9b9dff6efa37cd797957c5f7487e3c7e2af1a0f8a9c67ba80e",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0010",
+      "memory_id": "MEM-HYP-0009",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0001"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 10 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 10 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T12:10:49.365282+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0011",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "8712dc9fba0bfe77b415fb42424b17bf7dafed0832905ec577a9598622e45ba7",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0011",
+      "memory_id": "MEM-HYP-0010",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0001"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 10 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 10 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T12:12:06.944753+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0012",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "357c7a3a42067f1dce055007154ca0eb1020809527065ef51541613387c5eaf8",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0012",
+      "memory_id": "MEM-HYP-0011",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0005",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T12:12:07.152244+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0013",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "2fb2c8c1b0214a7bd8bf1e37b0b5b6c1e0e2b7ecf3b788ce5548d31a192da62e",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0013",
+      "memory_id": "MEM-HYP-0012",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0005",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T12:18:40.460581+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0014",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "85fc91822c186315eafecaba0cddfc32ba47cab0edcc4c84a2910982f1305ad3",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0014",
+      "memory_id": "MEM-HYP-0013",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0005",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T12:18:40.714836+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0015",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "b4eea36355ca249703bd9fb15b63ad3f3a8e54a7be63af3dbdbd9dda9a56d840",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0015",
+      "memory_id": "MEM-HYP-0014",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0005",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T19:36:14.993943+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0016",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "6f218df3c7774e8717acf8c443a55721009ae1225a8c5cc28aa5b12eb8ef669f",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0016",
+      "memory_id": "MEM-HYP-0015",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0005",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T19:36:15.128623+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0017",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "37f63991537215e46454515b57a0d16f3ac2bf38ff14bef3d6073acad429216a",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0017",
+      "memory_id": "MEM-HYP-0016",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0005",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T19:37:55.950330+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0018",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "cbfe15bd5a01814b94eb58187c280573012aac8c342ea107afa9f91a3b2d3268",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0018",
+      "memory_id": "MEM-HYP-0017",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0005",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T19:37:56.093263+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0019",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "4724825fb3abd6de7ce3d04f3bfabdc1710d0f52593dc53d7d59fbbb54832a72",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0019",
+      "memory_id": "MEM-HYP-0018",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0005",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T19:44:39.863412+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0020",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "248e582b7c5227aebce546a9fda1a5dfe3adb71c8e1fa518ee87e344ff662307",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0020",
+      "memory_id": "MEM-HYP-0019",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0005",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T19:44:39.998479+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0021",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "8fad2db8b054f5dd274e30204d059423efac6c43281394e99ec097b34ef1b325",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0021",
+      "memory_id": "MEM-HYP-0020",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0005",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T19:56:19.260378+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0022",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "ae61ed7e6f555a015cdc98e3b7bf8326176ea653012c2ed258ed4d8b93024a05",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0022",
+      "memory_id": "MEM-HYP-0021",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0005",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T19:58:26.440645+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0023",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "e0277547af7f0c4760f178b92c72f10ea6d878978b47a733184e495b3bcb53d4",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0023",
+      "memory_id": "MEM-HYP-0022",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0005",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T19:58:48.186565+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0024",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "17b90b61dc5f9036b62cb64d6387cbd9f30bc867cfb3010250df028b02591dc6",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0024",
+      "memory_id": "MEM-HYP-0023",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0005",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T19:58:49.040909+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0025",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "f8c00a5e29b81a41b12f0d5ce05024c3739b2ee7ab78313e0d87fced6462ff09",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0025",
+      "memory_id": "MEM-HYP-0024",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0005",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T19:58:49.157383+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0026",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "5d1b76f84057ef9b8086570e58de18e49af707096845911b978f9f0d3b236aab",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0026",
+      "memory_id": "MEM-HYP-0025",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0005",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T20:04:17.794656+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0027",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "47159d1781e65d88c61a9f96c9f70d12f175072340c75bdc6d9d6875238ab343",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0027",
+      "memory_id": "MEM-HYP-0026",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0005",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T20:04:18.661872+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0028",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "924acd5a318d7b6de454e34aa9a55c5d4e7a53704943389e27cd7cc2c16bd3d8",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0028",
+      "memory_id": "MEM-HYP-0027",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0005",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    },
+    {
+      "created_at": "2026-10-01T20:04:18.800999+01:00",
+      "evidence_references": [
+        {
+          "id": "HYP-0029",
+          "type": "hypothesis"
+        }
+      ],
+      "fingerprint": "ad3e120bed87fadd5b76009cb2f22e536583fbebdffb967b294a24790df62f18",
+      "generated_by": "system",
+      "hypothesis_id": "HYP-0029",
+      "memory_id": "MEM-HYP-0028",
+      "record_type": "HYPOTHESIS_RECORD",
+      "related_experiments": [
+        "EXP-0005",
+        "EXP-0001",
+        "EXP-0002",
+        "EXP-0003",
+        "EXP-0004"
+      ],
+      "related_plans": [],
+      "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source": "AI Researcher",
+      "statement": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+      "status": "PROPOSED"
+    }
+  ],
+  "schema_version": 1,
+  "total_records": 34,
+  "updated_at": "2026-10-01T20:04:18.816888+01:00"
+}

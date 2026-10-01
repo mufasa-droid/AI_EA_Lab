@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "experiment_plan_id": "PLAN-0001",
+  "hypothesis_id": "HYP-0001",
+  "created_at": "2026-09-29T00:21:48.664365+01:00",
+  "title": "Fast Moving Average Sensitivity Reduction Test",
+  "research_question": "Does reducing FastMAPeriod from 10 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+  "objective": "Test whether changing FastMAPeriod relative to baseline EXP-0002 produces the expected observations.",
+  "baseline": {
+    "experiment_id": "EXP-0002",
+    "ea": "TestEA",
+    "symbol": "GBPUSD",
+    "timeframe": "M15",
+    "inputs": {
+      "FastMAPeriod": "10",
+      "SlowMAPeriod": "20",
+      "LotSize": "0.01"
+    }
+  },
+  "changes_under_test": [
+    {
+      "variable": "FastMAPeriod",
+      "baseline_value": "10",
+      "target_value": "5",
+      "change_type": "parameter_adjustment",
+      "rationale": "Shorter period increases sensitivity to price movement, encouraging crossovers."
+    }
+  ],
+  "unchanged_variables": [
+    {
+      "variable": "SlowMAPeriod",
+      "value": "20"
+    },
+    {
+      "variable": "LotSize",
+      "value": "0.01"
+    },
+    {
+      "variable": "ea",
+      "value": "TestEA"
+    },
+    {
+      "variable": "symbol",
+      "value": "GBPUSD"
+    },
+    {
+      "variable": "timeframe",
+      "value": "M15"
+    }
+  ],
+  "parameters": {
+    "FastMAPeriod": "5",
+    "SlowMAPeriod": "20",
+    "LotSize": "0.01"
+  },
+  "dataset": {
+    "type": "training",
+    "from": "2024.01.01",
+    "to": "2024.02.01",
+    "status": "unconfigured",
+    "note": "Research dataset dates are currently unconfigured placeholders. Dates must be configured in config/research_periods.json before production training."
+  },
+  "observations": [
+    "total_net_profit",
+    "profit_factor",
+    "equity_drawdown_maximal",
+    "total_trades",
+    "history_quality_percent",
+    "bars",
+    "ticks"
+  ],
+  "expected_observations": [
+    "Total trades will increase from 0 to at least 1.",
+    "Gross profit and gross loss will become non-zero, allowing profit factor calculation.",
+    "Drawdown will become non-zero reflecting active market exposure."
+  ],
+  "falsification_conditions": [
+    "Total trades remain exactly 0 after reducing FastMAPeriod to 5.",
+    "Execution completes with 0 trades despite confirmed price fluctuations, indicating that EA entry logic is blocked by another constraint rather than MA sensitivity."
+  ],
+  "warnings": [],
+  "risks": [
+    "Overfitting if parameter is tested excessively across the same period.",
+    "Market volatility regime shifts between observation windows."
+  ],
+  "human_review_required": true,
+  "status": "approved",
+  "approval": {
+    "status": "approved",
+    "reviewed_by": null,
+    "reviewed_at": "2026-10-01T20:04:17.933197+01:00",
+    "note": null
+  }
+}

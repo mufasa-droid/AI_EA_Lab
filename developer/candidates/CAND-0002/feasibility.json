@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "plan_id": "PLAN-0003",
+  "ea": "TestEA",
+  "feasible": true,
+  "status": "pass",
+  "reason": "All requested parameters exist in EA source and are compatible with EA architecture.",
+  "required_changes": [
+    {
+      "parameter": "FastMAPeriod",
+      "type": "int",
+      "before": "10",
+      "after": "5",
+      "rationale": "Shorter period increases sensitivity to price movement, encouraging crossovers."
+    }
+  ],
+  "blocked_by": []
+}

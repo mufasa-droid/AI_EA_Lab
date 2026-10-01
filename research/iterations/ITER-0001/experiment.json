@@ -1,0 +1,64 @@
+{
+  "candidate_id": "CAND-0002",
+  "plan_id": "PLAN-0003",
+  "hypothesis_id": "HYP-0002",
+  "baseline_experiment": "EXP-0002",
+  "status": "SUCCESS",
+  "verification": {
+    "verified": true,
+    "source": true,
+    "binary": true,
+    "compile": true,
+    "provenance": true,
+    "hashes": {
+      "source_after_sha256": "51319f6a507af92f554effd637879f4e50e62ec860405bdc9d6f3c8e28346562",
+      "source_after_ex5_sha256": "4487e3fe4810c6e3a41e9a07b0059b3eaf7804ce71e30b784bddbd10cc484387"
+    },
+    "issues": []
+  },
+  "backtest": {
+    "configuration": {
+      "dataset": "training",
+      "symbol": "GBPUSD",
+      "timeframe": "M15",
+      "model": 1,
+      "from": "2024.01.01",
+      "to": "2024.02.01"
+    },
+    "sync": {
+      "candidate_id": "CAND-0002",
+      "source_binary": "C:\\Users\\Mufasa\\Documents\\AI-EA-Lab\\developer\\candidates\\CAND-0002\\source_after.ex5",
+      "destination_binary": "C:\\Users\\Mufasa\\AppData\\Roaming\\MetaQuotes\\Terminal\\D0E8209F77C8CF37AD8BF550E51FF075\\MQL5\\Experts\\Candidates\\CAND-0002.ex5",
+      "source_hash": "4487e3fe4810c6e3a41e9a07b0059b3eaf7804ce71e30b784bddbd10cc484387",
+      "destination_hash": "4487e3fe4810c6e3a41e9a07b0059b3eaf7804ce71e30b784bddbd10cc484387",
+      "verified": true,
+      "expert_param": "Candidates\\CAND-0002.ex5",
+      "error": null
+    },
+    "execution": {
+      "start_time": "2026-09-30T19:08:26.017179+01:00",
+      "end_time": "2026-09-30T19:08:46.275140+01:00",
+      "exit_code": 0,
+      "timeout": false
+    },
+    "report_info": {
+      "report_path": "C:\\Users\\Mufasa\\AppData\\Roaming\\MetaQuotes\\Terminal\\D0E8209F77C8CF37AD8BF550E51FF075\\CAND-0002_report.htm",
+      "file_size": 23578,
+      "expert": "CAND-0002",
+      "symbol": "GBPUSD",
+      "period": "M15 (2024.01.01 - 2024.02.01)",
+      "bars": 2120,
+      "ticks": 125602,
+      "trades": 0,
+      "test_executed": true
+    }
+  },
+  "experiment": {
+    "created": true,
+    "experiment_id": "EXP-0005",
+    "directory": "C:\\Users\\Mufasa\\Documents\\AI-EA-Lab\\experiments\\EXP-0005"
+  },
+  "dry_run": false,
+  "verify_only": false,
+  "error": null
+}

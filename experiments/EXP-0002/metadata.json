@@ -1,0 +1,48 @@
+{
+  "experiment_id": "EXP-0002",
+  "created_at": "2026-09-28T18:58:07.250038+01:00",
+  "note": "Verification of EXP-0002 preservation",
+  "ea": "TestEA",
+  "symbol": "GBPUSD",
+  "timeframe": "M15",
+  "from": "2024.01.01",
+  "to": "2024.02.01",
+  "report": "report.htm",
+  "metrics": "metrics.json",
+  "charts": [
+    "charts/TestEA_report-holding.png",
+    "charts/TestEA_report-hst.png",
+    "charts/TestEA_report-mfemae.png",
+    "charts/TestEA_report.png"
+  ],
+  "ea_source": {
+    "filename": "TestEA.mq5",
+    "size_bytes": 1976,
+    "last_modified": "2026-09-27T19:18:12.202093+01:00",
+    "sha256": "5492ff61b87849dc3a5484cdda02f992c9396954cfc60102f5dff876ee495a8e"
+  },
+  "ea_binary": {
+    "filename": "TestEA.ex5",
+    "size_bytes": 6832,
+    "last_modified": "2026-09-27T19:31:47.590916+01:00",
+    "sha256": "cf5c11429811d6511f19307c6167ce6ac78c242e223d90685eed0d062a617fb8"
+  },
+  "backtest_config": {
+    "symbol": "GBPUSD",
+    "timeframe": "M15",
+    "model": 1,
+    "from": "2024.01.01",
+    "to": "2024.02.01",
+    "deposit": 10000,
+    "currency": "USD",
+    "leverage": "1:100"
+  },
+  "inputs": {
+    "FastMAPeriod": "10",
+    "SlowMAPeriod": "20",
+    "LotSize": "0.01"
+  },
+  "git_commit": null,
+  "parser_schema_version": 1,
+  "status": "COMPLETED"
+}

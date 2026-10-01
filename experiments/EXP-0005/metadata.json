@@ -1,0 +1,53 @@
+{
+  "experiment_id": "EXP-0005",
+  "created_at": "2026-09-30T19:08:46.364115+01:00",
+  "note": null,
+  "candidate_id": "CAND-0002",
+  "plan_id": "PLAN-0003",
+  "hypothesis_id": "HYP-0002",
+  "baseline_experiment": "EXP-0002",
+  "ea": "TestEA",
+  "symbol": "GBPUSD",
+  "timeframe": "M15",
+  "from": "2024.01.01",
+  "to": "2024.02.01",
+  "dataset": "training",
+  "report": "report.htm",
+  "metrics": "metrics.json",
+  "charts": [
+    "charts/CAND-0002_report-holding.png",
+    "charts/CAND-0002_report-hst.png",
+    "charts/CAND-0002_report-mfemae.png",
+    "charts/CAND-0002_report.png"
+  ],
+  "candidate_source_sha256": "51319f6a507af92f554effd637879f4e50e62ec860405bdc9d6f3c8e28346562",
+  "candidate_ex5_sha256": "4487e3fe4810c6e3a41e9a07b0059b3eaf7804ce71e30b784bddbd10cc484387",
+  "backtest_config": {
+    "symbol": "GBPUSD",
+    "timeframe": "M15",
+    "model": 1,
+    "from": "2024.01.01",
+    "to": "2024.02.01",
+    "deposit": 10000,
+    "currency": "USD",
+    "leverage": "1:100"
+  },
+  "inputs": {
+    "FastMAPeriod": "5",
+    "SlowMAPeriod": "20",
+    "LotSize": "0.01"
+  },
+  "tester_sync": {
+    "candidate_id": "CAND-0002",
+    "source_binary": "C:\\Users\\Mufasa\\Documents\\AI-EA-Lab\\developer\\candidates\\CAND-0002\\source_after.ex5",
+    "destination_binary": "C:\\Users\\Mufasa\\AppData\\Roaming\\MetaQuotes\\Terminal\\D0E8209F77C8CF37AD8BF550E51FF075\\MQL5\\Experts\\Candidates\\CAND-0002.ex5",
+    "source_hash": "4487e3fe4810c6e3a41e9a07b0059b3eaf7804ce71e30b784bddbd10cc484387",
+    "destination_hash": "4487e3fe4810c6e3a41e9a07b0059b3eaf7804ce71e30b784bddbd10cc484387",
+    "verified": true,
+    "expert_param": "Candidates\\CAND-0002.ex5",
+    "error": null
+  },
+  "git_commit": null,
+  "parser_schema_version": 1,
+  "status": "COMPLETED"
+}

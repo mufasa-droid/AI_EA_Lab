@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-29T00:21:48.661797+01:00",
+  "project_state": {
+    "ea_name": "TestEA",
+    "symbol": "GBPUSD",
+    "timeframe": "M15",
+    "total_experiments": 2,
+    "latest_experiment_id": "EXP-0002",
+    "backtest_defaults": {
+      "symbol": "GBPUSD",
+      "timeframe": "M15",
+      "model": 1,
+      "from": "2024.01.01",
+      "to": "2024.02.01",
+      "deposit": 10000,
+      "currency": "USD",
+      "leverage": "1:100"
+    }
+  },
+  "historical_experiments": [
+    {
+      "id": "EXP-0001",
+      "created_at": "2026-09-28T18:56:43.365356+01:00",
+      "note": null,
+      "ea": "TestEA",
+      "symbol": "GBPUSD",
+      "timeframe": "M15",
+      "from": "2024.01.01",
+      "to": "2024.02.01",
+      "inputs": {
+        "FastMAPeriod": "10",
+        "SlowMAPeriod": "20",
+        "LotSize": "0.01"
+      },
+      "performance": {
+        "total_net_profit": 0.0,
+        "gross_profit": 0.0,
+        "gross_loss": 0.0,
+        "profit_factor": 0.0,
+        "expected_payoff": 0.0,
+        "recovery_factor": 0.0,
+        "sharpe_ratio": 0.0
+      },
+      "risk": {
+        "balance_drawdown_absolute": 0.0,
+        "equity_drawdown_absolute": 0.0,
+        "balance_drawdown_maximal": {
+          "value": 0.0,
+          "percent": 0.0,
+          "raw": "0.00 (0.00%)"
+        },
+        "equity_drawdown_maximal": {
+          "value": 0.0,
+          "percent": 0.0,
+          "raw": "0.00 (0.00%)"
+        }
+      },
+      "trading": {
+        "total_trades": 0,
+        "total_deals": 0,
+        "profit_trades": {
+          "count": 0,
+          "percent": 0.0,
+          "raw": "0 (0.00%)"
+        },
+        "loss_trades": {
+          "count": 0,
+          "percent": 0.0,
+          "raw": "0 (0.00%)"
+        },
+        "average_profit_trade": 0.0,
+        "average_loss_trade": 0.0
+      },
+      "data_quality": {
+        "history_quality_percent": 100.0,
+        "bars": 2120,
+        "ticks": 125602
+      },
+      "validation_passed": true,
+      "dataset": null,
+      "dataset_status": "unconfigured"
+    },
+    {
+      "id": "EXP-0002",
+      "created_at": "2026-09-28T18:58:07.250038+01:00",
+      "note": "Verification of EXP-0002 preservation",
+      "ea": "TestEA",
+      "symbol": "GBPUSD",
+      "timeframe": "M15",
+      "from": "2024.01.01",
+      "to": "2024.02.01",
+      "inputs": {
+        "FastMAPeriod": "10",
+        "SlowMAPeriod": "20",
+        "LotSize": "0.01"
+      },
+      "performance": {
+        "total_net_profit": 0.0,
+        "gross_profit": 0.0,
+        "gross_loss": 0.0,
+        "profit_factor": 0.0,
+        "expected_payoff": 0.0,
+        "recovery_factor": 0.0,
+        "sharpe_ratio": 0.0
+      },
+      "risk": {
+        "balance_drawdown_absolute": 0.0,
+        "equity_drawdown_absolute": 0.0,
+        "balance_drawdown_maximal": {
+          "value": 0.0,
+          "percent": 0.0,
+          "raw": "0.00 (0.00%)"
+        },
+        "equity_drawdown_maximal": {
+          "value": 0.0,
+          "percent": 0.0,
+          "raw": "0.00 (0.00%)"
+        }
+      },
+      "trading": {
+        "total_trades": 0,
+        "total_deals": 0,
+        "profit_trades": {
+          "count": 0,
+          "percent": 0.0,
+          "raw": "0 (0.00%)"
+        },
+        "loss_trades": {
+          "count": 0,
+          "percent": 0.0,
+          "raw": "0 (0.00%)"
+        },
+        "average_profit_trade": 0.0,
+        "average_loss_trade": 0.0
+      },
+      "data_quality": {
+        "history_quality_percent": 100.0,
+        "bars": 2120,
+        "ticks": 125602
+      },
+      "validation_passed": true,
+      "dataset": null,
+      "dataset_status": "unconfigured"
+    }
+  ],
+  "tested_parameter_configurations": [
+    {
+      "experiment_id": "EXP-0001",
+      "ea": "TestEA",
+      "symbol": "GBPUSD",
+      "timeframe": "M15",
+      "inputs": {
+        "FastMAPeriod": "10",
+        "SlowMAPeriod": "20",
+        "LotSize": "0.01"
+      }
+    },
+    {
+      "experiment_id": "EXP-0002",
+      "ea": "TestEA",
+      "symbol": "GBPUSD",
+      "timeframe": "M15",
+      "inputs": {
+        "FastMAPeriod": "10",
+        "SlowMAPeriod": "20",
+        "LotSize": "0.01"
+      }
+    }
+  ],
+  "research_periods": {
+    "status": "unconfigured",
+    "is_configured": false,
+    "periods": {
+      "training": {
+        "from": null,
+        "to": null
+      },
+      "validation": {
+        "from": null,
+        "to": null
+      },
+      "unseen": {
+        "from": null,
+        "to": null
+      }
+    },
+    "note": "Research period dates are unconfigured placeholders. Define actual YYYY.MM.DD date ranges before production partitioning."
+  },
+  "constraints": {
+    "no_live_trading": true,
+    "no_broker_execution": true,
+    "no_automatic_deployment": true,
+    "no_unsupported_assumptions": true,
+    "no_fabricated_data": true,
+    "human_approval_required": true,
+    "max_primary_variables_per_experiment": 1
+  }
+}

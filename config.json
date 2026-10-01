@@ -1,0 +1,23 @@
+{
+    "mt5_terminal": "C:\\Program Files\\MetaTrader 5\\terminal64.exe",
+    "mt5_data": "C:\\Users\\Mufasa\\AppData\\Roaming\\MetaQuotes\\Terminal\\D0E8209F77C8CF37AD8BF550E51FF075",
+
+    "ea": {
+        "name": "TestEA"
+    },
+
+    "backtest": {
+        "symbol": "GBPUSD",
+        "timeframe": "M15",
+        "model": 1,
+        "from": "2024.01.01",
+        "to": "2024.02.01",
+        "deposit": 10000,
+        "currency": "USD",
+        "leverage": "1:100"
+    },
+
+    "output": {
+        "report": "TestEA_report.htm"
+    }
+}

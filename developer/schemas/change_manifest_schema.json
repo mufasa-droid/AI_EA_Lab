@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ChangeManifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "candidate_id",
+    "plan_id",
+    "baseline_experiment",
+    "ea",
+    "changes",
+    "unauthorized_changes",
+    "feasible",
+    "compile_status"
+  ],
+  "properties": {
+    "schema_version": { "type": "integer", "enum": [1] },
+    "candidate_id": { "type": "string", "pattern": "^CAND-\\d{4,}$" },
+    "plan_id": { "type": "string", "pattern": "^PLAN-\\d{4,}$" },
+    "baseline_experiment": { "type": "string", "pattern": "^EXP-\\d{4,}$" },
+    "ea": { "type": "string" },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "parameter", "before", "after"],
+        "properties": {
+          "type": { "type": "string" },
+          "parameter": { "type": "string" },
+          "before": {},
+          "after": {}
+        }
+      }
+    },
+    "unauthorized_changes": {
+      "type": "array"
+    },
+    "feasible": { "type": "boolean" },
+    "compile_status": { "type": "string" }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "decision": "REVISE_PLAN",
+  "summary": "Experiment executed cleanly, but produced 0 trades. Trading-performance evidence is insufficient to evaluate strategy behavior.",
+  "reasons": [
+    "Candidate executed with 0 trades across 2,120 bars and 125,602 ticks. Trading-performance evidence is INSUFFICIENT.",
+    "IMPORTANT: Zero trades must NOT be interpreted as 'bad strategy performance'; it indicates signal entry conditions were unfulfilled in this test window.",
+    "Research periods in config/research_periods.json are unconfigured placeholders. Dataset partition cannot claim formal out-of-sample validation."
+  ],
+  "evidence_assessment": {
+    "audit_id": "AUD-0005",
+    "experiment_id": "EXP-0005",
+    "candidate_id": "CAND-0002",
+    "plan_id": "PLAN-0003",
+    "hypothesis_id": "HYP-0002",
+    "audit_status": "PASS",
+    "evidence_grade": "LIMITED",
+    "infrastructure_evidence": "STRONG",
+    "trading_performance_evidence": "INSUFFICIENT",
+    "bars": 2120,
+    "ticks": 125602,
+    "trades": 0,
+    "zero_data": false,
+    "plan_compliance": "COMPLIANT",
+    "change_scope": "PASS",
+    "reproducibility": "COMPLETE"
+  },
+  "dataset_discipline": {
+    "status": "unconfigured",
+    "dataset_type": "TRAINING",
+    "periods_configured": false,
+    "note": "Research periods in config/research_periods.json are unconfigured placeholders."
+  },
+  "risks_and_limitations": [
+    "This experiment validates infrastructure execution and candidate compilation rather than trading strategy performance.",
+    "Offline Strategy Tester backtest results do not account for live broker spread fluctuations, slippage, or latency.",
+    "Overfitting (POSSIBLE): Research periods are unconfigured placeholders. Repeated testing without frozen in-sample/out-of-sample partitions risks informal overfitting.",
+    "Data Leakage (UNKNOWN): Unable to determine from available evidence because dataset partition dates are unconfigured.",
+    "Robustness concern: No trading-performance evidence exists because the candidate produced zero trades.",
+    "Robustness concern: Evidence is derived from a single market window and single instrument (GBPUSD M15); multi-regime robustness is unproven."
+  ],
+  "next_action": "Revise experiment plan: investigate why entry signals did not trigger on GBPUSD M15. Consider testing smaller fast MA periods, longer market windows, or verifying OnTick() trade conditions.",
+  "recommended_hypothesis_direction": "Formulate hypothesis adjusting crossover sensitivity or exploring different timeframes/volatility regimes.",
+  "evaluated_at": "2026-09-30T19:08:46.619329+01:00"
+}

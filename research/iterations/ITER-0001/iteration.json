@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "iteration_id": "ITER-0001",
+  "created_at": "2026-09-30T19:06:19.837492+01:00",
+  "completed_at": "2026-09-30T19:08:46.619540+01:00",
+  "status": "COMPLETED",
+  "approval_status": "APPROVED",
+  "approval": {
+    "status": "APPROVED",
+    "reviewed_by": "Human Lead Quant",
+    "reviewed_at": "2026-09-30T19:07:02.238297+01:00",
+    "note": "Approved for E2E Phase 11 Real MT5 Verification"
+  },
+  "hypothesis_id": "HYP-0002",
+  "plan_id": "PLAN-0003",
+  "candidate_id": "CAND-0002",
+  "experiment_id": "EXP-0005",
+  "audit_id": "AUD-0005",
+  "decision": {
+    "schema_version": 1,
+    "decision": "REVISE_PLAN",
+    "summary": "Experiment executed cleanly, but produced 0 trades. Trading-performance evidence is insufficient to evaluate strategy behavior.",
+    "reasons": [
+      "Candidate executed with 0 trades across 2,120 bars and 125,602 ticks. Trading-performance evidence is INSUFFICIENT.",
+      "IMPORTANT: Zero trades must NOT be interpreted as 'bad strategy performance'; it indicates signal entry conditions were unfulfilled in this test window.",
+      "Research periods in config/research_periods.json are unconfigured placeholders. Dataset partition cannot claim formal out-of-sample validation."
+    ],
+    "evidence_assessment": {
+      "audit_id": "AUD-0005",
+      "experiment_id": "EXP-0005",
+      "candidate_id": "CAND-0002",
+      "plan_id": "PLAN-0003",
+      "hypothesis_id": "HYP-0002",
+      "audit_status": "PASS",
+      "evidence_grade": "LIMITED",
+      "infrastructure_evidence": "STRONG",
+      "trading_performance_evidence": "INSUFFICIENT",
+      "bars": 2120,
+      "ticks": 125602,
+      "trades": 0,
+      "zero_data": false,
+      "plan_compliance": "COMPLIANT",
+      "change_scope": "PASS",
+      "reproducibility": "COMPLETE"
+    },
+    "dataset_discipline": {
+      "status": "unconfigured",
+      "dataset_type": "TRAINING",
+      "periods_configured": false,
+      "note": "Research periods in config/research_periods.json are unconfigured placeholders."
+    },
+    "risks_and_limitations": [
+      "This experiment validates infrastructure execution and candidate compilation rather than trading strategy performance.",
+      "Offline Strategy Tester backtest results do not account for live broker spread fluctuations, slippage, or latency.",
+      "Overfitting (POSSIBLE): Research periods are unconfigured placeholders. Repeated testing without frozen in-sample/out-of-sample partitions risks informal overfitting.",
+      "Data Leakage (UNKNOWN): Unable to determine from available evidence because dataset partition dates are unconfigured.",
+      "Robustness concern: No trading-performance evidence exists because the candidate produced zero trades.",
+      "Robustness concern: Evidence is derived from a single market window and single instrument (GBPUSD M15); multi-regime robustness is unproven."
+    ],
+    "next_action": "Revise experiment plan: investigate why entry signals did not trigger on GBPUSD M15. Consider testing smaller fast MA periods, longer market windows, or verifying OnTick() trade conditions.",
+    "recommended_hypothesis_direction": "Formulate hypothesis adjusting crossover sensitivity or exploring different timeframes/volatility regimes.",
+    "evaluated_at": "2026-09-30T19:08:46.619329+01:00"
+  },
+  "provenance": {
+    "hypothesis": "HYP-0002",
+    "plan": "PLAN-0003",
+    "candidate": "CAND-0002",
+    "experiment": "EXP-0005",
+    "audit": "AUD-0005"
+  },
+  "state_history": [
+    {
+      "from_state": "NONE",
+      "to_state": "CREATED",
+      "timestamp": "2026-09-30T19:06:19.837492+01:00",
+      "reason": "Created research iteration 'ITER-0001'."
+    },
+    {
+      "from_state": "CREATED",
+      "to_state": "RESEARCHING",
+      "timestamp": "2026-09-30T19:06:19.837644+01:00",
+      "reason": "Formulating research hypothesis from context."
+    },
+    {
+      "from_state": "RESEARCHING",
+      "to_state": "PLANNED",
+      "timestamp": "2026-09-30T19:06:19.880639+01:00",
+      "reason": "Formulated hypothesis and plan 'PLAN-0003'."
+    },
+    {
+      "from_state": "PLANNED",
+      "to_state": "AWAITING_APPROVAL",
+      "timestamp": "2026-09-30T19:06:19.880733+01:00",
+      "reason": "Halting at Human Approval Gate. Plan requires explicit human review and authorization."
+    },
+    {
+      "from_state": "AWAITING_APPROVAL",
+      "to_state": "APPROVED",
+      "timestamp": "2026-09-30T19:07:02.245446+01:00",
+      "reason": "Explicit human approval granted by 'Human Lead Quant'."
+    },
+    {
+      "from_state": "APPROVED",
+      "to_state": "DEVELOPING",
+      "timestamp": "2026-09-30T19:08:19.955694+01:00",
+      "reason": "Executing AI Developer pipeline."
+    },
+    {
+      "from_state": "DEVELOPING",
+      "to_state": "CANDIDATE_READY",
+      "timestamp": "2026-09-30T19:08:25.453091+01:00",
+      "reason": "Candidate 'CAND-0002' developed and ready."
+    },
+    {
+      "from_state": "CANDIDATE_READY",
+      "to_state": "BACKTESTING",
+      "timestamp": "2026-09-30T19:08:25.456083+01:00",
+      "reason": "Executing MT5 Strategy Tester for candidate 'CAND-0002'."
+    },
+    {
+      "from_state": "BACKTESTING",
+      "to_state": "EXPERIMENT_CREATED",
+      "timestamp": "2026-09-30T19:08:46.578722+01:00",
+      "reason": "Experiment 'EXP-0005' created and verified."
+    },
+    {
+      "from_state": "EXPERIMENT_CREATED",
+      "to_state": "AUDITING",
+      "timestamp": "2026-09-30T19:08:46.578804+01:00",
+      "reason": "Executing AI Auditor for experiment 'EXP-0005'."
+    },
+    {
+      "from_state": "AUDITING",
+      "to_state": "AUDITED",
+      "timestamp": "2026-09-30T19:08:46.617310+01:00",
+      "reason": "Audit 'AUD-0005' completed with status: PASS."
+    },
+    {
+      "from_state": "AUDITED",
+      "to_state": "DECIDED",
+      "timestamp": "2026-09-30T19:08:46.617452+01:00",
+      "reason": "Evaluating structured research decision."
+    },
+    {
+      "from_state": "DECIDED",
+      "to_state": "COMPLETED",
+      "timestamp": "2026-09-30T19:08:46.619507+01:00",
+      "reason": "Research cycle successfully completed. Decision: REVISE_PLAN."
+    }
+  ],
+  "error": null
+}

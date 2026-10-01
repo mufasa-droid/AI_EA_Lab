@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "parsed_at": "2026-09-28T18:56:43.350635+01:00",
+  "report_file": "C:\\Users\\Mufasa\\Documents\\AI-EA-Lab\\tester\\reports\\TestEA_report.htm",
+  "settings": {
+    "expert": "TestEA",
+    "symbol": "GBPUSD",
+    "timeframe": "M15",
+    "from": "2024.01.01",
+    "to": "2024.02.01",
+    "period_raw": "M15 (2024.01.01 - 2024.02.01)",
+    "inputs": {
+      "FastMAPeriod": "10",
+      "SlowMAPeriod": "20",
+      "LotSize": "0.01"
+    },
+    "company": "Deriv.com Limited",
+    "currency": "USD",
+    "initial_deposit": 10000.0,
+    "leverage": "1:100"
+  },
+  "metrics": {
+    "history_quality_percent": 100.0,
+    "bars": 2120,
+    "ticks": 125602,
+    "symbols": 0,
+    "total_net_profit": 0.0,
+    "gross_profit": 0.0,
+    "gross_loss": 0.0,
+    "profit_factor": 0.0,
+    "expected_payoff": 0.0,
+    "recovery_factor": 0.0,
+    "sharpe_ratio": 0.0,
+    "margin_level": null,
+    "z_score": {
+      "value": 0.0,
+      "percent": 0.0,
+      "raw": "0.00 (0.00%)"
+    },
+    "ahpr": {
+      "value": 0.0,
+      "percent": 0.0,
+      "raw": "0.0000 (0.00%)"
+    },
+    "ghpr": {
+      "value": 0.0,
+      "percent": 0.0,
+      "raw": "0.0000 (0.00%)"
+    },
+    "on_tester_result": 0.0,
+    "lr_correlation": 0.0,
+    "lr_standard_error": 0.0,
+    "balance_drawdown_absolute": 0.0,
+    "equity_drawdown_absolute": 0.0,
+    "balance_drawdown_maximal": {
+      "value": 0.0,
+      "percent": 0.0,
+      "raw": "0.00 (0.00%)"
+    },
+    "equity_drawdown_maximal": {
+      "value": 0.0,
+      "percent": 0.0,
+      "raw": "0.00 (0.00%)"
+    },
+    "balance_drawdown_relative": {
+      "value": 0.0,
+      "percent": 0.0,
+      "raw": "0.00% (0.00)"
+    },
+    "equity_drawdown_relative": {
+      "value": 0.0,
+      "percent": 0.0,
+      "raw": "0.00% (0.00)"
+    },
+    "total_trades": 0,
+    "total_deals": 0,
+    "short_trades": {
+      "count": 0,
+      "percent": 0.0,
+      "raw": "0 (0.00%)"
+    },
+    "long_trades": {
+      "count": 0,
+      "percent": 0.0,
+      "raw": "0 (0.00%)"
+    },
+    "profit_trades": {
+      "count": 0,
+      "percent": 0.0,
+      "raw": "0 (0.00%)"
+    },
+    "loss_trades": {
+      "count": 0,
+      "percent": 0.0,
+      "raw": "0 (0.00%)"
+    },
+    "largest_profit_trade": 0.0,
+    "largest_loss_trade": 0.0,
+    "average_profit_trade": 0.0,
+    "average_loss_trade": 0.0,
+    "maximum_consecutive_wins": {
+      "count": 0,
+      "amount": 0.0,
+      "raw": "0 (0.00)"
+    },
+    "maximum_consecutive_losses": {
+      "count": 0,
+      "amount": 0.0,
+      "raw": "0 (0.00)"
+    },
+    "maximal_consecutive_profit": {
+      "amount": 0.0,
+      "count": 0,
+      "raw": "0.00 (0)"
+    },
+    "maximal_consecutive_loss": {
+      "amount": 0.0,
+      "count": 0,
+      "raw": "0.00 (0)"
+    },
+    "average_consecutive_wins": 0.0,
+    "average_consecutive_losses": 0.0,
+    "correlation_profit_mfe": 0.0,
+    "correlation_profit_mae": 0.0,
+    "correlation_mfe_mae": 0.0,
+    "minimal_position_holding_time": "0:00:00",
+    "maximal_position_holding_time": "0:00:00",
+    "average_position_holding_time": "0:00:00"
+  },
+  "validation": {
+    "report_non_empty": true,
+    "history_quality_100": true,
+    "bars_present": true,
+    "ticks_present": true,
+    "test_executed": true
+  }
+}

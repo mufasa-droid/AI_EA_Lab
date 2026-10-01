@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0001",
+  "plan_id": "PLAN-0002",
+  "baseline_experiment": "EXP-0002",
+  "ea": "TestEA",
+  "changes": [
+    {
+      "type": "input_default_change",
+      "parameter": "FastMAPeriod",
+      "type_declared": "int",
+      "after": "5"
+    }
+  ],
+  "unauthorized_changes": [],
+  "feasible": true,
+  "compile_status": "passed"
+}

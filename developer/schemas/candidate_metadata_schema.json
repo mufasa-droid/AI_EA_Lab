@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CandidateMetadata",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "candidate_id",
+    "plan_id",
+    "hypothesis_id",
+    "baseline_experiment",
+    "ea",
+    "created_at",
+    "source_before_sha256",
+    "source_after_sha256",
+    "requested_changes",
+    "actual_changes",
+    "feasibility_status",
+    "compile_status",
+    "status"
+  ],
+  "properties": {
+    "schema_version": { "type": "integer", "enum": [1] },
+    "candidate_id": { "type": "string", "pattern": "^CAND-\\d{4,}$" },
+    "plan_id": { "type": "string", "pattern": "^PLAN-\\d{4,}$" },
+    "hypothesis_id": { "type": "string", "pattern": "^HYP-\\d{4,}$" },
+    "baseline_experiment": { "type": "string", "pattern": "^EXP-\\d{4,}$" },
+    "ea": { "type": "string" },
+    "created_at": { "type": "string" },
+    "source_before_sha256": { "type": "string" },
+    "source_after_sha256": { "type": "string" },
+    "requested_changes": { "type": "array" },
+    "actual_changes": { "type": "array" },
+    "feasibility_status": { "type": "string", "enum": ["pass", "feasible", "blocked", "requires_plan_revision"] },
+    "compile_status": { "type": "string", "enum": ["passed", "failed", "unavailable", "skipped"] },
+    "status": { "type": "string", "enum": ["ready_for_next_phase", "blocked", "compile_failed", "validation_failed", "requires_plan_revision"] }
+  }
+}

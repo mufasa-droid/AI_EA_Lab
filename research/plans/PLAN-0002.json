@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "experiment_plan_id": "PLAN-0002",
+  "hypothesis_id": "HYP-0001",
+  "created_at": "2026-09-29T11:43:00.788760+01:00",
+  "title": "Fast Moving Average Parameter Sensitivity Test",
+  "research_question": "Does parameter modification execute correctly in developer candidate generation?",
+  "objective": "Verify developer pipeline candidate creation for Phase 9.5 smoke test.",
+  "target_ea": "TestEA",
+  "baseline": {
+    "experiment_id": "EXP-0002",
+    "ea": "TestEA",
+    "symbol": "GBPUSD",
+    "timeframe": "M15",
+    "inputs": {
+      "FastMAPeriod": "10",
+      "SlowMAPeriod": "20",
+      "LotSize": "0.01"
+    }
+  },
+  "dataset": {
+    "type": "training",
+    "from": "2024.01.01",
+    "to": "2024.02.01",
+    "symbol": "GBPUSD",
+    "timeframe": "M15"
+  },
+  "changes_under_test": [
+    {
+      "variable": "FastMAPeriod",
+      "baseline_value": "10",
+      "target_value": "5",
+      "change_type": "parameter_adjustment",
+      "rationale": "Pipeline smoke test parameter shift."
+    }
+  ],
+  "unchanged_variables": [
+    {
+      "variable": "SlowMAPeriod",
+      "value": "20"
+    },
+    {
+      "variable": "LotSize",
+      "value": "0.01"
+    }
+  ],
+  "parameters": {
+    "FastMAPeriod": "5",
+    "SlowMAPeriod": "20",
+    "LotSize": "0.01"
+  },
+  "observations": [
+    "Candidate code is generated and compiled cleanly."
+  ],
+  "expected_observations": [
+    "CAND-0001 directory and EX5 binary created."
+  ],
+  "falsification_conditions": [
+    "Candidate compilation fails or output directory is missing."
+  ],
+  "human_review_required": true,
+  "status": "approved",
+  "approval": {
+    "status": "approved",
+    "reviewed_by": "human_reviewer",
+    "reviewed_at": "2026-09-29T12:07:47.795908+01:00",
+    "note": "Infrastructure test baseline match"
+  }
+}

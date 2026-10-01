@@ -1,0 +1,187 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ExperimentAudit",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "audit_id",
+    "audited_at",
+    "experiment_id",
+    "status",
+    "evidence_grade",
+    "infrastructure_evidence",
+    "trading_performance_evidence",
+    "experiment_identity_check",
+    "provenance_check",
+    "artifact_integrity_check",
+    "tester_execution_check",
+    "report_consistency_check",
+    "plan_compliance_check",
+    "change_scope_check",
+    "dataset_check",
+    "reproducibility_check",
+    "overfitting_risks",
+    "data_leakage_risks",
+    "robustness_concerns",
+    "evidence_gaps",
+    "observations",
+    "interpretations",
+    "limitations",
+    "follow_up_questions"
+  ],
+  "properties": {
+    "schema_version": { "type": "integer", "enum": [1] },
+    "audit_id": { "type": "string", "pattern": "^AUD-\\d{4,}$" },
+    "audited_at": { "type": "string" },
+    "experiment_id": { "type": "string", "pattern": "^EXP-\\d{4,}$" },
+    "candidate_id": { "type": ["string", "null"] },
+    "plan_id": { "type": ["string", "null"] },
+    "hypothesis_id": { "type": ["string", "null"] },
+    "baseline_experiment": { "type": ["string", "null"] },
+    "status": {
+      "type": "string",
+      "enum": ["PASS", "NEEDS_REVIEW", "INVALID"]
+    },
+    "evidence_grade": {
+      "type": "string",
+      "enum": ["STRONG", "ADEQUATE", "LIMITED", "INSUFFICIENT", "UNKNOWN"]
+    },
+    "infrastructure_evidence": {
+      "type": "string",
+      "enum": ["STRONG", "ADEQUATE", "LIMITED", "INSUFFICIENT", "UNKNOWN"]
+    },
+    "trading_performance_evidence": {
+      "type": "string",
+      "enum": ["STRONG", "ADEQUATE", "LIMITED", "INSUFFICIENT", "UNKNOWN"]
+    },
+    "experiment_identity_check": {
+      "type": "object",
+      "required": ["status", "details"],
+      "properties": {
+        "status": { "type": "string", "enum": ["PASS", "FAIL", "WARN"] },
+        "details": { "type": "string" },
+        "issues": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "provenance_check": {
+      "type": "object",
+      "required": ["status", "lineage_intact", "details"],
+      "properties": {
+        "status": { "type": "string", "enum": ["PASS", "FAIL", "WARN", "NOT_APPLICABLE"] },
+        "lineage_intact": { "type": "boolean" },
+        "details": { "type": "string" },
+        "lineage": {
+          "type": "object",
+          "properties": {
+            "hypothesis": { "type": ["string", "null"] },
+            "plan": { "type": ["string", "null"] },
+            "candidate": { "type": ["string", "null"] },
+            "experiment": { "type": "string" }
+          }
+        },
+        "issues": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "artifact_integrity_check": {
+      "type": "object",
+      "required": ["status", "details"],
+      "properties": {
+        "status": { "type": "string", "enum": ["PASS", "FAIL", "WARN"] },
+        "details": { "type": "string" },
+        "hashes_verified": { "type": "boolean" },
+        "issues": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "tester_execution_check": {
+      "type": "object",
+      "required": ["status", "bars", "ticks", "trades", "zero_data", "details"],
+      "properties": {
+        "status": { "type": "string", "enum": ["PASS", "FAIL", "INVALID"] },
+        "bars": { "type": "integer" },
+        "ticks": { "type": "integer" },
+        "trades": { "type": "integer" },
+        "zero_data": { "type": "boolean" },
+        "details": { "type": "string" },
+        "issues": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "report_consistency_check": {
+      "type": "object",
+      "required": ["status", "details"],
+      "properties": {
+        "status": { "type": "string", "enum": ["PASS", "FAIL", "WARN"] },
+        "details": { "type": "string" },
+        "contradictions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "plan_compliance_check": {
+      "type": "object",
+      "required": ["status", "details"],
+      "properties": {
+        "status": { "type": "string", "enum": ["COMPLIANT", "PARTIALLY_COMPLIANT", "NON_COMPLIANT", "NOT_APPLICABLE", "UNKNOWN"] },
+        "details": { "type": "string" },
+        "deviations": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "change_scope_check": {
+      "type": "object",
+      "required": ["status", "details"],
+      "properties": {
+        "status": { "type": "string", "enum": ["PASS", "FAIL", "WARN", "NOT_APPLICABLE"] },
+        "details": { "type": "string" },
+        "authorized_changes": { "type": "array" },
+        "unauthorized_changes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "dataset_check": {
+      "type": "object",
+      "required": ["status", "dataset_type", "details"],
+      "properties": {
+        "status": { "type": "string", "enum": ["CONFIGURED", "UNCONFIGURED"] },
+        "dataset_type": { "type": "string", "enum": ["TRAINING", "VALIDATION", "UNSEEN", "UNCONFIGURED"] },
+        "details": { "type": "string" },
+        "periods_status": { "type": "string" }
+      }
+    },
+    "reproducibility_check": {
+      "type": "object",
+      "required": ["status", "can_reproduce", "missing_elements", "details"],
+      "properties": {
+        "status": { "type": "string", "enum": ["COMPLETE", "PARTIAL", "INSUFFICIENT"] },
+        "can_reproduce": { "type": "boolean" },
+        "missing_elements": { "type": "array", "items": { "type": "string" } },
+        "details": { "type": "string" }
+      }
+    },
+    "overfitting_risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["risk_type", "level", "description"],
+        "properties": {
+          "risk_type": { "type": "string" },
+          "level": { "type": "string", "enum": ["OBSERVED", "POSSIBLE", "UNKNOWN"] },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "data_leakage_risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["risk_type", "level", "description"],
+        "properties": {
+          "risk_type": { "type": "string" },
+          "level": { "type": "string", "enum": ["OBSERVED", "POSSIBLE", "UNKNOWN"] },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "robustness_concerns": { "type": "array", "items": { "type": "string" } },
+    "evidence_gaps": { "type": "array", "items": { "type": "string" } },
+    "observations": { "type": "array", "items": { "type": "string" } },
+    "interpretations": { "type": "array", "items": { "type": "string" } },
+    "limitations": { "type": "array", "items": { "type": "string" } },
+    "follow_up_questions": { "type": "array", "items": { "type": "string" } }
+  }
+}

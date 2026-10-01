@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0014",
+  "created_at": "2026-10-01T12:18:40.460581+01:00",
+  "title": "Fast Moving Average Sensitivity Reduction Test",
+  "research_question": "Does reducing FastMAPeriod from 5 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+  "hypothesis": "Reducing FastMAPeriod from 5 to 5 while holding SlowMAPeriod constant at 20 and LotSize at 0.01 will increase signal sensitivity and result in more than 0 trades.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0005",
+      "EXP-0001",
+      "EXP-0002",
+      "EXP-0003",
+      "EXP-0004"
+    ],
+    "facts": [
+      "Experiment 'EXP-0005' was executed on symbol GBPUSD (M15) with inputs: FastMAPeriod=5, LotSize=0.01, SlowMAPeriod=20.",
+      "Experiment 'EXP-0005' recorded exactly 0 trades across the test window.",
+      "Historical archive contains previous experiments: EXP-0001, EXP-0002, EXP-0003, EXP-0004."
+    ],
+    "inferences": [
+      "Given that EXP-0005 generated 0 trades, the current moving average parameters (FastMAPeriod=5, SlowMAPeriod=20) did not trigger crossover conditions on GBPUSD M15 during the tested period.",
+      "Reducing the FastMAPeriod while holding SlowMAPeriod fixed increases the responsiveness of the fast line, which may allow crossover events to occur within the same market window."
+    ],
+    "evidence": [
+      "EXP-0005 total_trades=0, profit_factor=0.0, net_profit=0.0"
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "FastMAPeriod",
+      "baseline_value": "5",
+      "proposed_value": "5",
+      "rationale": "Shorter period increases sensitivity to price movement, encouraging crossovers."
+    }
+  ],
+  "dependent_variables": [
+    "total_trades",
+    "total_net_profit",
+    "profit_factor",
+    "equity_drawdown_maximal"
+  ],
+  "control_variables": [
+    {
+      "name": "SlowMAPeriod",
+      "value": "20"
+    },
+    {
+      "name": "LotSize",
+      "value": "0.01"
+    },
+    {
+      "name": "symbol",
+      "value": "GBPUSD"
+    },
+    {
+      "name": "timeframe",
+      "value": "M15"
+    },
+    {
+      "name": "ea",
+      "value": "TestEA"
+    }
+  ],
+  "assumptions": [
+    "The moving average crossover calculation logic in TestEA functions correctly when crossovers occur.",
+    "Market data quality is 100% and tick density is sufficient to detect price changes."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2024.01.01",
+    "to": "2024.02.01",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Total trades will increase from 0 to at least 1.",
+    "Gross profit and gross loss will become non-zero, allowing profit factor calculation.",
+    "Drawdown will become non-zero reflecting active market exposure."
+  ],
+  "falsification_conditions": [
+    "Total trades remain exactly 0 after reducing FastMAPeriod to 5.",
+    "Execution completes with 0 trades despite confirmed price fluctuations, indicating that EA entry logic is blocked by another constraint rather than MA sensitivity."
+  ],
+  "status": "proposed",
+  "novelty": {
+    "state": "EXACT_DUPLICATE",
+    "message": "Identical variable target changes matching 'HYP-0001'."
+  }
+}
