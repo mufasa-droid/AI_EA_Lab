@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "plan_id": "PLAN-0086",
+  "ea": "Fibonacci_EA_v5_0",
+  "feasible": true,
+  "status": "pass",
+  "reason": "All requested parameters exist in EA source and are compatible with EA architecture.",
+  "required_changes": [
+    {
+      "parameter": "InpTP2Pips",
+      "type": "double",
+      "before": "30.0",
+      "after": "20.0",
+      "rationale": "Bring runner take-profit closer to current M15 swing extension distribution to convert breakeven runner exits into banked 20-pip gains."
+    }
+  ],
+  "blocked_by": []
+}

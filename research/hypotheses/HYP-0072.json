@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0072",
+  "created_at": "2026-10-01T23:28:30+01:00",
+  "title": "Fibonacci EA v5.0 Take-Profit 2 Target Reduction Test (30.0 -> 20.0 pips)",
+  "research_question": "Does reducing InpTP2Pips from 30.0 to 20.0 pips increase the completion rate of secondary runner targets, improving average profit per winning trade and overall profitability above baseline EXP-0008 ($577.65) while maintaining max equity drawdown <= 8.0% on GBPUSD M15?",
+  "hypothesis": "Lowering the second profit target from 30.0 to 20.0 pips will allow more runners to hit their final profit target before price retraces to the breakeven level, improving the average winning payout, lifting net profit above the baseline $577.65, and maintaining maximum equity drawdown <= 8.0%.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0008",
+      "EXP-0012",
+      "EXP-0006"
+    ],
+    "facts": [
+      "EXP-0008 achieved $577.65 net profit with 1.39 profit factor on the training partition with InpTP2Pips=30.0 and InpDirection=2.",
+      "EXP-0012 validation revealed that average winning trade size collapsed from $26.59 to $15.14 because runners failed to reach the 30-pip target and exited at breakeven ($0)."
+    ],
+    "inferences": [
+      "On GBPUSD M15, a 20-pip extension occurs with substantially higher frequency than a 30-pip extension following a Fibonacci pullback.",
+      "Securing 20 pips on the second 50% position before market reversals occur will significantly lift average trade profitability."
+    ],
+    "evidence": [
+      "EXP-0008 total_trades=272, profit_factor=1.39, average_profit_trade=26.59, total_net_profit=577.65, equity_drawdown_maximal_percent=7.35"
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "InpTP2Pips",
+      "baseline_value": "30.0",
+      "proposed_value": "20.0",
+      "rationale": "Bring runner take-profit closer to current M15 swing extension distribution to convert breakeven runner exits into banked 20-pip gains."
+    }
+  ],
+  "dependent_variables": [
+    "average_profit_trade",
+    "total_trades",
+    "total_net_profit",
+    "profit_factor",
+    "win_rate",
+    "equity_drawdown_maximal"
+  ],
+  "control_variables": [
+    {"name": "InpInitialBalance", "value": "0.0"},
+    {"name": "InpDailyLossLimit", "value": "4.0"},
+    {"name": "InpTotalDDLimit", "value": "8.0"},
+    {"name": "InpWeeklyTargetPct", "value": "5.0"},
+    {"name": "InpUseNewsFilter", "value": "true"},
+    {"name": "InpNewsBufferMins", "value": "30"},
+    {"name": "InpMaxTradesPerDay", "value": "6"},
+    {"name": "InpWeekendClose", "value": "true"},
+    {"name": "InpWeekendCloseHour", "value": "21"},
+    {"name": "InpDirection", "value": "2"},
+    {"name": "InpSwingLookback", "value": "50"},
+    {"name": "InpSwingStrength", "value": "5"},
+    {"name": "InpMinSwingPips", "value": "25.0"},
+    {"name": "InpMaxSwingPips", "value": "500.0"},
+    {"name": "InpMinBarsAfterSwing", "value": "2"},
+    {"name": "InpUseFib236", "value": "false"},
+    {"name": "InpUseFib382", "value": "true"},
+    {"name": "InpUseFib500", "value": "true"},
+    {"name": "InpUseFib618", "value": "true"},
+    {"name": "InpUseFib786", "value": "false"},
+    {"name": "InpFibBuffer", "value": "5.0"},
+    {"name": "InpMaxSLPips", "value": "15.0"},
+    {"name": "InpTP1Pips", "value": "10.0"},
+    {"name": "InpTP1ClosePct", "value": "50.0"},
+    {"name": "InpTrailPips", "value": "8.0"},
+    {"name": "InpUseTrend", "value": "true"},
+    {"name": "InpTrendEma", "value": "50"},
+    {"name": "InpUseSession", "value": "true"},
+    {"name": "InpLondonOpen", "value": "8"},
+    {"name": "InpLondonClose", "value": "12"},
+    {"name": "InpNYOpen", "value": "13"},
+    {"name": "InpNYClose", "value": "18"},
+    {"name": "InpMaxSpread", "value": "3.0"},
+    {"name": "InpUseRsi", "value": "true"},
+    {"name": "InpRsiPeriod", "value": "14"},
+    {"name": "InpRsiBullMax", "value": "62.0"},
+    {"name": "InpRsiBearMin", "value": "38.0"},
+    {"name": "InpRsiExtBull", "value": "42.0"},
+    {"name": "InpRsiExtBear", "value": "58.0"},
+    {"name": "InpUseMacd", "value": "true"},
+    {"name": "InpUseRejection", "value": "true"},
+    {"name": "InpRejWickRatio", "value": "0.35"},
+    {"name": "InpUseH4Soft", "value": "true"},
+    {"name": "InpH4Ema", "value": "50"},
+    {"name": "InpH4LotFactor", "value": "0.6"},
+    {"name": "InpUseAdxSoft", "value": "true"},
+    {"name": "InpAdxPeriod", "value": "14"},
+    {"name": "InpAdxMin", "value": "15.0"},
+    {"name": "InpAdxMid", "value": "22.0"},
+    {"name": "InpAdxWeakLot", "value": "0.6"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxOpenTrades", "value": "3"},
+    {"name": "InpMinLot", "value": "0.01"},
+    {"name": "InpMaxLot", "value": "50.0"},
+    {"name": "InpUseBE", "value": "true"},
+    {"name": "InpUseTrail", "value": "true"},
+    {"name": "symbol", "value": "GBPUSD"},
+    {"name": "timeframe", "value": "M15"},
+    {"name": "ea", "value": "Fibonacci_EA_v5_0"}
+  ],
+  "assumptions": [
+    "A 20-pip target captures a larger proportion of runners before price retraces to breakeven."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Average profit per winning trade will increase above baseline $26.59.",
+    "Total net profit will exceed the baseline $577.65.",
+    "Profit factor will remain above 1.35.",
+    "Maximum equity drawdown will remain <= 8.0%."
+  ],
+  "falsification_conditions": [
+    "Total net profit drops below baseline $577.65.",
+    "Profit factor drops below 1.25.",
+    "Maximum equity drawdown exceeds 8.0%, violating prop firm guard limits."
+  ],
+  "status": "proposed"
+}

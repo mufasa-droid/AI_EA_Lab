@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-01T23:09:57.137372+01:00",
-  "total_experiments": 12,
+  "generated_at": "2026-10-01T23:30:02.892313+01:00",
+  "total_experiments": 13,
   "experiments": [
     {
       "id": "EXP-0001",
@@ -206,6 +206,23 @@
       "dataset_status": "classified",
       "validation_passed": true,
       "experiment_path": "experiments/EXP-0012"
+    },
+    {
+      "id": "EXP-0013",
+      "created_at": "2026-10-01T23:29:27.004311+01:00",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "GBPUSD",
+      "timeframe": "M15",
+      "from": "2020.01.01",
+      "to": "2024.12.31",
+      "net_profit": -803.55,
+      "profit_factor": 0.84,
+      "total_trades": 226,
+      "max_drawdown": 1284.47,
+      "dataset": "training",
+      "dataset_status": "classified",
+      "validation_passed": true,
+      "experiment_path": "experiments/EXP-0013"
     }
   ]
 }
