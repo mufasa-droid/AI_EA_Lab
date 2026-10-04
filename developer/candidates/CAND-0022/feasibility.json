@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "plan_id": "PLAN-0137",
+  "ea": "Fibonacci_EA_v5_0",
+  "feasible": true,
+  "status": "pass",
+  "reason": "All requested parameters exist in EA source and are compatible with EA architecture.",
+  "required_changes": [
+    {
+      "parameter": "InpUseH4Soft",
+      "type": "bool",
+      "before": "true",
+      "after": "false",
+      "rationale": "Disable H4 counter-trend lot reduction to allow full 1.0% risk sizing on EURUSD."
+    },
+    {
+      "parameter": "InpUseAdxSoft",
+      "type": "bool",
+      "before": "true",
+      "after": "false",
+      "rationale": "Disable ADX momentum lot reduction to allow full 1.0% risk sizing on EURUSD."
+    }
+  ],
+  "blocked_by": []
+}

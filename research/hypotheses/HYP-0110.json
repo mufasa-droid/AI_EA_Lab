@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0110",
+  "created_at": "2026-10-04T00:15:00+01:00",
+  "title": "M30 Champion Multi-Market Robustness Test (USDJPY)",
+  "research_question": "Does the M30 Fibonacci EA champion configuration (InpTP1Pips=15.0, InpDirection=2, InpMaxSLPips=15.0) generalize profitably to USDJPY without any parameter adjustments, maintaining positive net profit and max equity drawdown <= 8.0% across both 2020-2024 training and 2025 validation partitions?",
+  "hypothesis": "Because the Fibonacci retracement and multi-timeframe trend alignment logic captures structural auction market physics rather than pair-specific curve-fitting, the champion configuration will execute profitably on USDJPY M30 with controlled drawdown <= 8.0%.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0022",
+      "EXP-0023",
+      "EXP-0026",
+      "EXP-0027",
+      "EXP-0028",
+      "EXP-0029"
+    ],
+    "facts": [
+      "EXP-0022 on GBPUSD M30 achieved Profit Factor 3.68 and 2.07% drawdown in training (2020-2024).",
+      "EXP-0023 on GBPUSD M30 achieved +$505.25 net profit, Profit Factor 1.49, and 3.88% drawdown in validation (2025).",
+      "EXP-0026 on EURUSD M30 achieved +$530.14 net profit and Profit Factor 1.84 in training (2020-2024).",
+      "EXP-0027 on EURUSD M30 achieved +$535.68 net profit and Profit Factor 1.62 in validation (2025).",
+      "EXP-0028 on AUDUSD M30 was non-robust in training (PF 0.04, DD 8.15%), though it recovered in validation EXP-0029 (+380.79, PF 1.19).",
+      "USDJPY provides an uncorrelated JPY macro dynamic driven by monetary divergence and strong clean trend expansions."
+    ],
+    "inferences": [
+      "Testing the champion setup on USDJPY completes the 4-pair multi-market robustness matrix targeted in the research continuity plan.",
+      "USDJPY typically exhibits sharp directional trend runs, which may provide favorable conditions for the 15/30 pip partial close and trailing mechanism."
+    ],
+    "evidence": [
+      "EXP-0022 total_trades=17, profit_factor=3.68, win_rate=82.35%, total_net_profit=583.78, equity_drawdown_maximal_percent=2.07",
+      "EXP-0023 total_trades=59, profit_factor=1.49, win_rate=74.58%, total_net_profit=505.25, equity_drawdown_maximal_percent=3.88",
+      "EXP-0026 total_trades=24, profit_factor=1.84, win_rate=75.00%, total_net_profit=530.14, equity_drawdown_maximal_percent=4.31",
+      "EXP-0027 total_trades=55, profit_factor=1.62, win_rate=74.55%, total_net_profit=535.68, equity_drawdown_maximal_percent=5.12",
+      "EXP-0028 total_trades=13, profit_factor=0.04, win_rate=30.77%, total_net_profit=-807.52, equity_drawdown_maximal_percent=8.15",
+      "EXP-0029 total_trades=82, profit_factor=1.19, win_rate=65.85%, total_net_profit=380.79, equity_drawdown_maximal_percent=5.80"
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "symbol",
+      "baseline_value": "GBPUSD",
+      "proposed_value": "USDJPY",
+      "rationale": "Evaluate champion M30 configuration across independent major currency instrument (USDJPY) to complete the 4-pair portfolio matrix."
+    }
+  ],
+  "dependent_variables": [
+    "total_trades",
+    "total_net_profit",
+    "profit_factor",
+    "win_rate",
+    "equity_drawdown_maximal_percent"
+  ],
+  "control_variables": [
+    {"name": "timeframe", "value": "M30"},
+    {"name": "InpInitialBalance", "value": "0.0"},
+    {"name": "InpDailyLossLimit", "value": "4.0"},
+    {"name": "InpTotalDDLimit", "value": "8.0"},
+    {"name": "InpWeeklyTargetPct", "value": "5.0"},
+    {"name": "InpUseNewsFilter", "value": "true"},
+    {"name": "InpNewsBufferMins", "value": "30"},
+    {"name": "InpMaxTradesPerDay", "value": "6"},
+    {"name": "InpWeekendClose", "value": "true"},
+    {"name": "InpWeekendCloseHour", "value": "21"},
+    {"name": "InpDirection", "value": "2"},
+    {"name": "InpSwingLookback", "value": "50"},
+    {"name": "InpSwingStrength", "value": "5"},
+    {"name": "InpMinSwingPips", "value": "25.0"},
+    {"name": "InpMaxSwingPips", "value": "500.0"},
+    {"name": "InpMinBarsAfterSwing", "value": "2"},
+    {"name": "InpUseFib236", "value": "false"},
+    {"name": "InpUseFib382", "value": "true"},
+    {"name": "InpUseFib500", "value": "true"},
+    {"name": "InpUseFib618", "value": "true"},
+    {"name": "InpUseFib786", "value": "false"},
+    {"name": "InpFibBuffer", "value": "5.0"},
+    {"name": "InpUseRejection", "value": "true"},
+    {"name": "InpRejWickRatio", "value": "0.35"},
+    {"name": "InpUseTrend", "value": "true"},
+    {"name": "InpTrendEma", "value": "50"},
+    {"name": "InpUseH4Soft", "value": "true"},
+    {"name": "InpH4Ema", "value": "50"},
+    {"name": "InpH4LotFactor", "value": "0.6"},
+    {"name": "InpUseRsi", "value": "true"},
+    {"name": "InpRsiPeriod", "value": "14"},
+    {"name": "InpRsiBullMax", "value": "62.0"},
+    {"name": "InpRsiBearMin", "value": "38.0"},
+    {"name": "InpRsiExtBull", "value": "42.0"},
+    {"name": "InpRsiExtBear", "value": "58.0"},
+    {"name": "InpUseMacd", "value": "true"},
+    {"name": "InpUseAdxSoft", "value": "true"},
+    {"name": "InpAdxPeriod", "value": "14"},
+    {"name": "InpAdxMin", "value": "15.0"},
+    {"name": "InpAdxMid", "value": "22.0"},
+    {"name": "InpAdxWeakLot", "value": "0.6"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxSLPips", "value": "15.0"},
+    {"name": "InpTP1Pips", "value": "15.0"},
+    {"name": "InpTP2Pips", "value": "30.0"},
+    {"name": "InpTP1ClosePct", "value": "50.0"},
+    {"name": "InpUseBE", "value": "true"},
+    {"name": "InpUseTrail", "value": "true"},
+    {"name": "InpTrailPips", "value": "8.0"}
+  ],
+  "assumptions": [
+    "USDJPY M30 spread remains within 1.0-3.0 pips (10-30 points) during active trading hours.",
+    "Fibonacci swing structure operates symmetrically on USDJPY price action."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Total net profit is positive on USDJPY M30.",
+    "Max equity drawdown remains <= 8.0%.",
+    "Profit factor exceeds 1.10."
+  ],
+  "falsification_conditions": [
+    "Total net profit <= 0.0 on training or validation partition.",
+    "Max equity drawdown exceeds 8.0%.",
+    "Total trades collapses to 0."
+  ],
+  "status": "proposed"
+}

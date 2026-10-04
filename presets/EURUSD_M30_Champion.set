@@ -1,0 +1,88 @@
+; ═════════════════════════════════════════════════════════════════
+; Fibonacci EA v5.0 - Prop Firm Edition
+; Champion Preset: EURUSD M30 (Unthrottled Lot Sizing)
+; Validated in AI-EA-Lab Experiments EXP-0036 / EXP-0037
+; 2025 Out-of-Sample: +$585.63 | PF 1.44 | WR 74.0% | Max DD 5.58%
+; ═════════════════════════════════════════════════════════════════
+
+; --- PROP FIRM SETTINGS ---
+InpInitialBalance=0.0
+InpDailyLossLimit=4.0
+InpTotalDDLimit=8.0
+InpWeeklyTargetPct=5.0
+InpUseNewsFilter=true
+InpNewsBufferMins=30
+InpMaxTradesPerDay=6
+InpWeekendClose=true
+InpWeekendCloseHour=21
+
+; --- TRADE DIRECTION ---
+InpDirection=2
+
+; --- SWING DETECTION ---
+InpSwingLookback=50
+InpSwingStrength=5
+InpMinSwingPips=25.0
+InpMaxSwingPips=500.0
+InpMinBarsAfterSwing=2
+
+; --- FIBONACCI LEVELS ---
+InpUseFib236=false
+InpUseFib382=true
+InpUseFib500=true
+InpUseFib618=true
+InpUseFib786=false
+InpFibBuffer=5.0
+
+; --- FIXED PIP SL/TP ---
+InpMaxSLPips=15.0
+InpTP1Pips=15.0
+InpTP2Pips=30.0
+InpTP1ClosePct=50.0
+InpTrailPips=8.0
+
+; --- ENTRY FILTERS ---
+InpUseTrend=true
+InpTrendEma=50
+InpUseSession=true
+InpLondonOpen=8
+InpLondonClose=12
+InpNYOpen=13
+InpNYClose=18
+InpMaxSpread=3.0
+InpUseRsi=true
+InpRsiPeriod=14
+InpRsiBullMax=62.0
+InpRsiBearMin=38.0
+InpRsiExtBull=42.0
+InpRsiExtBear=58.0
+InpUseMacd=true
+InpUseRejection=true
+InpRejWickRatio=0.35
+
+; --- SOFT LOT FILTERS (UNTHROTTLED) ---
+InpUseH4Soft=false
+InpH4Ema=50
+InpH4LotFactor=0.6
+InpUseAdxSoft=false
+InpAdxPeriod=14
+InpAdxMin=15.0
+InpAdxMid=22.0
+InpAdxWeakLot=0.6
+
+; --- RISK ---
+InpRiskPct=1.0
+InpMaxOpenTrades=3
+InpMinLot=0.01
+InpMaxLot=50.0
+
+; --- TRADE MANAGEMENT ---
+InpUseBE=true
+InpUseTrail=true
+
+; --- DISPLAY ---
+InpDrawFibs=true
+InpShowPanel=true
+InpShowArrows=true
+InpBullColor=16748574
+InpBearColor=17919

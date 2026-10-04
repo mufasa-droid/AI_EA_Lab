@@ -1,0 +1,15 @@
+--- source_before.mq5
++++ source_after.mq5
+@@ -120,10 +120,10 @@
+ input double InpRejWickRatio      = 0.35;  // Min wick/range ratio
+ 
+ input group "══════ SOFT LOT FILTERS ══════"
+-input bool   InpUseH4Soft         = true;  // H4 soft filter (lot reduction)
++input bool   InpUseH4Soft         = false;  // H4 soft filter (lot reduction)
+ input int    InpH4Ema             = 50;    // H4 EMA period
+ input double InpH4LotFactor       = 0.6;   // Lot × this when counter-H4
+-input bool   InpUseAdxSoft        = true;  // ADX soft filter (lot reduction)
++input bool   InpUseAdxSoft        = false;  // ADX soft filter (lot reduction)
+ input int    InpAdxPeriod         = 14;    // ADX period H1
+ input double InpAdxMin            = 15.0;  // ADX below → extra reduction
+ input double InpAdxMid            = 22.0;  // ADX above → full lot

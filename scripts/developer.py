@@ -331,6 +331,21 @@ def run_developer(
 
     # 11. Compile Candidate
     compile_result = compile_mql5(source_after_path, output_dir=cand_dir)
+    if mock and compile_result.get("status") == "unavailable":
+        mock_bin_path = cand_dir / "source_after.ex5"
+        mock_bin_path.write_bytes(b"\x00\x00MOCK_EX5_BINARY\x00\x00")
+        compile_result = {
+            "status": "passed",
+            "compiler_path": "mock",
+            "exit_code": 0,
+            "error_count": 0,
+            "warning_count": 0,
+            "errors": [],
+            "warnings": [],
+            "binary_path": str(mock_bin_path),
+            "log_path": None,
+            "log_content": "Mock compilation passed (metaeditor unavailable).",
+        }
     result["compile"] = {
         "status": compile_result.get("status"),
         "compiler_path": compile_result.get("compiler_path"),

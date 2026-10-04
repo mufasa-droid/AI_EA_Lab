@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0019",
+  "plan_id": "PLAN-0134",
+  "baseline_experiment": "EXP-0022",
+  "ea": "Fibonacci_EA_v5_0",
+  "changes": [],
+  "unauthorized_changes": [],
+  "feasible": true,
+  "compile_status": "passed"
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "plan_id": "PLAN-0135",
+  "ea": "Fibonacci_EA_v5_0",
+  "feasible": true,
+  "status": "pass",
+  "reason": "All requested parameters exist in EA source and are compatible with EA architecture.",
+  "required_changes": [
+    {
+      "parameter": "InpTP2Pips",
+      "type": "double",
+      "before": "30.0",
+      "after": "45.0",
+      "rationale": "Extend risk-free runner take profit from 30 to 45 pips to capture larger trend expansions."
+    }
+  ],
+  "blocked_by": []
+}

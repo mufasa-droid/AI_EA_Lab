@@ -1,6 +1,6 @@
 {
     "mt5_terminal": "C:\\Program Files\\MetaTrader 5\\terminal64.exe",
-    "mt5_data": "C:\\Users\\Mufasa\\AppData\\Roaming\\MetaQuotes\\Terminal\\D0E8209F77C8CF37AD8BF550E51FF075",
+    "mt5_data": "C:\\Users\\HomePC\\AppData\\Roaming\\MetaQuotes\\Terminal\\D0E8209F77C8CF37AD8BF550E51FF075",
 
     "ea": {
         "name": "TestEA"
@@ -18,6 +18,6 @@
     },
 
     "output": {
-        "report": "Fibonacci_EA_v5_0_report.htm"
+        "report": "TestEA_report.htm"
     }
 }

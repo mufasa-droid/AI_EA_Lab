@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0021",
+  "plan_id": "PLAN-0136",
+  "hypothesis_id": "HYP-0112",
+  "baseline_experiment": "EXP-0022",
+  "ea": "Fibonacci_EA_v5_0",
+  "created_at": "2026-10-04T00:29:54.496493+01:00",
+  "source_before_sha256": "07ae2ee2b8b8e9587f5e8bf5d86793bf7193d532dc9c6e25c321ca5e185005c8",
+  "source_after_sha256": "e02c9441a05b67ba9d7cdb9e33415248b6fd25516e0e15d4c29853d43eff9d76",
+  "requested_changes": [
+    {
+      "variable": "InpUseH4Soft",
+      "baseline_value": "true",
+      "target_value": "false",
+      "change_type": "parameter_adjustment",
+      "rationale": "Disable H4 counter-trend lot reduction to allow full 1.0% risk sizing."
+    },
+    {
+      "variable": "InpUseAdxSoft",
+      "baseline_value": "true",
+      "target_value": "false",
+      "change_type": "parameter_adjustment",
+      "rationale": "Disable ADX momentum lot reduction to allow full 1.0% risk sizing."
+    }
+  ],
+  "actual_changes": [
+    {
+      "type": "input_default_change",
+      "parameter": "InpUseH4Soft",
+      "type_declared": "bool",
+      "after": "false"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpUseAdxSoft",
+      "type_declared": "bool",
+      "after": "false"
+    }
+  ],
+  "feasibility_status": "pass",
+  "compile_status": "passed",
+  "compiler_info": {
+    "compiler_path": "C:\\Program Files\\MetaTrader 5\\MetaEditor64.exe",
+    "exit_code": 1,
+    "error_count": 0,
+    "warning_count": 0
+  },
+  "status": "ready_for_next_phase"
+}

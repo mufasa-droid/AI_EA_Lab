@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0021",
+  "plan_id": "PLAN-0136",
+  "baseline_experiment": "EXP-0022",
+  "ea": "Fibonacci_EA_v5_0",
+  "changes": [
+    {
+      "type": "input_default_change",
+      "parameter": "InpUseH4Soft",
+      "type_declared": "bool",
+      "after": "false"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpUseAdxSoft",
+      "type_declared": "bool",
+      "after": "false"
+    }
+  ],
+  "unauthorized_changes": [],
+  "feasible": true,
+  "compile_status": "passed"
+}
