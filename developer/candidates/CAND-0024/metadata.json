@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0024",
+  "plan_id": "PLAN-0155",
+  "hypothesis_id": "HYP-0127",
+  "baseline_experiment": "EXP-0028",
+  "ea": "Fibonacci_EA_v5_0",
+  "created_at": "2026-10-04T15:00:57.552583+01:00",
+  "source_before_sha256": "f4723319361a95e829d5142ac7c4c94dd986e0fbe3a3060980d41ab452032b3e",
+  "source_after_sha256": "b37c2e538c587a2337cd62940ae46ab1d9d27b43ac9ff8712aae327e2cc4d7d5",
+  "requested_changes": [
+    {
+      "variable": "InpMinSwingPips",
+      "baseline_value": "25.0",
+      "target_value": "18.0",
+      "change_type": "parameter_adjustment"
+    },
+    {
+      "variable": "InpUseAsianSession",
+      "baseline_value": "false",
+      "target_value": "true",
+      "change_type": "parameter_adjustment"
+    },
+    {
+      "variable": "InpUseH4Soft",
+      "baseline_value": "true",
+      "target_value": "false",
+      "change_type": "parameter_adjustment"
+    },
+    {
+      "variable": "InpUseAdxSoft",
+      "baseline_value": "true",
+      "target_value": "false",
+      "change_type": "parameter_adjustment"
+    }
+  ],
+  "actual_changes": [
+    {
+      "type": "input_default_change",
+      "parameter": "InpMinSwingPips",
+      "type_declared": "double",
+      "after": "18.0"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpUseAsianSession",
+      "type_declared": "bool",
+      "after": "true"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpUseH4Soft",
+      "type_declared": "bool",
+      "after": "false"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpUseAdxSoft",
+      "type_declared": "bool",
+      "after": "false"
+    }
+  ],
+  "feasibility_status": "pass",
+  "compile_status": "passed",
+  "compiler_info": {
+    "compiler_path": "C:\\Program Files\\MetaTrader 5\\MetaEditor64.exe",
+    "exit_code": 1,
+    "error_count": 0,
+    "warning_count": 0
+  },
+  "status": "ready_for_next_phase"
+}

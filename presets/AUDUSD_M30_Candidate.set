@@ -1,0 +1,90 @@
+; ═════════════════════════════════════════════════════════════════
+; Fibonacci EA v5.0 - Prop Firm Edition
+; Candidate Preset: AUDUSD M30 (Asian + London/NY Sessions, Calibrated Swing Size)
+; Designed for AI-EA-Lab Multi-Market Expansion
+; ═════════════════════════════════════════════════════════════════
+
+; --- PROP FIRM SETTINGS ---
+InpInitialBalance=0.0
+InpDailyLossLimit=4.0
+InpTotalDDLimit=8.0
+InpWeeklyTargetPct=5.0
+InpUseNewsFilter=true
+InpNewsBufferMins=30
+InpMaxTradesPerDay=6
+InpWeekendClose=true
+InpWeekendCloseHour=21
+
+; --- TRADE DIRECTION ---
+InpDirection=2
+
+; --- SWING DETECTION (CALIBRATED FOR AUD LOWER ADR) ---
+InpSwingLookback=50
+InpSwingStrength=5
+InpMinSwingPips=18.0
+InpMaxSwingPips=400.0
+InpMinBarsAfterSwing=2
+
+; --- FIBONACCI LEVELS ---
+InpUseFib236=false
+InpUseFib382=true
+InpUseFib500=true
+InpUseFib618=true
+InpUseFib786=false
+InpFibBuffer=4.0
+
+; --- FIXED PIP SL/TP ---
+InpMaxSLPips=15.0
+InpTP1Pips=15.0
+InpTP2Pips=30.0
+InpTP1ClosePct=50.0
+InpTrailPips=8.0
+
+; --- ENTRY FILTERS ---
+InpUseTrend=true
+InpTrendEma=50
+InpUseSession=true
+InpLondonOpen=8
+InpLondonClose=12
+InpNYOpen=13
+InpNYClose=18
+InpUseAsianSession=true
+InpAsianOpen=0
+InpAsianClose=8
+InpMaxSpread=3.0
+InpUseRsi=true
+InpRsiPeriod=14
+InpRsiBullMax=62.0
+InpRsiBearMin=38.0
+InpRsiExtBull=42.0
+InpRsiExtBear=58.0
+InpUseMacd=true
+InpUseRejection=true
+InpRejWickRatio=0.35
+
+; --- SOFT LOT FILTERS (UNTHROTTLED) ---
+InpUseH4Soft=false
+InpH4Ema=50
+InpH4LotFactor=0.6
+InpUseAdxSoft=false
+InpAdxPeriod=14
+InpAdxMin=15.0
+InpAdxMid=22.0
+InpAdxWeakLot=0.6
+
+; --- RISK ---
+InpRiskPct=1.0
+InpMaxOpenTrades=3
+InpMinLot=0.01
+InpMaxLot=50.0
+
+; --- TRADE MANAGEMENT ---
+InpUseBE=true
+InpUseTrail=true
+
+; --- DISPLAY ---
+InpDrawFibs=true
+InpShowPanel=true
+InpShowArrows=true
+InpBullColor=16748574
+InpBearColor=17919

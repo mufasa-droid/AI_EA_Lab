@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0126",
+  "created_at": "2026-10-04T14:20:00+01:00",
+  "title": "USDJPY M30 Asian Session & Volatility Calibration Test",
+  "research_question": "Does enabling the Asian session (InpUseAsianSession=true) combined with volatility-calibrated SL/TP (InpMaxSLPips=20.0, InpTP1Pips=20.0, InpTP2Pips=40.0, InpTrailPips=10.0) and unthrottled lot sizing improve trade frequency, net profit, and drawdown stability on USDJPY M30 compared to baseline EXP-0030 across 2020-2024 training?",
+  "hypothesis": "Because USDJPY experiences primary liquidity and directional trend initiation during the Asian/Tokyo market session, capturing Asian Fibonacci retracements with adequate pip room (20-pip SL) will prevent noise stop-outs and expand profitable opportunities, turning the -$849.34 loss of EXP-0030 into positive net profit while keeping maximal drawdown <= 8.0%.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0030",
+      "EXP-0031",
+      "EXP-0034",
+      "EXP-0036"
+    ],
+    "facts": [
+      "EXP-0030 on USDJPY M30 with London/NY-only sessions and 15-pip SL produced -$849.34 net profit, 0.34 profit factor, and breached the 8% total DD limit (8.72%).",
+      "EXP-0031 on USDJPY M30 in 2025 validation achieved +$280.24 and 74 trades when volatility surged.",
+      "USDJPY market participants transact highest domestic volume during the Tokyo session (00:00-08:00 server time).",
+      "On GBPUSD (EXP-0034) and EURUSD (EXP-0036), unthrottled lot sizing expanded net profit without increasing maximal drawdown."
+    ],
+    "inferences": [
+      "Enabling Asian session trading allows the EA to enter high-probability Asian Fibonacci levels instead of only trading late-session European consolidation.",
+      "Expanding SL/TP to 20/40 pips accommodates JPY pip noise and volatility spikes.",
+      "Unthrottling lot sizing will allow full 1.0% risk payouts on winning Asian session setups."
+    ],
+    "evidence": [
+      "EXP-0030 total_trades=31, profit_factor=0.34, win_rate=58.06%, total_net_profit=-849.34, equity_drawdown_maximal_percent=8.72",
+      "EXP-0031 total_trades=74, profit_factor=1.16, win_rate=71.62%, total_net_profit=280.24, equity_drawdown_maximal_percent=5.45"
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "InpUseAsianSession",
+      "baseline_value": "false",
+      "proposed_value": "true",
+      "rationale": "Capture Tokyo market session liquidity and primary trend moves on USDJPY."
+    },
+    {
+      "name": "InpMaxSLPips",
+      "baseline_value": "15.0",
+      "proposed_value": "20.0",
+      "rationale": "Provide adequate buffer against JPY intraday volatility noise."
+    },
+    {
+      "name": "InpTP1Pips",
+      "baseline_value": "15.0",
+      "proposed_value": "20.0",
+      "rationale": "Maintain 1:1 initial RRR target."
+    },
+    {
+      "name": "InpTP2Pips",
+      "baseline_value": "30.0",
+      "proposed_value": "40.0",
+      "rationale": "Allow runner to capture larger 2:1 RRR trend continuation moves."
+    },
+    {
+      "name": "InpTrailPips",
+      "baseline_value": "8.0",
+      "proposed_value": "10.0",
+      "rationale": "Prevent premature stop-out on runner trailing stop."
+    },
+    {
+      "name": "InpUseH4Soft",
+      "baseline_value": "true",
+      "proposed_value": "false",
+      "rationale": "Disable H4 soft lot reduction to capture full 1.0% risk payoffs."
+    },
+    {
+      "name": "InpUseAdxSoft",
+      "baseline_value": "true",
+      "proposed_value": "false",
+      "rationale": "Disable ADX momentum throttling."
+    }
+  ],
+  "dependent_variables": [
+    "total_trades",
+    "total_net_profit",
+    "profit_factor",
+    "win_rate",
+    "equity_drawdown_maximal_percent"
+  ],
+  "control_variables": [
+    {"name": "symbol", "value": "USDJPY"},
+    {"name": "timeframe", "value": "M30"},
+    {"name": "InpInitialBalance", "value": "0.0"},
+    {"name": "InpDailyLossLimit", "value": "4.0"},
+    {"name": "InpTotalDDLimit", "value": "8.0"},
+    {"name": "InpWeeklyTargetPct", "value": "5.0"},
+    {"name": "InpUseNewsFilter", "value": "true"},
+    {"name": "InpNewsBufferMins", "value": "30"},
+    {"name": "InpMaxTradesPerDay", "value": "6"},
+    {"name": "InpWeekendClose", "value": "true"},
+    {"name": "InpWeekendCloseHour", "value": "21"},
+    {"name": "InpDirection", "value": "2"},
+    {"name": "InpSwingLookback", "value": "50"},
+    {"name": "InpSwingStrength", "value": "5"},
+    {"name": "InpMinSwingPips", "value": "25.0"},
+    {"name": "InpMaxSwingPips", "value": "500.0"},
+    {"name": "InpMinBarsAfterSwing", "value": "2"},
+    {"name": "InpUseFib236", "value": "false"},
+    {"name": "InpUseFib382", "value": "true"},
+    {"name": "InpUseFib500", "value": "true"},
+    {"name": "InpUseFib618", "value": "true"},
+    {"name": "InpUseFib786", "value": "false"},
+    {"name": "InpFibBuffer", "value": "5.0"},
+    {"name": "InpUseTrend", "value": "true"},
+    {"name": "InpTrendEma", "value": "50"},
+    {"name": "InpUseSession", "value": "true"},
+    {"name": "InpLondonOpen", "value": "8"},
+    {"name": "InpLondonClose", "value": "12"},
+    {"name": "InpNYOpen", "value": "13"},
+    {"name": "InpNYClose", "value": "18"},
+    {"name": "InpAsianOpen", "value": "0"},
+    {"name": "InpAsianClose", "value": "8"},
+    {"name": "InpMaxSpread", "value": "3.0"},
+    {"name": "InpUseRsi", "value": "true"},
+    {"name": "InpRsiPeriod", "value": "14"},
+    {"name": "InpRsiBullMax", "value": "62.0"},
+    {"name": "InpRsiBearMin", "value": "38.0"},
+    {"name": "InpRsiExtBull", "value": "42.0"},
+    {"name": "InpRsiExtBear", "value": "58.0"},
+    {"name": "InpUseMacd", "value": "true"},
+    {"name": "InpUseRejection", "value": "true"},
+    {"name": "InpRejWickRatio", "value": "0.35"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxOpenTrades", "value": "3"},
+    {"name": "InpMinLot", "value": "0.01"},
+    {"name": "InpMaxLot", "value": "50.0"},
+    {"name": "InpUseBE", "value": "true"},
+    {"name": "InpUseTrail", "value": "true"}
+  ],
+  "assumptions": [
+    "Tokyo session trading produces clean Fibonacci reaction swings on USDJPY.",
+    "Drawdown guards (4% daily, 8% total) will protect capital if JPY volatility produces adverse streaks."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Total trades increase above baseline EXP-0030 (31 trades).",
+    "Total net profit turns positive (above baseline -$849.34).",
+    "Max equity drawdown remains <= 8.0%."
+  ],
+  "falsification_conditions": [
+    "Total net profit remains negative or profit factor remains < 1.0.",
+    "Max equity drawdown breaches 8.0%."
+  ],
+  "status": "proposed"
+}

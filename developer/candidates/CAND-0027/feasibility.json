@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "plan_id": "PLAN-0158",
+  "ea": "Fibonacci_EA_v5_0",
+  "feasible": true,
+  "status": "pass",
+  "reason": "All requested parameters exist in EA source and are compatible with EA architecture.",
+  "required_changes": [
+    {
+      "parameter": "InpMinSwingPips",
+      "type": "double",
+      "before": "25.0",
+      "after": "18.0",
+      "rationale": ""
+    },
+    {
+      "parameter": "InpUseAsianSession",
+      "type": "bool",
+      "before": "false",
+      "after": "true",
+      "rationale": ""
+    },
+    {
+      "parameter": "InpUseH4Soft",
+      "type": "bool",
+      "before": "true",
+      "after": "false",
+      "rationale": ""
+    },
+    {
+      "parameter": "InpUseAdxSoft",
+      "type": "bool",
+      "before": "true",
+      "after": "false",
+      "rationale": ""
+    },
+    {
+      "parameter": "InpDirection",
+      "type": "int",
+      "before": "2",
+      "after": "1",
+      "rationale": ""
+    }
+  ],
+  "blocked_by": []
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0027",
+  "plan_id": "PLAN-0158",
+  "baseline_experiment": "EXP-0028",
+  "ea": "Fibonacci_EA_v5_0",
+  "changes": [
+    {
+      "type": "input_default_change",
+      "parameter": "InpDirection",
+      "type_declared": "int",
+      "after": "1"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpMinSwingPips",
+      "type_declared": "double",
+      "after": "18.0"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpUseAsianSession",
+      "type_declared": "bool",
+      "after": "true"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpUseH4Soft",
+      "type_declared": "bool",
+      "after": "false"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpUseAdxSoft",
+      "type_declared": "bool",
+      "after": "false"
+    }
+  ],
+  "unauthorized_changes": [],
+  "feasible": true,
+  "compile_status": "passed"
+}

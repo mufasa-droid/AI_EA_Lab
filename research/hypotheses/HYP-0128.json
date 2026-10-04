@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0128",
+  "created_at": "2026-10-04T17:05:00+01:00",
+  "title": "AUDUSD M30 Take Profit 1 (TP1) Extension to Resolve Payout Asymmetry",
+  "research_question": "Does increasing InpTP1Pips from 15.0 to 20.0 pips eliminate the payout asymmetry observed in baseline EXP-0040, shifting 2020-2024 training net profit from -$800.31 to positive (> $0.00) while maintaining win rate >= 55% and drawdown <= 8.0%?",
+  "hypothesis": "Because baseline EXP-0040 suffered negative net profit (-$800.31) despite a 66.2% win rate due to closing 50% of the position at only 15 pips (net +7.5 pips) against a full 15-pip stop loss (-15.0 pips), extending InpTP1Pips to 20.0 pips will increase the partial reward to +10.0 pips and allow momentum to carry runners further, shifting mathematical expectancy from negative to positive across 2020-2024 training data.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0040",
+      "EXP-0041",
+      "EXP-0028"
+    ],
+    "facts": [
+      "EXP-0040 on AUDUSD M30 recorded 68 trades, a 66.18% win rate (45 wins, 23 losses), and a 21-trade consecutive win streak.",
+      "Despite the 66.2% win rate, EXP-0040 produced -$800.31 net profit and a profit factor of 0.55.",
+      "In EXP-0040, average win was $21.79 while average loss was -$77.42 (a 1:3.55 payout deficit).",
+      "Closing 50% of position volume at 15 pips awards only 7.5 pips of risk-adjusted profit, which is insufficient to overcome a 15-pip full position loss."
+    ],
+    "inferences": [
+      "The failure of EXP-0040 was caused by structural payout asymmetry, not a lack of directional entry edge.",
+      "Extending TP1 to 20.0 pips increases the realized profit of the scaled-out volume by 33.3% (+10.0 pips net gain).",
+      "A 20-pip move confirms stronger intraday directional escape from the entry zone, improving trailing runner follow-through."
+    ],
+    "evidence": [
+      "EXP-0040 total_trades=68, profit_factor=0.55, win_rate=66.18%, total_net_profit=-800.31, gross_profit=980.40, gross_loss=-1780.71, equity_drawdown_maximal_percent=8.88"
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "InpTP1Pips",
+      "baseline_value": "15.0",
+      "proposed_value": "20.0",
+      "rationale": "Increase initial scale-out reward from 7.5 pips to 10.0 pips effective per trade to restore positive mathematical expectancy."
+    }
+  ],
+  "dependent_variables": [
+    "total_net_profit",
+    "profit_factor",
+    "win_rate",
+    "total_trades",
+    "average_profit_trade",
+    "average_loss_trade",
+    "equity_drawdown_maximal_percent"
+  ],
+  "control_variables": [
+    {"name": "symbol", "value": "AUDUSD"},
+    {"name": "timeframe", "value": "M30"},
+    {"name": "InpMinSwingPips", "value": "18.0"},
+    {"name": "InpMaxSLPips", "value": "15.0"},
+    {"name": "InpTP2Pips", "value": "30.0"},
+    {"name": "InpTP1ClosePct", "value": "50.0"},
+    {"name": "InpTrailPips", "value": "8.0"},
+    {"name": "InpUseAsianSession", "value": "true"},
+    {"name": "InpAsianOpen", "value": "0"},
+    {"name": "InpAsianClose", "value": "8"},
+    {"name": "InpUseH4Soft", "value": "false"},
+    {"name": "InpUseAdxSoft", "value": "false"},
+    {"name": "InpInitialBalance", "value": "0.0"},
+    {"name": "InpDailyLossLimit", "value": "4.0"},
+    {"name": "InpTotalDDLimit", "value": "8.0"},
+    {"name": "InpWeeklyTargetPct", "value": "5.0"},
+    {"name": "InpUseNewsFilter", "value": "true"},
+    {"name": "InpNewsBufferMins", "value": "30"},
+    {"name": "InpMaxTradesPerDay", "value": "6"},
+    {"name": "InpWeekendClose", "value": "true"},
+    {"name": "InpWeekendCloseHour", "value": "21"},
+    {"name": "InpDirection", "value": "2"},
+    {"name": "InpSwingLookback", "value": "50"},
+    {"name": "InpSwingStrength", "value": "5"},
+    {"name": "InpMaxSwingPips", "value": "500.0"},
+    {"name": "InpMinBarsAfterSwing", "value": "2"},
+    {"name": "InpUseFib236", "value": "false"},
+    {"name": "InpUseFib382", "value": "true"},
+    {"name": "InpUseFib500", "value": "true"},
+    {"name": "InpUseFib618", "value": "true"},
+    {"name": "InpUseFib786", "value": "false"},
+    {"name": "InpFibBuffer", "value": "5.0"},
+    {"name": "InpUseTrend", "value": "true"},
+    {"name": "InpTrendEma", "value": "50"},
+    {"name": "InpUseSession", "value": "true"},
+    {"name": "InpLondonOpen", "value": "8"},
+    {"name": "InpLondonClose", "value": "12"},
+    {"name": "InpNYOpen", "value": "13"},
+    {"name": "InpNYClose", "value": "18"},
+    {"name": "InpMaxSpread", "value": "3.0"},
+    {"name": "InpUseRsi", "value": "true"},
+    {"name": "InpRsiPeriod", "value": "14"},
+    {"name": "InpRsiBullMax", "value": "62.0"},
+    {"name": "InpRsiBearMin", "value": "38.0"},
+    {"name": "InpRsiExtBull", "value": "42.0"},
+    {"name": "InpRsiExtBear", "value": "58.0"},
+    {"name": "InpUseMacd", "value": "true"},
+    {"name": "InpUseRejection", "value": "true"},
+    {"name": "InpRejWickRatio", "value": "0.35"},
+    {"name": "InpH4Ema", "value": "50"},
+    {"name": "InpH4LotFactor", "value": "0.6"},
+    {"name": "InpAdxPeriod", "value": "14"},
+    {"name": "InpAdxMin", "value": "15.0"},
+    {"name": "InpAdxMid", "value": "22.0"},
+    {"name": "InpAdxWeakLot", "value": "0.6"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxOpenTrades", "value": "3"},
+    {"name": "InpMinLot", "value": "0.01"},
+    {"name": "InpMaxLot", "value": "50.0"},
+    {"name": "InpUseBE", "value": "true"},
+    {"name": "InpUseTrail", "value": "true"}
+  ],
+  "assumptions": [
+    "AUDUSD M30 swings of 18 pips regularly generate intraday continuation moves of at least 20 pips.",
+    "Holding trades an extra 5 pips to reach TP1 will not drastically reduce win rate below 55%."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Total net profit turns positive (> $0.00) across 2020-2024 training.",
+    "Profit factor increases from 0.55 to >= 1.20.",
+    "Average win per trade increases from $21.79 to >= $32.00.",
+    "Win rate remains robust (>= 55.0%).",
+    "Maximal equity drawdown remains <= 8.0%."
+  ],
+  "falsification_conditions": [
+    "Total net profit remains negative (< $0.00) or profit factor remains < 1.0.",
+    "Win rate drops below 50.0% due to price reversing before reaching the 20-pip target.",
+    "Total trade count collapses by > 40% (to < 40 trades) across the 5-year training period.",
+    "Maximal equity drawdown breaches 8.0%."
+  ],
+  "status": "proposed"
+}

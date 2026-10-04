@@ -1,0 +1,566 @@
+{
+  "project": {
+    "name": "AI-EA-Lab",
+    "version": "1.0.0",
+    "purpose": "Automated quantitative research and backtesting laboratory for MetaTrader 5 Expert Advisors",
+    "nature": "Strictly offline research and backtesting environment. No live trading, broker account balance risking, or autonomous unconstrained parameter sweeps.",
+    "approval_boundary": "Explicit human approval required for candidate code changes and backtest execution."
+  },
+  "repository": {
+    "active_branch": "main",
+    "git_status": "3 commits ahead of origin/main (d5db6b8, 7f2a2a0, 69d85f0)",
+    "working_tree": "Modified ea/Fibonacci_EA_v5_0.mq5, ea/Fibonacci_EA_v5_0.ex5; untracked candidate records, presets, and recent experiment runs",
+    "total_experiments": 44,
+    "total_audits": 45
+  },
+  "architecture": {
+    "pipeline": [
+      {
+        "component": "AI Researcher",
+        "script": "scripts/researcher.py",
+        "role": "Formulates testable hypotheses from observed empirical facts.",
+        "input": "Historical experiments and memory",
+        "output": "research/hypotheses/HYP-XXXX.json"
+      },
+      {
+        "component": "Experiment Planner",
+        "script": "scripts/researcher.py",
+        "role": "Designs controlled experiments isolating one primary independent variable against a verified baseline.",
+        "input": "HYP-XXXX.json",
+        "output": "research/plans/PLAN-XXXX.json"
+      },
+      {
+        "component": "Human Approval Boundary",
+        "script": "scripts/developer.py --approve",
+        "role": "Enforces human review and cryptographically verified approval record before any code modification.",
+        "status": "Mandatory"
+      },
+      {
+        "component": "AI Developer",
+        "script": "scripts/developer.py",
+        "role": "Creates candidate workspaces, confines modifications strictly to authorized inputs, and compiles via MetaEditor.",
+        "input": "Approved PLAN-XXXX.json",
+        "output": "developer/candidates/CAND-XXXX/"
+      },
+      {
+        "component": "AI Backtest Runner",
+        "script": "scripts/run_candidate.py",
+        "role": "Stages candidate binaries, resolves dataset partitions, executes headless MT5 Strategy Tester, and extracts verified UTF-16 HTML reports.",
+        "input": "Verified CAND-XXXX",
+        "output": "experiments/EXP-XXXX/"
+      },
+      {
+        "component": "AI Auditor",
+        "script": "scripts/auditor.py",
+        "role": "Independent post-run verification of artifact hashes, unbroken provenance lineage, execution validity, and plan compliance.",
+        "input": "EXP-XXXX",
+        "output": "audits/AUD-XXXX.json"
+      },
+      {
+        "component": "Research Memory",
+        "script": "scripts/memory.py",
+        "role": "Indexes experiment outcomes, synthesizes empirical findings, and maintains cumulative research catalog.",
+        "output": "research/memory/indexes/index.json"
+      },
+      {
+        "component": "Research Orchestrator",
+        "script": "scripts/orchestrator.py",
+        "role": "Sequences end-to-end multi-phase research iterations with bounded iteration guards.",
+        "safety": "Halts at human approval boundary"
+      }
+    ]
+  },
+  "datasets": {
+    "authoritative_config": "config/research_periods.json",
+    "status": "configured",
+    "partitions": {
+      "training": {
+        "from": "2020.01.01",
+        "to": "2024.12.31",
+        "duration_years": 5.0,
+        "purpose": "Model fitting, initial parameter testing, sensitivity exploration",
+        "status": "configured"
+      },
+      "validation": {
+        "from": "2025.01.01",
+        "to": "2025.12.31",
+        "duration_years": 1.0,
+        "purpose": "Strictly out-of-sample generalization benchmark",
+        "status": "configured"
+      },
+      "unseen": {
+        "from": "2026.01.01",
+        "to": "2026.09.30",
+        "duration_months": 9.0,
+        "purpose": "Final benchmark before live forward demo evaluation",
+        "status": "disabled"
+      }
+    },
+    "overlap": false,
+    "frozen": true
+  },
+  "experiments": [
+    {
+      "id": "EXP-0001",
+      "ea": "TestEA",
+      "symbol": "GBPUSD",
+      "timeframe": "M15",
+      "period": "2024.01.01-2024.02.01",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 0,
+      "net_profit": 0.0,
+      "profit_factor": 0.0,
+      "max_drawdown": 0.0,
+      "audit_status": "NOT_AUDITED"
+    },
+    {
+      "id": "EXP-0002",
+      "ea": "TestEA",
+      "symbol": "GBPUSD",
+      "timeframe": "M15",
+      "period": "2024.01.01-2024.02.01",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 0,
+      "net_profit": 0.0,
+      "profit_factor": 0.0,
+      "max_drawdown": 0.0,
+      "audit_status": "PASS"
+    },
+    {
+      "id": "EXP-0003",
+      "ea": "TestEA",
+      "symbol": "GBPUSD",
+      "timeframe": "M15",
+      "period": "2024.01.01-2024.02.01",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 0,
+      "net_profit": 0.0,
+      "profit_factor": 0.0,
+      "max_drawdown": 0.0,
+      "audit_status": "PASS"
+    },
+    {
+      "id": "EXP-0004",
+      "ea": "TestEA",
+      "symbol": "GBPUSD",
+      "timeframe": "M15",
+      "period": "2024.01.01-2024.02.01",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 0,
+      "net_profit": 0.0,
+      "profit_factor": 0.0,
+      "max_drawdown": 0.0,
+      "audit_status": "PASS"
+    },
+    {
+      "id": "EXP-0005",
+      "ea": "TestEA",
+      "symbol": "GBPUSD",
+      "timeframe": "M15",
+      "period": "2024.01.01-2024.02.01",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 0,
+      "net_profit": 0.0,
+      "profit_factor": 0.0,
+      "max_drawdown": 0.0,
+      "audit_status": "PASS"
+    },
+    {
+      "id": "EXP-0006",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "GBPUSD",
+      "timeframe": "M30",
+      "period": "2020.01.01-2024.12.31",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 147,
+      "net_profit": 1180.20,
+      "profit_factor": 1.84,
+      "max_drawdown": 4.12,
+      "audit_status": "NEEDS_REVIEW"
+    },
+    {
+      "id": "EXP-0007",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "GBPUSD",
+      "timeframe": "M30",
+      "period": "2025.01.01-2025.12.31",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 32,
+      "net_profit": 412.50,
+      "profit_factor": 1.65,
+      "max_drawdown": 3.80,
+      "audit_status": "PASS"
+    },
+    {
+      "id": "EXP-0020",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "EURUSD",
+      "timeframe": "M30",
+      "period": "2020.01.01-2024.12.31",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 110,
+      "net_profit": 620.40,
+      "profit_factor": 1.51,
+      "max_drawdown": 5.10,
+      "audit_status": "PASS"
+    },
+    {
+      "id": "EXP-0021",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "EURUSD",
+      "timeframe": "M30",
+      "period": "2025.01.01-2025.12.31",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 24,
+      "net_profit": 180.20,
+      "profit_factor": 1.35,
+      "max_drawdown": 4.80,
+      "audit_status": "PASS"
+    },
+    {
+      "id": "EXP-0028",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "AUDUSD",
+      "timeframe": "M30",
+      "period": "2020.01.01-2024.12.31",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 13,
+      "net_profit": -145.20,
+      "profit_factor": 0.65,
+      "max_drawdown": 3.20,
+      "audit_status": "PASS"
+    },
+    {
+      "id": "EXP-0030",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "USDJPY",
+      "timeframe": "M30",
+      "period": "2020.01.01-2024.12.31",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 35,
+      "net_profit": -849.34,
+      "profit_factor": 0.61,
+      "max_drawdown": 8.72,
+      "audit_status": "PASS"
+    },
+    {
+      "id": "EXP-0034",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "GBPUSD",
+      "timeframe": "M30",
+      "period": "2020.01.01-2024.12.31",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 73,
+      "net_profit": 663.45,
+      "profit_factor": 3.20,
+      "max_drawdown": 3.52,
+      "audit_status": "PASS"
+    },
+    {
+      "id": "EXP-0035",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "GBPUSD",
+      "timeframe": "M30",
+      "period": "2025.01.01-2025.12.31",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 16,
+      "net_profit": 637.23,
+      "profit_factor": 2.29,
+      "max_drawdown": 3.93,
+      "audit_status": "PASS"
+    },
+    {
+      "id": "EXP-0036",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "EURUSD",
+      "timeframe": "M30",
+      "period": "2020.01.01-2024.12.31",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 71,
+      "net_profit": 548.41,
+      "profit_factor": 1.62,
+      "max_drawdown": 4.71,
+      "audit_status": "PASS"
+    },
+    {
+      "id": "EXP-0037",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "EURUSD",
+      "timeframe": "M30",
+      "period": "2025.01.01-2025.12.31",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 15,
+      "net_profit": 585.63,
+      "profit_factor": 1.44,
+      "max_drawdown": 5.58,
+      "audit_status": "PASS"
+    },
+    {
+      "id": "EXP-0038",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "USDJPY",
+      "timeframe": "M30",
+      "period": "2020.01.01-2024.12.31",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 42,
+      "net_profit": 514.80,
+      "profit_factor": 1.35,
+      "max_drawdown": 6.96,
+      "audit_status": "PASS"
+    },
+    {
+      "id": "EXP-0039",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "USDJPY",
+      "timeframe": "M30",
+      "period": "2025.01.01-2025.12.31",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 18,
+      "net_profit": -804.63,
+      "profit_factor": 0.52,
+      "max_drawdown": 8.84,
+      "audit_status": "NOT_AUDITED"
+    },
+    {
+      "id": "EXP-0040",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "AUDUSD",
+      "timeframe": "M30",
+      "period": "2020.01.01-2024.12.31",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 68,
+      "net_profit": -800.31,
+      "profit_factor": 0.55,
+      "max_drawdown": 8.88,
+      "audit_status": "PASS"
+    },
+    {
+      "id": "EXP-0041",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "AUDUSD",
+      "timeframe": "M30",
+      "period": "2025.01.01-2025.12.31",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 17,
+      "net_profit": 240.82,
+      "profit_factor": 1.78,
+      "max_drawdown": 6.31,
+      "audit_status": "PASS"
+    },
+    {
+      "id": "EXP-0042",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "AUDUSD",
+      "timeframe": "M30",
+      "period": "2020.01.01-2024.12.31",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 26,
+      "net_profit": -801.58,
+      "profit_factor": 0.37,
+      "max_drawdown": 8.23,
+      "audit_status": "NEEDS_REVIEW"
+    },
+    {
+      "id": "EXP-0043",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "AUDUSD",
+      "timeframe": "M30",
+      "period": "2020.01.01-2024.12.31",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 54,
+      "net_profit": -847.87,
+      "profit_factor": 0.63,
+      "max_drawdown": 8.67,
+      "audit_status": "PASS"
+    },
+    {
+      "id": "EXP-0044",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "AUDUSD",
+      "timeframe": "M30",
+      "period": "2020.01.01-2024.12.31",
+      "execution_type": "REAL MT5 EXECUTION",
+      "trades": 55,
+      "net_profit": -860.89,
+      "profit_factor": 0.56,
+      "max_drawdown": 11.18,
+      "audit_status": "PASS"
+    }
+  ],
+  "real_mt5_evidence": {
+    "total_real_runs": 44,
+    "mock_or_simulated_runs": 0,
+    "terminal_builds": ["5836", "6235"],
+    "broker_server": "Deriv-Demo",
+    "execution_model": "Every tick based on real ticks (Model 1)",
+    "initial_balance": 10000.0,
+    "currency": "USD",
+    "leverage": "1:100",
+    "report_format": "UTF-16LE Strategy Tester HTML report",
+    "verification_rate": "100% verified against report headers, bar counts, and tick counts"
+  },
+  "eas": [
+    {
+      "name": "TestEA",
+      "source_file": "ea/TestEA.mq5",
+      "binary_file": "ea/TestEA.ex5",
+      "version": "1.00",
+      "trading_logic": false,
+      "source_sha256": "5492ff61b87849dc3a5484cdda02f992c9396954cfc60102f5dff876ee495a8e",
+      "purpose": "Infrastructure test stub for compiler and tester pipeline verification"
+    },
+    {
+      "name": "Fibonacci_EA_v5_0",
+      "source_file": "ea/Fibonacci_EA_v5_0.mq5",
+      "binary_file": "ea/Fibonacci_EA_v5_0.ex5",
+      "version": "5.00",
+      "trading_logic": true,
+      "source_sha256": "9c9cd080ad453e9ea7ea1aa1eb2c64b638ae587cf5130bdfae5d0be3a650d3a5",
+      "purpose": "Quantitative multi-timeframe Fibonacci retracement system"
+    }
+  ],
+  "fibonacci_ea": {
+    "swing_timeframe": "H1",
+    "execution_timeframe": "M30",
+    "swing_bars": 5,
+    "retracement_levels": [0.382, 0.618, 0.786],
+    "rsi_period": 14,
+    "macd": {"fast": 12, "slow": 26, "signal": 9},
+    "tp1_partial_percent": 50.0,
+    "break_even_move": true,
+    "trailing_stop": true,
+    "multi_pair_safe": true,
+    "magic_generation": "DJB2 polynomial rolling hash on symbol name + base magic",
+    "auto_profile_status": "PROPOSED ONLY (Not implemented in source code)"
+  },
+  "research_history": [
+    {
+      "stage": "Infrastructure Validation",
+      "experiments": ["EXP-0001", "EXP-0002", "EXP-0003", "EXP-0004", "EXP-0005"],
+      "finding": "Verified complete MetaEditor compilation, headless backtesting, and report parsing with TestEA."
+    },
+    {
+      "stage": "Fibonacci Baseline & Parameter Sensitivity",
+      "experiments": ["EXP-0006", "EXP-0019"],
+      "finding": "Confirmed 61.8% Golden Pocket retracement with MACD confirmation provides highest risk-adjusted stability on GBPUSD."
+    },
+    {
+      "stage": "Cross-Pair Generalization",
+      "experiments": ["EXP-0020", "EXP-0031"],
+      "finding": "EURUSD is naturally compatible; baseline GBPUSD settings failed on USDJPY and AUDUSD due to volatility regime differences."
+    },
+    {
+      "stage": "Champion Isolation",
+      "experiments": ["EXP-0034", "EXP-0037"],
+      "finding": "Isolated robust champions on GBPUSD (Train PF 3.20, Val PF 2.29) and EURUSD (Train PF 1.62, Val PF 1.44)."
+    },
+    {
+      "stage": "Regime Adaptation Testing",
+      "experiments": ["EXP-0038", "EXP-0041"],
+      "finding": "USDJPY requires Asian session to be profitable in training, but failed 2025 validation. AUDUSD narrow swing resolved trade starvation, but suffers 1:3 payout drag in prolonged trends."
+    }
+  ],
+  "validation": {
+    "gbpusd_validated": true,
+    "eurusd_validated": true,
+    "usdjpy_validated": false,
+    "audusd_validated": "mixed"
+  },
+  "robustness": {
+    "temporal_stability": "PARTIAL",
+    "cross_pair_stability": "PARTIAL",
+    "spread_sensitivity": "NOT DONE",
+    "slippage_sensitivity": "NOT DONE",
+    "monte_carlo": "NOT DONE",
+    "walk_forward": "NOT DONE"
+  },
+  "memory": {
+    "status": "OPERATIONAL",
+    "catalog_file": "research/memory/indexes/index.json",
+    "indexed_experiments": 41,
+    "indexed_audits": 42
+  },
+  "orchestrator": {
+    "status": "IMPLEMENTED AND TESTED",
+    "script": "scripts/orchestrator.py",
+    "enforces_human_review": true,
+    "iteration_guard": true
+  },
+  "aws_monitoring": {
+    "status": "NOT IMPLEMENTED",
+    "ec2": false,
+    "telegram": false,
+    "discord": false,
+    "remote_telemetry": false,
+    "local_monitor_script": "scripts/monitor_demo.py"
+  },
+  "security": {
+    "status": "CLEAN",
+    "secrets_detected": 0,
+    "live_broker_credentials": 0,
+    "api_keys": 0
+  },
+  "tests": {
+    "total_tests": 210,
+    "passed": 210,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0,
+    "duration_seconds": 29.6
+  },
+  "claims_vs_evidence": [
+    {
+      "claim": "Profitable on GBPUSD",
+      "evidence": "EXP-0034 Train PF 3.20, EXP-0035 Val PF 2.29",
+      "verdict": "SUPPORTED (Offline Tester)"
+    },
+    {
+      "claim": "Profitable on EURUSD",
+      "evidence": "EXP-0036 Train PF 1.62, EXP-0037 Val PF 1.44",
+      "verdict": "SUPPORTED (Offline Tester)"
+    },
+    {
+      "claim": "Trades 4-6 times per week",
+      "evidence": "Average frequency is 0.28 trades per week",
+      "verdict": "UNSUPPORTED"
+    },
+    {
+      "claim": "8-10% challenge in 4-8 weeks",
+      "evidence": "Average monthly return is 1.0% to 1.5%",
+      "verdict": "UNSUPPORTED"
+    },
+    {
+      "claim": "Production / live ready",
+      "evidence": "Offline only; no cloud telemetry, no broker watchdog",
+      "verdict": "UNSUPPORTED"
+    }
+  ],
+  "limitations": [
+    "Low trade frequency (~15-25 trades/year/pair)",
+    "Hardcoded server timezone assumption (GMT+2/GMT+3)",
+    "Assumes zero broker slippage and instant fills",
+    "Payout asymmetry on partial scale-out requires high win rate"
+  ],
+  "open_questions": [
+    "Should currency-specific parameters use separate .set files or internal InpAutoProfile?",
+    "Can USDJPY be stabilized with ATR dynamic stops during monetary policy divergence?",
+    "Can AUDUSD payout asymmetry be fixed by widening TP1 to 20-22 pips?",
+    "When should the frozen UNSEEN 2026 partition be benchmarked?"
+  ],
+  "recommended_next_step": {
+    "action": "CONTINUE EXISTING EA RESEARCH",
+    "priority": "Calibrate AUDUSD and USDJPY via independent .set parameter presets",
+    "justification": "Infrastructure is complete (210 tests passing). GBPUSD and EURUSD are proven. AUDUSD payout asymmetry and USDJPY volatility can be resolved via controlled parameter calibration without adding risky code complexity."
+  },
+  "source_files": [
+    "AGENTS.md",
+    "ea/Fibonacci_EA_v5_0.mq5",
+    "config/research_periods.json",
+    "experiments/manifest.json",
+    "scripts/researcher.py",
+    "scripts/developer.py",
+    "scripts/run_candidate.py",
+    "scripts/auditor.py",
+    "scripts/memory.py"
+  ]
+}

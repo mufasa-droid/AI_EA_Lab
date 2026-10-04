@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0129",
+  "created_at": "2026-10-04T17:15:00+01:00",
+  "title": "AUDUSD M30 Macro Downtrend Alignment (Short-Only Direction Test)",
+  "research_question": "Does restricting AUDUSD M30 execution to Short trades only (InpDirection=1) eliminate the failing 38-47% win-rate Long trades observed in EXP-0040 and EXP-0043, shifting 2020-2024 training net profit from -$800.31 to positive (> $0.00) with profit factor >= 1.30 and drawdown <= 8.0%?",
+  "hypothesis": "Because AUDUSD was in a prolonged macro downtrend (0.8000 to 0.6300) across 2020-2024, Short trades demonstrated strong edge (74.47% win rate in EXP-0040) while counter-trend Longs consistently failed (38.89% to 47.62% win rate). Restricting InpDirection to 1 (SELL only) will eliminate losing counter-trend Longs, reducing gross losses and shifting overall training net profit into positive territory.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0040",
+      "EXP-0043",
+      "EXP-0028"
+    ],
+    "facts": [
+      "In EXP-0040 on AUDUSD M30, Short trades achieved a 74.47% win rate (35 wins, 12 losses) while Long trades achieved only 47.62% (10 wins, 11 losses).",
+      "In EXP-0043, Short trades achieved a 63.89% win rate while Long trades collapsed to 38.89% (7 wins, 11 losses).",
+      "AUDUSD fell continuously from 0.8000 in early 2021 to 0.6300 in late 2023, creating persistent headwind for counter-trend Long Fibonacci pullbacks.",
+      "The 11 losing Long trades in EXP-0040 accounted for approximately $850 in gross losses, nearly identical to the total net loss of -$800.31."
+    ],
+    "inferences": [
+      "The core Fibonacci entry edge on AUDUSD is intact for trend-aligned Short setups.",
+      "Filtering out counter-trend Long setups via InpDirection=1 will eliminate the primary source of gross losses.",
+      "With 35 wins out of 47 Short trades in EXP-0040, the Short trades alone should produce positive net profit."
+    ],
+    "evidence": [
+      "EXP-0040 short_trades_win_rate=74.47% (35/47), long_trades_win_rate=47.62% (10/21), total_net_profit=-800.31",
+      "EXP-0043 short_trades_win_rate=63.89% (23/36), long_trades_win_rate=38.89% (7/18), total_net_profit=-847.87"
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "InpDirection",
+      "baseline_value": "2",
+      "proposed_value": "1",
+      "rationale": "Restrict execution to SELL trades only to align with the 2020-2024 macro downtrend and eliminate low-probability counter-trend Longs."
+    }
+  ],
+  "dependent_variables": [
+    "total_net_profit",
+    "profit_factor",
+    "win_rate",
+    "total_trades",
+    "gross_loss",
+    "equity_drawdown_maximal_percent"
+  ],
+  "control_variables": [
+    {"name": "symbol", "value": "AUDUSD"},
+    {"name": "timeframe", "value": "M30"},
+    {"name": "InpMinSwingPips", "value": "18.0"},
+    {"name": "InpMaxSLPips", "value": "15.0"},
+    {"name": "InpTP1Pips", "value": "15.0"},
+    {"name": "InpTP2Pips", "value": "30.0"},
+    {"name": "InpTP1ClosePct", "value": "50.0"},
+    {"name": "InpTrailPips", "value": "8.0"},
+    {"name": "InpUseAsianSession", "value": "true"},
+    {"name": "InpAsianOpen", "value": "0"},
+    {"name": "InpAsianClose", "value": "8"},
+    {"name": "InpUseH4Soft", "value": "false"},
+    {"name": "InpUseAdxSoft", "value": "false"},
+    {"name": "InpInitialBalance", "value": "0.0"},
+    {"name": "InpDailyLossLimit", "value": "4.0"},
+    {"name": "InpTotalDDLimit", "value": "8.0"},
+    {"name": "InpWeeklyTargetPct", "value": "5.0"},
+    {"name": "InpUseNewsFilter", "value": "true"},
+    {"name": "InpNewsBufferMins", "value": "30"},
+    {"name": "InpMaxTradesPerDay", "value": "6"},
+    {"name": "InpWeekendClose", "value": "true"},
+    {"name": "InpWeekendCloseHour", "value": "21"},
+    {"name": "InpSwingLookback", "value": "50"},
+    {"name": "InpSwingStrength", "value": "5"},
+    {"name": "InpMaxSwingPips", "value": "500.0"},
+    {"name": "InpMinBarsAfterSwing", "value": "2"},
+    {"name": "InpUseFib236", "value": "false"},
+    {"name": "InpUseFib382", "value": "true"},
+    {"name": "InpUseFib500", "value": "true"},
+    {"name": "InpUseFib618", "value": "true"},
+    {"name": "InpUseFib786", "value": "false"},
+    {"name": "InpFibBuffer", "value": "5.0"},
+    {"name": "InpUseTrend", "value": "true"},
+    {"name": "InpTrendEma", "value": "50"},
+    {"name": "InpUseSession", "value": "true"},
+    {"name": "InpLondonOpen", "value": "8"},
+    {"name": "InpLondonClose", "value": "12"},
+    {"name": "InpNYOpen", "value": "13"},
+    {"name": "InpNYClose", "value": "18"},
+    {"name": "InpMaxSpread", "value": "3.0"},
+    {"name": "InpUseRsi", "value": "true"},
+    {"name": "InpRsiPeriod", "value": "14"},
+    {"name": "InpRsiBullMax", "value": "62.0"},
+    {"name": "InpRsiBearMin", "value": "38.0"},
+    {"name": "InpRsiExtBull", "value": "42.0"},
+    {"name": "InpRsiExtBear", "value": "58.0"},
+    {"name": "InpUseMacd", "value": "true"},
+    {"name": "InpUseRejection", "value": "true"},
+    {"name": "InpRejWickRatio", "value": "0.35"},
+    {"name": "InpH4Ema", "value": "50"},
+    {"name": "InpH4LotFactor", "value": "0.6"},
+    {"name": "InpAdxPeriod", "value": "14"},
+    {"name": "InpAdxMin", "value": "15.0"},
+    {"name": "InpAdxMid", "value": "22.0"},
+    {"name": "InpAdxWeakLot", "value": "0.6"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxOpenTrades", "value": "3"},
+    {"name": "InpMinLot", "value": "0.01"},
+    {"name": "InpMaxLot", "value": "50.0"},
+    {"name": "InpUseBE", "value": "true"},
+    {"name": "InpUseTrail", "value": "true"}
+  ],
+  "assumptions": [
+    "Short setups will continue executing with approximately 65-75% win rate as observed in EXP-0040 and EXP-0043.",
+    "Eliminating Long setups will not create severe trade starvation."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Total net profit turns positive (> $0.00) across 2020-2024 training.",
+    "Profit factor increases to >= 1.30.",
+    "Overall win rate rises to >= 70.0%.",
+    "Gross loss decreases by at least 35% relative to EXP-0040 ($2,209.50).",
+    "Maximal equity drawdown remains <= 8.0%."
+  ],
+  "falsification_conditions": [
+    "Total net profit remains negative (< $0.00) or profit factor remains < 1.0.",
+    "Short win rate collapses below 55.0%.",
+    "Maximal equity drawdown breaches 8.0%."
+  ],
+  "status": "proposed"
+}

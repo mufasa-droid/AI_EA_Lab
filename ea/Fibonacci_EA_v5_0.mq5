@@ -108,6 +108,9 @@ input int    InpLondonOpen        = 8;     // London open
 input int    InpLondonClose       = 12;    // London close
 input int    InpNYOpen            = 13;    // NY open
 input int    InpNYClose           = 18;    // NY close
+input bool   InpUseAsianSession   = false; // Asian (Tokyo/Sydney) session filter
+input int    InpAsianOpen         = 0;     // Asian open (server time)
+input int    InpAsianClose        = 8;     // Asian close (server time)
 input double InpMaxSpread         = 3.0;   // Max spread pips (0=disabled)
 input bool   InpUseRsi            = true;  // RSI filter (tiered per level)
 input int    InpRsiPeriod         = 14;    // RSI period
@@ -416,19 +419,26 @@ void CheckWeekendClose()
 //+------------------------------------------------------------------+
 //|  HELPERS                                                         |
 //+------------------------------------------------------------------+
+double PipSize()
+{
+   return (_Digits == 3 || _Digits == 5) ? _Point * 10.0 : _Point;
+}
+
 bool InSession()
 {
    if(!InpUseSession) return true;
    MqlDateTime dt; TimeToStruct(TimeCurrent(), dt); int h = dt.hour;
-   return (h>=InpLondonOpen && h<InpLondonClose) ||
-          (h>=InpNYOpen     && h<InpNYClose);
+   bool inLonNY = (h>=InpLondonOpen && h<InpLondonClose) ||
+                  (h>=InpNYOpen     && h<InpNYClose);
+   bool inAsia  = InpUseAsianSession && (h>=InpAsianOpen && h<InpAsianClose);
+   return inLonNY || inAsia;
 }
 
 bool SpreadOk()
 {
    if(InpMaxSpread <= 0) return true;
    return (SymbolInfoDouble(_Symbol,SYMBOL_ASK)-SymbolInfoDouble(_Symbol,SYMBOL_BID))
-          / (_Point*10) <= InpMaxSpread;
+          / PipSize() <= InpMaxSpread;
 }
 
 double AdxLotFactor()
@@ -456,7 +466,7 @@ void ScanSwings()
 {
    int    str  = InpSwingStrength;
    int    bars = InpSwingLookback + str + 5;
-   double pip  = _Point * 10;
+   double pip  = PipSize();
 
    double h1H[], h1L[];
    ArraySetAsSeries(h1H,true); ArraySetAsSeries(h1L,true);
@@ -573,7 +583,7 @@ void CheckEntry()
    // Candle data
    double c1=iClose(_Symbol,PERIOD_CURRENT,1),o1=iOpen (_Symbol,PERIOD_CURRENT,1);
    double h1=iHigh (_Symbol,PERIOD_CURRENT,1),l1=iLow  (_Symbol,PERIOD_CURRENT,1);
-   double pip=_Point*10, buf=InpFibBuffer*pip;
+   double pip=PipSize(), buf=InpFibBuffer*pip;
 
    double rArr[]; ArraySetAsSeries(rArr,true); double rsi=50;
    if(CopyBuffer(hRsi,0,1,2,rArr)>=2) rsi=rArr[0];
@@ -662,7 +672,7 @@ void ExecTrade(ENUM_ORDER_TYPE type,double sl,double tp2,
    double ask  = SymbolInfoDouble(_Symbol,SYMBOL_ASK);
    double bid  = SymbolInfoDouble(_Symbol,SYMBOL_BID);
    int    digs = (int)SymbolInfoInteger(_Symbol,SYMBOL_DIGITS);
-   double pip  = _Point*10;
+   double pip  = PipSize();
    double entry= (type==ORDER_TYPE_BUY)?ask:bid;
    double slD  = InpMaxSLPips*pip;
 
@@ -714,7 +724,7 @@ void ExecTrade(ENUM_ORDER_TYPE type,double sl,double tp2,
 //+------------------------------------------------------------------+
 void ManageTrades()
 {
-   double pip=_Point*10, trailD=InpTrailPips*pip;
+   double pip=PipSize(), trailD=InpTrailPips*pip;
 
    for(int i=PositionsTotal()-1;i>=0;i--)
    {
