@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0150",
+  "created_at": "2026-10-05T23:45:00+01:00",
+  "title": "GBPUSD M30 ATR Volatility Filter to Eliminate 2026 Regime Chop",
+  "research_question": "Does enabling the ATR volatility filter (InpUseAtrFilter=true, InpMaxAtrPips=20.0) on GBPUSD M30 filter out high-volatility false breakouts during the 2026 UNSEEN partition, reducing trade losses and shifting profit factor from 0.62 to >= 1.20 with drawdown <= 6.0%?",
+  "hypothesis": "Enabling InpUseAtrFilter=true with InpMaxAtrPips=20.0 while maintaining baseline 15-pip TP1 will block entries during erratic volatility spikes, filtering out the false Fibonacci breakout losses observed in the 2026 UNSEEN partition and reducing maximal drawdown below 6.0%.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0048",
+      "EXP-0034",
+      "EXP-0051"
+    ],
+    "facts": [
+      "EXP-0048 (2026 UNSEEN) recorded 16 losing trades out of 34 trades, resulting in -$592.46 net loss, PF 0.62, and 11.17% maximal drawdown.",
+      "EXP-0051 demonstrated that expanding TP1 to 22.0 pips was ineffective (win rate crashed to 18.75%), proving that the 2026 failure is caused by false entries during low-momentum chop rather than exit target sizing.",
+      "Fibonacci_EA_v5_0 contains a built-in ATR filter (InpUseAtrFilter) which was previously tested successfully on USDJPY (EXP-0046, +$566.28)."
+    ],
+    "inferences": [
+      "During 2026, many Fibonacci retracement entries occurred during volatility spikes or erratic sessions that lacked trend continuation, leading to quick stop-outs.",
+      "Enabling InpUseAtrFilter with a 20-pip ceiling will suppress trade execution during erratic spikes, filtering out false signals while preserving high-conviction continuation entries."
+    ],
+    "evidence": [
+      "EXP-0048 total_net_profit=-592.46, profit_factor=0.62, total_trades=34, equity_drawdown_maximal=1152.22 (11.17%)",
+      "EXP-0051 total_net_profit=-901.50, profit_factor=0.28, total_trades=16, win_rate=18.75%"
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "InpUseAtrFilter",
+      "baseline_value": "false",
+      "proposed_value": "true",
+      "rationale": "Enables the built-in ATR volatility guard to skip entries during volatility spikes."
+    },
+    {
+      "name": "InpMaxAtrPips",
+      "baseline_value": "30.0",
+      "proposed_value": "20.0",
+      "rationale": "Sets the maximum ATR(14) entry ceiling to 20 pips, filtering out entries when market noise is excessive."
+    }
+  ],
+  "dependent_variables": [
+    "total_trades",
+    "total_net_profit",
+    "profit_factor",
+    "win_rate",
+    "equity_drawdown_maximal"
+  ],
+  "control_variables": [
+    {"name": "symbol", "value": "GBPUSD"},
+    {"name": "timeframe", "value": "M30"},
+    {"name": "ea", "value": "Fibonacci_EA_v5_0"},
+    {"name": "InpMaxSLPips", "value": "15.0"},
+    {"name": "InpTP1Pips", "value": "15.0"},
+    {"name": "InpTP2Pips", "value": "30.0"},
+    {"name": "InpTP1ClosePct", "value": "50.0"},
+    {"name": "InpTrailPips", "value": "8.0"},
+    {"name": "InpUseTrend", "value": "true"},
+    {"name": "InpTrendEma", "value": "50"},
+    {"name": "InpUseSession", "value": "true"},
+    {"name": "InpLondonOpen", "value": "8"},
+    {"name": "InpLondonClose", "value": "12"},
+    {"name": "InpNYOpen", "value": "13"},
+    {"name": "InpNYClose", "value": "18"},
+    {"name": "InpUseAsianSession", "value": "false"},
+    {"name": "InpMaxSpread", "value": "3.0"},
+    {"name": "InpUseRsi", "value": "true"},
+    {"name": "InpRsiPeriod", "value": "14"},
+    {"name": "InpRsiBullMax", "value": "62.0"},
+    {"name": "InpRsiBearMin", "value": "38.0"},
+    {"name": "InpRsiExtBull", "value": "42.0"},
+    {"name": "InpRsiExtBear", "value": "58.0"},
+    {"name": "InpUseMacd", "value": "true"},
+    {"name": "InpUseRejection", "value": "true"},
+    {"name": "InpRejWickRatio", "value": "0.35"},
+    {"name": "InpUseH4Soft", "value": "false"},
+    {"name": "InpUseAdxSoft", "value": "false"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxOpenTrades", "value": "3"},
+    {"name": "InpUseBE", "value": "true"},
+    {"name": "InpUseTrail", "value": "true"}
+  ],
+  "assumptions": [
+    "GBPUSD M30 average ATR(14) in normal market conditions is between 10 and 18 pips.",
+    "Spikes exceeding 20 pips correlate with news announcements or erratic false breakouts."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Total losing trades decrease relative to baseline.",
+    "Training net profit remains positive (> $500.00) with profit factor >= 2.0.",
+    "2026 UNSEEN net profit improves from -$592.46 toward breakeven or positive.",
+    "Maximal equity drawdown remains <= 6.0%."
+  ],
+  "falsification_conditions": [
+    "Total trades drop below 5 across the 5-year training period (over-filtering).",
+    "Profit factor remains < 1.0 in 2026 UNSEEN benchmark.",
+    "Maximal equity drawdown breaches 8.0%."
+  ],
+  "status": "proposed"
+}

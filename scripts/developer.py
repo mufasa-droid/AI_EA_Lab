@@ -252,6 +252,23 @@ def run_developer(
         source_before = ea_source_file.read_text(encoding="utf-8")
     except UnicodeDecodeError:
         source_before = ea_source_file.read_text(encoding="utf-16", errors="replace")
+
+    # If the baseline experiment recorded specific input parameter values,
+    # synchronize source_before's input defaults with the baseline experiment
+    # so that source_before faithfully represents the baseline state.
+    b_inputs = base_meta.get("inputs", {}) if base_meta else {}
+    for var_name, var_val in b_inputs.items():
+        val_str = "true" if var_val is True else "false" if var_val is False else str(var_val)
+        pattern = re.compile(
+            rf"^(\s*input\s+[a-zA-Z0-9_]+\s+{re.escape(var_name)}\s*=\s*)([^;]+)(;.*)$",
+            re.MULTILINE
+        )
+        match = pattern.search(source_before)
+        if match:
+            prefix = match.group(1)
+            suffix = match.group(3)
+            source_before = source_before[:match.start()] + f"{prefix}{val_str}{suffix}" + source_before[match.end():]
+
     source_before_sha = calculate_sha256(source_before)
 
     # 6. FEASIBILITY ANALYSIS

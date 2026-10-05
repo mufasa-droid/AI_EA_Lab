@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0145",
+  "created_at": "2026-10-05T20:57:00+01:00",
+  "title": "Dual-Major Champion Basket 2026 UNSEEN Benchmark - GBPUSD M30",
+  "research_question": "Does the validated GBPUSD M30 champion (EXP-0034 training PF 3.20, EXP-0035 validation PF 2.29) maintain positive net profit (PF >= 1.20, Net Profit > $0.00, Max DD <= 6.0%) across the strictly out-of-sample 2026 UNSEEN dataset partition (2026.01.01 to 2026.09.30)?",
+  "hypothesis": "Because the GBPUSD M30 Fibonacci pullback edge with London/NY session filters and 15-pip SL/TP demonstrated robust out-of-sample generalization across both 2020-2024 training and 2025 validation, the identical untouched strategy configuration will remain profitable and within prop firm drawdown limits across the 2026 UNSEEN dataset.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0034",
+      "EXP-0035"
+    ],
+    "facts": [
+      "In EXP-0034 across 2020-2024 training, GBPUSD M30 achieved +$663.45 net profit, PF 3.20, 78.1% win rate, and 3.52% max drawdown.",
+      "In EXP-0035 across 2025 validation, GBPUSD M30 confirmed out-of-sample edge with +$637.23 net profit, PF 2.29, 81.3% win rate, and 3.93% max drawdown.",
+      "Across 10,000 Monte Carlo bootstrap iterations, the GBPUSD strategy maintained a 95% positive expected return."
+    ],
+    "inferences": [
+      "GBPUSD M30 structure is stable across differing annual volatility regimes.",
+      "Evaluating untouched champion parameters on the 2026 UNSEEN partition provides the final empirical test before live demo deployment."
+    ],
+    "evidence": [
+      "EXP-0034 total_net_profit=663.45, profit_factor=3.20, win_rate=78.13%",
+      "EXP-0035 total_net_profit=637.23, profit_factor=2.29, win_rate=81.25%"
+    ]
+  },
+  "independent_variables": [],
+  "dependent_variables": [
+    "total_net_profit",
+    "profit_factor",
+    "win_rate",
+    "total_trades",
+    "equity_drawdown_maximal_percent"
+  ],
+  "control_variables": [
+    {"name": "symbol", "value": "GBPUSD"},
+    {"name": "timeframe", "value": "M30"},
+    {"name": "InpMinSwingPips", "value": "25.0"},
+    {"name": "InpMaxSLPips", "value": "15.0"},
+    {"name": "InpTP1Pips", "value": "15.0"},
+    {"name": "InpTP2Pips", "value": "30.0"},
+    {"name": "InpTP1ClosePct", "value": "50.0"},
+    {"name": "InpTrailPips", "value": "8.0"},
+    {"name": "InpUseTrend", "value": "true"},
+    {"name": "InpTrendEma", "value": "50"},
+    {"name": "InpUseSession", "value": "true"},
+    {"name": "InpLondonOpen", "value": "8"},
+    {"name": "InpLondonClose", "value": "12"},
+    {"name": "InpNYOpen", "value": "13"},
+    {"name": "InpNYClose", "value": "18"},
+    {"name": "InpUseAsianSession", "value": "false"},
+    {"name": "InpUseH4Soft", "value": "false"},
+    {"name": "InpUseAdxSoft", "value": "false"}
+  ],
+  "assumptions": [
+    "Broker tick data quality for 2026 on Deriv-Demo is >= 99.0%."
+  ],
+  "dataset": {
+    "type": "unseen",
+    "from": "2026.01.01",
+    "to": "2026.09.30",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Total net profit > $0.00.",
+    "Profit factor >= 1.20.",
+    "Max equity drawdown <= 6.0%."
+  ],
+  "falsification_conditions": [
+    "Total net profit < $0.00.",
+    "Max equity drawdown > 8.0%."
+  ],
+  "status": "proposed"
+}

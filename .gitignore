@@ -62,3 +62,5 @@ research/orchestrator/orchestrator.lock
 # Agent / Tool scratch & system logs
 .system_generated/
 *.log
+scratch/
+

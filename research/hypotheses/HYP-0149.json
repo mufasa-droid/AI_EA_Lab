@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0149",
+  "created_at": "2026-10-05T23:34:00+01:00",
+  "title": "GBPUSD M30 Take-Profit 1 Expansion (22.0 Pips) to Remedy Payout Asymmetry",
+  "research_question": "Does widening InpTP1Pips from 15.0 to 22.0 pips on GBPUSD M30 increase average winning trade payout and eliminate the 1:3 payout asymmetry, maintaining 2020-2024 training profitability with profit factor >= 2.50 and maximal drawdown <= 5.0%?",
+  "hypothesis": "Increasing InpTP1Pips from 15.0 to 22.0 pips while holding InpMaxSLPips constant at 15.0 will increase the realized reward on TP1 partial scale-outs by ~46.7%, improving payout symmetry without severely degrading win rate below 65.0%.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0034",
+      "EXP-0035",
+      "EXP-0048"
+    ],
+    "facts": [
+      "EXP-0034 (Training 2020-2024) achieved PF 3.20 with 78.1% win rate, but average win was $16.92 vs average loss -$18.83 across partial scale-outs.",
+      "EXP-0048 (2026 UNSEEN) suffered catastrophic regime failure (PF 0.62, -$592.46 net loss, 11.17% drawdown) when win rate dropped to 52.94%, because average loss (-$97.53) was 1.81x average win ($53.78).",
+      "Closing 50% volume at 15 pips while absorbing full 15-pip stop losses requires a mathematical breakeven win rate of >= 75.0% when continuation runners do not develop."
+    ],
+    "inferences": [
+      "Expanding InpTP1Pips to 22.0 pips allows 50% scale-out to bank 11.0 effective pips before moving to break-even, shifting the payout profile closer to 1:1 risk/reward.",
+      "If the market can reach 22.0 pips with sufficient frequency (> 65%), the strategy will survive lower win-rate regimes without breaching drawdown limits."
+    ],
+    "evidence": [
+      "EXP-0034 total_net_profit=663.45, profit_factor=3.20, total_trades=73",
+      "EXP-0048 total_net_profit=-592.46, profit_factor=0.62, equity_drawdown_maximal=1152.22 (11.17%)"
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "InpTP1Pips",
+      "baseline_value": "15.0",
+      "proposed_value": "22.0",
+      "rationale": "Widening Take Profit 1 from 15 to 22 pips increases banked partial profit by ~46.7%, mitigating the 1:3 payout asymmetry."
+    }
+  ],
+  "dependent_variables": [
+    "total_trades",
+    "total_net_profit",
+    "profit_factor",
+    "win_rate",
+    "equity_drawdown_maximal"
+  ],
+  "control_variables": [
+    {"name": "symbol", "value": "GBPUSD"},
+    {"name": "timeframe", "value": "M30"},
+    {"name": "ea", "value": "Fibonacci_EA_v5_0"},
+    {"name": "InpMaxSLPips", "value": "15.0"},
+    {"name": "InpTP2Pips", "value": "30.0"},
+    {"name": "InpTP1ClosePct", "value": "50.0"},
+    {"name": "InpTrailPips", "value": "8.0"},
+    {"name": "InpUseTrend", "value": "true"},
+    {"name": "InpTrendEma", "value": "50"},
+    {"name": "InpUseSession", "value": "true"},
+    {"name": "InpLondonOpen", "value": "8"},
+    {"name": "InpLondonClose", "value": "12"},
+    {"name": "InpNYOpen", "value": "13"},
+    {"name": "InpNYClose", "value": "18"},
+    {"name": "InpUseAsianSession", "value": "false"},
+    {"name": "InpMaxSpread", "value": "3.0"},
+    {"name": "InpUseRsi", "value": "true"},
+    {"name": "InpRsiPeriod", "value": "14"},
+    {"name": "InpRsiBullMax", "value": "62.0"},
+    {"name": "InpRsiBearMin", "value": "38.0"},
+    {"name": "InpRsiExtBull", "value": "42.0"},
+    {"name": "InpRsiExtBear", "value": "58.0"},
+    {"name": "InpUseMacd", "value": "true"},
+    {"name": "InpUseRejection", "value": "true"},
+    {"name": "InpRejWickRatio", "value": "0.35"},
+    {"name": "InpUseH4Soft", "value": "false"},
+    {"name": "InpUseAdxSoft", "value": "false"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxOpenTrades", "value": "3"},
+    {"name": "InpUseBE", "value": "true"},
+    {"name": "InpUseTrail", "value": "true"}
+  ],
+  "assumptions": [
+    "GBPUSD M30 swings have sufficient momentum to reach 22 pips during London/NY sessions.",
+    "Deriv-Demo tick and execution quality is consistent with historical runs."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Average profit trade increases from ~$53 to >= $70.",
+    "Total net profit across 2020-2024 training remains >= $500.00.",
+    "Profit factor remains >= 2.20.",
+    "Maximal equity drawdown remains <= 5.0%."
+  ],
+  "falsification_conditions": [
+    "Win rate collapses below 60.0% due to price turning before 22 pips.",
+    "Total net profit turns negative (< $0.00) or profit factor drops below 1.50.",
+    "Maximal equity drawdown breaches 6.0%."
+  ],
+  "status": "proposed"
+}

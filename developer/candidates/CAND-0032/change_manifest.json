@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0032",
+  "plan_id": "PLAN-0190",
+  "baseline_experiment": "EXP-0052",
+  "ea": "Fibonacci_EA_v5_0",
+  "changes": [
+    {
+      "type": "input_default_change",
+      "parameter": "InpTP1ClosePct",
+      "type_declared": "double",
+      "after": "75.0"
+    }
+  ],
+  "unauthorized_changes": [],
+  "feasible": true,
+  "compile_status": "passed"
+}

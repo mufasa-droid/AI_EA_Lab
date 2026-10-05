@@ -1,0 +1,102 @@
+{
+  "sample_size": 113,
+  "iterations": 10000,
+  "initial_deposit": 10000.0,
+  "limits": {
+    "daily_loss_limit_pct": 4.0,
+    "total_dd_limit_pct": 8.0
+  },
+  "baseline": {
+    "net_profit": 2450.21,
+    "profit_factor": 1.82,
+    "win_rate": 73.5,
+    "max_drawdown_pct": 5.82,
+    "max_consecutive_losses": 5,
+    "worst_daily_loss_pct": 3.03
+  },
+  "bootstrap_monte_carlo": {
+    "profit_percentiles": {
+      "5th_percentile_worst_case": 908.19,
+      "25th_percentile": 1801.95,
+      "50th_percentile_median": 2438.02,
+      "75th_percentile": 3070.29,
+      "95th_percentile_best_case": 3993.33
+    },
+    "drawdown_percentiles": {
+      "median_dd_pct": 4.05,
+      "90th_percentile_dd_pct": 6.67,
+      "95th_percentile_dd_pct": 7.59,
+      "99th_percentile_dd_pct": 10.05,
+      "worst_ever_dd_pct": 19.6
+    },
+    "risk_metrics": {
+      "var_95_net_profit": 908.19,
+      "var_99_net_profit": 287.0,
+      "cvar_95_expected_shortfall": 528.1,
+      "prob_total_drawdown_breach_pct": 3.83
+    }
+  },
+  "slippage_stress_analysis": {
+    "0.0_pips": {
+      "slippage_pips": 0.0,
+      "net_profit": 2450.21,
+      "profit_factor": 1.82,
+      "win_rate": 73.5,
+      "max_drawdown_pct": 5.82,
+      "profit_retention_pct": 100.0,
+      "breached_total_dd": false
+    },
+    "0.5_pips": {
+      "slippage_pips": 0.5,
+      "net_profit": 2230.01,
+      "profit_factor": 1.72,
+      "win_rate": 73.5,
+      "max_drawdown_pct": 6.11,
+      "profit_retention_pct": 91.0,
+      "breached_total_dd": false
+    },
+    "1.0_pips": {
+      "slippage_pips": 1.0,
+      "net_profit": 2009.81,
+      "profit_factor": 1.63,
+      "win_rate": 73.5,
+      "max_drawdown_pct": 6.41,
+      "profit_retention_pct": 82.0,
+      "breached_total_dd": false
+    },
+    "1.5_pips": {
+      "slippage_pips": 1.5,
+      "net_profit": 1789.61,
+      "profit_factor": 1.54,
+      "win_rate": 73.5,
+      "max_drawdown_pct": 6.7,
+      "profit_retention_pct": 73.0,
+      "breached_total_dd": false
+    },
+    "2.0_pips": {
+      "slippage_pips": 2.0,
+      "net_profit": 1569.41,
+      "profit_factor": 1.46,
+      "win_rate": 73.5,
+      "max_drawdown_pct": 7.0,
+      "profit_retention_pct": 64.1,
+      "breached_total_dd": false
+    },
+    "2.5_pips": {
+      "slippage_pips": 2.5,
+      "net_profit": 1349.21,
+      "profit_factor": 1.38,
+      "win_rate": 73.5,
+      "max_drawdown_pct": 7.3,
+      "profit_retention_pct": 55.1,
+      "breached_total_dd": false
+    }
+  },
+  "combined_stress_mc_1_5_pip": {
+    "5th_percentile_profit": 234.71,
+    "median_profit": 1797.42,
+    "95th_percentile_dd_pct": 9.92,
+    "worst_ever_dd_pct": 20.15,
+    "prob_total_drawdown_breach_pct": 12.49
+  }
+}

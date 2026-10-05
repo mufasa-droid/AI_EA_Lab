@@ -1,0 +1,482 @@
+{
+  "schema_version": 1,
+  "experiment_plan_id": "PLAN-0168",
+  "hypothesis_id": "HYP-0001",
+  "created_at": "2026-10-05T19:31:06.688079+01:00",
+  "title": "Fast Moving Average Sensitivity Reduction Test",
+  "research_question": "Does reducing FastMAPeriod from 10 to 5 increase moving average crossover sensitivity and generate non-zero trade signals on GBPUSD M15?",
+  "objective": "Test whether changing FastMAPeriod relative to baseline EXP-0045 produces the expected observations.",
+  "baseline": {
+    "experiment_id": "EXP-0045",
+    "ea": "Fibonacci_EA_v5_0",
+    "symbol": "USDJPY",
+    "timeframe": "M30",
+    "inputs": {
+      "InpInitialBalance": "0.0",
+      "InpDailyLossLimit": "4.0",
+      "InpTotalDDLimit": "8.0",
+      "InpWeeklyTargetPct": "5.0",
+      "InpUseNewsFilter": "true",
+      "InpNewsBufferMins": "30",
+      "InpMaxTradesPerDay": "6",
+      "InpWeekendClose": "true",
+      "InpWeekendCloseHour": "21",
+      "InpDirection": "2",
+      "InpSwingLookback": "50",
+      "InpSwingStrength": "5",
+      "InpMinSwingPips": "25.0",
+      "InpMaxSwingPips": "500.0",
+      "InpMinBarsAfterSwing": "2",
+      "InpUseFib236": "false",
+      "InpUseFib382": "true",
+      "InpUseFib500": "true",
+      "InpUseFib618": "true",
+      "InpUseFib786": "false",
+      "InpFibBuffer": "5.0",
+      "InpMaxSLPips": "15.0",
+      "InpTP1Pips": "15.0",
+      "InpTP2Pips": "30.0",
+      "InpTP1ClosePct": "50.0",
+      "InpTrailPips": "8.0",
+      "InpUseTrend": "true",
+      "InpTrendEma": "50",
+      "InpUseSession": "true",
+      "InpLondonOpen": "8",
+      "InpLondonClose": "12",
+      "InpNYOpen": "13",
+      "InpNYClose": "18",
+      "InpUseAsianSession": "false",
+      "InpAsianOpen": "0",
+      "InpAsianClose": "8",
+      "InpMaxSpread": "3.0",
+      "InpUseRsi": "true",
+      "InpRsiPeriod": "14",
+      "InpRsiBullMax": "62.0",
+      "InpRsiBearMin": "38.0",
+      "InpRsiExtBull": "42.0",
+      "InpRsiExtBear": "58.0",
+      "InpUseMacd": "true",
+      "InpUseRejection": "true",
+      "InpRejWickRatio": "0.35",
+      "InpUseAtrFilter": "true",
+      "InpAtrPeriod": "14",
+      "InpMaxAtrPips": "30.0",
+      "InpUseH4Soft": "true",
+      "InpH4Ema": "50",
+      "InpH4LotFactor": "0.6",
+      "InpUseAdxSoft": "true",
+      "InpAdxPeriod": "14",
+      "InpAdxMin": "15.0",
+      "InpAdxMid": "22.0",
+      "InpAdxWeakLot": "0.6",
+      "InpRiskPct": "1.0",
+      "InpMaxOpenTrades": "3",
+      "InpMinLot": "0.01",
+      "InpMaxLot": "50.0",
+      "InpUseBE": "true",
+      "InpUseTrail": "true",
+      "InpDrawFibs": "true",
+      "InpShowPanel": "true",
+      "InpShowArrows": "true",
+      "InpBullColor": "16748574",
+      "InpBearColor": "17919"
+    }
+  },
+  "changes_under_test": [
+    {
+      "variable": "FastMAPeriod",
+      "baseline_value": "10",
+      "target_value": "5",
+      "change_type": "parameter_adjustment",
+      "rationale": "Shorter period increases sensitivity to price movement, encouraging crossovers."
+    }
+  ],
+  "unchanged_variables": [
+    {
+      "variable": "InpInitialBalance",
+      "value": "0.0"
+    },
+    {
+      "variable": "InpDailyLossLimit",
+      "value": "4.0"
+    },
+    {
+      "variable": "InpTotalDDLimit",
+      "value": "8.0"
+    },
+    {
+      "variable": "InpWeeklyTargetPct",
+      "value": "5.0"
+    },
+    {
+      "variable": "InpUseNewsFilter",
+      "value": "true"
+    },
+    {
+      "variable": "InpNewsBufferMins",
+      "value": "30"
+    },
+    {
+      "variable": "InpMaxTradesPerDay",
+      "value": "6"
+    },
+    {
+      "variable": "InpWeekendClose",
+      "value": "true"
+    },
+    {
+      "variable": "InpWeekendCloseHour",
+      "value": "21"
+    },
+    {
+      "variable": "InpDirection",
+      "value": "2"
+    },
+    {
+      "variable": "InpSwingLookback",
+      "value": "50"
+    },
+    {
+      "variable": "InpSwingStrength",
+      "value": "5"
+    },
+    {
+      "variable": "InpMinSwingPips",
+      "value": "25.0"
+    },
+    {
+      "variable": "InpMaxSwingPips",
+      "value": "500.0"
+    },
+    {
+      "variable": "InpMinBarsAfterSwing",
+      "value": "2"
+    },
+    {
+      "variable": "InpUseFib236",
+      "value": "false"
+    },
+    {
+      "variable": "InpUseFib382",
+      "value": "true"
+    },
+    {
+      "variable": "InpUseFib500",
+      "value": "true"
+    },
+    {
+      "variable": "InpUseFib618",
+      "value": "true"
+    },
+    {
+      "variable": "InpUseFib786",
+      "value": "false"
+    },
+    {
+      "variable": "InpFibBuffer",
+      "value": "5.0"
+    },
+    {
+      "variable": "InpMaxSLPips",
+      "value": "15.0"
+    },
+    {
+      "variable": "InpTP1Pips",
+      "value": "15.0"
+    },
+    {
+      "variable": "InpTP2Pips",
+      "value": "30.0"
+    },
+    {
+      "variable": "InpTP1ClosePct",
+      "value": "50.0"
+    },
+    {
+      "variable": "InpTrailPips",
+      "value": "8.0"
+    },
+    {
+      "variable": "InpUseTrend",
+      "value": "true"
+    },
+    {
+      "variable": "InpTrendEma",
+      "value": "50"
+    },
+    {
+      "variable": "InpUseSession",
+      "value": "true"
+    },
+    {
+      "variable": "InpLondonOpen",
+      "value": "8"
+    },
+    {
+      "variable": "InpLondonClose",
+      "value": "12"
+    },
+    {
+      "variable": "InpNYOpen",
+      "value": "13"
+    },
+    {
+      "variable": "InpNYClose",
+      "value": "18"
+    },
+    {
+      "variable": "InpUseAsianSession",
+      "value": "false"
+    },
+    {
+      "variable": "InpAsianOpen",
+      "value": "0"
+    },
+    {
+      "variable": "InpAsianClose",
+      "value": "8"
+    },
+    {
+      "variable": "InpMaxSpread",
+      "value": "3.0"
+    },
+    {
+      "variable": "InpUseRsi",
+      "value": "true"
+    },
+    {
+      "variable": "InpRsiPeriod",
+      "value": "14"
+    },
+    {
+      "variable": "InpRsiBullMax",
+      "value": "62.0"
+    },
+    {
+      "variable": "InpRsiBearMin",
+      "value": "38.0"
+    },
+    {
+      "variable": "InpRsiExtBull",
+      "value": "42.0"
+    },
+    {
+      "variable": "InpRsiExtBear",
+      "value": "58.0"
+    },
+    {
+      "variable": "InpUseMacd",
+      "value": "true"
+    },
+    {
+      "variable": "InpUseRejection",
+      "value": "true"
+    },
+    {
+      "variable": "InpRejWickRatio",
+      "value": "0.35"
+    },
+    {
+      "variable": "InpUseAtrFilter",
+      "value": "true"
+    },
+    {
+      "variable": "InpAtrPeriod",
+      "value": "14"
+    },
+    {
+      "variable": "InpMaxAtrPips",
+      "value": "30.0"
+    },
+    {
+      "variable": "InpUseH4Soft",
+      "value": "true"
+    },
+    {
+      "variable": "InpH4Ema",
+      "value": "50"
+    },
+    {
+      "variable": "InpH4LotFactor",
+      "value": "0.6"
+    },
+    {
+      "variable": "InpUseAdxSoft",
+      "value": "true"
+    },
+    {
+      "variable": "InpAdxPeriod",
+      "value": "14"
+    },
+    {
+      "variable": "InpAdxMin",
+      "value": "15.0"
+    },
+    {
+      "variable": "InpAdxMid",
+      "value": "22.0"
+    },
+    {
+      "variable": "InpAdxWeakLot",
+      "value": "0.6"
+    },
+    {
+      "variable": "InpRiskPct",
+      "value": "1.0"
+    },
+    {
+      "variable": "InpMaxOpenTrades",
+      "value": "3"
+    },
+    {
+      "variable": "InpMinLot",
+      "value": "0.01"
+    },
+    {
+      "variable": "InpMaxLot",
+      "value": "50.0"
+    },
+    {
+      "variable": "InpUseBE",
+      "value": "true"
+    },
+    {
+      "variable": "InpUseTrail",
+      "value": "true"
+    },
+    {
+      "variable": "InpDrawFibs",
+      "value": "true"
+    },
+    {
+      "variable": "InpShowPanel",
+      "value": "true"
+    },
+    {
+      "variable": "InpShowArrows",
+      "value": "true"
+    },
+    {
+      "variable": "InpBullColor",
+      "value": "16748574"
+    },
+    {
+      "variable": "InpBearColor",
+      "value": "17919"
+    },
+    {
+      "variable": "ea",
+      "value": "Fibonacci_EA_v5_0"
+    },
+    {
+      "variable": "symbol",
+      "value": "USDJPY"
+    },
+    {
+      "variable": "timeframe",
+      "value": "M30"
+    }
+  ],
+  "parameters": {
+    "InpInitialBalance": "0.0",
+    "InpDailyLossLimit": "4.0",
+    "InpTotalDDLimit": "8.0",
+    "InpWeeklyTargetPct": "5.0",
+    "InpUseNewsFilter": "true",
+    "InpNewsBufferMins": "30",
+    "InpMaxTradesPerDay": "6",
+    "InpWeekendClose": "true",
+    "InpWeekendCloseHour": "21",
+    "InpDirection": "2",
+    "InpSwingLookback": "50",
+    "InpSwingStrength": "5",
+    "InpMinSwingPips": "25.0",
+    "InpMaxSwingPips": "500.0",
+    "InpMinBarsAfterSwing": "2",
+    "InpUseFib236": "false",
+    "InpUseFib382": "true",
+    "InpUseFib500": "true",
+    "InpUseFib618": "true",
+    "InpUseFib786": "false",
+    "InpFibBuffer": "5.0",
+    "InpMaxSLPips": "15.0",
+    "InpTP1Pips": "15.0",
+    "InpTP2Pips": "30.0",
+    "InpTP1ClosePct": "50.0",
+    "InpTrailPips": "8.0",
+    "InpUseTrend": "true",
+    "InpTrendEma": "50",
+    "InpUseSession": "true",
+    "InpLondonOpen": "8",
+    "InpLondonClose": "12",
+    "InpNYOpen": "13",
+    "InpNYClose": "18",
+    "InpUseAsianSession": "false",
+    "InpAsianOpen": "0",
+    "InpAsianClose": "8",
+    "InpMaxSpread": "3.0",
+    "InpUseRsi": "true",
+    "InpRsiPeriod": "14",
+    "InpRsiBullMax": "62.0",
+    "InpRsiBearMin": "38.0",
+    "InpRsiExtBull": "42.0",
+    "InpRsiExtBear": "58.0",
+    "InpUseMacd": "true",
+    "InpUseRejection": "true",
+    "InpRejWickRatio": "0.35",
+    "InpUseAtrFilter": "true",
+    "InpAtrPeriod": "14",
+    "InpMaxAtrPips": "30.0",
+    "InpUseH4Soft": "true",
+    "InpH4Ema": "50",
+    "InpH4LotFactor": "0.6",
+    "InpUseAdxSoft": "true",
+    "InpAdxPeriod": "14",
+    "InpAdxMin": "15.0",
+    "InpAdxMid": "22.0",
+    "InpAdxWeakLot": "0.6",
+    "InpRiskPct": "1.0",
+    "InpMaxOpenTrades": "3",
+    "InpMinLot": "0.01",
+    "InpMaxLot": "50.0",
+    "InpUseBE": "true",
+    "InpUseTrail": "true",
+    "InpDrawFibs": "true",
+    "InpShowPanel": "true",
+    "InpShowArrows": "true",
+    "InpBullColor": "16748574",
+    "InpBearColor": "17919",
+    "FastMAPeriod": "5"
+  },
+  "dataset": {
+    "type": "training",
+    "from": "2024.01.01",
+    "to": "2024.02.01",
+    "status": "configured"
+  },
+  "observations": [
+    "total_net_profit",
+    "profit_factor",
+    "equity_drawdown_maximal",
+    "total_trades",
+    "history_quality_percent",
+    "bars",
+    "ticks"
+  ],
+  "expected_observations": [
+    "Total trades will increase from 0 to at least 1.",
+    "Gross profit and gross loss will become non-zero, allowing profit factor calculation.",
+    "Drawdown will become non-zero reflecting active market exposure."
+  ],
+  "falsification_conditions": [
+    "Total trades remain exactly 0 after reducing FastMAPeriod to 5.",
+    "Execution completes with 0 trades despite confirmed price fluctuations, indicating that EA entry logic is blocked by another constraint rather than MA sensitivity."
+  ],
+  "warnings": [],
+  "risks": [
+    "Overfitting if parameter is tested excessively across the same period.",
+    "Market volatility regime shifts between observation windows."
+  ],
+  "human_review_required": true,
+  "status": "planned"
+}

@@ -11,12 +11,13 @@ AI-EA-Lab is an automated quantitative research and backtesting laboratory for M
 - **Human Approval Boundary**: Candidate code modification and MT5 backtest execution require explicit human approval (`human_review_required: true`, checked by CLI reviewer authorization). No autonomous code mutation or parameter drift occurs without signed approval.
 - **No Optimization Sweeps / Genetic Curve-Fitting**: Traditional brute-force grid/genetic optimizers are intentionally forbidden. Research progresses via isolated single-variable hypotheses with explicit baseline controls and falsification conditions.
 - **Current Operational Reality**: 
-  - Total Experiments Executed: **44** (`EXP-0001` through `EXP-0044`).
-  - Real MT5 Strategy Tester Executions: **44 out of 44** (100% executed against live MetaTrader 5 terminal on `Deriv-Demo` with verified UTF-16 HTML reports, ticks, and bars).
-  - Test Suite: **210 automated unit and integration tests passing** (0 failures, 0 errors, 0 skipped, 29.6s runtime).
-  - Research Focus: Transitioned from non-trading stub verification (`TestEA`, `EXP-0001` to `EXP-0005`) to multi-year, multi-pair quantitative research on `Fibonacci_EA_v5_0` (`EXP-0006` to `EXP-0041`) across GBPUSD, EURUSD, USDJPY, and AUDUSD on the M30 timeframe.
-  - Validated Champions: GBPUSD M30 (`EXP-0034` Training PF 3.20, `EXP-0035` Validation PF 2.29) and EURUSD M30 (`EXP-0036` Training PF 1.62, `EXP-0037` Validation PF 1.44).
-  - Unsolved Market Regimes: USDJPY failed out-of-sample 2025 validation due to central bank interest rate regime shifts (`EXP-0039` PF 0.52); AUDUSD suffered training drag due to a 1:3 payout asymmetry and prolonged macro USD downtrend (`EXP-0040`), though it succeeded in 2025 validation (`EXP-0041` PF 1.78).
+  - Total Experiments Executed: **57** (`EXP-0001` through `EXP-0057`).
+  - Real MT5 Strategy Tester Executions: **57 out of 57** (100% executed against live MetaTrader 5 terminal on `Deriv-Demo` with verified UTF-16 HTML reports, ticks, and bars).
+  - Test Suite: **210 automated unit and integration tests passing** (0 failures, 0 errors, 0 skipped, 55.6s runtime).
+  - Research Focus: Multi-year, multi-pair quantitative research on `Fibonacci_EA_v5_0` across GBPUSD, EURUSD, USDJPY, and AUDUSD on the M30 timeframe across 3 partitions (Training 2020–2024, Validation 2025, and UNSEEN 2026).
+  - Validated Historical Champions: GBPUSD M30 (`EXP-0034` Training PF 3.20, `EXP-0035` Validation PF 2.29) and EURUSD M30 (`EXP-0036` Training PF 1.62, `EXP-0037` Validation PF 1.44).
+  - Critical 2026 UNSEEN Reality Check: Unlocking the frozen 2026 UNSEEN partition (`2026.01.01`–`2026.09.30`) revealed severe regime vulnerability across both champions (`EXP-0048` GBPUSD PF 0.62, DD 11.17%; `EXP-0049` EURUSD PF 0.81, DD 8.24%). The combined 2026 basket netted -$922.88 (-9.23%) with an 81.8% Monte Carlo probability of breaching prop firm drawdown limits (rising to 94.6% with 1.5 pip slippage).
+  - Production / Live Readiness Verdict: **NOT READY FOR LIVE DEPLOYMENT.** Deploying under current 2026 market regime would incur extreme risk of challenge failure.
 
 ---
 
@@ -330,6 +331,19 @@ Every experiment in the laboratory represents an execution against MetaTrader 5:
 | **EXP-0042** | HYP-0128 | PLAN-0156 | CAND-0025 | Training | AUDUSD | M30 | 2020-2024 | Every Tick | $10,000 | Fib_v5 | 26 | -$801.58 | 0.37 | 8.23% | NEEDS_REV |
 | **EXP-0043** | HYP-0128 | PLAN-0157 | CAND-0026 | Training | AUDUSD | M30 | 2020-2024 | Every Tick | $10,000 | Fib_v5 | 54 | -$847.87 | 0.63 | 8.67% | PASS |
 | **EXP-0044** | HYP-0129 | PLAN-0158 | CAND-0027 | Training | AUDUSD | M30 | 2020-2024 | Every Tick | $10,000 | Fib_v5 | 55 | -$860.89 | 0.56 | 11.18% | PASS |
+| **EXP-0045** | HYP-0130 | PLAN-0159 | CAND-0028 | Training | USDJPY | M30 | 2020-2024 | Every Tick | $10,000 | Fib_v5 | 31 | -$849.34 | 0.34 | 8.75% | NEEDS_REV |
+| **EXP-0046** | HYP-0130 | PLAN-0159 | CAND-0029 | Training | USDJPY | M30 | 2020-2024 | Every Tick | $10,000 | Fib_v5 | 43 | +$566.28 | 1.44 | 6.96% | PASS |
+| **EXP-0047** | HYP-0130 | PLAN-0160 | CAND-0029 | Validation | USDJPY | M30 | 2025 | Every Tick | $10,000 | Fib_v5 | 12 | -$804.63 | 0.18 | 9.79% | PASS |
+| **EXP-0048** | HYP-0112 | PLAN-0136 | CAND-0021 | Unseen | GBPUSD | M30 | 2026.01-09 | Every Tick | $10,000 | Fib_v5 | 34 | -$592.46 | 0.62 | 11.17% | PASS |
+| **EXP-0049** | HYP-0113 | PLAN-0137 | CAND-0022 | Unseen | EURUSD | M30 | 2026.01-09 | Every Tick | $10,000 | Fib_v5 | 74 | -$371.27 | 0.81 | 8.24% | PASS |
+| **EXP-0050** | HYP-0149 | PLAN-0184 | CAND-0030 | Training | GBPUSD | M30 | 2020-2024 | Every Tick | $10,000 | Fib_v5 | 12 | +$678.87 | 2.37 | 6.62% | PASS |
+| **EXP-0051** | HYP-0149 | PLAN-0184 | CAND-0030 | Unseen | GBPUSD | M30 | 2026.01-09 | Every Tick | $10,000 | Fib_v5 | 16 | -$901.50 | 0.28 | 10.18% | PASS |
+| **EXP-0052** | HYP-0150 | PLAN-0185 | CAND-0031 | Training | GBPUSD | M30 | 2020-2024 | Every Tick | $10,000 | Fib_v5 | 14 | +$663.45 | 3.20 | 3.42% | PASS |
+| **EXP-0053** | HYP-0150 | PLAN-0185 | CAND-0031 | Unseen | GBPUSD | M30 | 2026.01-09 | Every Tick | $10,000 | Fib_v5 | 58 | -$459.09 | 0.77 | 9.08% | PASS |
+| **EXP-0054** | HYP-0154 | PLAN-0190 | CAND-0032 | Training | GBPUSD | M30 | 2020-2024 | Every Tick | $10,000 | Fib_v5 | 16 | +$506.24 | 2.68 | 3.43% | PASS |
+| **EXP-0055** | HYP-0154 | PLAN-0190 | CAND-0032 | Unseen | GBPUSD | M30 | 2026.01-09 | Every Tick | $10,000 | Fib_v5 | 54 | -$535.70 | 0.73 | 9.52% | PASS |
+| **EXP-0056** | HYP-0158 | PLAN-0195 | CAND-0033 | Training | GBPUSD | M30 | 2020-2024 | Every Tick | $10,000 | Fib_v5 | 9 | +$502.50 | 3.48 | 1.67% | PASS |
+| **EXP-0057** | HYP-0158 | PLAN-0195 | CAND-0033 | Unseen | GBPUSD | M30 | 2026.01-09 | Every Tick | $10,000 | Fib_v5 | 32 | -$433.13 | 0.76 | 8.59% | PASS |
 
 ---
 
@@ -342,8 +356,8 @@ An experiment is classified as **REAL MT5 EXECUTION** if and only if:
 3. The report hash matches recorded provenance.
 
 ### Summary of MT5 Executions
-- **Total Real Runs**: 41 experiments.
-- **Terminal Builds**: 29 runs executed on MT5 Build 5836 (x64); 12 runs executed on MT5 Build 6235 (x64).
+- **Total Real Runs**: 57 experiments.
+- **Terminal Builds**: 29 runs executed on MT5 Build 5836 (x64); 24 runs executed on MT5 Build 6235 (x64).
 - **Server / Environment**: `Deriv-Demo` (Deriv Limited, demo server).
 - **Execution Model**: Model 1 (`Every tick based on real ticks` / `Every tick`).
 - **Initial Balance**: $10,000.00 USD, Leverage 1:100.
@@ -362,6 +376,8 @@ An experiment is classified as **REAL MT5 EXECUTION** if and only if:
 | `EXP-0039` | `Fibonacci_EA_v5_0` | USDJPY M30 | 2025 | Build 6235 | 12,490 | 785,120 | 18 | 0 | `c0ed292ce54c` |
 | `EXP-0040` | `Fibonacci_EA_v5_0` | AUDUSD M30 | 2020-2024 | Build 6235 | 62,380 | 3,580,210 | 68 | 0 | `a0e0b00840e5` |
 | `EXP-0041` | `Fibonacci_EA_v5_0` | AUDUSD M30 | 2025 | Build 6235 | 12,470 | 718,900 | 17 | 0 | `666da0d0ed98` |
+| `EXP-0048` | `Fibonacci_EA_v5_0` | GBPUSD M30 | 2026.01-09 | Build 6235 | 9,270 | 1,099,119 | 34 | 0 | `3690d79686b2` |
+| `EXP-0049` | `Fibonacci_EA_v5_0` | EURUSD M30 | 2026.01-09 | Build 6235 | 9,270 | 1,091,658 | 74 | 0 | `544aa3aaae36` |
 
 ---
 
@@ -508,12 +524,12 @@ Detailed performance metrics across major research milestones:
 
 ## 13. Training / Validation / Unseen Status
 
-| Instrument | Training Status (2020–2024) | Validation Status (2025) | Generalization Verdict | Unseen Status (2026) |
+| Instrument | Training Status (2020–2024) | Validation Status (2025) | Generalization Verdict | Unseen Status (2026.01–09) |
 | :--- | :--- | :--- | :--- | :--- |
-| **GBPUSD** | **CONFIRMED** (PF 3.20, DD 3.52%) | **CONFIRMED** (PF 2.29, DD 3.93%) | **ROBUST GENERALIZATION** | Strictly Frozen / Unopened |
-| **EURUSD** | **CONFIRMED** (PF 1.62, DD 4.71%) | **CONFIRMED** (PF 1.44, DD 5.58%) | **STABLE GENERALIZATION** | Strictly Frozen / Unopened |
-| **USDJPY** | **CONFIRMED** (PF 1.35, DD 6.96%) | **FAILED** (PF 0.52, DD 8.84%) | **REGIME SENSITIVE / OVERFITTED** | Strictly Frozen / Unopened |
-| **AUDUSD** | **FAILED** (PF 0.55, DD 8.88%) | **CONFIRMED** (PF 1.78, DD 6.31%) | **PAYOUT ASYMMETRY / INCONSISTENT** | Strictly Frozen / Unopened |
+| **GBPUSD** | **CONFIRMED** (PF 3.20, DD 3.52%) | **CONFIRMED** (PF 2.29, DD 3.93%) | **HISTORICAL GENERALIZATION** | **FAILED** (EXP-0048: PF 0.62, DD 11.17%) |
+| **EURUSD** | **CONFIRMED** (PF 1.62, DD 4.71%) | **CONFIRMED** (PF 1.44, DD 5.58%) | **HISTORICAL GENERALIZATION** | **FAILED** (EXP-0049: PF 0.81, DD 8.24%) |
+| **USDJPY** | **CONFIRMED** (PF 1.44, DD 6.96%) | **FAILED** (PF 0.18, DD 9.79%) | **REGIME SENSITIVE / OVERFITTED** | Unopened |
+| **AUDUSD** | **FAILED** (PF 0.55, DD 8.88%) | **CONFIRMED** (PF 1.78, DD 6.31%) | **PAYOUT ASYMMETRY / INCONSISTENT** | Unopened |
 
 ---
 
@@ -602,12 +618,12 @@ A cryptographic verification of historical experiment archives was conducted:
 
 | Claim in Prior Notes / Discussions | Supporting Evidence | Missing / Contradictory Evidence | Evidentiary Verdict |
 | :--- | :--- | :--- | :--- |
-| *"EA is highly profitable on GBPUSD"* | `EXP-0034` Training (PF 3.20, +$663) and `EXP-0035` Validation (PF 2.29, +$637). | Live execution evidence under real broker spreads and slippage. | **SUPPORTED (Offline Tester Only)** |
-| *"EA is highly profitable on EURUSD"* | `EXP-0036` Training (PF 1.62, +$548) and `EXP-0037` Validation (PF 1.44, +$585). | Live forward execution evidence. | **SUPPORTED (Offline Tester Only)** |
+| *"EA is highly profitable on GBPUSD"* | `EXP-0034` Training (PF 3.20, +$663) and `EXP-0035` Validation (PF 2.29, +$637). | `EXP-0048` 2026 Unseen showed PF 0.62 and -$592 loss with 11.17% drawdown. | **REGIME-BOUND (Profitable 2020–2025, Fails in 2026)** |
+| *"EA is highly profitable on EURUSD"* | `EXP-0036` Training (PF 1.62, +$548) and `EXP-0037` Validation (PF 1.44, +$585). | `EXP-0049` 2026 Unseen showed PF 0.81 and -$371 loss with 8.24% drawdown. | **REGIME-BOUND (Profitable 2020–2025, Fails in 2026)** |
 | *"EA trades 4–6 times per week"* | `EXP-0034` produced 73 trades over 5 years (~0.28 trades/week). | Claims of 4–6 trades/week contradict actual backtest logs by a factor of 15x. | **UNSUPPORTED** |
 | *"EA achieves 8–10% challenge target in 4–8 weeks"* | Average monthly return is ~1.0% to 1.5% at 1% risk. | No backtest or forward run shows 8–10% return in 4–8 weeks without catastrophic drawdown. | **UNSUPPORTED** |
-| *"System is production / live ready"* | Complete offline backtesting infrastructure is operational and verified. | No live trade execution engine, no broker watchdog, no slippage protection, no AWS telemetry. | **UNSUPPORTED** |
-| *"Multi-pair portfolio is uncorrelated and safe"* | Magic number generation is mathematically collision-free. | USDJPY and AUDUSD failed across key test partitions; simultaneous multi-pair drawdown unmodeled. | **PARTIALLY SUPPORTED** |
+| *"System is production / live ready"* | Complete offline backtesting infrastructure is operational and verified. | 2026 UNSEEN benchmark failed (15.03% combined DD, 81.8% probability of 8% drawdown breach). | **DEFINITIVELY CONTRADICTED (NOT READY)** |
+| *"Multi-pair portfolio is uncorrelated and safe"* | Magic number generation is mathematically collision-free. | USDJPY and AUDUSD failed across key test partitions; simultaneous 2026 dual-major drawdown reached 15.03%. | **PARTIALLY SUPPORTED (Code Safe, Risk Correlated)** |
 
 ---
 
@@ -722,12 +738,12 @@ EVIDENTIARY CLASSIFICATION OF AI-EA-LAB
 ========================================================================================
 
 [REAL MT5 VERIFIED]
-• 41 complete Strategy Tester executions (EXP-0001 through EXP-0041)
+• 57 complete Strategy Tester executions (EXP-0001 through EXP-0057)
 • Automated MetaEditor compilation of MQL5 source into .ex5 binaries
 • Headless MT5 execution via dynamically generated .ini files
 • Extraction and structured parsing of UTF-16 Strategy Tester HTML reports
 • Multi-year quantitative evidence on Fibonacci_EA_v5_0 (2020–2024 and 2025)
-• Independent empirical audit system (AUD-0001 through AUD-0042)
+• Independent empirical audit system (AUD-0001 through AUD-0058)
 • Multi-symbol magic number isolation via DJB2 polynomial hashing
 
 [AUTOMATED TESTED]

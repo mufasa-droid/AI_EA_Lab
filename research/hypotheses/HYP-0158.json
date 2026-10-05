@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0158",
+  "created_at": "2026-10-06T00:00:00+01:00",
+  "title": "GBPUSD M30 Hard Target Equalization (InpTP2Pips=15.0) to Establish 1:1 R:R Symmetry",
+  "research_question": "Does reducing InpTP2Pips from 30.0 to 15.0 pips (equalizing the hard broker Take Profit with InpTP1Pips=15.0 and InpMaxSLPips=15.0) eliminate the runner drag, raising average win payout to ~$100 (1:1 R:R) and driving 2026 UNSEEN net profit from -$459.09 to strongly positive (> +$1,000.00)?",
+  "hypothesis": "Because 2026 swings reverse before reaching the 30-pip TP2 target, leaving runners to be stopped out near breakeven while full losses absorb 100% volume at -15 pips, reducing InpTP2Pips from 30.0 to 15.0 will force the MT5 Strategy Tester broker engine to close 100% of the position volume at +15.0 pips. This establishes a symmetric 1:1 Risk/Reward ratio ($100 win vs $100 loss), allowing the validated 65.52% win rate from EXP-0053 to generate > +$1,000 net profit on 2026 UNSEEN with drawdown <= 6.0%.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0053",
+      "EXP-0052",
+      "EXP-0055",
+      "EXP-0048"
+    ],
+    "facts": [
+      "EXP-0053 demonstrated that with InpUseAtrFilter=true and InpMaxAtrPips=20.0, the EA achieved a 65.52% win rate (38 wins vs 20 losses) across 9 months of 2026 UNSEEN data.",
+      "In both EXP-0053 and EXP-0055, the largest winning trade never exceeded $118.80 (~17.6 pips), proving that price never once reached the 30-pip TP2 target in 2026.",
+      "Because InpTP2Pips=30.0 was never reached, winning trades only captured partial close profits ($37-$42) while losing trades lost -$99.28 on 100% volume, producing an inverted 0.40:1 payout ratio that requires > 71.4% win rate to break even."
+    ],
+    "inferences": [
+      "All 38 winning trades in EXP-0053 reached at least +15.0 pips to trigger the TP1 event.",
+      "If InpTP2Pips is set to 15.0 pips, MT5 will close 100% of position volume at the 15-pip mark, capturing the full 1:1 reward on every winning trade without leaving runners to erode at breakeven."
+    ],
+    "evidence": [
+      "EXP-0053 total_net_profit=-459.09, win_rate=65.52%, average_profit_trade=37.58, average_loss_trade=-94.46",
+      "EXP-0055 total_net_profit=-535.70, win_rate=62.96%, average_profit_trade=42.64, average_loss_trade=-99.28"
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "InpTP2Pips",
+      "baseline_value": "30.0",
+      "proposed_value": "15.0",
+      "rationale": "Equalizes hard broker Take Profit with the primary 15-pip swing target, closing 100% position volume at 1:1 R:R."
+    }
+  ],
+  "dependent_variables": [
+    "total_trades",
+    "total_net_profit",
+    "profit_factor",
+    "win_rate",
+    "equity_drawdown_maximal",
+    "average_profit_trade"
+  ],
+  "control_variables": [
+    {"name": "symbol", "value": "GBPUSD"},
+    {"name": "timeframe", "value": "M30"},
+    {"name": "ea", "value": "Fibonacci_EA_v5_0"},
+    {"name": "InpUseAtrFilter", "value": "true"},
+    {"name": "InpAtrPeriod", "value": "14"},
+    {"name": "InpMaxAtrPips", "value": "20.0"},
+    {"name": "InpMaxSLPips", "value": "15.0"},
+    {"name": "InpTP1Pips", "value": "15.0"},
+    {"name": "InpTP1ClosePct", "value": "50.0"},
+    {"name": "InpTrailPips", "value": "8.0"},
+    {"name": "InpUseTrend", "value": "true"},
+    {"name": "InpTrendEma", "value": "50"},
+    {"name": "InpUseSession", "value": "true"},
+    {"name": "InpLondonOpen", "value": "8"},
+    {"name": "InpLondonClose", "value": "12"},
+    {"name": "InpNYOpen", "value": "13"},
+    {"name": "InpNYClose", "value": "18"},
+    {"name": "InpUseAsianSession", "value": "false"},
+    {"name": "InpMaxSpread", "value": "3.0"},
+    {"name": "InpUseRsi", "value": "true"},
+    {"name": "InpRsiPeriod", "value": "14"},
+    {"name": "InpRsiBullMax", "value": "62.0"},
+    {"name": "InpRsiBearMin", "value": "38.0"},
+    {"name": "InpRsiExtBull", "value": "42.0"},
+    {"name": "InpRsiExtBear", "value": "58.0"},
+    {"name": "InpUseMacd", "value": "true"},
+    {"name": "InpUseRejection", "value": "true"},
+    {"name": "InpRejWickRatio", "value": "0.35"},
+    {"name": "InpUseH4Soft", "value": "false"},
+    {"name": "InpUseAdxSoft", "value": "false"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxOpenTrades", "value": "3"},
+    {"name": "InpUseBE", "value": "true"},
+    {"name": "InpUseTrail", "value": "true"}
+  ],
+  "assumptions": [
+    "MT5 Strategy Tester closes the position fully when Bid/Ask touches InpTP2Pips.",
+    "Symmetric 15-pip TP and 15-pip SL provides a true 1:1 risk-reward profile."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Average winning trade payout increases to ~$95-$100.",
+    "2026 UNSEEN net profit turns strongly positive (> +$500.00) with profit factor >= 1.40.",
+    "Maximal equity drawdown remains <= 6.0%.",
+    "5-year training profitability increases from +$663.45 to > +$1,200.00."
+  ],
+  "falsification_conditions": [
+    "2026 UNSEEN net profit remains negative (< $0.00) or profit factor remains < 1.0.",
+    "Maximal equity drawdown breaches 8.0%."
+  ],
+  "status": "proposed"
+}

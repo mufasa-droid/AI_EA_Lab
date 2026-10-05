@@ -1,0 +1,14 @@
+--- source_before.mq5
++++ source_after.mq5
+@@ -123,9 +123,9 @@
+ input double InpRejWickRatio      = 0.35;  // Min wick/range ratio
+ 
+ input group "══════ ATR VOLATILITY FILTER ══════"
+-input bool   InpUseAtrFilter      = false; // ATR volatility filter (skip entries during volatility spikes)
++input bool   InpUseAtrFilter      = true; // ATR volatility filter (skip entries during volatility spikes)
+ input int    InpAtrPeriod         = 14;    // ATR period (M30)
+-input double InpMaxAtrPips        = 30.0;  // Max ATR pips allowed on entry (0=disabled)
++input double InpMaxAtrPips        = 20.0;  // Max ATR pips allowed on entry (0=disabled)
+ 
+ input group "══════ SOFT LOT FILTERS ══════"
+ input bool   InpUseH4Soft         = false;  // H4 soft filter (lot reduction)

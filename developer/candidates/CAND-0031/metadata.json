@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0031",
+  "plan_id": "PLAN-0185",
+  "hypothesis_id": "HYP-0150",
+  "baseline_experiment": "EXP-0034",
+  "ea": "Fibonacci_EA_v5_0",
+  "created_at": "2026-10-05T23:46:05.328080+01:00",
+  "source_before_sha256": "07c1e3dec8525274e910c2601b35d6233e144b33e7182298fb662482df18e4a4",
+  "source_after_sha256": "9bcb98259f623a9f39de53385bb551d7c4a8110dc568eeeca58a132c0b2be0c9",
+  "requested_changes": [
+    {
+      "variable": "InpUseAtrFilter",
+      "baseline_value": "false",
+      "target_value": "true",
+      "change_type": "parameter_adjustment"
+    },
+    {
+      "variable": "InpMaxAtrPips",
+      "baseline_value": "30.0",
+      "target_value": "20.0",
+      "change_type": "parameter_adjustment"
+    }
+  ],
+  "actual_changes": [
+    {
+      "type": "input_default_change",
+      "parameter": "InpUseAtrFilter",
+      "type_declared": "bool",
+      "after": "true"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpMaxAtrPips",
+      "type_declared": "double",
+      "after": "20.0"
+    }
+  ],
+  "feasibility_status": "pass",
+  "compile_status": "passed",
+  "compiler_info": {
+    "compiler_path": "C:\\Program Files\\MetaTrader 5\\MetaEditor64.exe",
+    "exit_code": 1,
+    "error_count": 0,
+    "warning_count": 0
+  },
+  "status": "ready_for_next_phase"
+}

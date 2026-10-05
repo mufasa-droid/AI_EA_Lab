@@ -1,0 +1,11 @@
+--- source_before.mq5
++++ source_after.mq5
+@@ -97,7 +97,7 @@
+ input double InpMaxSLPips         = 15.0;  // Hard SL pips
+ input double InpTP1Pips           = 15.0;  // TP1 partial close pips
+ input double InpTP2Pips           = 30.0;  // TP2 hard TP pips
+-input double InpTP1ClosePct       = 50.0;  // % to close at TP1
++input double InpTP1ClosePct       = 75.0;  // % to close at TP1
+ input double InpTrailPips         = 8.0;   // Trail step pips (after TP1)
+ 
+ input group "══════ ENTRY FILTERS ══════"

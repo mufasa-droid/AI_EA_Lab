@@ -122,6 +122,11 @@ input bool   InpUseMacd           = true;  // MACD histogram sign
 input bool   InpUseRejection      = true;  // Rejection candle
 input double InpRejWickRatio      = 0.35;  // Min wick/range ratio
 
+input group "══════ ATR VOLATILITY FILTER ══════"
+input bool   InpUseAtrFilter      = false; // ATR volatility filter (skip entries during volatility spikes)
+input int    InpAtrPeriod         = 14;    // ATR period (M30)
+input double InpMaxAtrPips        = 30.0;  // Max ATR pips allowed on entry (0=disabled)
+
 input group "══════ SOFT LOT FILTERS ══════"
 input bool   InpUseH4Soft         = true;  // H4 soft filter (lot reduction)
 input int    InpH4Ema             = 50;    // H4 EMA period
@@ -227,7 +232,7 @@ int OnInit()
    hEmaH4 = iMA  (_Symbol, PERIOD_H4,      InpH4Ema,     0, MODE_EMA, PRICE_CLOSE);
    hRsi   = iRSI (_Symbol, PERIOD_CURRENT, InpRsiPeriod, PRICE_CLOSE);
    hMacd  = iMACD(_Symbol, PERIOD_CURRENT, 12, 26, 9,    PRICE_CLOSE);
-   hAtr   = iATR (_Symbol, PERIOD_CURRENT, 14);
+   hAtr   = iATR (_Symbol, PERIOD_CURRENT, InpAtrPeriod);
    hAdx   = iADX (_Symbol, PERIOD_H1,      InpAdxPeriod);
 
    if(hEma==INVALID_HANDLE||hEmaH4==INVALID_HANDLE||hRsi==INVALID_HANDLE||
@@ -584,6 +589,22 @@ void CheckEntry()
    double c1=iClose(_Symbol,PERIOD_CURRENT,1),o1=iOpen (_Symbol,PERIOD_CURRENT,1);
    double h1=iHigh (_Symbol,PERIOD_CURRENT,1),l1=iLow  (_Symbol,PERIOD_CURRENT,1);
    double pip=PipSize(), buf=InpFibBuffer*pip;
+
+   // ATR volatility filter
+   if(InpUseAtrFilter && InpMaxAtrPips > 0.0)
+   {
+      double atrArr[]; ArraySetAsSeries(atrArr, true);
+      if(CopyBuffer(hAtr, 0, 1, 1, atrArr) >= 1)
+      {
+         double atrPips = atrArr[0] / pip;
+         if(atrPips > InpMaxAtrPips)
+         {
+            g_day.bFilter++;
+            g_status = StringFormat("ATR too high: %.1fp > %.1fp", atrPips, InpMaxAtrPips);
+            return;
+         }
+      }
+   }
 
    double rArr[]; ArraySetAsSeries(rArr,true); double rsi=50;
    if(CopyBuffer(hRsi,0,1,2,rArr)>=2) rsi=rArr[0];

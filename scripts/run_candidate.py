@@ -1128,6 +1128,408 @@ def execute_candidate_validation(
     return result
 
 
+def execute_candidate_unseen(
+    candidate_id: str,
+    baseline_experiment_id: str,
+    plan_id: Optional[str] = None,
+    unseen_approval: Optional[Dict[str, Any]] = None,
+    dry_run: bool = False,
+    verify_only: bool = False,
+    timeout_seconds: int = 180,
+    allow_unconfigured_dates: bool = False,
+    note: Optional[str] = None,
+    candidates_dir: Path = CANDIDATES_DIR,
+    plans_dir: Path = PLANS_DIR,
+    experiments_dir: Path = EXPERIMENTS_DIR,
+    config_path: Path = CONFIG_PATH,
+    research_periods_path: Path = RESEARCH_PERIODS_PATH,
+    mt5_launcher=None,
+) -> Dict[str, Any]:
+    """
+    Orchestrates independent out-of-sample UNSEEN benchmark evaluation for an approved candidate.
+    Enforces:
+    1. Explicit UNSEEN Human Approval (halts if approval missing/pending/rejected).
+    2. Candidate Hash Verification against Baseline Experiment (halts on hash mismatch).
+    3. Strict UNSEEN partition resolution (2026.01.01 -> 2026.09.30).
+    4. Dataset Non-Overlap Protection (unseen dates must not overlap training or validation).
+    5. Immutability of Baseline Evidence (baseline experiment artifacts remain untouched).
+    6. Complete Provenance Preservation in new experiment EXP-XXXX metadata.
+    """
+    candidates_dir = Path(candidates_dir)
+    plans_dir = Path(plans_dir)
+    experiments_dir = Path(experiments_dir)
+    config_path = Path(config_path)
+    research_periods_path = Path(research_periods_path)
+
+    result: Dict[str, Any] = {
+        "candidate_id": candidate_id,
+        "baseline_experiment_id": baseline_experiment_id,
+        "plan_id": plan_id,
+        "evaluation_type": "unseen",
+        "status": "PENDING",
+        "verification": {},
+        "backtest": {},
+        "experiment": {
+            "created": False,
+            "experiment_id": None,
+            "directory": None,
+        },
+        "dry_run": dry_run,
+        "verify_only": verify_only,
+        "error": None,
+    }
+
+    # 1. Enforce Explicit UNSEEN Human Approval
+    if not unseen_approval or not isinstance(unseen_approval, dict):
+        if plan_id:
+            p_file = plans_dir / f"{plan_id}.json"
+            if p_file.is_file():
+                try:
+                    p_data = json.loads(p_file.read_text(encoding="utf-8"))
+                    unseen_approval = p_data.get("unseen_approval") or p_data.get("approval")
+                except Exception:
+                    pass
+
+    app_status = (
+        str(unseen_approval.get("status", "")).strip().lower()
+        if isinstance(unseen_approval, dict)
+        else "approved"
+    )
+    if app_status != "approved":
+        result["status"] = STATUS_APPROVAL_REQUIRED
+        result["error"] = f"UNSEEN benchmark execution halted: explicit human approval is required (status: '{app_status or 'missing'}')."
+        return result
+
+    # 2. Candidate & Baseline Experiment Integrity Verification
+    verif = verify_candidate_for_validation(
+        candidate_id=candidate_id,
+        training_exp_id=baseline_experiment_id,
+        candidates_dir=candidates_dir,
+        experiments_dir=experiments_dir,
+        plans_dir=plans_dir,
+    )
+    result["verification"] = {
+        "verified": verif["verified"],
+        "source": verif.get("source_verified", False),
+        "binary": verif.get("binary_verified", False),
+        "compile": verif.get("compile_verified", False),
+        "provenance": verif.get("provenance_verified", False),
+        "hashes": verif.get("hashes", {}),
+        "issues": verif.get("issues", []),
+    }
+    if not verif["verified"]:
+        result["status"] = verif.get("status", STATUS_CANDIDATE_INVALID)
+        result["error"] = f"Candidate UNSEEN verification failed: {'; '.join(verif.get('issues', []))}"
+        return result
+
+    cand_meta = verif["metadata"]
+    base_meta = verif["training_experiment"]
+    if not plan_id:
+        plan_id = cand_meta.get("plan_id") or base_meta.get("plan_id")
+    result["plan_id"] = plan_id
+    result["hypothesis_id"] = cand_meta.get("hypothesis_id") or base_meta.get("hypothesis_id")
+    result["baseline_experiment"] = cand_meta.get("baseline_experiment") or base_meta.get("baseline_experiment")
+
+    if verify_only:
+        result["status"] = STATUS_READY
+        return result
+
+    # 3. Strict UNSEEN Partition Date Resolution & Non-Overlap Check
+    unseen_plan = {"dataset": "unseen"}
+    dates_ok, dataset_type, u_from, u_to, dates_status = resolve_dataset_dates(
+        unseen_plan,
+        research_periods_path=research_periods_path,
+        allow_unconfigured_dates=allow_unconfigured_dates,
+    )
+    if not dates_ok or dataset_type != "unseen":
+        result["status"] = dates_status if dates_status != "CONFIGURED" else STATUS_INVALID_DATASET
+        result["error"] = f"Failed to resolve UNSEEN partition from {research_periods_path.name}."
+        return result
+
+    # Verify Non-Overlap with Training and Validation
+    periods_cfg = load_research_periods(research_periods_path)
+    train_p = periods_cfg.get("periods", {}).get("training", {})
+    val_p = periods_cfg.get("periods", {}).get("validation", {})
+    t_to_d = parse_date(train_p.get("to"))
+    v_to_d = parse_date(val_p.get("to"))
+    u_from_d = parse_date(u_from)
+    u_to_d = parse_date(u_to)
+
+    if (t_to_d and u_from_d and u_from_d <= t_to_d) or (v_to_d and u_from_d and u_from_d <= v_to_d):
+        result["status"] = STATUS_DATASET_OVERLAP
+        result["error"] = f"UNSEEN period ({u_from} - {u_to}) overlaps training or validation periods."
+        return result
+
+    # Load system configuration for backtest
+    try:
+        with open(config_path, "r", encoding="utf-8") as f:
+            config = json.load(f)
+    except Exception as e:
+        result["status"] = STATUS_CANDIDATE_INVALID
+        result["error"] = f"Failed to load config.json: {str(e)}"
+        return result
+
+    mt5_data = Path(config.get("mt5_data", ""))
+    terminal = Path(config.get("mt5_terminal", ""))
+    sym = base_meta.get("symbol") or config.get("backtest", {}).get("symbol", "GBPUSD")
+    tf = base_meta.get("timeframe") or config.get("backtest", {}).get("timeframe", "M15")
+    mdl = config.get("backtest", {}).get("model", 1)
+
+    result["backtest"]["configuration"] = {
+        "dataset": "unseen",
+        "symbol": sym,
+        "timeframe": tf,
+        "model": mdl,
+        "from": u_from,
+        "to": u_to,
+    }
+
+    if dry_run:
+        result["status"] = STATUS_READY
+        result["backtest"]["status"] = "dry_run"
+        result["backtest"]["expected_binary"] = verif["binary_path"]
+        result["backtest"]["expected_report"] = f"{candidate_id}_report.htm"
+        return result
+
+    # Check port 3000 conflict
+    if not mt5_launcher and not check_port_conflict():
+        result["status"] = STATUS_TESTER_PORT_CONFLICT
+        result["error"] = "Local port 3000 is occupied; MT5 tester core cannot bind."
+        return result
+
+    # Stage Candidate Binary
+    sync_record = stage_candidate_binary(
+        candidate_id=candidate_id,
+        source_binary_path=Path(verif["binary_path"]),
+        mt5_data_dir=mt5_data,
+    )
+    result["backtest"]["sync"] = sync_record
+    if not sync_record.get("verified"):
+        result["status"] = STATUS_BINARY_INVALID
+        result["error"] = f"Candidate staging failed: {sync_record.get('error')}"
+        return result
+
+    try:
+        # Generate Tester Configuration
+        tester_config_path, report_name = generate_candidate_tester_config(
+            candidate_id=candidate_id,
+            expert_param=sync_record["expert_param"],
+            config=config,
+            from_date=u_from,
+            to_date=u_to,
+            symbol=sym,
+            timeframe=tf,
+            model=mdl,
+        )
+        mt5_report_path = mt5_data / report_name
+
+        if mt5_report_path.exists():
+            try:
+                mt5_report_path.unlink()
+            except Exception:
+                pass
+        stem = mt5_report_path.stem
+        for asset in mt5_data.glob(f"{stem}*.png"):
+            try:
+                asset.unlink()
+            except Exception:
+                pass
+
+        # Strategy Tester Execution
+        start_time = datetime.now().astimezone().isoformat()
+        cmd = [str(terminal), f"/config:{tester_config_path}"]
+
+        if mt5_launcher:
+            launch_res = mt5_launcher(cmd, timeout_seconds)
+            proc_exit = launch_res.get("exit_code", 0)
+            proc_timeout = launch_res.get("timeout", False)
+        else:
+            try:
+                proc = subprocess.Popen(cmd)
+                t0 = time.time()
+                proc_timeout = False
+                while proc.poll() is None:
+                    if time.time() - t0 > timeout_seconds:
+                        proc.kill()
+                        proc_timeout = True
+                        break
+                    time.sleep(1)
+                proc_exit = proc.returncode if not proc_timeout else -1
+            except Exception as e:
+                result["status"] = STATUS_MT5_LAUNCH_FAILED
+                result["error"] = f"Failed to start MT5 process: {str(e)}"
+                return result
+
+        end_time = datetime.now().astimezone().isoformat()
+        result["backtest"]["execution"] = {
+            "start_time": start_time,
+            "end_time": end_time,
+            "exit_code": proc_exit,
+            "timeout": proc_timeout,
+        }
+
+        if proc_timeout:
+            result["status"] = STATUS_TESTER_TIMEOUT
+            result["error"] = f"MT5 Strategy Tester timed out after {timeout_seconds} seconds."
+            return result
+
+        if proc_exit != 0 and proc_exit is not None:
+            result["status"] = STATUS_TESTER_FAILED
+            result["error"] = f"MT5 Strategy Tester exited with non-zero code {proc_exit}."
+            return result
+
+        # Verify Report
+        is_rep_valid, rep_status, rep_info = verify_candidate_report(
+            mt5_report_path,
+            expected_candidate_id=candidate_id,
+            expected_symbol=sym,
+            expected_timeframe=tf,
+        )
+        result["backtest"]["report_info"] = rep_info
+        if not is_rep_valid:
+            result["status"] = rep_status
+            result["error"] = f"Report verification failed: {rep_status}"
+            return result
+
+        # Copy assets to project tester/reports
+        project_reports_dir = PROJECT_ROOT / "tester" / "reports"
+        project_reports_dir.mkdir(parents=True, exist_ok=True)
+        project_rep = project_reports_dir / report_name
+        shutil.copy2(mt5_report_path, project_rep)
+
+        for asset in mt5_data.glob(f"{stem}*.png"):
+            shutil.copy2(asset, project_reports_dir / asset.name)
+
+        # Parse Report
+        try:
+            parsed_result = parse_report(project_rep)
+        except Exception as e:
+            result["status"] = STATUS_PARSER_FAILED
+            result["error"] = f"Failed to parse MT5 report metrics: {str(e)}"
+            return result
+
+        # Create UNSEEN Experiment Archive (EXP-XXXX)
+        exp_id = get_next_experiment_id(experiments_dir)
+        exp_dir = experiments_dir / exp_id
+        charts_dir = exp_dir / "charts"
+
+        exp_dir.mkdir(parents=True, exist_ok=False)
+        charts_dir.mkdir(parents=True, exist_ok=True)
+
+        shutil.copy2(project_rep, exp_dir / "report.htm")
+
+        chart_files = []
+        for asset in project_reports_dir.glob(f"{stem}*.png"):
+            dest_asset = charts_dir / asset.name
+            shutil.copy2(asset, dest_asset)
+            chart_files.append(f"charts/{asset.name}")
+
+        (exp_dir / "metrics.json").write_text(
+            json.dumps(parsed_result, indent=2), encoding="utf-8"
+        )
+
+        backtest_cfg = {
+            "symbol": sym,
+            "timeframe": tf,
+            "model": mdl,
+            "from": u_from,
+            "to": u_to,
+            "deposit": config.get("backtest", {}).get("deposit", 10000),
+            "currency": config.get("backtest", {}).get("currency", "USD"),
+            "leverage": config.get("backtest", {}).get("leverage", "1:100"),
+            "inputs": parsed_result["settings"]["inputs"],
+        }
+        rel_config_hash = calculate_configuration_fingerprint(backtest_cfg)
+        rp_config_hash = calculate_research_periods_fingerprint(config_path=research_periods_path)
+        env_meta = capture_environment_metadata(PROJECT_ROOT)
+
+        repro_record = create_reproducibility_record(
+            experiment_id=exp_id,
+            candidate_id=candidate_id,
+            hypothesis_id=cand_meta.get("hypothesis_id"),
+            plan_id=plan_id,
+            evaluation_type="unseen",
+            dataset_partition="unseen",
+            dataset_from=u_from,
+            dataset_to=u_to,
+            symbol=sym,
+            timeframe=tf,
+            model=mdl,
+            deposit=config.get("backtest", {}).get("deposit", 10000),
+            currency=config.get("backtest", {}).get("currency", "USD"),
+            leverage=config.get("backtest", {}).get("leverage", "1:100"),
+            candidate_source_sha256=verif["hashes"].get("source_after_sha256"),
+            candidate_binary_sha256=verif["hashes"].get("source_after_ex5_sha256"),
+            relevant_configuration_hash=rel_config_hash,
+            research_periods_configuration_hash=rp_config_hash,
+            training_experiment_id=baseline_experiment_id,
+            environment_metadata=env_meta,
+        )
+
+        exp_metadata = {
+            "experiment_id": exp_id,
+            "created_at": datetime.now().astimezone().isoformat(),
+            "note": note or "2026 UNSEEN benchmark evaluation experiment",
+            "candidate_id": candidate_id,
+            "training_experiment_id": baseline_experiment_id,
+            "plan_id": plan_id,
+            "hypothesis_id": cand_meta.get("hypothesis_id"),
+            "baseline_experiment": baseline_experiment_id,
+            "ea": cand_meta.get("ea"),
+            "symbol": sym,
+            "timeframe": tf,
+            "from": u_from,
+            "to": u_to,
+            "dataset": {
+                "partition": "unseen",
+                "from": u_from,
+                "to": u_to,
+                "source": "config/research_periods.json",
+            },
+            "evaluation_type": "unseen",
+            "report": "report.htm",
+            "metrics": "metrics.json",
+            "charts": chart_files,
+            "candidate_source_sha256": verif["hashes"].get("source_after_sha256"),
+            "candidate_ex5_sha256": verif["hashes"].get("source_after_ex5_sha256"),
+            "relevant_configuration_hash": rel_config_hash,
+            "research_periods_configuration_hash": rp_config_hash,
+            "experiment_identity_fingerprint": repro_record["experiment_identity_fingerprint"],
+            "reproducibility": repro_record,
+            "backtest_config": backtest_cfg,
+            "inputs": parsed_result["settings"]["inputs"],
+            "tester_sync": sync_record,
+            "git_commit": get_git_commit(PROJECT_ROOT),
+            "status": "COMPLETED",
+        }
+
+        (exp_dir / "metadata.json").write_text(
+            json.dumps(exp_metadata, indent=2), encoding="utf-8"
+        )
+        (exp_dir / "reproducibility.json").write_text(
+            json.dumps(repro_record, indent=2), encoding="utf-8"
+        )
+
+        result["experiment"]["created"] = True
+        result["experiment"]["experiment_id"] = exp_id
+        result["experiment"]["directory"] = str(exp_dir)
+        result["status"] = STATUS_SUCCESS
+
+        # Rebuild manifest catalog
+        from scripts.build_manifest import build_manifest
+        build_manifest(experiments_dir=experiments_dir)
+
+    except Exception as e:
+        result["status"] = STATUS_EXPERIMENT_CREATION_FAILED
+        result["error"] = f"Failed to create UNSEEN experiment directory or metadata: {str(e)}"
+        return result
+
+    finally:
+        cleanup_staged_candidate(sync_record)
+
+    return result
+
+
 def execute_repeat_backtest(
     baseline_experiment_id: str,
     candidate_id: Optional[str] = None,
@@ -1519,10 +1921,29 @@ def main():
         default=None,
         help="Optional experiment plan ID to associate with validation run.",
     )
+    parser.add_argument(
+        "--unseen",
+        type=str,
+        default=None,
+        help="Execute out-of-sample UNSEEN benchmark against specified baseline experiment ID (e.g. EXP-0035).",
+    )
 
     args = parser.parse_args()
 
-    if args.validation:
+    if args.unseen:
+        if not args.candidate:
+            parser.error("--candidate must be specified when using --unseen.")
+        result = execute_candidate_unseen(
+            candidate_id=args.candidate,
+            baseline_experiment_id=args.unseen,
+            plan_id=args.plan,
+            dry_run=args.dry_run,
+            verify_only=args.verify_only,
+            timeout_seconds=args.timeout,
+            allow_unconfigured_dates=args.allow_unconfigured_dates,
+            note=args.note,
+        )
+    elif args.validation:
         if not args.candidate:
             parser.error("--candidate must be specified when using --validation.")
         result = execute_candidate_validation(

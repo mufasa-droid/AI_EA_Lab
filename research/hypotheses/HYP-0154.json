@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0154",
+  "created_at": "2026-10-05T23:53:00+01:00",
+  "title": "GBPUSD M30 TP1 Scale-Out Volume Expansion (75%) with ATR Volatility Filter",
+  "research_question": "Does increasing the Take Profit 1 scale-out volume from 50% to 75% (InpTP1ClosePct=75.0) in combination with the validated ATR volatility filter (InpUseAtrFilter=true, InpMaxAtrPips=20.0) increase average winning trade payout from $40.21 to >= $55.00, shifting 2026 UNSEEN net profit from -$459.09 to positive (> $0.00) with drawdown <= 6.0%?",
+  "hypothesis": "Increasing InpTP1ClosePct from 50.0% to 75.0% while holding InpTP1Pips constant at 15.0 and InpUseAtrFilter=true will bank 50% more profit on the initial 15-pip target, lifting average win size above $55 and turning the 65.5% win rate in 2026 UNSEEN into net profitability (> $0.00) while keeping maximal drawdown below 6.0%.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0052",
+      "EXP-0053",
+      "EXP-0048"
+    ],
+    "facts": [
+      "EXP-0053 established that the ATR volatility filter (InpUseAtrFilter=true, InpMaxAtrPips=20.0) raised 2026 UNSEEN win rate to 65.52% (38 wins vs 20 losses).",
+      "In EXP-0053, average winning trade was only $40.21 because only 50% closed at TP1, while average losing trade was -$99.35, resulting in -$459.09 net loss despite winning 65.5% of trades.",
+      "Increasing TP1 scale-out volume to 75% will capture 0.75 lots * $10/pip * 15 pips = $112.50 on the primary target, substantially raising average win size."
+    ],
+    "inferences": [
+      "Since 2026 pullbacks frequently reach 15 pips but fail to sustain long continuation runners, banking 75% of volume at 15 pips captures the bulk of the available move before trailing stops get clipped.",
+      "With 38 wins in 2026, raising average profit per win to ~$58-$65 will produce ~$2,200-$2,470 in gross profit, exceeding the -$1,987 in losses and generating net positive alpha."
+    ],
+    "evidence": [
+      "EXP-0052 total_net_profit=663.45, profit_factor=3.20, total_trades=14, win_rate=78.57%",
+      "EXP-0053 total_net_profit=-459.09, profit_factor=0.77, total_trades=58, win_rate=65.52%, average_profit_trade=40.21, average_loss_trade=-99.35"
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "InpTP1ClosePct",
+      "baseline_value": "50.0",
+      "proposed_value": "75.0",
+      "rationale": "Closes 75% of position volume at TP1 (15 pips) instead of 50%, capturing more guaranteed profit on the primary swing move."
+    }
+  ],
+  "dependent_variables": [
+    "total_trades",
+    "total_net_profit",
+    "profit_factor",
+    "win_rate",
+    "equity_drawdown_maximal",
+    "average_profit_trade"
+  ],
+  "control_variables": [
+    {"name": "symbol", "value": "GBPUSD"},
+    {"name": "timeframe", "value": "M30"},
+    {"name": "ea", "value": "Fibonacci_EA_v5_0"},
+    {"name": "InpUseAtrFilter", "value": "true"},
+    {"name": "InpAtrPeriod", "value": "14"},
+    {"name": "InpMaxAtrPips", "value": "20.0"},
+    {"name": "InpMaxSLPips", "value": "15.0"},
+    {"name": "InpTP1Pips", "value": "15.0"},
+    {"name": "InpTP2Pips", "value": "30.0"},
+    {"name": "InpTrailPips", "value": "8.0"},
+    {"name": "InpUseTrend", "value": "true"},
+    {"name": "InpTrendEma", "value": "50"},
+    {"name": "InpUseSession", "value": "true"},
+    {"name": "InpLondonOpen", "value": "8"},
+    {"name": "InpLondonClose", "value": "12"},
+    {"name": "InpNYOpen", "value": "13"},
+    {"name": "InpNYClose", "value": "18"},
+    {"name": "InpUseAsianSession", "value": "false"},
+    {"name": "InpMaxSpread", "value": "3.0"},
+    {"name": "InpUseRsi", "value": "true"},
+    {"name": "InpRsiPeriod", "value": "14"},
+    {"name": "InpRsiBullMax", "value": "62.0"},
+    {"name": "InpRsiBearMin", "value": "38.0"},
+    {"name": "InpRsiExtBull", "value": "42.0"},
+    {"name": "InpRsiExtBear", "value": "58.0"},
+    {"name": "InpUseMacd", "value": "true"},
+    {"name": "InpUseRejection", "value": "true"},
+    {"name": "InpRejWickRatio", "value": "0.35"},
+    {"name": "InpUseH4Soft", "value": "false"},
+    {"name": "InpUseAdxSoft", "value": "false"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxOpenTrades", "value": "3"},
+    {"name": "InpUseBE", "value": "true"},
+    {"name": "InpUseTrail", "value": "true"}
+  ],
+  "assumptions": [
+    "Closing 75% volume at 15 pips leaves 25% for continuation trailing.",
+    "Order partial close execution succeeds reliably at broker level."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Average profit per winning trade increases from ~$40 to >= $55.",
+    "2026 UNSEEN net profit turns positive (> $0.00) with profit factor >= 1.15.",
+    "Maximal equity drawdown remains <= 6.0%.",
+    "5-year training profitability remains positive (> $500.00)."
+  ],
+  "falsification_conditions": [
+    "2026 UNSEEN net profit remains negative (< $0.00) or profit factor remains < 1.0.",
+    "Maximal equity drawdown breaches 8.0%."
+  ],
+  "status": "proposed"
+}

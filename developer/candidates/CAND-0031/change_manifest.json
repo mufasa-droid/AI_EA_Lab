@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0031",
+  "plan_id": "PLAN-0185",
+  "baseline_experiment": "EXP-0034",
+  "ea": "Fibonacci_EA_v5_0",
+  "changes": [
+    {
+      "type": "input_default_change",
+      "parameter": "InpUseAtrFilter",
+      "type_declared": "bool",
+      "after": "true"
+    },
+    {
+      "type": "input_default_change",
+      "parameter": "InpMaxAtrPips",
+      "type_declared": "double",
+      "after": "20.0"
+    }
+  ],
+  "unauthorized_changes": [],
+  "feasible": true,
+  "compile_status": "passed"
+}
