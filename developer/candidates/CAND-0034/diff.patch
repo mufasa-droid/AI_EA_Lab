@@ -1,0 +1,11 @@
+--- source_before.mq5
++++ source_after.mq5
+@@ -87,7 +87,7 @@
+ 
+ input group "══════ FIBONACCI LEVELS ══════"
+ input bool   InpUseFib236         = false; // 23.6%
+-input bool   InpUseFib382         = true;  // 38.2% (H1+MACD+Rejection)
++input bool   InpUseFib382         = false;  // 38.2% (H1+MACD+Rejection)
+ input bool   InpUseFib500         = true;  // 50.0% (H1+MACD OR Rejection)
+ input bool   InpUseFib618         = true;  // 61.8% (H1+RSI — GOLDEN)
+ input bool   InpUseFib786         = false; // 78.6%
