@@ -839,10 +839,11 @@ void ResetDay()
 
 void ResetWeek()
 {
-   MqlDateTime n,l;
-   TimeToStruct(TimeCurrent(),n); TimeToStruct(g_weekTime,l);
-   // Reset on Monday
-   if(n.day_of_week==1 && l.day_of_week!=1)
+   // Calculate week index starting Sunday 00:00 UTC (1970.01.04 was Sunday)
+   int week_now  = (int)((TimeCurrent() + 4 * 86400) / (7 * 86400));
+   int week_last = (int)((g_weekTime + 4 * 86400) / (7 * 86400));
+
+   if(week_now != week_last)
    {
       PrintWeekSummary();
       double bal=AccountInfoDouble(ACCOUNT_BALANCE);
