@@ -1,0 +1,11 @@
+--- source_before.mq5
++++ source_after.mq5
+@@ -104,7 +104,7 @@
+ input bool   InpUseTrend          = true;  // H1 EMA trend filter (global hard)
+ input int    InpTrendEma          = 50;    // H1 EMA period
+ input bool   InpUseSession        = true;  // London + NY session filter
+-input int    InpLondonOpen        = 8;     // London open
++input int    InpLondonOpen        = 11;     // London open
+ input int    InpLondonClose       = 12;    // London close
+ input int    InpNYOpen            = 13;    // NY open
+ input int    InpNYClose           = 18;    // NY close
