@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0036",
+  "plan_id": "PLAN-0202",
+  "baseline_experiment": "EXP-0059",
+  "ea": "Fibonacci_EA_v5_0",
+  "changes": [
+    {
+      "type": "input_default_change",
+      "parameter": "InpLondonOpen",
+      "type_declared": "int",
+      "after": "11"
+    }
+  ],
+  "unauthorized_changes": [],
+  "feasible": true,
+  "compile_status": "passed"
+}

@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0164",
+  "created_at": "2026-10-06T21:05:00+01:00",
+  "title": "GBPUSD M30 Candidate Evaluation with Repaired ResetWeek() and London Open Delay (InpLondonOpen=11)",
+  "research_question": "Does evaluating candidate CAND-0036 (incorporating the repaired ResetWeek() weekly target reset logic alongside InpLondonOpen=11, InpUseFib382=false, and InpTP2Pips=15.0) allow the EA to properly reset weekly profit targets every week across the 5-year training window while maintaining the +$259.33 profitability on 2026 UNSEEN?",
+  "hypothesis": "Because the ResetWeek() architectural flaw in historical candidates caused trading to freeze permanently after the first 5% gain in 2020, executing CAND-0036 with the repaired week index reset logic will allow genuine multi-year weekly resets. Combining this with the verified InpLondonOpen=11 opening rush filter will prevent premature freezes and maintain positive expectancy across both 5-year training and 2026 UNSEEN partitions.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0061",
+      "EXP-0060",
+      "EXP-0059",
+      "EXP-0058"
+    ],
+    "facts": [
+      "In EXP-0061 (2026 UNSEEN), InpLondonOpen=11 achieved positive net profit (+$259.33, PF 1.23, WR 56.0%, DD 5.30%).",
+      "In EXP-0058 and EXP-0034, trading prematurely halted on 2020.07.23 after reaching $10,500 due to the ResetWeek() Monday comparison bug.",
+      "The ResetWeek() defect in Fibonacci_EA_v5_0 has been repaired to use deterministic calendar week index tracking ((t + 4*86400) / (7*86400))."
+    ],
+    "inferences": [
+      "With ResetWeek() repaired, weekly 5% target locks will release cleanly on Sunday midnight/Monday open.",
+      "The EA will trade the full 5-year training duration with active weekly risk locking rather than halting permanently."
+    ],
+    "evidence": [
+      "EXP-0061 total_net_profit=259.33, profit_factor=1.23, win_rate=56.0%, equity_drawdown_maximal=546.25",
+      "EXP-0058 total_trades=7, halted after 2020.07.23 due to permanent g_weeklyLocked state"
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "InpLondonOpen",
+      "baseline_value": "8",
+      "proposed_value": "11",
+      "rationale": "Delays London open window to 11:00 server time, bypassing the 10:00 opening rush while utilizing the repaired ResetWeek() weekly cycle logic."
+    }
+  ],
+  "dependent_variables": [
+    "total_trades",
+    "total_net_profit",
+    "profit_factor",
+    "win_rate",
+    "equity_drawdown_maximal"
+  ],
+  "control_variables": [
+    {"name": "symbol", "value": "GBPUSD"},
+    {"name": "timeframe", "value": "M30"},
+    {"name": "ea", "value": "Fibonacci_EA_v5_0"},
+    {"name": "InpUseFib382", "value": "false"},
+    {"name": "InpUseFib500", "value": "true"},
+    {"name": "InpUseFib618", "value": "true"},
+    {"name": "InpUseFib236", "value": "false"},
+    {"name": "InpUseFib786", "value": "false"},
+    {"name": "InpMaxSLPips", "value": "15.0"},
+    {"name": "InpTP1Pips", "value": "15.0"},
+    {"name": "InpTP2Pips", "value": "15.0"},
+    {"name": "InpTP1ClosePct", "value": "50.0"},
+    {"name": "InpTrailPips", "value": "8.0"},
+    {"name": "InpUseAtrFilter", "value": "true"},
+    {"name": "InpAtrPeriod", "value": "14"},
+    {"name": "InpMaxAtrPips", "value": "20.0"},
+    {"name": "InpUseTrend", "value": "true"},
+    {"name": "InpTrendEma", "value": "50"},
+    {"name": "InpUseSession", "value": "true"},
+    {"name": "InpLondonClose", "value": "12"},
+    {"name": "InpNYOpen", "value": "13"},
+    {"name": "InpNYClose", "value": "18"},
+    {"name": "InpUseAsianSession", "value": "false"},
+    {"name": "InpMaxSpread", "value": "3.0"},
+    {"name": "InpUseRsi", "value": "true"},
+    {"name": "InpRsiPeriod", "value": "14"},
+    {"name": "InpRsiBullMax", "value": "62.0"},
+    {"name": "InpRsiBearMin", "value": "38.0"},
+    {"name": "InpUseMacd", "value": "true"},
+    {"name": "InpUseRejection", "value": "true"},
+    {"name": "InpRejWickRatio", "value": "0.35"},
+    {"name": "InpUseH4Soft", "value": "false"},
+    {"name": "InpUseAdxSoft", "value": "false"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxOpenTrades", "value": "3"}
+  ],
+  "assumptions": [
+    "ResetWeek() properly resets g_weeklyLocked at the start of each calendar week.",
+    "2026 UNSEEN execution will match or exceed EXP-0061 (+259.33)."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Weekly resets occur cleanly across all 5 years without permanent freezing.",
+    "2026 UNSEEN net profit remains positive (> +$200.00) with drawdown <= 6.0%."
+  ],
+  "falsification_conditions": [
+    "Trading halts permanently after the first 5% weekly target.",
+    "2026 UNSEEN net profit falls below $0.00."
+  ],
+  "status": "proposed"
+}
