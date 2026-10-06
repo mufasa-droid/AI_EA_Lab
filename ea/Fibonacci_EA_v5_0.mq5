@@ -121,6 +121,7 @@ input double InpRsiExtBear        = 58.0;  // RSI for 78.6% sell (overbought)
 input bool   InpUseMacd           = true;  // MACD histogram sign
 input bool   InpUseRejection      = true;  // Rejection candle
 input double InpRejWickRatio      = 0.35;  // Min wick/range ratio
+input bool   InpRequire618Rejection = false; // Require candle rejection or MACD on 61.8% entries
 
 input group "══════ ATR VOLATILITY FILTER ══════"
 input bool   InpUseAtrFilter      = false; // ATR volatility filter (skip entries during volatility spikes)
@@ -554,7 +555,7 @@ bool Confirmed(double ratio,bool isBull,double rsi,bool macdOk,double macdH,
    if(ratio<=0.2365)      return isBull?(rOkB&&mBull&&bRej):(rOkS&&mBear&&sRej);
    else if(ratio<=0.3825) return isBull?(rOkB&&mBull&&bRej):(rOkS&&mBear&&sRej);
    else if(ratio<=0.505)  return isBull?(rOkB&&(mBull||bRej)):(rOkS&&(mBear||sRej));
-   else if(ratio<=0.620)  return isBull?rOkB:rOkS;
+   else if(ratio<=0.620)  return InpRequire618Rejection ? (isBull?(rOkB&&(mBull||bRej)):(rOkS&&(mBear||sRej))) : (isBull?rOkB:rOkS);
    else                   return isBull?rExB:rExS;
 }
 

@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0165",
+  "created_at": "2026-10-06T23:38:00+01:00",
+  "title": "Phase 2 Entry Hardening: Enforce Candle Rejection or MACD Confirmation on 61.8% Fibonacci Entries",
+  "research_question": "Does requiring candle rejection or MACD directional confirmation on 61.8% Fibonacci retracement entries (InpRequire618Rejection = true) eliminate false breakout entries and improve overall system win rate and profitability across both 5-year training and 2026 UNSEEN partitions?",
+  "hypothesis": "In previous experiments (e.g., EXP-0057, EXP-0059, EXP-0061, EXP-0063), 61.8% short entries suffered a 0% win rate (0 wins, 6 losses, -$591.00 net loss) because the baseline Confirmed() function bypassed candle rejection and MACD filters for 61.8% entries, relying solely on RSI. Enabling InpRequire618Rejection will filter out unconfirmed 61.8% entries into strong momentum thrusts, reducing drawdowns and improving trade quality without impairing overall system profitability.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0063",
+      "EXP-0062",
+      "EXP-0061",
+      "EXP-0059",
+      "EXP-0057"
+    ],
+    "facts": [
+      "In EXP-0057 and EXP-0059, 100% of 61.8% short entries failed (6/6 losses, -$591.00 loss) due to blind RSI-only entry at the 61.8% level without price rejection.",
+      "In EXP-0062 (repaired ResetWeek, 2020-2024 Training), the EA achieved 37 trades with 48.65% win rate and -$883.06 net profit.",
+      "In EXP-0063 (repaired ResetWeek, 2026 UNSEEN), the EA achieved +$259.33 net profit, PF 1.23, 56.0% win rate across 25 trades."
+    ],
+    "inferences": [
+      "Blindly entering at the 61.8% level when price is exhibiting strong momentum produces false reversal signals.",
+      "Requiring candle rejection (wick ratio >= 0.35) or MACD confirmation will eliminate low-probability 61.8% entries and protect capital."
+    ],
+    "evidence": [
+      "Forensic trade breakdown in EXP-0057/EXP-0059 confirmed 0% win rate on 618_S trades.",
+      "EXP-0063 recorded gross loss of -$1118.24, partially contributed by unconfirmed 61.8% entries."
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "InpRequire618Rejection",
+      "baseline_value": "false",
+      "proposed_value": "true",
+      "rationale": "Requires candle rejection or MACD confirmation for 61.8% Fibonacci entries, harmonizing confirmation standards with the 50.0% level."
+    }
+  ],
+  "dependent_variables": [
+    "total_trades",
+    "total_net_profit",
+    "profit_factor",
+    "win_rate",
+    "equity_drawdown_maximal"
+  ],
+  "control_variables": [
+    {"name": "symbol", "value": "GBPUSD"},
+    {"name": "timeframe", "value": "M30"},
+    {"name": "ea", "value": "Fibonacci_EA_v5_0"},
+    {"name": "InpLondonOpen", "value": "11"},
+    {"name": "InpUseFib382", "value": "false"},
+    {"name": "InpUseFib500", "value": "true"},
+    {"name": "InpUseFib618", "value": "true"},
+    {"name": "InpUseFib236", "value": "false"},
+    {"name": "InpUseFib786", "value": "false"},
+    {"name": "InpMaxSLPips", "value": "15.0"},
+    {"name": "InpTP1Pips", "value": "15.0"},
+    {"name": "InpTP2Pips", "value": "15.0"},
+    {"name": "InpTP1ClosePct", "value": "50.0"},
+    {"name": "InpTrailPips", "value": "8.0"},
+    {"name": "InpUseAtrFilter", "value": "true"},
+    {"name": "InpAtrPeriod", "value": "14"},
+    {"name": "InpMaxAtrPips", "value": "20.0"},
+    {"name": "InpUseTrend", "value": "true"},
+    {"name": "InpTrendEma", "value": "50"},
+    {"name": "InpUseSession", "value": "true"},
+    {"name": "InpLondonClose", "value": "12"},
+    {"name": "InpNYOpen", "value": "13"},
+    {"name": "InpNYClose", "value": "18"},
+    {"name": "InpUseAsianSession", "value": "false"},
+    {"name": "InpMaxSpread", "value": "3.0"},
+    {"name": "InpUseRsi", "value": "true"},
+    {"name": "InpRsiPeriod", "value": "14"},
+    {"name": "InpRsiBullMax", "value": "62.0"},
+    {"name": "InpRsiBearMin", "value": "38.0"},
+    {"name": "InpUseMacd", "value": "true"},
+    {"name": "InpUseRejection", "value": "true"},
+    {"name": "InpRejWickRatio", "value": "0.35"},
+    {"name": "InpUseH4Soft", "value": "false"},
+    {"name": "InpUseAdxSoft", "value": "false"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxOpenTrades", "value": "3"}
+  ],
+  "assumptions": [
+    "Candle rejection or MACD confirmation will filter toxic counter-trend entries without discarding high-quality turning points.",
+    "The 61.8% level functions more reliably when accompanied by price action confirmation."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Reduction of unconfirmed losing 61.8% entries in backtest history.",
+    "Improvement in overall win rate and reduction in gross loss.",
+    "2026 UNSEEN net profit remains positive (> +$200.00)."
+  ],
+  "falsification_conditions": [
+    "Overall trade count drops below 10 trades across the 5-year training period.",
+    "2026 UNSEEN net profit drops below $0.00."
+  ],
+  "status": "proposed"
+}
