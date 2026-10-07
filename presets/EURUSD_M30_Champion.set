@@ -1,8 +1,9 @@
 ; ═════════════════════════════════════════════════════════════════
 ; Fibonacci EA v5.0 - Prop Firm Edition
 ; Champion Preset: EURUSD M30 (Unthrottled Lot Sizing)
-; Validated in AI-EA-Lab Experiments EXP-0036 / EXP-0037
+; Validated in AI-EA-Lab Experiments EXP-0036 / EXP-0037 / EXP-0068
 ; 2025 Out-of-Sample: +$585.63 | PF 1.44 | WR 74.0% | Max DD 5.58%
+; 2026 UNSEEN Benchmark: +$143.24 | PF 1.15 | WR 82.4% | Max DD 4.97%
 ; ═════════════════════════════════════════════════════════════════
 
 ; --- PROP FIRM SETTINGS ---
@@ -48,7 +49,10 @@ InpUseSession=true
 InpLondonOpen=8
 InpLondonClose=12
 InpNYOpen=13
-InpNYClose=18
+InpNYClose=17
+InpUseAsianSession=false
+InpAsianOpen=0
+InpAsianClose=8
 InpMaxSpread=3.0
 InpUseRsi=true
 InpRsiPeriod=14
@@ -59,6 +63,12 @@ InpRsiExtBear=58.0
 InpUseMacd=true
 InpUseRejection=true
 InpRejWickRatio=0.35
+InpRequire618Rejection=true
+
+; --- ATR VOLATILITY FILTER ---
+InpUseAtrFilter=false
+InpAtrPeriod=14
+InpMaxAtrPips=30.0
 
 ; --- SOFT LOT FILTERS (UNTHROTTLED) ---
 InpUseH4Soft=false
