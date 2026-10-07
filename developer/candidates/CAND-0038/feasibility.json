@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "plan_id": "PLAN-0204",
+  "ea": "Fibonacci_EA_v5_0",
+  "feasible": true,
+  "status": "pass",
+  "reason": "All requested parameters exist in EA source and are compatible with EA architecture.",
+  "required_changes": [
+    {
+      "parameter": "InpLondonOpen",
+      "type": "int",
+      "before": "8",
+      "after": "11",
+      "rationale": ""
+    },
+    {
+      "parameter": "InpRequire618Rejection",
+      "type": "bool",
+      "before": "false",
+      "after": "true",
+      "rationale": ""
+    }
+  ],
+  "blocked_by": []
+}

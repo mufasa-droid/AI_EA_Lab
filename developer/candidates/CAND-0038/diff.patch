@@ -1,0 +1,20 @@
+--- source_before.mq5
++++ source_after.mq5
+@@ -104,7 +104,7 @@
+ input bool   InpUseTrend          = true;  // H1 EMA trend filter (global hard)
+ input int    InpTrendEma          = 50;    // H1 EMA period
+ input bool   InpUseSession        = true;  // London + NY session filter
+-input int    InpLondonOpen        = 8;     // London open
++input int    InpLondonOpen        = 11;     // London open
+ input int    InpLondonClose       = 12;    // London close
+ input int    InpNYOpen            = 13;    // NY open
+ input int    InpNYClose           = 18;    // NY close
+@@ -121,7 +121,7 @@
+ input bool   InpUseMacd           = true;  // MACD histogram sign
+ input bool   InpUseRejection      = true;  // Rejection candle
+ input double InpRejWickRatio      = 0.35;  // Min wick/range ratio
+-input bool   InpRequire618Rejection = false; // Require candle rejection or MACD on 61.8% entries
++input bool   InpRequire618Rejection = true; // Require candle rejection or MACD on 61.8% entries
+ 
+ input group "══════ ATR VOLATILITY FILTER ══════"
+ input bool   InpUseAtrFilter      = false; // ATR volatility filter (skip entries during volatility spikes)

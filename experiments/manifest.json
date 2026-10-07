@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-06T23:42:00.132288+01:00",
-  "total_experiments": 65,
+  "generated_at": "2026-10-07T00:19:20.969213+01:00",
+  "total_experiments": 66,
   "experiments": [
     {
       "id": "EXP-0001",
@@ -1107,6 +1107,23 @@
       "dataset_status": "classified",
       "validation_passed": true,
       "experiment_path": "experiments/EXP-0065"
+    },
+    {
+      "id": "EXP-0066",
+      "created_at": "2026-10-07T00:17:41.264165+01:00",
+      "ea": "Fibonacci_EA_v5_0",
+      "symbol": "EURUSD",
+      "timeframe": "M30",
+      "from": "2026.01.01",
+      "to": "2026.09.30",
+      "net_profit": -367.44,
+      "profit_factor": 0.71,
+      "total_trades": 40,
+      "max_drawdown": 1040.96,
+      "dataset": "unseen",
+      "dataset_status": "classified",
+      "validation_passed": true,
+      "experiment_path": "experiments/EXP-0066"
     }
   ]
 }
