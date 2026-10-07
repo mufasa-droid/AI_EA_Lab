@@ -1,0 +1,11 @@
+--- source_before.mq5
++++ source_after.mq5
+@@ -121,7 +121,7 @@
+ input bool   InpUseMacd           = true;  // MACD histogram sign
+ input bool   InpUseRejection      = true;  // Rejection candle
+ input double InpRejWickRatio      = 0.35;  // Min wick/range ratio
+-input bool   InpRequire618Rejection = false; // Require candle rejection or MACD on 61.8% entries
++input bool   InpRequire618Rejection = true; // Require candle rejection or MACD on 61.8% entries
+ 
+ input group "══════ ATR VOLATILITY FILTER ══════"
+ input bool   InpUseAtrFilter      = false; // ATR volatility filter (skip entries during volatility spikes)
