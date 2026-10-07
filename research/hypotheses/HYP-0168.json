@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0168",
+  "created_at": "2026-10-07T13:14:00+01:00",
+  "title": "EURUSD M30 2026 UNSEEN NY Session Close Restriction (InpNYClose 18→17)",
+  "research_question": "Does restricting the NY session close from 18:00 to 17:00 server time eliminate the toxic 17:00 entry hour on EURUSD M30 and shift 2026 UNSEEN net profit from negative to positive?",
+  "hypothesis": "Reducing InpNYClose from 18 to 17 will eliminate the 12 trades entered during the 17:00 hour (which suffered 33.3% win rate and -$487.20 net loss in EXP-0067), improving net profit from -$289.77 to approximately +$197.43 without reducing profitable session coverage.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0049",
+      "EXP-0066",
+      "EXP-0067"
+    ],
+    "facts": [
+      "In EXP-0067 (EURUSD M30 2026 UNSEEN, InpRequire618Rejection=true, InpLondonOpen=8), the strategy recorded -$289.77 net profit across 65 trades with PF 0.83.",
+      "Forensic hourly deal analysis of EXP-0067 reveals 12 trades entered during the 17:00 hour with 33.3% win rate (4W / 8L) and -$487.20 net PnL — the single largest hourly loss pocket.",
+      "All other NY session hours (14:00-16:00) were 100% win rate with +$313.03 combined profit across 15 trades.",
+      "The 11:00 hour was the second toxic pocket (37.5% WR, -$334.93) but is within the London session window.",
+      "Thursday and Friday trades were 0% win rate (0W / 6L, -$592.50 combined) across the entire 2026 UNSEEN window."
+    ],
+    "inferences": [
+      "The 17:00 hour represents the final hour of the NY session where EURUSD liquidity thins and price action becomes choppy, producing false breakout entries that consistently reverse.",
+      "Restricting InpNYClose to 17 eliminates 17:00 entries without affecting the profitable 14:00-16:00 NY core window.",
+      "The expected net profit recovery of approximately +$487.20 would shift EXP-0067 from -$289.77 to approximately +$197.43."
+    ],
+    "evidence": [
+      "EXP-0067 hourly PnL breakdown: 17:00 hour = -$487.20 (12 trades, 33.3% WR), 14:00 = +$28.22 (1 trade, 100% WR), 15:00 = +$179.28 (6 trades, 100% WR), 16:00 = +$105.53 (8 trades, 100% WR)."
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "InpNYClose",
+      "baseline_value": "18",
+      "proposed_value": "17",
+      "rationale": "Eliminates the toxic 17:00 entry hour where EURUSD liquidity thins and false breakouts produce 33.3% win rate and -$487.20 net loss."
+    }
+  ],
+  "dependent_variables": [
+    "total_trades",
+    "total_net_profit",
+    "gross_profit",
+    "gross_loss",
+    "profit_factor",
+    "win_rate",
+    "equity_drawdown_maximal"
+  ],
+  "control_variables": [
+    {"name": "symbol", "value": "EURUSD"},
+    {"name": "timeframe", "value": "M30"},
+    {"name": "ea", "value": "Fibonacci_EA_v5_0"},
+    {"name": "InpLondonOpen", "value": "8"},
+    {"name": "InpLondonClose", "value": "12"},
+    {"name": "InpNYOpen", "value": "13"},
+    {"name": "InpRequire618Rejection", "value": "true"},
+    {"name": "InpUseFib382", "value": "true"},
+    {"name": "InpUseFib500", "value": "true"},
+    {"name": "InpUseFib618", "value": "true"},
+    {"name": "InpTP1Pips", "value": "15.0"},
+    {"name": "InpTP2Pips", "value": "30.0"},
+    {"name": "InpMaxSLPips", "value": "15.0"},
+    {"name": "InpUseAtrFilter", "value": "false"},
+    {"name": "InpUseH4Soft", "value": "false"},
+    {"name": "InpUseAdxSoft", "value": "false"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxOpenTrades", "value": "3"}
+  ],
+  "assumptions": [
+    "The 17:00 hour toxicity is structural (thin EURUSD liquidity, end-of-session chop) rather than coincidental to the 2026 sample.",
+    "Eliminating 17:00 entries does not materially reduce profitable NY session coverage because 14:00-16:00 carries the profitable NY trades."
+  ],
+  "dataset": {
+    "type": "unseen",
+    "from": "2026.01.01",
+    "to": "2026.09.30",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Total trades decrease from 65 by approximately 12 (to ~53).",
+    "Net profit improves from -$289.77, potentially turning positive.",
+    "Profit Factor improves above 0.83 and potentially above 1.0.",
+    "Max equity drawdown remains below 8.0%."
+  ],
+  "falsification_conditions": [
+    "Net profit does not improve beyond -$289.77.",
+    "Profit Factor remains below 0.83.",
+    "Max equity drawdown exceeds 8.0%."
+  ],
+  "status": "proposed"
+}

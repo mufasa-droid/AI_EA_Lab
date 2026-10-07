@@ -161,6 +161,7 @@
     "780fd921b8a01c2619928007a82c32ea276e23d5f33e7e660e1a1f91ae29faab": "MEM-HYP-0120",
     "78caeba2e31eac3618d89ba22e9f09946a172e34c5e9562c0ce9d7209b0e2087": "MEM-OBS-0036",
     "79819dc6096475b1506da96ebe7297f30cc5c3d4171594ade6352db829d7348a": "MEM-HYP-0137",
+    "79af3957b0089f098a807df562851222a17bbf82807b2059de5fd8c183135c72": "MEM-REL-0089",
     "79f285b1150fd6498b5fa697c0206ea987ecb53abe0b09cb4eac8041cf2f3680": "MEM-OBS-0057",
     "7a0225fd6aa6fbf4d72f54ccfc2b5a2f1c53a1f1d8b994e32c7bdea9b86a5fcb": "MEM-REL-0023",
     "7a382ecaa31a7007c9389bd0ab75159d8cf63c6db9da42dc6c3620877baa4baf": "MEM-HYP-0002",
@@ -216,6 +217,7 @@
     "a3ff083a152d990acab8e012d3dc6df453bed39eb33ebf213af77cec8d16ea82": "MEM-OBS-0049",
     "a549b9be059d002b33525c5d8dfecbc44b6a5cbe7b111a9f75c3d4e61ec75293": "MEM-OBS-0030",
     "a59f0dd6afcf798b82bc4c23f2db4b1af3d32732d445b103b77d8af7441a4a66": "MEM-OBS-0035",
+    "a7cb2f11e5737d97a24b31bae9a127d15f61ed36b182d8087bc92056f4e5d5c4": "MEM-REL-0090",
     "a8184821526938391d5f09a20c649da7f504b90cf93e9ee4b0e9dd2b0b3c08bc": "MEM-HYP-0102",
     "a851b6571b6ec4eaa97949faa14d5559ada85bad95611b8eab6fdbe73c7e9a11": "MEM-REL-0064",
     "a85702bbaea17abecde0571f17877865a0142f5d9a9f6f75e9ddc7f73f7b8c7b": "MEM-HYP-0121",
@@ -230,6 +232,7 @@
     "adac7a16c57bfcdb4b8211a8b4d52ccffcd7fcc5d57318a231fe27b5d700aed9": "MEM-OBS-0022",
     "ae61ed7e6f555a015cdc98e3b7bf8326176ea653012c2ed258ed4d8b93024a05": "MEM-HYP-0021",
     "af0c5f82bd93dbae563ae0a818309348eda4cb11b40ad08388b0cf7c5d1d9f5b": "MEM-HYP-0098",
+    "af8b010dfb1651e35fd9c25bae2361a7ff7da08b8ef93a1786b0ee5a8e904d35": "MEM-OBS-0089",
     "b0b2ccc52c22c687a008d1cb22a7e58e6c4c57fa1022238d31300c0334f6999b": "MEM-HYP-0083",
     "b1aee5617e8abe5524d93ef36394ae0d862bc40c3aea34761d13080d4661fa21": "MEM-REL-0033",
     "b29cd509ed1c259c696e86305a99012f8e842942ace8598c6da0cbce62d58ce4": "MEM-HYP-0064",
@@ -299,6 +302,7 @@
     "ed0be1b5f6aef2229a0c028b888a5c7a5360e020e2104f5b6cdd2a6076d22648": "MEM-HYP-0003",
     "ed211ec1f3fcb14b2fc8c72d34c392192d21014ecb654cad36cd5f3cb3a32c96": "MEM-REL-0031",
     "ed3120796078c86fa2d37b29b4fe564acf279bee5b6fadad9081f24fdd4184b0": "MEM-OBS-0073",
+    "ed526d40c246a0f1069748bf8920652b19f655611fe61c6e4d0cadd0aee382f5": "MEM-OBS-0090",
     "edb1131946ef123f1b35955cbe4c85d8ce6cc252ed6e4840deee8cd95ce0663f": "MEM-REL-0047",
     "eed0401a1d33f8494ab7451b4cd07d4d11bc59e386a73ddbfcc4456b346a1955": "MEM-REL-0032",
     "f08d9e1289612e5abcd54e2760251aadf6e016b68f0ddeb21a6a539e74afaef8": "MEM-OBS-0037",
@@ -11050,9 +11054,101 @@
       "source_type": "EXPERIMENT",
       "target_id": "CAND-0039",
       "target_type": "CANDIDATE"
+    },
+    {
+      "candidate_id": "CAND-0040",
+      "created_at": "2026-10-07T13:16:41.477930+01:00",
+      "dataset_from": "2026.01.01",
+      "dataset_partition": {
+        "from": "2026.01.01",
+        "partition": "unseen",
+        "source": "config/research_periods.json",
+        "to": "2026.09.30"
+      },
+      "dataset_to": "2026.09.30",
+      "evidence_reference": {
+        "experiment_id": "EXP-0068",
+        "metadata_path": "experiments/EXP-0068/metadata.json"
+      },
+      "evidence_type": "METRICS",
+      "experiment_id": "EXP-0068",
+      "fingerprint": "af8b010dfb1651e35fd9c25bae2361a7ff7da08b8ef93a1786b0ee5a8e904d35",
+      "generated_by": "system",
+      "memory_id": "MEM-OBS-0089",
+      "observation": "Experiment EXP-0068 executed on symbol EURUSD (M30) across 2026.01.01-2026.09.30 [{'partition': 'unseen', 'from': '2026.01.01', 'to': '2026.09.30', 'source': 'config/research_periods.json'}] with bars=9270, ticks=1091658, history_quality=100.0%.",
+      "observation_category": "FACT",
+      "record_type": "EXPERIMENT_OBSERVATION",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "symbol": "EURUSD",
+      "timeframe": "M30"
+    },
+    {
+      "candidate_id": "CAND-0040",
+      "created_at": "2026-10-07T13:16:41.507142+01:00",
+      "dataset_from": "2026.01.01",
+      "dataset_partition": {
+        "from": "2026.01.01",
+        "partition": "unseen",
+        "source": "config/research_periods.json",
+        "to": "2026.09.30"
+      },
+      "dataset_to": "2026.09.30",
+      "evidence_reference": {
+        "experiment_id": "EXP-0068",
+        "metrics_path": "experiments/EXP-0068/metrics.json"
+      },
+      "evidence_type": "METRICS",
+      "experiment_id": "EXP-0068",
+      "fingerprint": "ed526d40c246a0f1069748bf8920652b19f655611fe61c6e4d0cadd0aee382f5",
+      "generated_by": "system",
+      "memory_id": "MEM-OBS-0090",
+      "observation": "Experiment EXP-0068 recorded total_trades=51, net_profit=143.24, profit_factor=1.15.",
+      "observation_category": "FACT",
+      "record_type": "EXPERIMENT_OBSERVATION",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "symbol": "EURUSD",
+      "timeframe": "M30"
+    },
+    {
+      "created_at": "2026-10-07T13:16:41.534578+01:00",
+      "evidence_reference": {
+        "experiment_id": "EXP-0068",
+        "hypothesis_id": "HYP-0168"
+      },
+      "fingerprint": "79af3957b0089f098a807df562851222a17bbf82807b2059de5fd8c183135c72",
+      "generated_by": "system",
+      "memory_id": "MEM-REL-0089",
+      "record_type": "RELATIONSHIP",
+      "relation": "TESTED_BY",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source_id": "HYP-0168",
+      "source_type": "HYPOTHESIS",
+      "target_id": "EXP-0068",
+      "target_type": "EXPERIMENT"
+    },
+    {
+      "created_at": "2026-10-07T13:16:41.576266+01:00",
+      "evidence_reference": {
+        "candidate_id": "CAND-0040",
+        "experiment_id": "EXP-0068"
+      },
+      "fingerprint": "a7cb2f11e5737d97a24b31bae9a127d15f61ed36b182d8087bc92056f4e5d5c4",
+      "generated_by": "system",
+      "memory_id": "MEM-REL-0090",
+      "record_type": "RELATIONSHIP",
+      "relation": "IMPLEMENTED_AS",
+      "review_status": "unreviewed",
+      "schema_version": 1,
+      "source_id": "EXP-0068",
+      "source_type": "EXPERIMENT",
+      "target_id": "CAND-0040",
+      "target_type": "CANDIDATE"
     }
   ],
   "schema_version": 1,
-  "total_records": 318,
-  "updated_at": "2026-10-07T12:36:11.229890+01:00"
+  "total_records": 322,
+  "updated_at": "2026-10-07T13:16:41.576266+01:00"
 }

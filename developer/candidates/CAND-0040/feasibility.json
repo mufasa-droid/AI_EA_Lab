@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "plan_id": "PLAN-0206",
+  "ea": "Fibonacci_EA_v5_0",
+  "feasible": true,
+  "status": "pass",
+  "reason": "All requested parameters exist in EA source and are compatible with EA architecture.",
+  "required_changes": [
+    {
+      "parameter": "InpNYClose",
+      "type": "int",
+      "before": "18",
+      "after": "17",
+      "rationale": ""
+    }
+  ],
+  "blocked_by": []
+}

@@ -1,0 +1,11 @@
+--- source_before.mq5
++++ source_after.mq5
+@@ -107,7 +107,7 @@
+ input int    InpLondonOpen        = 8;     // London open
+ input int    InpLondonClose       = 12;    // London close
+ input int    InpNYOpen            = 13;    // NY open
+-input int    InpNYClose           = 18;    // NY close
++input int    InpNYClose           = 17;    // NY close
+ input bool   InpUseAsianSession   = false; // Asian (Tokyo/Sydney) session filter
+ input int    InpAsianOpen         = 0;     // Asian open (server time)
+ input int    InpAsianClose        = 8;     // Asian close (server time)
