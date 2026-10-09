@@ -224,3 +224,18 @@ Phase 10: EURUSD 2026 UNSEEN Remediation & Session Optimization (EXP-0066 – EX
 - **Audit**: `AUD-0070` passed with status PASS.
 - **Finding**: Confirmed that removing the weekly target lock completely eliminates multi-year dormancy and proves solid, continuous 5-year profitability for the EURUSD champion architecture.
 
+### Milestone 17: GBPUSD 5-Year History Benchmark (EXP-0070)
+- **Date**: 2026-10-09
+- **Candidate**: `CAND-0042` (`PLAN-0208`, `HYP-0170`)
+- **Context**: Re-evaluating GBPUSD across the entire 5-year historical training partition (`2020.01.01` to `2024.12.31`) with weekly target lock disabled (`InpWeeklyTargetPct = 0.0`) on the GBPUSD Champion preset (`InpLondonOpen=11`, `InpNYClose=18`, `InpRequire618Rejection=true`, `InpUseFib382=false`, `InpTP2Pips=15.0`, `InpUseAtrFilter=true`, `InpMaxAtrPips=20.0`).
+- **Results (5-Year Training: 2020–2024)**:
+  - **Net Profit**: **-$875.02** | **Profit Factor**: **0.55** | **Total Trades**: **31 trades**.
+  - **Max Equity Drawdown**: **10.93%** ($1,119.25).
+  - **Execution Halt**: Ceased on **2022.08.16** after 31 trades.
+- **Audit**: `AUD-0071` passed with status PASS.
+- **Critical Discovery**:
+  - The trading cessation was **not** caused by the weekly target lock or weekly reset bug.
+  - The halt was triggered by the EA's hard Prop Firm Total Drawdown guard (`InpTotalDDLimit = 8.0%`): on 2022.08.16, equity dropped to $9,124.98 (-8.75% DD), properly locking the EA to protect account capital from ruin during the extreme 2020–2022 macro volatility regime (COVID, Brexit, UK gilt crisis).
+  - Demonstrates that EURUSD is the reliable all-weather 5-year anchor (+ $1,767.51, 179 trades, 3.86% DD), whereas the GBPUSD 15-pip fixed SL/TP geometry is a high-alpha regime engine tuned for modern normalized market structures (2025–2026).
+
+

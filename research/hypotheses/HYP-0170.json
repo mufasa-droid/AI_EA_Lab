@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0170",
+  "created_at": "2026-10-09T15:15:00+01:00",
+  "title": "GBPUSD M30 5-Year History Benchmark with Weekly Target Lock Removed",
+  "research_question": "Does removing the weekly profit target lock (InpWeeklyTargetPct=0.0) on the remediated GBPUSD champion configuration allow continuous trading across the full 5-year training history (2020.01.01 to 2024.12.31) and establish a complete multi-year baseline?",
+  "hypothesis": "Disabling the weekly profit target lock (InpWeeklyTargetPct: 5.0 -> 0.0) on the GBPUSD champion settings (InpLondonOpen=11, InpLondonClose=12, InpNYOpen=13, InpNYClose=18, InpRequire618Rejection=true, InpUseFib382=false, InpTP2Pips=15, InpUseAtrFilter=true, InpMaxAtrPips=20) together with the repaired ResetWeek() calendar logic will remove artificial weekly locks and establish full 5-year trade activity across 2020-2024.",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0064",
+      "EXP-0065",
+      "EXP-0069"
+    ],
+    "facts": [
+      "In EXP-0064 (GBPUSD M30 Training 2020-2024), the strategy executed only 31 trades before ceasing on 2022.08.16.",
+      "EXP-0064 ran on commit a5461ec prior to the ResetWeek() calendar week index fix (commit 91d075a).",
+      "In EXP-0065 (2026 UNSEEN), GBPUSD demonstrated positive expectancy (+$369.98, PF 1.51, WR 61.1%, Max DD 3.23%).",
+      "In EXP-0069, disabling InpWeeklyTargetPct (5.0 -> 0.0) unlocked full 5-year continuous execution for EURUSD (+ $1,767.51, PF 1.27, 179 trades)."
+    ],
+    "inferences": [
+      "Setting InpWeeklyTargetPct=0.0 completely bypasses [G3] Weekly profit lock (if(InpWeeklyTargetPct > 0)), preventing any weekly lockout.",
+      "Testing with InpWeeklyTargetPct=0.0 across 2020-2024 will provide the true unthrottled 5-year historical trade distribution and resilience for GBPUSD."
+    ],
+    "evidence": [
+      "EXP-0064 deal history shows trading halted on 2022.08.16 with total_trades=31.",
+      "EXP-0069 confirmed InpWeeklyTargetPct=0.0 allows uninterrupted execution across all 5 years."
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "InpWeeklyTargetPct",
+      "baseline_value": "5.0",
+      "proposed_value": "0.0",
+      "rationale": "Disables the weekly profit lock guard, ensuring uninterrupted trading every week throughout 2020-2024 without artificial weekly halts."
+    }
+  ],
+  "dependent_variables": [
+    "total_trades",
+    "total_net_profit",
+    "gross_profit",
+    "gross_loss",
+    "profit_factor",
+    "win_rate",
+    "equity_drawdown_maximal"
+  ],
+  "control_variables": [
+    {"name": "symbol", "value": "GBPUSD"},
+    {"name": "timeframe", "value": "M30"},
+    {"name": "ea", "value": "Fibonacci_EA_v5_0"},
+    {"name": "InpLondonOpen", "value": "11"},
+    {"name": "InpLondonClose", "value": "12"},
+    {"name": "InpNYOpen", "value": "13"},
+    {"name": "InpNYClose", "value": "18"},
+    {"name": "InpRequire618Rejection", "value": "true"},
+    {"name": "InpUseFib382", "value": "false"},
+    {"name": "InpUseFib500", "value": "true"},
+    {"name": "InpUseFib618", "value": "true"},
+    {"name": "InpTP1Pips", "value": "15.0"},
+    {"name": "InpTP2Pips", "value": "15.0"},
+    {"name": "InpMaxSLPips", "value": "15.0"},
+    {"name": "InpUseAtrFilter", "value": "true"},
+    {"name": "InpMaxAtrPips", "value": "20.0"},
+    {"name": "InpUseH4Soft", "value": "false"},
+    {"name": "InpUseAdxSoft", "value": "false"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxOpenTrades", "value": "3"}
+  ],
+  "assumptions": [
+    "The 5-year tick and bar data for GBPUSD M30 is intact (99%+ history quality) across 2020.01.01 to 2024.12.31.",
+    "Removing the weekly target lock allows trade frequency to reflect true market conditions rather than arbitrary weekly cutoffs."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Total trades will be substantially higher than 31.",
+    "Trading execution across 2020-2024 without artificial weekly target lockouts."
+  ],
+  "falsification_conditions": [
+    "Total trades remain <= 31 (indicating trading lock or premature halt).",
+    "Max equity drawdown exceeds 15.0%."
+  ],
+  "status": "proposed"
+}

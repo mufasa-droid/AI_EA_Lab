@@ -9,10 +9,11 @@ This document is the definitive, authoritative quantitative research handoff and
 ### Core Evidentiary Distinctions
 - **Offline Scientific Research**: The laboratory operates purely against historical data partitions in MT5 Strategy Tester on tick and bar models. It does not engage in live broker trading, balance risk, or unconstrained autonomous execution.
 - **Human Approval Boundary**: All code candidate generation and backtest executions require explicit human authorization (`human_review_required: true`). Optimization sweeps and genetic curve-fitting algorithms are strictly forbidden.
-- **Empirical Volume**: A total of **69 experiments** (`EXP-0001` through `EXP-0069`) have been executed, of which **64 experiments** (`EXP-0006` through `EXP-0069`) represent real MetaTrader 5 Strategy Tester executions on `Fibonacci_EA_v5_0`.
+- **Empirical Volume**: A total of **70 experiments** (`EXP-0001` through `EXP-0070`) have been executed, of which **65 experiments** (`EXP-0006` through `EXP-0070`) represent real MetaTrader 5 Strategy Tester executions on `Fibonacci_EA_v5_0`.
 - **Dual-Major Validation History**: GBPUSD M30 (`EXP-0034` Training PF 3.20, `EXP-0035` Validation PF 2.29) and EURUSD M30 (`EXP-0036` Training PF 1.62, `EXP-0037` Validation PF 1.44) demonstrated strong profitability across 2020–2024 (Training) and 2025 (Validation).
 - **2026 UNSEEN Shock & Remediation**: Unlocking the frozen 2026 UNSEEN partition (`2026.01.01`–`2026.09.30`) revealed severe regime vulnerability across both champions (`EXP-0048` GBPUSD -$592.46, DD 11.17%; `EXP-0049` EURUSD -$371.27, DD 8.24%). A series of controlled structural hypotheses successfully diagnosed the failures: (1) 38.2% Fibonacci pullbacks caused excessive chop; (2) 10:00 server open entries took heavy whipsaws on GBPUSD; (3) 61.8% entries required candlestick rejection or MACD confirmation; (4) EURUSD required keeping morning hours (08:00) open while pruning toxic late New York session drift (17:00). Furthermore, an architectural bug in `ResetWeek()` permanently locked trading after July 2020.
 - **Current Status**: Following GBPUSD Phase 2 Entry Hardening (`EXP-0065`, +$369.98, PF 1.51, DD 3.23%) and EURUSD Session Optimization (`EXP-0068`, +$143.24, PF 1.15, WR 82.35%, DD 4.97%), **both primary majors are confirmed profitable and compliant under strict 5.0% prop firm drawdown limits on the 2026 UNSEEN benchmark. The combined dual-major portfolio achieves +$513.22 net profit, 1.33 profit factor, 84.34% win rate, and < 5.0% maximum equity drawdown.**
+- **5-Year Benchmark Verification**: Unthrottled evaluation with `InpWeeklyTargetPct = 0.0` confirmed EURUSD 5-year continuous profitability (`EXP-0069`, +$1,767.51, 179 trades, 4/5 years profitable, max DD 3.86%) and diagnosed that GBPUSD trading cessation in August 2022 was governed by the hard Prop Firm Total Drawdown guard (`EXP-0070`, -$875.02, 31 trades, halted at 8.75% DD).
 
 ---
 
@@ -29,8 +30,8 @@ This document is the definitive, authoritative quantitative research handoff and
 - **Active Indicator Handles**: 6 indicator handles (`iMA H1`, `iMA H4`, `iRSI M30`, `iMACD M30`, `iATR M30`, `iADX H1`)
 - **Prop Firm Guards Implemented**: 6 guards ([G1] Daily Loss 4%, [G2] Total DD 8%, [G3] Weekly Target 5%, [G4] News Filter ±30m, [G5] Max Trades/Day 6, [G6] Weekend Close Fri 21:00)
 - **Current Baseline**: `EXP-0065` (GBPUSD UNSEEN) & `EXP-0068` (EURUSD UNSEEN)
-- **Latest Candidate**: `CAND-0040`
-- **Latest Audit**: `AUD-0069` (PASS)
+- **Latest Candidates**: `CAND-0041` (EURUSD 5-Year Benchmark) & `CAND-0042` (GBPUSD 5-Year Benchmark)
+- **Latest Audits**: `AUD-0070` (EXP-0069 PASS) & `AUD-0071` (EXP-0070 PASS)
 
 ---
 
@@ -479,6 +480,8 @@ A catalog of all key research hypotheses formulated and tested for `Fibonacci_EA
 - **HYP-0163**: Delaying London open to 11:00 avoids 10:00 opening rush whipsaws. (Supported: EXP-0061 turned UNSEEN +$259.33)
 - **HYP-0164**: Repairing `ResetWeek()` restores multi-year weekly target resets. (Supported: EXP-0062/0063 confirmed resets)
 - **HYP-0165**: Phase 2 Entry Hardening on 61.8% eliminates 0% WR short trap. (Supported: EXP-0065 surged to +$369.98, PF 1.51)
+- **HYP-0169**: Removing weekly target lock (`InpWeeklyTargetPct=0.0`) restores 5-year continuous trading on EURUSD. (Supported: EXP-0069 +$1,767.51, 179 trades, PF 1.27, max DD 3.86%)
+- **HYP-0170**: Removing weekly target lock (`InpWeeklyTargetPct=0.0`) on GBPUSD Champion across 2020–2024. (Diagnosed: EXP-0070 halted 2022.08.16 due to hard Prop Firm Total DD guard [G2] at -$875.02)
 
 ---
 

@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "experiment_plan_id": "PLAN-0208",
+  "hypothesis_id": "HYP-0170",
+  "created_at": "2026-10-09T15:15:00+01:00",
+  "title": "GBPUSD M30 5-Year History Benchmark with Weekly Target Lock Removed",
+  "research_question": "Does removing the weekly profit target lock (InpWeeklyTargetPct=0.0) on the remediated GBPUSD champion configuration allow continuous trading across the full 5-year training history (2020.01.01 to 2024.12.31) and establish a complete multi-year baseline?",
+  "objective": "Evaluate candidate testing InpWeeklyTargetPct=0.0 on GBPUSD M30 against baseline EXP-0064 across the full 5-year training dataset (2020.01.01 to 2024.12.31) to establish unthrottled multi-year baseline performance.",
+  "baseline": {
+    "experiment_id": "EXP-0064",
+    "ea": "Fibonacci_EA_v5_0",
+    "symbol": "GBPUSD",
+    "timeframe": "M30",
+    "inputs": {
+      "InpInitialBalance": "0.0",
+      "InpDailyLossLimit": "4.0",
+      "InpTotalDDLimit": "8.0",
+      "InpWeeklyTargetPct": "5.0",
+      "InpUseNewsFilter": "true",
+      "InpNewsBufferMins": "30",
+      "InpMaxTradesPerDay": "6",
+      "InpWeekendClose": "true",
+      "InpWeekendCloseHour": "21",
+      "InpDirection": "2",
+      "InpSwingLookback": "50",
+      "InpSwingStrength": "5",
+      "InpMinSwingPips": "25.0",
+      "InpMaxSwingPips": "500.0",
+      "InpMinBarsAfterSwing": "2",
+      "InpUseFib236": "false",
+      "InpUseFib382": "false",
+      "InpUseFib500": "true",
+      "InpUseFib618": "true",
+      "InpUseFib786": "false",
+      "InpFibBuffer": "5.0",
+      "InpMaxSLPips": "15.0",
+      "InpTP1Pips": "15.0",
+      "InpTP2Pips": "15.0",
+      "InpTP1ClosePct": "50.0",
+      "InpTrailPips": "8.0",
+      "InpUseTrend": "true",
+      "InpTrendEma": "50",
+      "InpUseSession": "true",
+      "InpLondonOpen": "11",
+      "InpLondonClose": "12",
+      "InpNYOpen": "13",
+      "InpNYClose": "18",
+      "InpUseAsianSession": "false",
+      "InpAsianOpen": "0",
+      "InpAsianClose": "8",
+      "InpMaxSpread": "3.0",
+      "InpUseRsi": "true",
+      "InpRsiPeriod": "14",
+      "InpRsiBullMax": "62.0",
+      "InpRsiBearMin": "38.0",
+      "InpRsiExtBull": "42.0",
+      "InpRsiExtBear": "58.0",
+      "InpUseMacd": "true",
+      "InpUseRejection": "true",
+      "InpRejWickRatio": "0.35",
+      "InpRequire618Rejection": "true",
+      "InpUseAtrFilter": "true",
+      "InpAtrPeriod": "14",
+      "InpMaxAtrPips": "20.0",
+      "InpUseH4Soft": "false",
+      "InpH4Ema": "50",
+      "InpH4LotFactor": "0.6",
+      "InpUseAdxSoft": "false",
+      "InpAdxPeriod": "14",
+      "InpAdxMin": "15.0",
+      "InpAdxMid": "22.0",
+      "InpAdxWeakLot": "0.6",
+      "InpRiskPct": "1.0",
+      "InpMaxOpenTrades": "3",
+      "InpMinLot": "0.01",
+      "InpMaxLot": "50.0",
+      "InpUseBE": "true",
+      "InpUseTrail": "true",
+      "InpDrawFibs": "true",
+      "InpShowPanel": "true",
+      "InpShowArrows": "true",
+      "InpBullColor": "16748574",
+      "InpBearColor": "17919"
+    }
+  },
+  "changes_under_test": [
+    {
+      "variable": "InpWeeklyTargetPct",
+      "baseline_value": "5.0",
+      "target_value": "0.0",
+      "change_type": "parameter_adjustment"
+    }
+  ],
+  "unchanged_variables": [
+    {
+      "variable": "InpLondonOpen",
+      "value": "11"
+    },
+    {
+      "variable": "InpLondonClose",
+      "value": "12"
+    },
+    {
+      "variable": "InpNYOpen",
+      "value": "13"
+    },
+    {
+      "variable": "InpNYClose",
+      "value": "18"
+    },
+    {
+      "variable": "InpRequire618Rejection",
+      "value": "true"
+    },
+    {
+      "variable": "InpUseFib382",
+      "value": "false"
+    },
+    {
+      "variable": "InpUseFib500",
+      "value": "true"
+    },
+    {
+      "variable": "InpUseFib618",
+      "value": "true"
+    },
+    {
+      "variable": "InpTP1Pips",
+      "value": "15.0"
+    },
+    {
+      "variable": "InpTP2Pips",
+      "value": "15.0"
+    },
+    {
+      "variable": "InpMaxSLPips",
+      "value": "15.0"
+    },
+    {
+      "variable": "InpUseAtrFilter",
+      "value": "true"
+    },
+    {
+      "variable": "InpMaxAtrPips",
+      "value": "20.0"
+    },
+    {
+      "variable": "InpUseH4Soft",
+      "value": "false"
+    },
+    {
+      "variable": "InpUseAdxSoft",
+      "value": "false"
+    },
+    {
+      "variable": "InpRiskPct",
+      "value": "1.0"
+    },
+    {
+      "variable": "InpMaxOpenTrades",
+      "value": "3"
+    }
+  ],
+  "parameters": {
+    "InpInitialBalance": "0.0",
+    "InpDailyLossLimit": "4.0",
+    "InpTotalDDLimit": "8.0",
+    "InpWeeklyTargetPct": "0.0",
+    "InpUseNewsFilter": "true",
+    "InpNewsBufferMins": "30",
+    "InpMaxTradesPerDay": "6",
+    "InpWeekendClose": "true",
+    "InpWeekendCloseHour": "21",
+    "InpDirection": "2",
+    "InpSwingLookback": "50",
+    "InpSwingStrength": "5",
+    "InpMinSwingPips": "25.0",
+    "InpMaxSwingPips": "500.0",
+    "InpMinBarsAfterSwing": "2",
+    "InpUseFib236": "false",
+    "InpUseFib382": "false",
+    "InpUseFib500": "true",
+    "InpUseFib618": "true",
+    "InpUseFib786": "false",
+    "InpFibBuffer": "5.0",
+    "InpMaxSLPips": "15.0",
+    "InpTP1Pips": "15.0",
+    "InpTP2Pips": "15.0",
+    "InpTP1ClosePct": "50.0",
+    "InpTrailPips": "8.0",
+    "InpUseTrend": "true",
+    "InpTrendEma": "50",
+    "InpUseSession": "true",
+    "InpLondonOpen": "11",
+    "InpLondonClose": "12",
+    "InpNYOpen": "13",
+    "InpNYClose": "18",
+    "InpUseAsianSession": "false",
+    "InpAsianOpen": "0",
+    "InpAsianClose": "8",
+    "InpMaxSpread": "3.0",
+    "InpUseRsi": "true",
+    "InpRsiPeriod": "14",
+    "InpRsiBullMax": "62.0",
+    "InpRsiBearMin": "38.0",
+    "InpRsiExtBull": "42.0",
+    "InpRsiExtBear": "58.0",
+    "InpUseMacd": "true",
+    "InpUseRejection": "true",
+    "InpRejWickRatio": "0.35",
+    "InpRequire618Rejection": "true",
+    "InpUseAtrFilter": "true",
+    "InpAtrPeriod": "14",
+    "InpMaxAtrPips": "20.0",
+    "InpUseH4Soft": "false",
+    "InpH4Ema": "50",
+    "InpH4LotFactor": "0.6",
+    "InpUseAdxSoft": "false",
+    "InpAdxPeriod": "14",
+    "InpAdxMin": "15.0",
+    "InpAdxMid": "22.0",
+    "InpAdxWeakLot": "0.6",
+    "InpRiskPct": "1.0",
+    "InpMaxOpenTrades": "3",
+    "InpMinLot": "0.01",
+    "InpMaxLot": "50.0",
+    "InpUseBE": "true",
+    "InpUseTrail": "true",
+    "InpDrawFibs": "true",
+    "InpShowPanel": "true",
+    "InpShowArrows": "true",
+    "InpBullColor": "16748574",
+    "InpBearColor": "17919"
+  },
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "observations": [
+    "total_net_profit",
+    "profit_factor",
+    "total_trades",
+    "win_rate",
+    "equity_drawdown_maximal_percent",
+    "expected_payoff",
+    "gross_loss",
+    "gross_profit"
+  ],
+  "expected_observations": [
+    "Total trades will be substantially higher than 31.",
+    "Trading execution across 2020-2024 without artificial weekly target lockouts."
+  ],
+  "falsification_conditions": [
+    "Total trades remain <= 31 (indicating trading lock or premature halt).",
+    "Max equity drawdown exceeds 15.0%."
+  ],
+  "warnings": [],
+  "risks": [
+    "Removing weekly target lock exposes account to continuous drawdown without artificial weekly halts.",
+    "Evaluating across 5-year training dataset; high historical variance across changing market regimes."
+  ],
+  "human_review_required": true,
+  "status": "approved",
+  "approval": {
+    "status": "approved",
+    "reviewed_by": "User",
+    "reviewed_at": "2026-10-09T15:08:48+01:00",
+    "note": "Approved GBPUSD 5-Year Benchmark with InpWeeklyTargetPct=0.0 on training dataset (2020.01.01 to 2024.12.31)"
+  }
+}
