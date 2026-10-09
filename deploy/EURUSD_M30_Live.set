@@ -1,0 +1,98 @@
+; ═════════════════════════════════════════════════════════════════
+; Fibonacci EA v5.0 - Live / Prop Firm Production Preset
+; Instrument: EURUSD M30 (Validated in EXP-0068 & EXP-0069)
+; 5-Year History (2020-2024): +$1,767.51 | PF 1.27 | WR 68.2% | Max DD 3.86%
+; 2026 UNSEEN Benchmark: +$143.24 | PF 1.15 | WR 82.4% | Max DD 4.97%
+; ═════════════════════════════════════════════════════════════════
+
+; --- PROP FIRM RISK SETTINGS ---
+InpInitialBalance=0.0
+InpDailyLossLimit=4.0
+InpTotalDDLimit=8.0
+InpWeeklyTargetPct=0.0
+InpUseNewsFilter=true
+InpNewsBufferMins=30
+InpMaxTradesPerDay=6
+InpWeekendClose=true
+InpWeekendCloseHour=21
+
+; --- TRADE DIRECTION ---
+InpDirection=2
+
+; --- SWING DETECTION ---
+InpSwingLookback=50
+InpSwingStrength=5
+InpMinSwingPips=25.0
+InpMaxSwingPips=500.0
+InpMinBarsAfterSwing=2
+
+; --- FIBONACCI LEVELS ---
+InpUseFib236=false
+InpUseFib382=true
+InpUseFib500=true
+InpUseFib618=true
+InpUseFib786=false
+InpFibBuffer=5.0
+
+; --- FIXED PIP SL/TP ---
+InpMaxSLPips=15.0
+InpTP1Pips=15.0
+InpTP2Pips=30.0
+InpTP1ClosePct=50.0
+InpTrailPips=8.0
+
+; --- ENTRY FILTERS ---
+InpUseTrend=true
+InpTrendEma=50
+InpUseSession=true
+InpLondonOpen=8
+InpLondonClose=12
+InpNYOpen=13
+InpNYClose=17
+InpUseAsianSession=false
+InpAsianOpen=0
+InpAsianClose=8
+InpMaxSpread=3.0
+InpUseRsi=true
+InpRsiPeriod=14
+InpRsiBullMax=62.0
+InpRsiBearMin=38.0
+InpRsiExtBull=42.0
+InpRsiExtBear=58.0
+InpUseMacd=true
+InpUseRejection=true
+InpRejWickRatio=0.35
+InpRequire618Rejection=true
+
+; --- ATR VOLATILITY FILTER ---
+InpUseAtrFilter=false
+InpAtrPeriod=14
+InpMaxAtrPips=30.0
+
+; --- SOFT LOT FILTERS (DISABLED) ---
+InpUseH4Soft=false
+InpH4Ema=50
+InpH4LotFactor=0.6
+InpUseAdxSoft=false
+InpAdxPeriod=14
+InpAdxMin=15.0
+InpAdxMid=22.0
+InpAdxWeakLot=0.6
+
+; --- POSITION SIZING & RISK ---
+; 0.5% risk recommended for live prop firm challenge buffer; set to 1.0% for standard
+InpRiskPct=0.5
+InpMaxOpenTrades=3
+InpMinLot=0.01
+InpMaxLot=50.0
+
+; --- TRADE MANAGEMENT ---
+InpUseBE=true
+InpUseTrail=true
+
+; --- DISPLAY DASHBOARD ---
+InpDrawFibs=true
+InpShowPanel=true
+InpShowArrows=true
+InpBullColor=16748574
+InpBearColor=17919

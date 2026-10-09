@@ -242,7 +242,15 @@ int OnInit()
 
    trade.SetExpertMagicNumber(g_magic);
    trade.SetDeviationInPoints(30);
-   trade.SetTypeFilling(ORDER_FILLING_IOC);
+
+   // Auto-detect broker execution filling mode (IOC -> FOK -> RETURN)
+   uint filling = (uint)SymbolInfoInteger(_Symbol, SYMBOL_FILLING_MODE);
+   if((filling & SYMBOL_FILLING_IOC) != 0)
+      trade.SetTypeFilling(ORDER_FILLING_IOC);
+   else if((filling & SYMBOL_FILLING_FOK) != 0)
+      trade.SetTypeFilling(ORDER_FILLING_FOK);
+   else
+      trade.SetTypeFilling(ORDER_FILLING_RETURN);
 
    double bal       = AccountInfoDouble(ACCOUNT_BALANCE);
    g_initBal        = (InpInitialBalance > 0) ? InpInitialBalance : bal;
