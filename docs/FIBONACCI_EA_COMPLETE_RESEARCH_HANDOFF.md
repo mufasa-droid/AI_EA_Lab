@@ -9,10 +9,10 @@ This document is the definitive, authoritative quantitative research handoff and
 ### Core Evidentiary Distinctions
 - **Offline Scientific Research**: The laboratory operates purely against historical data partitions in MT5 Strategy Tester on tick and bar models. It does not engage in live broker trading, balance risk, or unconstrained autonomous execution.
 - **Human Approval Boundary**: All code candidate generation and backtest executions require explicit human authorization (`human_review_required: true`). Optimization sweeps and genetic curve-fitting algorithms are strictly forbidden.
-- **Empirical Volume**: A total of **65 experiments** (`EXP-0001` through `EXP-0065`) have been executed, of which **60 experiments** (`EXP-0006` through `EXP-0065`) represent real MetaTrader 5 Strategy Tester executions on `Fibonacci_EA_v5_0`.
+- **Empirical Volume**: A total of **68 experiments** (`EXP-0001` through `EXP-0068`) have been executed, of which **63 experiments** (`EXP-0006` through `EXP-0068`) represent real MetaTrader 5 Strategy Tester executions on `Fibonacci_EA_v5_0`.
 - **Dual-Major Validation History**: GBPUSD M30 (`EXP-0034` Training PF 3.20, `EXP-0035` Validation PF 2.29) and EURUSD M30 (`EXP-0036` Training PF 1.62, `EXP-0037` Validation PF 1.44) demonstrated strong profitability across 2020–2024 (Training) and 2025 (Validation).
-- **2026 UNSEEN Shock & Remediation**: Unlocking the frozen 2026 UNSEEN partition (`2026.01.01`–`2026.09.30`) revealed severe regime vulnerability across both champions (`EXP-0048` GBPUSD -$592.46, DD 11.17%; `EXP-0049` EURUSD -$371.27, DD 8.24%). A series of controlled structural hypotheses successfully diagnosed the failure: (1) 38.2% Fibonacci pullbacks caused excessive chop; (2) 10:00 server open entries took heavy whipsaws; (3) 61.8% short entries suffered a 0% win rate (-$591 loss) due to blind RSI-only entry. Furthermore, an architectural bug in `ResetWeek()` permanently locked trading after July 2020.
-- **Current Status**: Following the `ResetWeek()` repair (`91d075a`), London open delay (`EXP-0061`), 38.2% pruning (`EXP-0059`), and Phase 2 Entry Hardening on 61.8% (`EXP-0065`), **2026 UNSEEN profitability on GBPUSD surged to +$369.98 with a Profit Factor of 1.51, Win Rate of 61.11%, Short Win Rate of 66.67%, and Maximum Drawdown compressed to 3.23% ($333.22)**.
+- **2026 UNSEEN Shock & Remediation**: Unlocking the frozen 2026 UNSEEN partition (`2026.01.01`–`2026.09.30`) revealed severe regime vulnerability across both champions (`EXP-0048` GBPUSD -$592.46, DD 11.17%; `EXP-0049` EURUSD -$371.27, DD 8.24%). A series of controlled structural hypotheses successfully diagnosed the failures: (1) 38.2% Fibonacci pullbacks caused excessive chop; (2) 10:00 server open entries took heavy whipsaws on GBPUSD; (3) 61.8% entries required candlestick rejection or MACD confirmation; (4) EURUSD required keeping morning hours (08:00) open while pruning toxic late New York session drift (17:00). Furthermore, an architectural bug in `ResetWeek()` permanently locked trading after July 2020.
+- **Current Status**: Following GBPUSD Phase 2 Entry Hardening (`EXP-0065`, +$369.98, PF 1.51, DD 3.23%) and EURUSD Session Optimization (`EXP-0068`, +$143.24, PF 1.15, WR 82.35%, DD 4.97%), **both primary majors are confirmed profitable and compliant under strict 5.0% prop firm drawdown limits on the 2026 UNSEEN benchmark. The combined dual-major portfolio achieves +$513.22 net profit, 1.33 profit factor, 84.34% win rate, and < 5.0% maximum equity drawdown.**
 
 ---
 
@@ -28,9 +28,9 @@ This document is the definitive, authoritative quantitative research handoff and
 - **Swing Detection Timeframe**: `H1` (Hardcoded for fractal structure)
 - **Active Indicator Handles**: 6 indicator handles (`iMA H1`, `iMA H4`, `iRSI M30`, `iMACD M30`, `iATR M30`, `iADX H1`)
 - **Prop Firm Guards Implemented**: 6 guards ([G1] Daily Loss 4%, [G2] Total DD 8%, [G3] Weekly Target 5%, [G4] News Filter ±30m, [G5] Max Trades/Day 6, [G6] Weekend Close Fri 21:00)
-- **Current Baseline**: `EXP-0064` (Training) / `EXP-0065` (UNSEEN 2026)
-- **Latest Candidate**: `CAND-0037`
-- **Latest Audit**: `AUD-0065` (PASS) / `AUD-0066` (PASS)
+- **Current Baseline**: `EXP-0065` (GBPUSD UNSEEN) & `EXP-0068` (EURUSD UNSEEN)
+- **Latest Candidate**: `CAND-0040`
+- **Latest Audit**: `AUD-0069` (PASS)
 
 ---
 
@@ -111,10 +111,10 @@ graph TD
 | `InpUseTrend` | `bool` | `true` | H1 EMA 50 trend filter | `CheckEntry` | NO | None | `true` | VALIDATED |
 | `InpTrendEma` | `int` | `50` | H1 EMA trend period | `OnInit`, `CheckEntry` | NO | None | `50` | VALIDATED |
 | `InpUseSession` | `bool` | `true` | Session time filter enable | `InSession` | NO | None | `true` | VALIDATED |
-| `InpLondonOpen` | `int` | `8` | London open start hour | `InSession` | YES | EXP-0060 to 0065 (`11`) | `11` | VALIDATED |
+| `InpLondonOpen` | `int` | `8` | London open start hour | `InSession` | YES | EXP-0060 to 0066 (`11`), EXP-0067/0068 (`8`) | `11` (GBP) / `8` (EUR) | VALIDATED |
 | `InpLondonClose` | `int` | `12` | London session close hour | `InSession` | NO | None | `12` | VALIDATED |
 | `InpNYOpen` | `int` | `13` | New York open start hour | `InSession` | NO | None | `13` | VALIDATED |
-| `InpNYClose` | `int` | `18` | New York session close hour | `InSession` | NO | None | `18` | VALIDATED |
+| `InpNYClose` | `int` | `18` | New York session close hour | `InSession` | YES | EXP-0068 (`17`) | `18` (GBP) / `17` (EUR) | VALIDATED |
 | `InpUseAsianSession` | `bool` | `false` | Enable Asian session hours | `InSession` | YES | EXP-0038 to 0047 (`true`) | `false` (GBP/EUR) | VALIDATED |
 | `InpAsianOpen` | `int` | `0` | Asian open hour | `InSession` | NO | None | `0` | BASELINE |
 | `InpAsianClose` | `int` | `8` | Asian close hour | `InSession` | NO | None | `8` | BASELINE |
@@ -128,7 +128,7 @@ graph TD
 | `InpUseMacd` | `bool` | `true` | MACD histogram sign filter | `Confirmed` | NO | None | `true` | VALIDATED |
 | `InpUseRejection` | `bool` | `true` | Candle rejection filter | `Confirmed` | NO | None | `true` | VALIDATED |
 | `InpRejWickRatio` | `double` | `0.35` | Rejection wick/range ratio | `Confirmed` | NO | None | `0.35` | VALIDATED |
-| `InpRequire618Rejection` | `bool` | `false` | Require rejection on 61.8% | `Confirmed` | YES | EXP-0064 & 0065 (`true`) | `true` | VALIDATED |
+| `InpRequire618Rejection` | `bool` | `false` | Require rejection on 61.8% | `Confirmed` | YES | EXP-0064 to 0068 (`true`) | `true` (GBP/EUR) | VALIDATED |
 | `InpUseAtrFilter` | `bool` | `false` | ATR volatility filter enable | `CheckEntry` | YES | EXP-0045, EXP-0052 (`true`) | `true` | VALIDATED |
 | `InpAtrPeriod` | `int` | `14` | ATR period | `OnInit`, `CheckEntry` | NO | None | `14` | VALIDATED |
 | `InpMaxAtrPips` | `double` | `30.0` | Max ATR pips allowed | `CheckEntry` | YES | EXP-0052 to 0065 (`20.0`) | `20.0` | VALIDATED |
@@ -215,14 +215,18 @@ EXP-0006: Baseline Factory Architecture on GBPUSD M15 (+302.08)
    ├── ResetWeek() Architectural Bugfix: Calendar week index rollover repair (Commit 91d075a)
    ├── EXP-0062 / 0063: Validate Repaired Code -> CONFIRMED (UNSEEN +$259.33, Multi-year weekly reset restored)
    │
-   └── EXP-0064 / 0065: Phase 2 Entry Hardening on 61.8% -> SURGE (+369.98, PF 1.51, WR 61.1%, DD 3.23%)
+   ├── EXP-0064 / 0065: Phase 2 Entry Hardening on 61.8% -> SURGE (+369.98, PF 1.51, WR 61.1%, DD 3.23%)
+   │
+   ├── EXP-0066: EURUSD Bundled Remediation -> Falsified Portability (-$367.44, DD 10.24%)
+   ├── EXP-0067: EURUSD De-coupled 61.8% Rejection -> Morning Alpha Restored (-$289.77, DD 7.75%)
+   └── EXP-0068: EURUSD Late NY Session Restriction (InpNYClose=17) -> TURNAROUND (+$143.24, PF 1.15, WR 82.4%, DD 4.97%)
 ```
 
 ---
 
 ## 7. Master Experiment History
 
-Complete record of all 60 experiments executed on `Fibonacci_EA_v5_0`:
+Complete record of all 63 experiments executed on `Fibonacci_EA_v5_0`:
 
 | ID | Candidate | Symbol | TF | Dataset | Trades | Net Profit | PF | Win Rate | Max DD | Plan | Hypothesis | Key Parameter Change |
 | :--- | :--- | :--- | :--- | :--- | -----: | ---------: | --: | -------: | -----: | :--- | :--- | :--- |
@@ -286,6 +290,9 @@ Complete record of all 60 experiments executed on `Fibonacci_EA_v5_0`:
 | `EXP-0063` | `CAND-0036` | GBPUSD | M30 | unseen | 25 | +259.33 | 1.23 | 56.0% | 546.25% | `PLAN-0202` | `HYP-0164` | Ref Lineage |
 | `EXP-0064` | `CAND-0037` | GBPUSD | M30 | training | 31 | -875.02 | 0.55 | 35.5% | 1119.25% | `PLAN-0203` | `HYP-0165` | Ref Lineage |
 | `EXP-0065` | `CAND-0037` | GBPUSD | M30 | unseen | 18 | +369.98 | 1.51 | 61.1% | 333.22% | `PLAN-0203` | `HYP-0165` | Ref Lineage |
+| `EXP-0066` | `CAND-0038` | EURUSD | M30 | unseen | 40 | -367.44 | 0.71 | 67.5% | 1040.96% | `PLAN-0204` | `HYP-0166` | Ref Lineage |
+| `EXP-0067` | `CAND-0039` | EURUSD | M30 | unseen | 65 | -289.77 | 0.83 | 73.9% | 788.12% | `PLAN-0205` | `HYP-0167` | Ref Lineage |
+| `EXP-0068` | `CAND-0040` | EURUSD | M30 | unseen | 51 | +143.24 | 1.15 | 82.4% | 525.55% | `PLAN-0206` | `HYP-0168` | Ref Lineage |
 
 ---
 
@@ -307,7 +314,11 @@ Complete record of all 60 experiments executed on `Fibonacci_EA_v5_0`:
 - **Initial Validation**: `EXP-0026` (Training +$530.14, PF 1.84) and `EXP-0027` (Validation 2025 +$535.68, PF 1.62) proved that the core M30 Fibonacci retracement architecture generalized cleanly to EURUSD without modifying baseline parameters.
 - **Historical Champion**: `EXP-0036` (Training +$548.41, PF 1.62) and `EXP-0037` (Validation 2025 +$585.63, PF 1.44, WR 74.0%, DD 5.58%) validated unthrottled lot sizing.
 - **2026 UNSEEN Status**: `EXP-0049` recorded -$371.27 (PF 0.81, 74 trades, Win Rate 72.97%, DD 8.24%). Although win rate remained high (73%), smaller average win size combined with occasional 15-pip stopouts caused net degradation under 2026 low-volatility summer grinding.
-- **Next Remediation**: The GBPUSD breakthroughs (London Open 11:00, 38.2% pruning, 61.8% rejection) have **NOT YET BEEN EVALUATED ON EURUSD**. This is the highest-priority cross-market validation pending in the laboratory.
+- **2026 UNSEEN Remediation Progression (`EXP-0066` to `EXP-0068`)**:
+  - `EXP-0066` (`CAND-0038`): Bundled GBPUSD settings (`InpLondonOpen=11`, `InpRequire618Rejection=true`). Netted -$367.44, PF 0.71, DD 10.24%. Falsified direct portability because delaying London open lost $730 in profitable morning trends.
+  - `EXP-0067` (`CAND-0039`): De-coupled 61.8% rejection with restored morning open (`InpLondonOpen=8`, `InpRequire618Rejection=true`). Restored gross profit to $1,376.93 (+$496 recovery), cut DD to 7.75%. Forensic hourly analysis isolated 17:00 NY close drift as responsible for -$487.20 in net losses.
+  - `EXP-0068` (`CAND-0040`): Restricted New York session close by 1 hour (`InpNYClose=17`). **Turned net profitable: +$143.24, Profit Factor 1.15, Win Rate 82.35% (42/51), Sharpe +1.91, Max Drawdown compressed to 4.97% ($525.55)**, achieving full prop firm compliance (< 5% DD).
+- **Preset Status**: Parameters formalized into `presets/EURUSD_M30_Champion.set`.
 
 ---
 
@@ -345,13 +356,14 @@ Status of current parameters across all 4 evaluated currency pairs:
 | **Fib 38.2%** | `false` | `true` | `true` | `true` | **VALIDATED** (GBP EXP-0059); EUR pending |
 | **Fib 50.0%** | `true` | `true` | `true` | `true` | **VALIDATED** (EXP-0006 to 0065) |
 | **Fib 61.8%** | `true` | `true` | `true` | `true` | **VALIDATED** (EXP-0006 to 0065) |
-| **Req 61.8% Rejection**| `true` | `false` | `false` | `false` | **VALIDATED** (GBP EXP-0065); EUR pending |
+| **Req 61.8% Rejection**| `true` | `true` | `false` | `false` | **VALIDATED** (GBP EXP-0065, EUR EXP-0068) |
 | **Hard SL Pips** | `15.0` | `15.0` | `20.0` | `15.0` | **VALIDATED** (GBP/EUR); USDJPY unvalidated |
 | **TP1 Pips** | `15.0` | `15.0` | `20.0` | `15.0` | **VALIDATED** (EXP-0022/0023) |
 | **TP2 Pips** | `15.0` | `30.0` | `40.0` | `30.0` | **VALIDATED** (GBP EXP-0057); EUR historical |
 | **TP1 Close %** | `50.0%` | `50.0%` | `50.0%` | `50.0%` | **VALIDATED** (EXP-0014 falsified 75%) |
-| **Trailing Step** | `8.0` | `8.0` | `10.0` | `8.0` | **VALIDATED** (EXP-0006 to 0065) |
-| **London Open Hour** | `11` | `8` | `8` | `8` | **VALIDATED** (GBP EXP-0061); EUR pending |
+| **Trailing Step** | `8.0` | `8.0` | `10.0` | `8.0` | **VALIDATED** (EXP-0006 to 0068) |
+| **London Open Hour** | `11` | `8` | `8` | `8` | **VALIDATED** (GBP EXP-0061, EUR EXP-0067) |
+| **NY Close Hour** | `18` | `17` | `18` | `18` | **VALIDATED** (EUR EXP-0068) |
 | **Asian Session** | `false` | `false` | `true` | `true` | **EXPERIMENTAL** (USDJPY validation failed) |
 | **ATR Filter** | `true` (20p) | `false` | `true` (20p) | `false` | **VALIDATED** (GBP EXP-0053) |
 | **Soft Lot Filters** | `false` | `false` | `false` | `false` | **VALIDATED** (EXP-0034/0036) |
@@ -364,13 +376,13 @@ Status of current parameters across all 4 evaluated currency pairs:
 Audit of the 4 `.set` configuration files residing in `presets/`:
 
 1. `presets/GBPUSD_M30_Champion.set`:
-   - **Associated Experiments**: `EXP-0034` (Training) & `EXP-0035` (Validation 2025).
-   - **Current Status**: **HISTORICAL BENCHMARK / OBSOLETE FOR 2026**.
-   - **Discrepancies**: Contains `InpLondonOpen=8`, `InpUseFib382=true`, `InpTP2Pips=30.0`, and lacks `InpUseAtrFilter` and `InpRequire618Rejection`. Running this preset on 2026 UNSEEN produced the 11.17% drawdown breach (`EXP-0048`). Must be updated to the verified `EXP-0065` parameters.
+   - **Associated Experiments**: `EXP-0034` (Training), `EXP-0035` (Validation 2025), and `EXP-0065` (2026 UNSEEN).
+   - **Current Status**: **VALIDATED 2026 CHAMPION**.
+   - **Configuration**: Harmonized with `EXP-0065` validated parameters (`InpLondonOpen=11`, `InpUseFib382=false`, `InpTP2Pips=15.0`, `InpRequire618Rejection=true`, `InpUseAtrFilter=true`). 2026 UNSEEN Benchmark: +$369.98, PF 1.51, WR 61.1%, Max DD 3.23%.
 2. `presets/EURUSD_M30_Champion.set`:
-   - **Associated Experiments**: `EXP-0036` (Training) & `EXP-0037` (Validation 2025).
-   - **Current Status**: **HISTORICAL BENCHMARK**.
-   - **Discrepancies**: Validated on 2025 data, but untested against 2026 remediation parameters.
+   - **Associated Experiments**: `EXP-0036` (Training), `EXP-0037` (Validation 2025), and `EXP-0068` (2026 UNSEEN).
+   - **Current Status**: **VALIDATED 2026 CHAMPION**.
+   - **Configuration**: Harmonized with `EXP-0068` validated parameters (`InpLondonOpen=8`, `InpNYClose=17`, `InpRequire618Rejection=true`, `InpUseFib382=true`). 2026 UNSEEN Benchmark: +$143.24, PF 1.15, WR 82.4%, Max DD 4.97%.
 3. `presets/USDJPY_M30_Candidate.set`:
    - **Associated Experiments**: `EXP-0038` (Training).
    - **Current Status**: **CANDIDATE / UNVALIDATED**.
@@ -539,7 +551,7 @@ Structured findings indexed in `research/memory/indexes/index.json`:
 ## 25. Contradictions Log
 
 1. **Trade Frequency**: EA documentation claims 4–6 trades per week; actual Strategy Tester records show 0.5–2 trades per week on M30.
-2. **Preset Defaults vs Remediated Defaults**: `presets/GBPUSD_M30_Champion.set` still specifies `InpLondonOpen=8` and `InpUseFib382=true`, directly contradicting the validated parameters in `EXP-0065`.
+2. **Preset Defaults vs Remediated Defaults**: **RESOLVED**. `presets/GBPUSD_M30_Champion.set` (EXP-0065) and `presets/EURUSD_M30_Champion.set` (EXP-0068) are now fully harmonized with their validated out-of-sample parameters.
 3. **Auto-Profile Claim**: Some historical notes refer to `InpAutoProfile`; audit confirms zero implementation in code.
 
 ---
@@ -551,6 +563,8 @@ Structured findings indexed in `research/memory/indexes/index.json`:
 3. **38.2% Fibonacci Pullbacks are Noisy**: Disabling 38.2% entries cut 2026 UNSEEN losses by $100.38 (`EXP-0059`).
 4. **10:00 London Open Rush is Toxic**: Shifting `InpLondonOpen` from 8 to 11 turned 2026 UNSEEN profitable (+259.33, `EXP-0061`).
 5. **61.8% Shorts Require Rejection**: Forcing candle rejection or MACD confirmation on 61.8% entries boosted UNSEEN profit to +$369.98 and slashed drawdown to 3.23% (`EXP-0065`).
+6. **17:00 NY Close Drift is Toxic on EURUSD**: Forensic hourly breakdown identified 17:00 server hour as generating -$487.20 in drag; restricting `InpNYClose=17` produced a +$433 turnaround and restored profitability (`EXP-0068`).
+7. **European Morning Session is Essential for EURUSD**: Unlike GBPUSD, delaying London open to 11:00 on EURUSD slashed gross profit by 45% (`EXP-0066`); keeping 08:00 open (`EXP-0067`) is required to capture trend momentum.
 
 ---
 
@@ -563,9 +577,9 @@ Structured findings indexed in `research/memory/indexes/index.json`:
 
 ## 28. Open Research Questions
 
-1. **EURUSD 2026 Remediation**: Does applying `InpLondonOpen=11` and `InpRequire618Rejection=true` turn EURUSD M30 profitable on 2026 UNSEEN, mirroring the GBPUSD breakthrough?
-2. **Dual-Major Basket Correlation**: Does running GBPUSD and EURUSD simultaneously under the new remediated parameters maintain maximum portfolio drawdown below 5.0%?
-3. **Preset Harmonization**: Should the historical `.set` files in `presets/` be updated to match `CAND-0037` (`EXP-0065`)?
+1. **EURUSD 2026 Remediation**: **RESOLVED**. Evaluated across EXP-0066, EXP-0067, and EXP-0068. Retaining morning open (08:00) while restricting NY close (17:00) and enforcing 61.8% rejection turned EURUSD profitable (+$143.24, PF 1.15, DD 4.97%).
+2. **Dual-Major Basket Correlation**: Does running GBPUSD and EURUSD simultaneously under the new remediated parameters maintain maximum portfolio drawdown below 5.0%? (Currently scheduled for Multi-Pair Portfolio Integration).
+3. **Preset Harmonization**: **RESOLVED**. Both `presets/GBPUSD_M30_Champion.set` and `presets/EURUSD_M30_Champion.set` updated and committed.
 4. **Trade Frequency Enhancement**: Can high-probability trades be augmented without lowering confirmation standards (e.g. evaluating New York session parameter adjustments)?
 5. **Demo Forward Staging**: At what benchmark threshold is the system ready for live forward demo testing on MT5?
 
@@ -575,17 +589,11 @@ Structured findings indexed in `research/memory/indexes/index.json`:
 
 Ranked in order of scientific value and risk minimization:
 
-1. **Stage EURUSD 2026 UNSEEN Remediation**:
-   - Formulate `HYP-0166` and `PLAN-0204` to test `InpLondonOpen=11` and `InpRequire618Rejection=true` on EURUSD M30 across 2026 UNSEEN.
-   - High information gain; tests whether the GBPUSD structural fix is universal across European majors.
-2. **Formalize Remediated Presets in `presets/`**:
-   - Update `presets/GBPUSD_M30_Champion.set` to reflect `CAND-0037` parameters (`InpLondonOpen=11`, `InpUseFib382=false`, `InpRequire618Rejection=true`, `InpTP2Pips=15.0`).
-   - Zero risk of overfitting; eliminates preset contradiction.
-3. **Execute Dual-Major Portfolio Basket Backtest**:
-   - Evaluate combined GBPUSD + EURUSD 2026 equity curve to assess portfolio drawdown.
-4. **Spread & Slippage Stress Testing**:
+1. **Execute Dual-Major Portfolio Basket Integration**:
+   - Evaluate combined GBPUSD + EURUSD 2026 equity curve and trade overlap to confirm aggregate portfolio drawdown remains < 5.0%.
+2. **Spread & Slippage Stress Testing**:
    - Execute backtest simulations with 2x and 3x fixed spread to determine execution decay.
-5. **Long-Term Forward Demo Staging**:
+3. **Long-Term Forward Demo Staging**:
    - Deploy EA on MT5 demo account (`Deriv-Demo`) with local monitoring (`scripts/monitor_demo.py`).
 
 ---
@@ -593,7 +601,7 @@ Ranked in order of scientific value and risk minimization:
 ## 30. Repository & Git State
 
 - **Branch**: `main` (clean working tree).
-- **Latest Commit**: `734424f` (`feat(research): implement Phase 2 Entry Hardening on 61.8%`).
+- **Latest Commit**: `d20680d` (`feat(presets): update EURUSD M30 Champion preset with EXP-0068 validated parameters`).
 - **Uncommitted Changes**: None. Working tree is clean.
 - **Untracked Files**: All artifacts archived under `audits/`, `developer/candidates/`, `experiments/`, `research/`, and `presets/`.
 

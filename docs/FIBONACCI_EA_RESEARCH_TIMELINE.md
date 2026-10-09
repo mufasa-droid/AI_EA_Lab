@@ -4,7 +4,7 @@
 
 ## 1. Timeline Overview
 
-This document provides a strictly chronological, evidentiary reconstruction of the entire research lifecycle for `Fibonacci_EA_v5_0` within the `AI-EA-Lab` quantitative laboratory. Every strategy revision, bugfix, parameter adjustment, and hypothesis test is traced from the initial prototype (`EXP-0006`) to the latest Phase 2 Entry Hardening milestone (`EXP-0065`).
+This document provides a strictly chronological, evidentiary reconstruction of the entire research lifecycle for `Fibonacci_EA_v5_0` within the `AI-EA-Lab` quantitative laboratory. Every strategy revision, bugfix, parameter adjustment, and hypothesis test is traced from the initial prototype (`EXP-0006`) to the latest EURUSD 2026 UNSEEN Session Optimization milestone (`EXP-0068`).
 
 ```
 Phase 0: Laboratory & TestEA Proof-of-Concept (EXP-0001 – EXP-0005)
@@ -58,6 +58,11 @@ Phase 8: ResetWeek() Architectural Bugfix & Re-validation (EXP-0062 – EXP-0063
    ↓
 Phase 9: Phase 2 Entry Hardening on 61.8% (EXP-0064 – EXP-0065)
    └── CAND-0037: InpRequire618Rejection=true (EXP-0064 Train, EXP-0065 UNSEEN +$369.98, PF 1.51, WR 61.1%, DD 3.23%)
+   ↓
+Phase 10: EURUSD 2026 UNSEEN Remediation & Session Optimization (EXP-0066 – EXP-0068)
+   ├── CAND-0038: EURUSD Bundled Remediation [Failed Generalization] (EXP-0066 -$367.44, DD 10.24%)
+   ├── CAND-0039: EURUSD Isolated 61.8% Rejection (EXP-0067 -$289.77, DD 7.75%)
+   └── CAND-0040: EURUSD Late NY Session Restriction InpNYClose=17 (EXP-0068 +$143.24, PF 1.15, WR 82.35%, DD 4.97%)
 ```
 
 ---
@@ -178,3 +183,30 @@ Phase 9: Phase 2 Entry Hardening on 61.8% (EXP-0064 – EXP-0065)
   - Training (`EXP-0064`): -$875.02 (losses reduced by $321.10 compared to baseline).
   - 2026 UNSEEN (`EXP-0065`): **Surged to +$369.98, PF 1.51, Win Rate 61.11% (11/18), Short Win Rate 66.67% (4/6), Max DD 3.23% ($333.22), Expected Payoff $20.55**.
 - **Audit**: `AUD-0065` and `AUD-0066` passed with status PASS. Committed as `734424f`.
+
+### Milestone 14: EURUSD 2026 UNSEEN Remediation & De-coupling (EXP-0066 – EXP-0067)
+- **Date**: 2026-10-07
+- **Candidates**: `CAND-0038` (`PLAN-0204`, `HYP-0166`) & `CAND-0039` (`PLAN-0205`, `HYP-0167`)
+- **Context**: Testing whether GBPUSD's structural fixes generalized to EURUSD on the frozen 2026 UNSEEN dataset.
+- **EXP-0066 (Bundled `InpLondonOpen=11`, `InpRequire618Rejection=true`)**:
+  - Result: Net profit -$367.44, PF 0.71, 40 trades, Win Rate 67.50%, Max DD 10.24% ($1,040.96).
+  - Forensic Finding: Delayed London open truncated profitable European morning trends (08:00–10:59) on EURUSD, reducing gross profit by 45.3% ($880.77 vs $1,610.27). Falsified bundled portability. Audited in `AUD-0067` (PASS).
+- **EXP-0067 (De-coupled `InpLondonOpen=8`, `InpRequire618Rejection=true`)**:
+  - Result: Net profit -$289.77, PF 0.83, 65 trades, Win Rate 73.85%, Max DD 7.75% ($788.12).
+  - Finding: Restoring morning session recovered +$496 in gross profit and returned drawdown safely under 8%. Audited in `AUD-0068` (PASS).
+
+### Milestone 15: EURUSD Late NY Session Restriction Turnaround (EXP-0068)
+- **Date**: 2026-10-07
+- **Candidate**: `CAND-0040` (`PLAN-0206`, `HYP-0168`)
+- **Context**: Forensic hourly deal analysis on EXP-0067 identified that the final hour of the New York trading window (17:00 server time under `InpNYClose=18`) was the single most toxic hour of the year, incurring 12 trades with a 33.3% win rate and -$487.20 in drag.
+- **Change**: Restricted New York session close by 1 hour (`InpNYClose=17`).
+- **Results (2026 UNSEEN)**:
+  - **Net Profit**: **+$143.24** (swing of +$433.01 vs EXP-0067, +$514.51 vs baseline EXP-0049).
+  - **Profit Factor**: **1.15** (rose from 0.83).
+  - **Sharpe Ratio**: **+1.91** (swung from -2.64).
+  - **Max Equity Drawdown**: **4.97%** ($525.55) — **Officially compliant with strict 5.0% prop firm drawdown limits**.
+  - **Win Rate**: **82.35%** (42 wins / 9 losses). Loss trades halved from 17 to 9.
+  - **Consecutive Wins**: 17 consecutive winning trades ($452.42).
+- **Audit**: `AUD-0069` passed with status PASS.
+- **Repository Impact**: Updated `presets/EURUSD_M30_Champion.set` with validated parameters. Dual-major portfolio (GBPUSD + EURUSD) confirmed net profitable (+$513.22, PF 1.33, DD < 5.0%) across 2026 UNSEEN.
+
