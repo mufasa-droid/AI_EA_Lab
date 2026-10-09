@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "hypothesis_id": "HYP-0169",
+  "created_at": "2026-10-09T14:56:00+01:00",
+  "title": "EURUSD M30 5-Year History Benchmark with Weekly Target Lock Removed",
+  "research_question": "Does removing the weekly profit target lock (InpWeeklyTargetPct=0.0) on the remediated EURUSD champion configuration allow continuous trading across the full 5-year training history (2020.01.01 to 2024.12.31) and deliver robust positive net profit and controlled drawdown without multi-year dormancy?",
+  "hypothesis": "Disabling the weekly profit target lock (InpWeeklyTargetPct: 5.0 -> 0.0) on the EURUSD champion settings (InpRequire618Rejection=true, InpNYClose=17, InpLondonOpen=8) will eliminate the artificial weekly trading halt and resolve the multi-year dormancy that affected EXP-0036 (which took only 24 trades before freezing in August 2020), enabling continuous 5-year execution with positive net expectancy and drawdown within prop firm limits (<8%).",
+  "basis": {
+    "historical_experiments": [
+      "EXP-0036",
+      "EXP-0068",
+      "EXP-0064"
+    ],
+    "facts": [
+      "In EXP-0036 (EURUSD M30 Training 2020-2024), the strategy took only 24 trades and completely ceased trading on 2020.08.26 due to the ResetWeek() Monday comparison freeze bug.",
+      "Commit 91d075a repaired ResetWeek() to use calendar week index tracking.",
+      "In EXP-0068, candidate CAND-0040 validated EURUSD profitability on 2026 UNSEEN (+$143.24, PF 1.15, WR 82.4%, DD 4.97%) with InpRequire618Rejection=true and InpNYClose=17.",
+      "EURUSD with validated candidate settings has never been evaluated across the full 5-year training dataset (2020.01.01 to 2024.12.31)."
+    ],
+    "inferences": [
+      "Setting InpWeeklyTargetPct=0.0 completely bypasses [G3] Weekly profit lock (if(InpWeeklyTargetPct > 0)), preventing weekly trading lockouts.",
+      "Running the 5-year benchmark will establish the true multi-year baseline trade distribution, win rate, and drawdown of the champion preset."
+    ],
+    "evidence": [
+      "EXP-0036 deal history shows first deal on 2020.02.20 and last deal on 2020.08.26, leaving 4 full years (Sept 2020 - Dec 2024) unexecuted.",
+      "EXP-0068 confirms InpRequire618Rejection=true and InpNYClose=17 deliver +$143.24 and 4.97% max DD on 2026 UNSEEN."
+    ]
+  },
+  "independent_variables": [
+    {
+      "name": "InpWeeklyTargetPct",
+      "baseline_value": "5.0",
+      "proposed_value": "0.0",
+      "rationale": "Disables the weekly profit lock guard, ensuring uninterrupted trading every week throughout 2020-2024 without artificial weekly halts."
+    }
+  ],
+  "dependent_variables": [
+    "total_trades",
+    "total_net_profit",
+    "gross_profit",
+    "gross_loss",
+    "profit_factor",
+    "win_rate",
+    "equity_drawdown_maximal"
+  ],
+  "control_variables": [
+    {"name": "symbol", "value": "EURUSD"},
+    {"name": "timeframe", "value": "M30"},
+    {"name": "ea", "value": "Fibonacci_EA_v5_0"},
+    {"name": "InpLondonOpen", "value": "8"},
+    {"name": "InpLondonClose", "value": "12"},
+    {"name": "InpNYOpen", "value": "13"},
+    {"name": "InpNYClose", "value": "17"},
+    {"name": "InpRequire618Rejection", "value": "true"},
+    {"name": "InpUseFib382", "value": "true"},
+    {"name": "InpUseFib500", "value": "true"},
+    {"name": "InpUseFib618", "value": "true"},
+    {"name": "InpTP1Pips", "value": "15.0"},
+    {"name": "InpTP2Pips", "value": "30.0"},
+    {"name": "InpMaxSLPips", "value": "15.0"},
+    {"name": "InpUseAtrFilter", "value": "false"},
+    {"name": "InpUseH4Soft", "value": "false"},
+    {"name": "InpUseAdxSoft", "value": "false"},
+    {"name": "InpRiskPct", "value": "1.0"},
+    {"name": "InpMaxOpenTrades", "value": "3"}
+  ],
+  "assumptions": [
+    "The 5-year tick and bar data for EURUSD M30 is intact (100% history quality) across 2020.01.01 to 2024.12.31.",
+    "Removing the weekly target lock allows trade frequency to reflect true market conditions rather than arbitrary weekly cutoffs."
+  ],
+  "dataset": {
+    "type": "training",
+    "from": "2020.01.01",
+    "to": "2024.12.31",
+    "status": "configured"
+  },
+  "expected_observations": [
+    "Total trades will be substantially higher than 24 (expected > 100 trades across 5 years).",
+    "Trading will be active across all 5 years (2020, 2021, 2022, 2023, 2024).",
+    "Net profit will be positive with Profit Factor > 1.20.",
+    "Max equity drawdown remains below 8.0%."
+  ],
+  "falsification_conditions": [
+    "Total trades remain <= 30 (indicating trading lock or premature halt).",
+    "Total Net Profit <= $0.00.",
+    "Max equity drawdown exceeds 8.0%."
+  ],
+  "status": "proposed"
+}

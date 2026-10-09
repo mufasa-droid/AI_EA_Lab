@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0041",
+  "plan_id": "PLAN-0207",
+  "baseline_experiment": "EXP-0068",
+  "ea": "Fibonacci_EA_v5_0",
+  "changes": [
+    {
+      "type": "input_default_change",
+      "parameter": "InpWeeklyTargetPct",
+      "type_declared": "double",
+      "after": "0.0"
+    }
+  ],
+  "unauthorized_changes": [],
+  "feasible": true,
+  "compile_status": "passed"
+}

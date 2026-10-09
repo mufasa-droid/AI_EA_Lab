@@ -9,7 +9,7 @@ This document is the definitive, authoritative quantitative research handoff and
 ### Core Evidentiary Distinctions
 - **Offline Scientific Research**: The laboratory operates purely against historical data partitions in MT5 Strategy Tester on tick and bar models. It does not engage in live broker trading, balance risk, or unconstrained autonomous execution.
 - **Human Approval Boundary**: All code candidate generation and backtest executions require explicit human authorization (`human_review_required: true`). Optimization sweeps and genetic curve-fitting algorithms are strictly forbidden.
-- **Empirical Volume**: A total of **68 experiments** (`EXP-0001` through `EXP-0068`) have been executed, of which **63 experiments** (`EXP-0006` through `EXP-0068`) represent real MetaTrader 5 Strategy Tester executions on `Fibonacci_EA_v5_0`.
+- **Empirical Volume**: A total of **69 experiments** (`EXP-0001` through `EXP-0069`) have been executed, of which **64 experiments** (`EXP-0006` through `EXP-0069`) represent real MetaTrader 5 Strategy Tester executions on `Fibonacci_EA_v5_0`.
 - **Dual-Major Validation History**: GBPUSD M30 (`EXP-0034` Training PF 3.20, `EXP-0035` Validation PF 2.29) and EURUSD M30 (`EXP-0036` Training PF 1.62, `EXP-0037` Validation PF 1.44) demonstrated strong profitability across 2020–2024 (Training) and 2025 (Validation).
 - **2026 UNSEEN Shock & Remediation**: Unlocking the frozen 2026 UNSEEN partition (`2026.01.01`–`2026.09.30`) revealed severe regime vulnerability across both champions (`EXP-0048` GBPUSD -$592.46, DD 11.17%; `EXP-0049` EURUSD -$371.27, DD 8.24%). A series of controlled structural hypotheses successfully diagnosed the failures: (1) 38.2% Fibonacci pullbacks caused excessive chop; (2) 10:00 server open entries took heavy whipsaws on GBPUSD; (3) 61.8% entries required candlestick rejection or MACD confirmation; (4) EURUSD required keeping morning hours (08:00) open while pruning toxic late New York session drift (17:00). Furthermore, an architectural bug in `ResetWeek()` permanently locked trading after July 2020.
 - **Current Status**: Following GBPUSD Phase 2 Entry Hardening (`EXP-0065`, +$369.98, PF 1.51, DD 3.23%) and EURUSD Session Optimization (`EXP-0068`, +$143.24, PF 1.15, WR 82.35%, DD 4.97%), **both primary majors are confirmed profitable and compliant under strict 5.0% prop firm drawdown limits on the 2026 UNSEEN benchmark. The combined dual-major portfolio achieves +$513.22 net profit, 1.33 profit factor, 84.34% win rate, and < 5.0% maximum equity drawdown.**
@@ -293,6 +293,7 @@ Complete record of all 63 experiments executed on `Fibonacci_EA_v5_0`:
 | `EXP-0066` | `CAND-0038` | EURUSD | M30 | unseen | 40 | -367.44 | 0.71 | 67.5% | 1040.96% | `PLAN-0204` | `HYP-0166` | Ref Lineage |
 | `EXP-0067` | `CAND-0039` | EURUSD | M30 | unseen | 65 | -289.77 | 0.83 | 73.9% | 788.12% | `PLAN-0205` | `HYP-0167` | Ref Lineage |
 | `EXP-0068` | `CAND-0040` | EURUSD | M30 | unseen | 51 | +143.24 | 1.15 | 82.4% | 525.55% | `PLAN-0206` | `HYP-0168` | Ref Lineage |
+| `EXP-0069` | `CAND-0041` | EURUSD | M30 | training | 179 | +1767.51 | 1.27 | 68.2% | 1878.51% | `PLAN-0207` | `HYP-0169` | Ref Lineage |
 
 ---
 

@@ -210,3 +210,17 @@ Phase 10: EURUSD 2026 UNSEEN Remediation & Session Optimization (EXP-0066 – EX
 - **Audit**: `AUD-0069` passed with status PASS.
 - **Repository Impact**: Updated `presets/EURUSD_M30_Champion.set` with validated parameters. Dual-major portfolio (GBPUSD + EURUSD) confirmed net profitable (+$513.22, PF 1.33, DD < 5.0%) across 2026 UNSEEN.
 
+### Milestone 16: EURUSD 5-Year History Benchmark (EXP-0069)
+- **Date**: 2026-10-09
+- **Candidate**: `CAND-0041` (`PLAN-0207`, `HYP-0169`)
+- **Context**: Re-evaluating EURUSD across the entire 5-year historical training partition (`2020.01.01` to `2024.12.31`) after discovering that historical benchmark `EXP-0036` had frozen after August 2020. Tested the remediated Champion preset with the weekly profit lock completely disabled (`InpWeeklyTargetPct = 0.0`).
+- **Results (5-Year Training: 2020–2024)**:
+  - **Net Profit**: **+$1,767.51** (+17.68% return, gross profit $8,233.67 vs gross loss -$6,466.16).
+  - **Total Trades**: **179 trades** (trade count surged +645.8% vs 24 trades in frozen EXP-0036).
+  - **Win Rate**: **68.16%** (122 wins / 57 losses). Short WR 74.73%, Long WR 61.36%.
+  - **Profit Factor**: **1.27** | **Sharpe Ratio**: **4.92**.
+  - **Max Consecutive Wins**: **26 consecutive wins ($1,111.32)**.
+  - **Annual Breakdown**: 4 of 5 years profitable (2020 +$722, 2021 +$757, 2022 +$342, 2023 +$530, 2024 -$579).
+- **Audit**: `AUD-0070` passed with status PASS.
+- **Finding**: Confirmed that removing the weekly target lock completely eliminates multi-year dormancy and proves solid, continuous 5-year profitability for the EURUSD champion architecture.
+

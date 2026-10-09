@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "plan_id": "PLAN-0207",
+  "ea": "Fibonacci_EA_v5_0",
+  "feasible": true,
+  "status": "pass",
+  "reason": "All requested parameters exist in EA source and are compatible with EA architecture.",
+  "required_changes": [
+    {
+      "parameter": "InpWeeklyTargetPct",
+      "type": "double",
+      "before": "5.0",
+      "after": "0.0",
+      "rationale": ""
+    }
+  ],
+  "blocked_by": []
+}

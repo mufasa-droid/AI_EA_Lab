@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "candidate_id": "CAND-0041",
+  "plan_id": "PLAN-0207",
+  "hypothesis_id": "HYP-0169",
+  "baseline_experiment": "EXP-0068",
+  "ea": "Fibonacci_EA_v5_0",
+  "created_at": "2026-10-09T14:57:30.535194+01:00",
+  "source_before_sha256": "7e4b584f63d93c4b7f41679cd3f7d572ab0eda24651d9d5349f1c4f0331c7fdc",
+  "source_after_sha256": "1cc8a50593328a9969c57681cbd9d948cae5ea55f0aafd75d40500f33105f9b5",
+  "requested_changes": [
+    {
+      "variable": "InpWeeklyTargetPct",
+      "baseline_value": "5.0",
+      "target_value": "0.0",
+      "change_type": "parameter_adjustment"
+    }
+  ],
+  "actual_changes": [
+    {
+      "type": "input_default_change",
+      "parameter": "InpWeeklyTargetPct",
+      "type_declared": "double",
+      "after": "0.0"
+    }
+  ],
+  "feasibility_status": "pass",
+  "compile_status": "passed",
+  "compiler_info": {
+    "compiler_path": "C:\\Program Files\\MetaTrader 5\\MetaEditor64.exe",
+    "exit_code": 1,
+    "error_count": 0,
+    "warning_count": 0
+  },
+  "status": "ready_for_next_phase"
+}
